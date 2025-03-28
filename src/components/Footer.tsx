@@ -66,7 +66,7 @@ const Footer = () => {
         }} viewport={{
           once: true
         }}>
-            <h3 className="text-xl font-medium mb-4">Contato</h3>
+            <h3 className="text-xl font-medium mb-4 text-slate-50">Contato</h3>
             <div className="flex flex-col space-y-3">
               <div className="flex items-start">
                 <div className="mt-1 mr-3 bg-nature-500/20 p-2 rounded-full">
