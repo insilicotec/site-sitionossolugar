@@ -1,4 +1,3 @@
-
 import { 
   Cake, 
   Calendar, 
@@ -159,54 +158,45 @@ const Index = () => {
       <Navbar />
       
       <main className="flex-grow">
-        {/* Hero Section */}
-        <section className="hero-section hero-fix h-[80vh] flex items-center justify-center text-white text-center relative">
-          <FloatingLeaf delay={2} size={36} left="15%" duration={20} />
-          <FloatingLeaf delay={5} size={28} left="85%" duration={18} />
-          <FloatingLeaf delay={8} size={32} left="45%" duration={22} />
-          
-          <div className="absolute top-10 right-10 text-sitio-sunshine animate-pulse-soft opacity-70">
-            <Sun size={64} />
+        <section className="relative min-h-[85vh] flex items-center justify-center overflow-hidden bg-gradient-to-r from-emerald-50 to-teal-50">
+          <div className="absolute inset-0 overflow-hidden">
+            <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1501854140801-50d01698950b')] bg-cover bg-center opacity-20"></div>
+            <div className="absolute inset-0 bg-gradient-to-b from-white/60 to-emerald-50/60"></div>
           </div>
           
-          <div className="container px-4">
-            <div className="relative">
-              <h1 className="text-5xl md:text-7xl font-bold mb-6 text-white relative inline-block">
+          <div className="absolute top-20 right-20 text-emerald-300/40">
+            <Leaf size={180} />
+          </div>
+          <div className="absolute bottom-20 left-20 text-emerald-300/30">
+            <Leaf size={140} className="rotate-45" />
+          </div>
+          
+          <div className="container relative z-10 px-6 py-16 mx-auto text-center">
+            <div className="max-w-3xl mx-auto">
+              <span className="inline-block px-4 py-1.5 mb-6 text-sm font-medium tracking-wider text-emerald-700 uppercase bg-emerald-100 rounded-full">
+                Bem-vindo ao nosso paraíso natural
+              </span>
+              
+              <h1 className="mb-8 text-5xl font-bold leading-tight text-emerald-900 md:text-6xl lg:text-7xl font-display">
                 Sítio Nosso Lugar
-                <span className="absolute -top-6 -right-6 text-sitio-sunshine animate-pulse-soft">
-                  <Sparkles size={32} />
-                </span>
               </h1>
-            </div>
-            <p className="text-xl md:text-2xl mb-8 max-w-2xl mx-auto">
-              Um refúgio natural perfeito para seus momentos mais especiais
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link to="/agendamento">
-                <Button 
-                  className="bg-white/90 hover:bg-white text-nature-700 hover:text-nature-800 px-8 py-6 text-lg group relative overflow-hidden border-2 border-white/80 backdrop-blur-sm shadow-lg rounded-xl transition-all duration-300 hover:scale-105"
-                >
-                  <span className="relative z-10 flex items-center gap-2">
-                    <CalendarClock size={20} className="transition-transform group-hover:rotate-12" />
-                    Agendar Visita
-                  </span>
-                  <span className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/80 to-white/0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 transform -translate-x-full group-hover:translate-x-full"></span>
-                </Button>
-              </Link>
-              <a 
-                href="https://www.instagram.com/sitionossolugar/" 
-                target="_blank" 
-                rel="noopener noreferrer"
-              >
-                <Button 
-                  variant="outline" 
-                  className="text-white border-white/70 hover:border-white hover:bg-white/20 px-8 py-6 text-lg backdrop-blur-sm rounded-xl"
-                >
-                  <span className="flex items-center gap-2">
+              
+              <p className="max-w-2xl mx-auto mb-10 text-lg text-emerald-800/90 md:text-xl">
+                Um refúgio natural perfeito para seus momentos mais especiais, onde a natureza e o conforto se encontram para criar experiências inesquecíveis.
+              </p>
+              
+              <div className="relative inline-block p-1 mt-4 bg-white/50 backdrop-blur-sm rounded-xl shadow-xl">
+                <div className="p-px bg-gradient-to-r from-emerald-200/50 via-emerald-400/50 to-emerald-200/50 rounded-lg">
+                  <a 
+                    href="https://www.instagram.com/sitionossolugar/" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="inline-block px-8 py-4 font-medium text-emerald-700 transition-all duration-300 bg-white rounded-lg hover:bg-emerald-50 hover:text-emerald-800"
+                  >
                     Conheça no Instagram
-                  </span>
-                </Button>
-              </a>
+                  </a>
+                </div>
+              </div>
             </div>
           </div>
           
@@ -214,7 +204,7 @@ const Index = () => {
             <svg 
               preserveAspectRatio="none" 
               width="100%" 
-              height="100" 
+              height="80" 
               viewBox="0 0 1200 120" 
               className="fill-sitio-sand"
             >
@@ -225,7 +215,6 @@ const Index = () => {
           </div>
         </section>
         
-        {/* About Section */}
         <section className="py-20 bg-sitio-sand relative">
           <div className="leaf-pattern absolute inset-0 opacity-20"></div>
           
@@ -283,7 +272,7 @@ const Index = () => {
                 </div>
                 
                 <div className="mt-8">
-                  <Link to="/como-chegar">
+                  <Link to="/agendamento">
                     <Button className="group bg-sitio-leaf hover:bg-sitio-green-dark text-white">
                       <span className="flex items-center gap-2">
                         Conheça Nossa Estrutura
@@ -297,7 +286,6 @@ const Index = () => {
           </div>
         </section>
         
-        {/* Services Section */}
         <section className="py-20 bg-white relative">
           <div className="water-pattern absolute inset-0 opacity-30"></div>
           
@@ -391,7 +379,6 @@ const Index = () => {
           </div>
         </section>
         
-        {/* Gallery Section */}
         <section className="py-20 bg-sitio-sand relative">
           <div className="forest-pattern absolute inset-0 opacity-30"></div>
           
@@ -411,7 +398,6 @@ const Index = () => {
           </div>
         </section>
         
-        {/* Videos Section */}
         <section className="py-20 bg-white relative">
           <div className="water-pattern absolute inset-0 opacity-30"></div>
           
@@ -431,7 +417,6 @@ const Index = () => {
           </div>
         </section>
         
-        {/* Map Section */}
         <section className="py-20 bg-sitio-sand relative">
           <div className="leaf-pattern absolute inset-0 opacity-20"></div>
           
@@ -451,8 +436,7 @@ const Index = () => {
           </div>
         </section>
         
-        {/* Call to Action */}
-        <section className="py-20 bg-nature-600 text-white relative overflow-hidden">
+        <section className="py-20 bg-emerald-700 text-white relative overflow-hidden">
           <div className="absolute top-0 right-0 opacity-10">
             <svg width="400" height="400" viewBox="0 0 200 200">
               <path 
@@ -473,7 +457,7 @@ const Index = () => {
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link to="/agendamento">
-                  <Button className="bg-white text-nature-700 hover:bg-nature-50 hover:text-nature-800 px-8 py-3 text-lg group rounded-xl transition-all duration-300 hover:scale-105 shadow-lg">
+                  <Button className="bg-white text-emerald-700 hover:bg-emerald-50 hover:text-emerald-800 px-8 py-3 text-lg group rounded-xl transition-all duration-300 hover:scale-105 shadow-lg">
                     <span className="flex items-center gap-2">
                       <Calendar size={20} className="transition-transform group-hover:rotate-12" />
                       Fazer Reserva
@@ -487,7 +471,7 @@ const Index = () => {
                 >
                   <Button 
                     variant="outline" 
-                    className="border-white text-white hover:bg-white/20 px-8 py-3 text-lg rounded-xl"
+                    className="border-white text-white hover:bg-white/20 bg-emerald-600/40 backdrop-blur-sm px-8 py-3 text-lg rounded-xl"
                   >
                     Fale Conosco
                   </Button>
