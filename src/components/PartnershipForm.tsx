@@ -1,5 +1,6 @@
 
-import { useState, ChangeEvent, FormEvent } from 'react';
+import { useState } from 'react';
+import { useForm } from "react-hook-form";
 import { Button } from '@/components/ui/button';
 import {
   Form,
@@ -11,6 +12,8 @@ import {
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 interface PartnershipFormProps {
   onSubmit: (data: PartnershipData) => void;
@@ -26,42 +29,50 @@ export interface PartnershipData {
   descricao: string;
 }
 
+// Create a schema for form validation
+const formSchema = z.object({
+  nomeAgencia: z.string().min(2, "Nome da agência é obrigatório"),
+  responsavel: z.string().min(2, "Nome do responsável é obrigatório"),
+  telefone: z.string().min(8, "Telefone é obrigatório"),
+  email: z.string().email("E-mail inválido"),
+  cidade: z.string().min(2, "Cidade é obrigatória"),
+  website: z.string().optional(),
+  descricao: z.string().min(10, "Por favor, descreva como deseja formar parceria")
+});
+
 const PartnershipForm = ({ onSubmit }: PartnershipFormProps) => {
-  const [formData, setFormData] = useState<PartnershipData>({
-    nomeAgencia: '',
-    responsavel: '',
-    telefone: '',
-    email: '',
-    cidade: '',
-    website: '',
-    descricao: '',
+  // Initialize react-hook-form with zod resolver
+  const form = useForm<PartnershipData>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      nomeAgencia: '',
+      responsavel: '',
+      telefone: '',
+      email: '',
+      cidade: '',
+      website: '',
+      descricao: '',
+    }
   });
 
-  const handleInputChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-  };
-
-  const handleSubmit = (e: FormEvent) => {
-    e.preventDefault();
-    onSubmit(formData);
+  // Handle form submission
+  const handleSubmit = (data: PartnershipData) => {
+    onSubmit(data);
   };
 
   return (
-    <Form>
-      <form onSubmit={handleSubmit} className="space-y-6">
+    <Form {...form}>
+      <form onSubmit={form.handleSubmit(handleSubmit)} className="space-y-6">
         <FormField
+          control={form.control}
           name="nomeAgencia"
-          render={() => (
+          render={({ field }) => (
             <FormItem>
               <FormLabel>Nome da Agência</FormLabel>
               <FormControl>
                 <Input 
-                  name="nomeAgencia" 
-                  value={formData.nomeAgencia} 
-                  onChange={handleInputChange} 
-                  placeholder="Nome da sua agência" 
-                  required 
+                  placeholder="Nome da sua agência"
+                  {...field} 
                 />
               </FormControl>
               <FormMessage />
@@ -71,17 +82,15 @@ const PartnershipForm = ({ onSubmit }: PartnershipFormProps) => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <FormField
+            control={form.control}
             name="responsavel"
-            render={() => (
+            render={({ field }) => (
               <FormItem>
                 <FormLabel>Nome do Responsável</FormLabel>
                 <FormControl>
                   <Input 
-                    name="responsavel" 
-                    value={formData.responsavel} 
-                    onChange={handleInputChange} 
-                    placeholder="Seu nome completo" 
-                    required 
+                    placeholder="Seu nome completo"
+                    {...field} 
                   />
                 </FormControl>
                 <FormMessage />
@@ -90,17 +99,15 @@ const PartnershipForm = ({ onSubmit }: PartnershipFormProps) => {
           />
 
           <FormField
+            control={form.control}
             name="telefone"
-            render={() => (
+            render={({ field }) => (
               <FormItem>
                 <FormLabel>Telefone</FormLabel>
                 <FormControl>
                   <Input 
-                    name="telefone" 
-                    value={formData.telefone} 
-                    onChange={handleInputChange} 
-                    placeholder="(00) 00000-0000" 
-                    required 
+                    placeholder="(00) 00000-0000"
+                    {...field} 
                   />
                 </FormControl>
                 <FormMessage />
@@ -111,18 +118,16 @@ const PartnershipForm = ({ onSubmit }: PartnershipFormProps) => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <FormField
+            control={form.control}
             name="email"
-            render={() => (
+            render={({ field }) => (
               <FormItem>
                 <FormLabel>E-mail</FormLabel>
                 <FormControl>
                   <Input 
-                    name="email" 
                     type="email"
-                    value={formData.email} 
-                    onChange={handleInputChange} 
-                    placeholder="seu@email.com" 
-                    required 
+                    placeholder="seu@email.com"
+                    {...field} 
                   />
                 </FormControl>
                 <FormMessage />
@@ -131,17 +136,15 @@ const PartnershipForm = ({ onSubmit }: PartnershipFormProps) => {
           />
 
           <FormField
+            control={form.control}
             name="cidade"
-            render={() => (
+            render={({ field }) => (
               <FormItem>
                 <FormLabel>Cidade</FormLabel>
                 <FormControl>
                   <Input 
-                    name="cidade" 
-                    value={formData.cidade} 
-                    onChange={handleInputChange} 
-                    placeholder="Sua cidade" 
-                    required 
+                    placeholder="Sua cidade"
+                    {...field} 
                   />
                 </FormControl>
                 <FormMessage />
@@ -151,16 +154,15 @@ const PartnershipForm = ({ onSubmit }: PartnershipFormProps) => {
         </div>
 
         <FormField
+          control={form.control}
           name="website"
-          render={() => (
+          render={({ field }) => (
             <FormItem>
               <FormLabel>Website ou Rede Social</FormLabel>
               <FormControl>
                 <Input 
-                  name="website" 
-                  value={formData.website} 
-                  onChange={handleInputChange} 
-                  placeholder="https://www.seusite.com" 
+                  placeholder="https://www.seusite.com"
+                  {...field} 
                 />
               </FormControl>
               <FormMessage />
@@ -169,18 +171,16 @@ const PartnershipForm = ({ onSubmit }: PartnershipFormProps) => {
         />
 
         <FormField
+          control={form.control}
           name="descricao"
-          render={() => (
+          render={({ field }) => (
             <FormItem>
               <FormLabel>Como deseja formar parceria?</FormLabel>
               <FormControl>
                 <Textarea 
-                  name="descricao" 
-                  value={formData.descricao} 
-                  onChange={handleInputChange} 
                   placeholder="Descreva como gostaria de formar parceria conosco..." 
                   rows={4}
-                  required
+                  {...field}
                 />
               </FormControl>
               <FormMessage />

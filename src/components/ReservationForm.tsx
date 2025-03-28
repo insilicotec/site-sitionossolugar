@@ -1,5 +1,6 @@
 
-import { useState, ChangeEvent, FormEvent } from 'react';
+import { useState } from 'react';
+import { useForm } from "react-hook-form";
 import { Calendar } from '@/components/ui/calendar';
 import { Button } from '@/components/ui/button';
 import {
@@ -29,6 +30,8 @@ import { CalendarIcon } from 'lucide-react';
 import { format } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
 import { cn } from '@/lib/utils';
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 interface ReservationFormProps {
   onSubmit: (data: ReservationData) => void;
@@ -48,59 +51,59 @@ export interface ReservationData {
   observacoes: string;
 }
 
+// Create a schema for form validation
+const formSchema = z.object({
+  nome: z.string().min(2, "Nome é obrigatório"),
+  sobrenome: z.string().min(2, "Sobrenome é obrigatório"),
+  cidade: z.string().min(2, "Cidade é obrigatória"),
+  dataEvento: z.date().optional(),
+  tipoEvento: z.string().min(1, "Selecione o tipo de evento"),
+  apenasLocal: z.boolean().default(false),
+  incluiComida: z.boolean().default(false),
+  buffet: z.boolean().default(false),
+  dj: z.boolean().default(false),
+  decoracao: z.boolean().default(false),
+  observacoes: z.string().optional(),
+});
+
 const ReservationForm = ({ onSubmit }: ReservationFormProps) => {
-  const [formData, setFormData] = useState<ReservationData>({
-    nome: '',
-    sobrenome: '',
-    cidade: '',
-    dataEvento: undefined,
-    tipoEvento: '',
-    apenasLocal: false,
-    incluiComida: false,
-    buffet: false,
-    dj: false,
-    decoracao: false,
-    observacoes: '',
+  // Initialize react-hook-form with zod resolver
+  const form = useForm<ReservationData>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      nome: '',
+      sobrenome: '',
+      cidade: '',
+      dataEvento: undefined,
+      tipoEvento: '',
+      apenasLocal: false,
+      incluiComida: false,
+      buffet: false,
+      dj: false,
+      decoracao: false,
+      observacoes: '',
+    }
   });
 
-  const handleInputChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-  };
-
-  const handleCheckboxChange = (name: string, checked: boolean) => {
-    setFormData({ ...formData, [name]: checked });
-  };
-
-  const handleSelectChange = (name: string, value: string) => {
-    setFormData({ ...formData, [name]: value });
-  };
-
-  const handleDateChange = (date: Date | undefined) => {
-    setFormData({ ...formData, dataEvento: date });
-  };
-
-  const handleSubmit = (e: FormEvent) => {
-    e.preventDefault();
-    onSubmit(formData);
+  // Handle form submission
+  const handleSubmit = (data: ReservationData) => {
+    onSubmit(data);
   };
 
   return (
-    <Form>
-      <form onSubmit={handleSubmit} className="space-y-6">
+    <Form {...form}>
+      <form onSubmit={form.handleSubmit(handleSubmit)} className="space-y-6">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <FormField
+            control={form.control}
             name="nome"
-            render={() => (
+            render={({ field }) => (
               <FormItem>
                 <FormLabel>Nome</FormLabel>
                 <FormControl>
                   <Input 
-                    name="nome" 
-                    value={formData.nome} 
-                    onChange={handleInputChange} 
-                    placeholder="Seu nome" 
-                    required 
+                    placeholder="Seu nome"
+                    {...field} 
                   />
                 </FormControl>
                 <FormMessage />
@@ -109,17 +112,15 @@ const ReservationForm = ({ onSubmit }: ReservationFormProps) => {
           />
 
           <FormField
+            control={form.control}
             name="sobrenome"
-            render={() => (
+            render={({ field }) => (
               <FormItem>
                 <FormLabel>Sobrenome</FormLabel>
                 <FormControl>
                   <Input 
-                    name="sobrenome" 
-                    value={formData.sobrenome} 
-                    onChange={handleInputChange} 
-                    placeholder="Seu sobrenome" 
-                    required 
+                    placeholder="Seu sobrenome"
+                    {...field} 
                   />
                 </FormControl>
                 <FormMessage />
@@ -129,17 +130,15 @@ const ReservationForm = ({ onSubmit }: ReservationFormProps) => {
         </div>
 
         <FormField
+          control={form.control}
           name="cidade"
-          render={() => (
+          render={({ field }) => (
             <FormItem>
               <FormLabel>Cidade onde reside</FormLabel>
               <FormControl>
                 <Input 
-                  name="cidade" 
-                  value={formData.cidade} 
-                  onChange={handleInputChange} 
-                  placeholder="Sua cidade" 
-                  required 
+                  placeholder="Sua cidade"
+                  {...field} 
                 />
               </FormControl>
               <FormMessage />
@@ -148,8 +147,9 @@ const ReservationForm = ({ onSubmit }: ReservationFormProps) => {
         />
 
         <FormField
+          control={form.control}
           name="dataEvento"
-          render={() => (
+          render={({ field }) => (
             <FormItem className="flex flex-col">
               <FormLabel>Data do Evento</FormLabel>
               <Popover>
@@ -159,11 +159,11 @@ const ReservationForm = ({ onSubmit }: ReservationFormProps) => {
                       variant="outline"
                       className={cn(
                         "w-full pl-3 text-left font-normal",
-                        !formData.dataEvento && "text-muted-foreground"
+                        !field.value && "text-muted-foreground"
                       )}
                     >
-                      {formData.dataEvento ? (
-                        format(formData.dataEvento, "PPP", { locale: ptBR })
+                      {field.value ? (
+                        format(field.value, "PPP", { locale: ptBR })
                       ) : (
                         <span>Selecione uma data</span>
                       )}
@@ -174,8 +174,8 @@ const ReservationForm = ({ onSubmit }: ReservationFormProps) => {
                 <PopoverContent className="w-auto p-0" align="start">
                   <Calendar
                     mode="single"
-                    selected={formData.dataEvento}
-                    onSelect={handleDateChange}
+                    selected={field.value}
+                    onSelect={field.onChange}
                     initialFocus
                     locale={ptBR}
                     className={cn("p-3 pointer-events-auto")}
@@ -188,13 +188,14 @@ const ReservationForm = ({ onSubmit }: ReservationFormProps) => {
         />
 
         <FormField
+          control={form.control}
           name="tipoEvento"
-          render={() => (
+          render={({ field }) => (
             <FormItem>
               <FormLabel>Tipo de Evento</FormLabel>
               <Select 
-                onValueChange={(value) => handleSelectChange('tipoEvento', value)}
-                defaultValue={formData.tipoEvento}
+                onValueChange={field.onChange}
+                defaultValue={field.value}
               >
                 <FormControl>
                   <SelectTrigger>
@@ -218,15 +219,14 @@ const ReservationForm = ({ onSubmit }: ReservationFormProps) => {
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <FormField
+              control={form.control}
               name="apenasLocal"
-              render={() => (
+              render={({ field }) => (
                 <FormItem className="flex flex-row items-start space-x-3 space-y-0">
                   <FormControl>
                     <Checkbox
-                      checked={formData.apenasLocal}
-                      onCheckedChange={(checked) => 
-                        handleCheckboxChange('apenasLocal', checked as boolean)
-                      }
+                      checked={field.value}
+                      onCheckedChange={field.onChange}
                     />
                   </FormControl>
                   <div className="space-y-1 leading-none">
@@ -237,15 +237,14 @@ const ReservationForm = ({ onSubmit }: ReservationFormProps) => {
             />
 
             <FormField
+              control={form.control}
               name="incluiComida"
-              render={() => (
+              render={({ field }) => (
                 <FormItem className="flex flex-row items-start space-x-3 space-y-0">
                   <FormControl>
                     <Checkbox
-                      checked={formData.incluiComida}
-                      onCheckedChange={(checked) => 
-                        handleCheckboxChange('incluiComida', checked as boolean)
-                      }
+                      checked={field.value}
+                      onCheckedChange={field.onChange}
                     />
                   </FormControl>
                   <div className="space-y-1 leading-none">
@@ -256,15 +255,14 @@ const ReservationForm = ({ onSubmit }: ReservationFormProps) => {
             />
             
             <FormField
+              control={form.control}
               name="buffet"
-              render={() => (
+              render={({ field }) => (
                 <FormItem className="flex flex-row items-start space-x-3 space-y-0">
                   <FormControl>
                     <Checkbox
-                      checked={formData.buffet}
-                      onCheckedChange={(checked) => 
-                        handleCheckboxChange('buffet', checked as boolean)
-                      }
+                      checked={field.value}
+                      onCheckedChange={field.onChange}
                     />
                   </FormControl>
                   <div className="space-y-1 leading-none">
@@ -275,15 +273,14 @@ const ReservationForm = ({ onSubmit }: ReservationFormProps) => {
             />
             
             <FormField
+              control={form.control}
               name="dj"
-              render={() => (
+              render={({ field }) => (
                 <FormItem className="flex flex-row items-start space-x-3 space-y-0">
                   <FormControl>
                     <Checkbox
-                      checked={formData.dj}
-                      onCheckedChange={(checked) => 
-                        handleCheckboxChange('dj', checked as boolean)
-                      }
+                      checked={field.value}
+                      onCheckedChange={field.onChange}
                     />
                   </FormControl>
                   <div className="space-y-1 leading-none">
@@ -294,15 +291,14 @@ const ReservationForm = ({ onSubmit }: ReservationFormProps) => {
             />
             
             <FormField
+              control={form.control}
               name="decoracao"
-              render={() => (
+              render={({ field }) => (
                 <FormItem className="flex flex-row items-start space-x-3 space-y-0">
                   <FormControl>
                     <Checkbox
-                      checked={formData.decoracao}
-                      onCheckedChange={(checked) => 
-                        handleCheckboxChange('decoracao', checked as boolean)
-                      }
+                      checked={field.value}
+                      onCheckedChange={field.onChange}
                     />
                   </FormControl>
                   <div className="space-y-1 leading-none">
@@ -315,17 +311,16 @@ const ReservationForm = ({ onSubmit }: ReservationFormProps) => {
         </div>
 
         <FormField
+          control={form.control}
           name="observacoes"
-          render={() => (
+          render={({ field }) => (
             <FormItem>
               <FormLabel>Observações Adicionais</FormLabel>
               <FormControl>
                 <Textarea 
-                  name="observacoes" 
-                  value={formData.observacoes} 
-                  onChange={handleInputChange} 
                   placeholder="Detalhes adicionais sobre seu evento..." 
                   rows={4}
+                  {...field}
                 />
               </FormControl>
               <FormMessage />
