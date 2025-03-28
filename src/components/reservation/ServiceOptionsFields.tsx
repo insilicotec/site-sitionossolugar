@@ -27,15 +27,17 @@ const ServiceOptionsFields = ({ form }: ServiceOptionsFieldsProps) => {
           control={form.control}
           name="apenasLocal"
           render={({ field }) => (
-            <FormItem className="flex flex-row items-center space-x-3 space-y-0 rounded-md border p-3 shadow-sm hover:bg-gray-50">
+            <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-3 shadow-sm hover:bg-gray-50 cursor-pointer">
               <FormControl>
                 <Checkbox
                   checked={field.value}
                   onCheckedChange={field.onChange}
-                  className="data-[state=checked]:bg-sitio-green-dark data-[state=checked]:border-sitio-green-dark"
+                  className="data-[state=checked]:bg-sitio-green-dark data-[state=checked]:border-sitio-green-dark mt-1"
                 />
               </FormControl>
-              <FormLabel className="font-medium cursor-pointer">Apenas o local</FormLabel>
+              <div className="w-full" onClick={() => field.onChange(!field.value)}>
+                <FormLabel className="font-medium cursor-pointer">Apenas o local</FormLabel>
+              </div>
             </FormItem>
           )}
         />
@@ -45,15 +47,17 @@ const ServiceOptionsFields = ({ form }: ServiceOptionsFieldsProps) => {
           control={form.control}
           name="incluiComida"
           render={({ field }) => (
-            <FormItem className="flex flex-row items-center space-x-3 space-y-0 rounded-md border p-3 shadow-sm hover:bg-gray-50">
+            <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-3 shadow-sm hover:bg-gray-50 cursor-pointer">
               <FormControl>
                 <Checkbox
                   checked={field.value}
                   onCheckedChange={field.onChange}
-                  className="data-[state=checked]:bg-sitio-green-dark data-[state=checked]:border-sitio-green-dark"
+                  className="data-[state=checked]:bg-sitio-green-dark data-[state=checked]:border-sitio-green-dark mt-1"
                 />
               </FormControl>
-              <FormLabel className="font-medium cursor-pointer">Inclui comida</FormLabel>
+              <div className="w-full" onClick={() => field.onChange(!field.value)}>
+                <FormLabel className="font-medium cursor-pointer">Inclui comida</FormLabel>
+              </div>
             </FormItem>
           )}
         />
@@ -64,15 +68,17 @@ const ServiceOptionsFields = ({ form }: ServiceOptionsFieldsProps) => {
             control={form.control}
             name="buffet"
             render={({ field }) => (
-              <FormItem className="flex flex-row items-center space-x-3 space-y-0 rounded-md border p-3 shadow-sm hover:bg-gray-50">
+              <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-3 shadow-sm hover:bg-gray-50 cursor-pointer">
                 <FormControl>
                   <Checkbox
                     checked={field.value}
                     onCheckedChange={field.onChange}
-                    className="data-[state=checked]:bg-sitio-green-dark data-[state=checked]:border-sitio-green-dark"
+                    className="data-[state=checked]:bg-sitio-green-dark data-[state=checked]:border-sitio-green-dark mt-1"
                   />
                 </FormControl>
-                <FormLabel className="font-medium cursor-pointer">Buffet completo</FormLabel>
+                <div className="w-full" onClick={() => field.onChange(!field.value)}>
+                  <FormLabel className="font-medium cursor-pointer">Buffet completo</FormLabel>
+                </div>
               </FormItem>
             )}
           />
@@ -83,15 +89,17 @@ const ServiceOptionsFields = ({ form }: ServiceOptionsFieldsProps) => {
           control={form.control}
           name="dj"
           render={({ field }) => (
-            <FormItem className="flex flex-row items-center space-x-3 space-y-0 rounded-md border p-3 shadow-sm hover:bg-gray-50">
+            <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-3 shadow-sm hover:bg-gray-50 cursor-pointer">
               <FormControl>
                 <Checkbox
                   checked={field.value}
                   onCheckedChange={field.onChange}
-                  className="data-[state=checked]:bg-sitio-green-dark data-[state=checked]:border-sitio-green-dark"
+                  className="data-[state=checked]:bg-sitio-green-dark data-[state=checked]:border-sitio-green-dark mt-1"
                 />
               </FormControl>
-              <FormLabel className="font-medium cursor-pointer">DJ</FormLabel>
+              <div className="w-full" onClick={() => field.onChange(!field.value)}>
+                <FormLabel className="font-medium cursor-pointer">DJ</FormLabel>
+              </div>
             </FormItem>
           )}
         />
@@ -101,15 +109,17 @@ const ServiceOptionsFields = ({ form }: ServiceOptionsFieldsProps) => {
           control={form.control}
           name="decoracao"
           render={({ field }) => (
-            <FormItem className="flex flex-row items-center space-x-3 space-y-0 rounded-md border p-3 shadow-sm hover:bg-gray-50">
+            <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-3 shadow-sm hover:bg-gray-50 cursor-pointer">
               <FormControl>
                 <Checkbox
                   checked={field.value}
                   onCheckedChange={field.onChange}
-                  className="data-[state=checked]:bg-sitio-green-dark data-[state=checked]:border-sitio-green-dark"
+                  className="data-[state=checked]:bg-sitio-green-dark data-[state=checked]:border-sitio-green-dark mt-1"
                 />
               </FormControl>
-              <FormLabel className="font-medium cursor-pointer">Decoração</FormLabel>
+              <div className="w-full" onClick={() => field.onChange(!field.value)}>
+                <FormLabel className="font-medium cursor-pointer">Decoração</FormLabel>
+              </div>
             </FormItem>
           )}
         />

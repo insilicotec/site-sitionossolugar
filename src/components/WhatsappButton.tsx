@@ -13,8 +13,10 @@ const WhatsappButton = ({ phone, message }: WhatsappButtonProps) => {
   
   const handleClick = () => {
     // Format the phone number and message for WhatsApp API
-    const formattedMessage = encodeURIComponent(message);
-    window.open(`https://wa.me/${phone}?text=${formattedMessage}`, '_blank');
+    const formattedMessage = message;
+    const whatsappUrl = `https://wa.me/${phone}?text=${formattedMessage}`;
+    console.log("Opening WhatsApp with URL:", whatsappUrl);
+    window.open(whatsappUrl, '_blank');
   };
 
   return (

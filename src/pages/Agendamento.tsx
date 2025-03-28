@@ -14,6 +14,7 @@ const Agendamento = () => {
   const [whatsappMessage, setWhatsappMessage] = useState('');
 
   const handleSubmit = (data: ReservationData) => {
+    console.log("Reservation data received:", data);
     setFormData(data);
     
     // Format the date
@@ -53,10 +54,14 @@ ${data.observacoes ? `💬 *OBSERVAÇÕES*\n${data.observacoes}` : ""}
 --
 🙏 Agradecemos seu interesse em realizar seu evento no Sítio Nosso Lugar!`;
 
-    setWhatsappMessage(message);
+    setWhatsappMessage(encodeURIComponent(message));
     
-    // Redirect to WhatsApp
-    window.open(`https://wa.me/559184731385?text=${encodeURIComponent(message)}`, '_blank');
+    // Redirect to WhatsApp (delayed slightly to ensure state is updated)
+    setTimeout(() => {
+      const whatsappUrl = `https://wa.me/559184731385?text=${encodeURIComponent(message)}`;
+      console.log("Opening WhatsApp URL:", whatsappUrl);
+      window.open(whatsappUrl, '_blank');
+    }, 100);
   };
 
   const getEventTypeText = (eventType: string): string => {
@@ -167,11 +172,10 @@ ${data.observacoes ? `💬 *OBSERVAÇÕES*\n${data.observacoes}` : ""}
       </main>
       
       <Footer />
-      {whatsappMessage ? (
-        <WhatsappButton phone="559184731385" message={whatsappMessage} />
-      ) : (
-        <WhatsappButton phone="559184731385" message="Olá! Gostaria de fazer uma reserva no Sítio Nosso Lugar." />
-      )}
+      <WhatsappButton 
+        phone="559184731385" 
+        message={whatsappMessage || "Olá! Gostaria de fazer uma reserva no Sítio Nosso Lugar."} 
+      />
     </div>
   );
 };
