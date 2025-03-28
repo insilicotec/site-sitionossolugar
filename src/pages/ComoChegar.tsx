@@ -24,7 +24,7 @@ const ComoChegar = () => {
       container: mapContainer.current,
       style: 'mapbox://styles/mapbox/streets-v11',
       zoom: 14,
-      center: [-48.476, -1.459], // Coordenadas exemplo para Belém
+      center: [-46.9619, -1.1414], // Coordenadas atualizadas para Ramal do Piquiá
     });
 
     // Adicionar controles de navegação
@@ -35,7 +35,7 @@ const ComoChegar = () => {
 
     // Adicionar marcador
     new mapboxgl.Marker({ color: '#1F6E5B' })
-      .setLngLat([-48.476, -1.459])
+      .setLngLat([-46.9619, -1.1414])
       .addTo(map.current);
 
     // Cleanup
@@ -133,14 +133,14 @@ const ComoChegar = () => {
                       </div>
                       <div className="pl-12">
                         <p className="text-gray-700 mb-2">
-                          Rod. Bernardo Sayão, Km 5, Estrada do Outeiro
+                          Ramal do Piquiá
                         </p>
                         <p className="text-gray-700 mb-4">
-                          Belém - PA, CEP 66000-000
+                          Tracuateua - PA, CEP 68647-000
                         </p>
                         <div className="flex gap-3">
                           <a 
-                            href="https://www.google.com/maps/dir/?api=1&destination=-1.459,-48.476" 
+                            href="https://www.google.com/maps/place/Ramal+do+Piqui%C3%A1,+Tracuateua+-+PA,+68647-000/@-1.1414,-46.9619,17z/data=!4m6!3m5!1s0x92af183a59423115:0xeb1cb758244c3e1!8m2!3d-1.1310506!4d-46.9679359!16s%2Fg%2F11vpgvkpxf?hl=pt-BR&entry=ttu" 
                             target="_blank" 
                             rel="noopener noreferrer"
                             className="text-sm bg-sitio-green-dark text-white px-3 py-1 rounded-full hover:bg-sitio-earth transition-colors"
@@ -148,7 +148,7 @@ const ComoChegar = () => {
                             Abrir no Google Maps
                           </a>
                           <a 
-                            href="https://waze.com/ul?ll=-1.459,-48.476&navigate=yes" 
+                            href="https://waze.com/ul?ll=-1.1414,-46.9619&navigate=yes" 
                             target="_blank" 
                             rel="noopener noreferrer"
                             className="text-sm bg-sitio-accent text-white px-3 py-1 rounded-full hover:bg-sitio-accent/80 transition-colors"
@@ -170,10 +170,10 @@ const ComoChegar = () => {
                       </div>
                       <div className="pl-12">
                         <ul className="list-disc pl-5 space-y-2 text-gray-700">
-                          <li>Siga a Rod. Bernardo Sayão sentido Outeiro</li>
-                          <li>No Km 5, procure a placa "Sítio Nosso Lugar" no lado direito</li>
-                          <li>Entre na estrada de terra e siga por 800m</li>
-                          <li>O portão principal estará à sua direita</li>
+                          <li>Acesse o Ramal do Piquiá em Tracuateua</li>
+                          <li>Siga as placas para "Sítio Nosso Lugar"</li>
+                          <li>A entrada principal está sinalizada</li>
+                          <li>Em caso de dúvidas, utilize o botão de WhatsApp para orientações</li>
                         </ul>
                       </div>
                     </CardContent>
