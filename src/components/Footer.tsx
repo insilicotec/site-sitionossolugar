@@ -1,12 +1,9 @@
-
 import { Instagram, Phone, MapPin, Mail, Clock, Heart, MessageSquare } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-
 const Footer = () => {
   const currentYear = new Date().getFullYear();
-  
-  return <footer className="bg-gray-900 text-white pt-16 pb-8">
+  return <footer className="text-white pt-16 pb-8 bg-black bg-[nature-earth-600]">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
           {/* Logo & About */}
@@ -168,7 +165,6 @@ const Footer = () => {
       </div>
     </footer>;
 };
-
 const FooterLink = ({
   to,
   children
@@ -181,7 +177,6 @@ const FooterLink = ({
       {children}
     </Link>
   </li>;
-
 const SocialLink = ({
   href,
   icon
@@ -193,5 +188,4 @@ const SocialLink = ({
 }}>
     {icon}
   </motion.a>;
-
 export default Footer;
