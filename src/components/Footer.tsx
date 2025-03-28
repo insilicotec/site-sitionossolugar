@@ -8,7 +8,7 @@ const Footer = () => {
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div className="space-y-4">
-            <h3 className="text-2xl font-bold mb-4 text-gradient-footer">Sítio Nosso Lugar</h3>
+            <h3 className="text-2xl font-bold mb-4 text-gradient">Sítio Nosso Lugar</h3>
             <p className="mb-2 text-white/90">Seu espaço perfeito para eventos e momentos especiais em meio à natureza.</p>
             <div className="flex items-center gap-2 pt-2">
               <a 
@@ -98,16 +98,9 @@ const Footer = () => {
           <p className="text-white/60 text-sm mt-2">Desenvolvido com 💚 para momentos especiais</p>
         </div>
       </div>
-      
-      <style jsx>{`
-        .text-gradient-footer {
-          background: linear-gradient(to right, #FFE9C5, #fff);
-          -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent;
-        }
-      `}</style>
     </footer>
   );
 };
 
 export default Footer;
+
