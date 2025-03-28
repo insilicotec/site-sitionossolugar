@@ -1,5 +1,5 @@
 
-import { Instagram, Phone, MapPin, Mail, Clock, Heart, Send } from 'lucide-react';
+import { Instagram, Phone, MapPin, Mail, Clock, Heart, Send, MessageSquare } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 
@@ -100,7 +100,7 @@ const Footer = () => {
           </motion.div>
         </div>
         
-        {/* Newsletter - Optional */}
+        {/* WhatsApp Group Button - replacing Newsletter */}
         <motion.div 
           className="mt-12 mb-8 bg-gray-800/70 rounded-xl p-6"
           initial={{ opacity: 0, y: 20 }}
@@ -111,19 +111,33 @@ const Footer = () => {
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
             <div className="md:w-1/2">
               <h3 className="text-xl font-medium mb-2">Fique por dentro das novidades</h3>
-              <p className="text-gray-400">Receba informações sobre eventos e promoções especiais</p>
+              <p className="text-gray-400">Entre para nosso grupo exclusivo e receba promoções e datas especiais diretamente no WhatsApp</p>
             </div>
-            <div className="w-full md:w-1/2">
-              <div className="flex">
-                <input 
-                  type="email" 
-                  placeholder="Seu e-mail" 
-                  className="flex-1 py-3 px-4 rounded-l-lg bg-gray-700 border-gray-600 text-white focus:outline-none focus:ring-1 focus:ring-nature-400"
-                />
-                <button className="bg-nature-500 hover:bg-nature-600 text-white px-4 rounded-r-lg transition-colors flex items-center">
-                  <Send size={18} />
-                </button>
-              </div>
+            <div className="w-full md:w-1/2 flex justify-center md:justify-end">
+              <motion.a 
+                href="https://chat.whatsapp.com/IUGj1YdwulH8GWZCDxnDil"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-emerald-600 hover:bg-emerald-700 text-white px-6 py-3 rounded-lg flex items-center gap-3 group transition-all duration-300 hover:scale-105 shadow-lg"
+                whileHover={{ y: -3 }}
+              >
+                <div className="relative">
+                  <MessageSquare size={24} className="text-white" />
+                  <motion.div 
+                    className="absolute -top-1 -right-1 w-3 h-3 bg-white rounded-full"
+                    animate={{ 
+                      scale: [1, 1.2, 1],
+                    }}
+                    transition={{
+                      duration: 2,
+                      repeat: Infinity,
+                      repeatType: "loop"
+                    }}
+                  />
+                </div>
+                <span className="font-medium">Participar do Grupo</span>
+                <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
+              </motion.a>
             </div>
           </div>
         </motion.div>
