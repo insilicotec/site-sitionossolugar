@@ -8,6 +8,7 @@ import ReservationForm from '@/components/ReservationForm';
 import { ReservationData } from '@/components/reservation/types';
 import WhatsappButton from '@/components/WhatsappButton';
 import GoogleMap from '@/components/GoogleMap';
+import { toast } from 'sonner';
 
 const Agendamento = () => {
   const [formData, setFormData] = useState<ReservationData | null>(null);
@@ -22,7 +23,7 @@ const Agendamento = () => {
       ? format(data.dataEvento, "dd/MM/yyyy", { locale: ptBR }) 
       : "Data não selecionada";
     
-    // Generate services list showing all options and marking which ones are selected
+    // Generate services list showing all options with emojis
     const servicesList = [
       { name: "Apenas o local", value: data.apenasLocal, emoji: "🏠" },
       { name: "Inclui comida", value: data.incluiComida, emoji: "🍽️" },
@@ -31,7 +32,7 @@ const Agendamento = () => {
       { name: "Decoração", value: data.decoracao, emoji: "🎊" }
     ];
     
-    // Map all services, indicating which ones are selected with emoji and plain text for non-selected
+    // Map all services, indicating which ones are selected
     const servicesText = servicesList
       .map(service => {
         const prefix = service.value ? `${service.emoji} ✅` : `${service.emoji} ❌`;
@@ -59,14 +60,17 @@ ${data.observacoes ? `💬 *OBSERVAÇÕES*\n${data.observacoes}` : ""}
 --
 🙏 Agradecemos seu interesse em realizar seu evento no Sítio Nosso Lugar!`;
 
-    setWhatsappMessage(encodeURIComponent(message));
+    // Store the raw message (not encoded) for the fixed WhatsApp button
+    setWhatsappMessage(message);
     
-    // Redirect to WhatsApp with a slight delay to ensure state is updated
+    toast.success("Formulário enviado com sucesso!");
+    
+    // Redirect to WhatsApp with a delay to ensure state is updated
     setTimeout(() => {
       const whatsappUrl = `https://wa.me/559184731385?text=${encodeURIComponent(message)}`;
       console.log("Opening WhatsApp URL:", whatsappUrl);
       window.open(whatsappUrl, '_blank');
-    }, 300);
+    }, 1000); // Increased delay to 1 second
   };
 
   const getEventTypeText = (eventType: string): string => {

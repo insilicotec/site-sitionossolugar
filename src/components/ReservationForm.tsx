@@ -8,6 +8,7 @@ import EventDetailsFields from './reservation/EventDetailsFields';
 import ServiceOptionsFields from './reservation/ServiceOptionsFields';
 import AdditionalNotesField from './reservation/AdditionalNotesField';
 import SubmitButton from './reservation/SubmitButton';
+import { useEffect } from "react";
 
 interface ReservationFormProps {
   onSubmit: (data: ReservationData) => void;
@@ -31,6 +32,14 @@ const ReservationForm = ({ onSubmit }: ReservationFormProps) => {
       observacoes: '',
     }
   });
+
+  // Add debugging for form values
+  useEffect(() => {
+    const subscription = form.watch((value) => {
+      console.log("Form values updated:", value);
+    });
+    return () => subscription.unsubscribe();
+  }, [form]);
 
   // Handle form submission
   const handleSubmit = (data: ReservationData) => {
