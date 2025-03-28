@@ -31,43 +31,43 @@ import GoogleMap from '@/components/GoogleMap';
 const photos = [
   {
     id: 1,
-    src: "https://images.unsplash.com/photo-1472396961693-142e6e269027",
-    alt: "Vista natural do sítio"
+    src: "/lovable-uploads/57f7a25d-1204-4c33-9a72-f8f9cd835e02.png",
+    alt: "Evento organizado com mesas e cadeiras douradas em ambiente natural"
   },
   {
     id: 2,
-    src: "https://images.unsplash.com/photo-1433086966358-54859d0ed716",
-    alt: "Área de lazer"
+    src: "/lovable-uploads/a6c3f3e5-afad-4cdd-ba30-4af367d78ade.png",
+    alt: "Área de lazer noturna com mesas e iluminação especial"
   },
   {
     id: 3,
-    src: "https://images.unsplash.com/photo-1482938289607-e9573fc25ebb",
-    alt: "Vista panorâmica"
+    src: "/lovable-uploads/1ceb5176-485a-4c1d-b418-3449ff8518ac.png",
+    alt: "Família em momento especial com roupões brancos"
   },
   {
     id: 4,
-    src: "https://images.unsplash.com/photo-1506744038136-46273834b3fb",
-    alt: "Ambiente natural"
+    src: "/lovable-uploads/3b453679-06d7-4e57-89b2-e348b049a975.png",
+    alt: "Quarto com camas em tons rosados"
   },
   {
     id: 5,
-    src: "https://images.unsplash.com/photo-1517022812141-23620dba5c23",
-    alt: "Área verde"
+    src: "/lovable-uploads/d51eb3b7-e8ca-4c8c-9561-d4447900704c.png",
+    alt: "Corredor para cerimônia com cadeiras e decoração floral"
   },
   {
     id: 6,
-    src: "https://images.unsplash.com/photo-1517022812141-23620dba5c23",
-    alt: "Espaço de eventos"
+    src: "/lovable-uploads/2048c0e9-be7a-4fa6-abea-eb2c0dcf4e1b.png",
+    alt: "Área de descanso com pergolados e cortinas brancas"
   },
   {
     id: 7,
-    src: "https://images.unsplash.com/photo-1472396961693-142e6e269027",
-    alt: "Salão de festas"
+    src: "/lovable-uploads/5bddaa83-3589-4afd-ac73-eb5317e1bc34.png",
+    alt: "Área verde com caminho de madeira e palmeiras"
   },
   {
     id: 8,
-    src: "https://images.unsplash.com/photo-1433086966358-54859d0ed716",
-    alt: "Área de piscina"
+    src: "/lovable-uploads/4eedf5e9-d6cb-42cf-91ab-5a025f837f33.png",
+    alt: "Salão de festas com mesas douradas decoradas para evento"
   }
 ];
 
