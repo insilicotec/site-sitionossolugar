@@ -21,7 +21,7 @@ import VideoGallery from '@/components/VideoGallery';
 import WhatsappButton from '@/components/WhatsappButton';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState, useRef, RefObject } from 'react';
 import GoogleMap from '@/components/GoogleMap';
 
 const photos = [
@@ -88,21 +88,33 @@ const videos = [
   }
 ];
 
-const useIntersectionObserver = (options = {}) => {
-  const [elements, setElements] = useState([]);
-  const [entries, setEntries] = useState([]);
+const useIntersectionObserver = (options = {}): [
+  (element: HTMLElement | null) => void,
+  IntersectionObserverEntry[]
+] => {
+  const [elements, setElements] = useState<HTMLElement[]>([]);
+  const [entries, setEntries] = useState<IntersectionObserverEntry[]>([]);
+  const observer = useRef<IntersectionObserver | null>(null);
 
   useEffect(() => {
-    const observer = new IntersectionObserver((observedEntries) => {
+    observer.current = new IntersectionObserver((observedEntries) => {
       setEntries(observedEntries);
     }, options);
 
-    elements.forEach(el => observer.observe(el));
+    elements.forEach(el => {
+      if (observer.current) {
+        observer.current.observe(el);
+      }
+    });
 
-    return () => observer.disconnect();
+    return () => {
+      if (observer.current) {
+        observer.current.disconnect();
+      }
+    };
   }, [elements, options]);
 
-  const ref = (element) => {
+  const ref = (element: HTMLElement | null) => {
     if (element && !elements.includes(element)) {
       setElements(prev => [...prev, element]);
     }
@@ -129,7 +141,7 @@ const FloatingLeaf = ({ delay = 0, size = 24, left = "10%", duration = 15 }) => 
 
 const Index = () => {
   const [ref, entries] = useIntersectionObserver({ threshold: 0.1 });
-  const [activeEntries, setActiveEntries] = useState([]);
+  const [activeEntries, setActiveEntries] = useState<Element[]>([]);
   
   useEffect(() => {
     entries.forEach(entry => {
