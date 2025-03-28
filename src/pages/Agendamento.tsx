@@ -4,7 +4,8 @@ import { format } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import ReservationForm, { ReservationData } from '@/components/ReservationForm';
+import ReservationForm from '@/components/ReservationForm';
+import { ReservationData } from '@/components/reservation/types';
 import WhatsappButton from '@/components/WhatsappButton';
 import GoogleMap from '@/components/GoogleMap';
 

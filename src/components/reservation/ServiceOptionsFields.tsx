@@ -1,5 +1,4 @@
 
-import { useState, useEffect } from 'react';
 import { FormField, FormItem, FormLabel, FormControl } from "@/components/ui/form";
 import { Checkbox } from '@/components/ui/checkbox';
 import { UseFormReturn, useWatch } from "react-hook-form";
@@ -18,16 +17,9 @@ const ServiceOptionsFields = ({ form }: ServiceOptionsFieldsProps) => {
   
   const isDayUse = tipoEvento === 'dayuse';
   
-  // Reset buffet when changing event type to day use
-  useEffect(() => {
-    if (isDayUse) {
-      form.setValue('buffet', false);
-    }
-  }, [isDayUse, form]);
-
   return (
     <div className="space-y-4">
-      <FormLabel>Opções de Serviço</FormLabel>
+      <h3 className="text-lg font-semibold text-sitio-green-dark">Opções de Serviço</h3>
       
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 bg-sitio-blue-light/30 p-4 rounded-lg">
         {/* Apenas o local */}
@@ -35,19 +27,15 @@ const ServiceOptionsFields = ({ form }: ServiceOptionsFieldsProps) => {
           control={form.control}
           name="apenasLocal"
           render={({ field }) => (
-            <FormItem className="flex flex-row items-start space-x-3 space-y-0">
+            <FormItem className="flex flex-row items-center space-x-3 space-y-0 rounded-md border p-3 shadow-sm hover:bg-gray-50">
               <FormControl>
                 <Checkbox
                   checked={field.value}
-                  onCheckedChange={(checked) => {
-                    field.onChange(checked === true);
-                  }}
+                  onCheckedChange={field.onChange}
                   className="data-[state=checked]:bg-sitio-green-dark data-[state=checked]:border-sitio-green-dark"
                 />
               </FormControl>
-              <div className="space-y-1 leading-none">
-                <FormLabel className="cursor-pointer">Apenas o local</FormLabel>
-              </div>
+              <FormLabel className="font-medium cursor-pointer">Apenas o local</FormLabel>
             </FormItem>
           )}
         />
@@ -57,19 +45,15 @@ const ServiceOptionsFields = ({ form }: ServiceOptionsFieldsProps) => {
           control={form.control}
           name="incluiComida"
           render={({ field }) => (
-            <FormItem className="flex flex-row items-start space-x-3 space-y-0">
+            <FormItem className="flex flex-row items-center space-x-3 space-y-0 rounded-md border p-3 shadow-sm hover:bg-gray-50">
               <FormControl>
                 <Checkbox
                   checked={field.value}
-                  onCheckedChange={(checked) => {
-                    field.onChange(checked === true);
-                  }}
+                  onCheckedChange={field.onChange}
                   className="data-[state=checked]:bg-sitio-green-dark data-[state=checked]:border-sitio-green-dark"
                 />
               </FormControl>
-              <div className="space-y-1 leading-none">
-                <FormLabel className="cursor-pointer">Inclui comida</FormLabel>
-              </div>
+              <FormLabel className="font-medium cursor-pointer">Inclui comida</FormLabel>
             </FormItem>
           )}
         />
@@ -80,19 +64,15 @@ const ServiceOptionsFields = ({ form }: ServiceOptionsFieldsProps) => {
             control={form.control}
             name="buffet"
             render={({ field }) => (
-              <FormItem className="flex flex-row items-start space-x-3 space-y-0">
+              <FormItem className="flex flex-row items-center space-x-3 space-y-0 rounded-md border p-3 shadow-sm hover:bg-gray-50">
                 <FormControl>
                   <Checkbox
                     checked={field.value}
-                    onCheckedChange={(checked) => {
-                      field.onChange(checked === true);
-                    }}
+                    onCheckedChange={field.onChange}
                     className="data-[state=checked]:bg-sitio-green-dark data-[state=checked]:border-sitio-green-dark"
                   />
                 </FormControl>
-                <div className="space-y-1 leading-none">
-                  <FormLabel className="cursor-pointer">Buffet completo</FormLabel>
-                </div>
+                <FormLabel className="font-medium cursor-pointer">Buffet completo</FormLabel>
               </FormItem>
             )}
           />
@@ -103,19 +83,15 @@ const ServiceOptionsFields = ({ form }: ServiceOptionsFieldsProps) => {
           control={form.control}
           name="dj"
           render={({ field }) => (
-            <FormItem className="flex flex-row items-start space-x-3 space-y-0">
+            <FormItem className="flex flex-row items-center space-x-3 space-y-0 rounded-md border p-3 shadow-sm hover:bg-gray-50">
               <FormControl>
                 <Checkbox
                   checked={field.value}
-                  onCheckedChange={(checked) => {
-                    field.onChange(checked === true);
-                  }}
+                  onCheckedChange={field.onChange}
                   className="data-[state=checked]:bg-sitio-green-dark data-[state=checked]:border-sitio-green-dark"
                 />
               </FormControl>
-              <div className="space-y-1 leading-none">
-                <FormLabel className="cursor-pointer">DJ</FormLabel>
-              </div>
+              <FormLabel className="font-medium cursor-pointer">DJ</FormLabel>
             </FormItem>
           )}
         />
@@ -125,19 +101,15 @@ const ServiceOptionsFields = ({ form }: ServiceOptionsFieldsProps) => {
           control={form.control}
           name="decoracao"
           render={({ field }) => (
-            <FormItem className="flex flex-row items-start space-x-3 space-y-0">
+            <FormItem className="flex flex-row items-center space-x-3 space-y-0 rounded-md border p-3 shadow-sm hover:bg-gray-50">
               <FormControl>
                 <Checkbox
                   checked={field.value}
-                  onCheckedChange={(checked) => {
-                    field.onChange(checked === true);
-                  }}
+                  onCheckedChange={field.onChange}
                   className="data-[state=checked]:bg-sitio-green-dark data-[state=checked]:border-sitio-green-dark"
                 />
               </FormControl>
-              <div className="space-y-1 leading-none">
-                <FormLabel className="cursor-pointer">Decoração</FormLabel>
-              </div>
+              <FormLabel className="font-medium cursor-pointer">Decoração</FormLabel>
             </FormItem>
           )}
         />
