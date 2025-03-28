@@ -126,7 +126,7 @@ const Footer = () => {
       }} className="mt-12 mb-8 rounded-xl p-6 bg-gray-900">
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
             <div className="md:w-1/2">
-              <h3 className="text-xl font-medium mb-2">Fique por dentro das novidades</h3>
+              <h3 className="text-xl font-medium mb-2 text-slate-50">Fique por dentro das novidades</h3>
               <p className="text-gray-400">Entre para nosso grupo exclusivo e receba promoções e datas especiais diretamente no WhatsApp</p>
             </div>
             <div className="w-full md:w-1/2 flex justify-center md:justify-end">
