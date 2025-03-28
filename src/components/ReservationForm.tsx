@@ -107,6 +107,7 @@ const ReservationForm = ({ onSubmit }: ReservationFormProps) => {
     <Form {...form}>
       <form onSubmit={form.handleSubmit(handleSubmit)} className="space-y-6">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {/* Nome Field */}
           <FormField
             control={form.control}
             name="nome"
@@ -125,6 +126,7 @@ const ReservationForm = ({ onSubmit }: ReservationFormProps) => {
             )}
           />
 
+          {/* Telefone Field */}
           <FormField
             control={form.control}
             name="telefone"
@@ -144,6 +146,7 @@ const ReservationForm = ({ onSubmit }: ReservationFormProps) => {
           />
         </div>
 
+        {/* Cidade Field */}
         <FormField
           control={form.control}
           name="cidade"
@@ -163,6 +166,7 @@ const ReservationForm = ({ onSubmit }: ReservationFormProps) => {
         />
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {/* Data do Evento Field */}
           <FormField
             control={form.control}
             name="dataEvento"
@@ -204,6 +208,7 @@ const ReservationForm = ({ onSubmit }: ReservationFormProps) => {
             )}
           />
 
+          {/* Tipo de Evento Field */}
           <FormField
             control={form.control}
             name="tipoEvento"
@@ -233,10 +238,12 @@ const ReservationForm = ({ onSubmit }: ReservationFormProps) => {
           />
         </div>
 
+        {/* Opções de Serviço Section - Fixed checkbox implementation */}
         <div className="space-y-4">
           <FormLabel>Opções de Serviço</FormLabel>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 bg-sitio-blue-light/30 p-4 rounded-lg">
+            {/* Apenas o local */}
             <FormField
               control={form.control}
               name="apenasLocal"
@@ -245,17 +252,20 @@ const ReservationForm = ({ onSubmit }: ReservationFormProps) => {
                   <FormControl>
                     <Checkbox
                       checked={field.value}
-                      onCheckedChange={field.onChange}
+                      onCheckedChange={(checked) => {
+                        field.onChange(checked === true);
+                      }}
                       className="data-[state=checked]:bg-sitio-green-dark data-[state=checked]:border-sitio-green-dark"
                     />
                   </FormControl>
                   <div className="space-y-1 leading-none">
-                    <FormLabel>Apenas o local</FormLabel>
+                    <FormLabel className="cursor-pointer">Apenas o local</FormLabel>
                   </div>
                 </FormItem>
               )}
             />
 
+            {/* Inclui comida */}
             <FormField
               control={form.control}
               name="incluiComida"
@@ -264,17 +274,20 @@ const ReservationForm = ({ onSubmit }: ReservationFormProps) => {
                   <FormControl>
                     <Checkbox
                       checked={field.value}
-                      onCheckedChange={field.onChange}
+                      onCheckedChange={(checked) => {
+                        field.onChange(checked === true);
+                      }}
                       className="data-[state=checked]:bg-sitio-green-dark data-[state=checked]:border-sitio-green-dark"
                     />
                   </FormControl>
                   <div className="space-y-1 leading-none">
-                    <FormLabel>Inclui comida</FormLabel>
+                    <FormLabel className="cursor-pointer">Inclui comida</FormLabel>
                   </div>
                 </FormItem>
               )}
             />
             
+            {/* Buffet completo - only shown if not a day use event */}
             {!isDayUse && (
               <FormField
                 control={form.control}
@@ -284,18 +297,21 @@ const ReservationForm = ({ onSubmit }: ReservationFormProps) => {
                     <FormControl>
                       <Checkbox
                         checked={field.value}
-                        onCheckedChange={field.onChange}
+                        onCheckedChange={(checked) => {
+                          field.onChange(checked === true);
+                        }}
                         className="data-[state=checked]:bg-sitio-green-dark data-[state=checked]:border-sitio-green-dark"
                       />
                     </FormControl>
                     <div className="space-y-1 leading-none">
-                      <FormLabel>Buffet completo</FormLabel>
+                      <FormLabel className="cursor-pointer">Buffet completo</FormLabel>
                     </div>
                   </FormItem>
                 )}
               />
             )}
             
+            {/* DJ option */}
             <FormField
               control={form.control}
               name="dj"
@@ -304,17 +320,20 @@ const ReservationForm = ({ onSubmit }: ReservationFormProps) => {
                   <FormControl>
                     <Checkbox
                       checked={field.value}
-                      onCheckedChange={field.onChange}
+                      onCheckedChange={(checked) => {
+                        field.onChange(checked === true);
+                      }}
                       className="data-[state=checked]:bg-sitio-green-dark data-[state=checked]:border-sitio-green-dark"
                     />
                   </FormControl>
                   <div className="space-y-1 leading-none">
-                    <FormLabel>DJ</FormLabel>
+                    <FormLabel className="cursor-pointer">DJ</FormLabel>
                   </div>
                 </FormItem>
               )}
             />
             
+            {/* Decoração option */}
             <FormField
               control={form.control}
               name="decoracao"
@@ -323,12 +342,14 @@ const ReservationForm = ({ onSubmit }: ReservationFormProps) => {
                   <FormControl>
                     <Checkbox
                       checked={field.value}
-                      onCheckedChange={field.onChange}
+                      onCheckedChange={(checked) => {
+                        field.onChange(checked === true);
+                      }}
                       className="data-[state=checked]:bg-sitio-green-dark data-[state=checked]:border-sitio-green-dark"
                     />
                   </FormControl>
                   <div className="space-y-1 leading-none">
-                    <FormLabel>Decoração</FormLabel>
+                    <FormLabel className="cursor-pointer">Decoração</FormLabel>
                   </div>
                 </FormItem>
               )}
@@ -336,6 +357,7 @@ const ReservationForm = ({ onSubmit }: ReservationFormProps) => {
           </div>
         </div>
 
+        {/* Observações Field */}
         <FormField
           control={form.control}
           name="observacoes"
@@ -355,6 +377,7 @@ const ReservationForm = ({ onSubmit }: ReservationFormProps) => {
           )}
         />
 
+        {/* Submit Button */}
         <Button 
           type="submit" 
           className="w-full bg-sitio-green-dark hover:bg-sitio-accent text-white transition-all transform hover:scale-[1.02] shadow-md"
