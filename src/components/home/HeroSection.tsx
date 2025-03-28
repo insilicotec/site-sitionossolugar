@@ -1,5 +1,7 @@
+
 import React from 'react';
-import { Leaf } from 'lucide-react';
+import { Leaf, Instagram } from 'lucide-react';
+
 const HeroSection = () => {
   return <section className="relative pt-28 md:pt-32 min-h-[85vh] flex items-center justify-center overflow-hidden bg-gradient-to-r from-amber-50 to-amber-100">
       <div className="absolute inset-0 overflow-hidden">
@@ -14,17 +16,17 @@ const HeroSection = () => {
         <Leaf size={140} className="rotate-45" />
       </div>
       
-      <div className="container relative z-10 px-6 py-16 mx-auto text-center bg-slate-50">
-        <div className="max-w-3xl mx-auto">
+      <div className="container relative z-10 px-6 py-16 mx-auto text-center">
+        <div className="max-w-3xl mx-auto bg-slate-50 p-8 rounded-xl shadow-md">
           <img src="/lovable-uploads/c50697da-7566-40b0-92fa-8c29cca1201a.png" alt="Sítio Nosso Lugar Logo" className="h-32 w-32 mx-auto mb-6 object-contain" />
           
           <p className="max-w-2xl mx-auto mb-10 text-lg text-amber-900/90 md:text-xl">
             Um refúgio natural perfeito para seus momentos mais especiais, onde a natureza e o conforto se encontram para criar experiências inesquecíveis.
           </p>
           
-          <a href="https://www.instagram.com/sitionossolugar/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-8 py-4 font-medium text-white transition-all duration-300 bg-amber-700 rounded-lg hover:bg-amber-800 shadow-lg hover:scale-105">
-            
-            Conheça no Instagram
+          <a href="https://www.instagram.com/sitionossolugar/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-8 py-4 font-medium text-white transition-all duration-300 rounded-lg shadow-lg hover:scale-105 bg-gradient-to-r from-amber-600 via-red-600 to-purple-600">
+            <Instagram size={20} />
+            <span>Conheça no Instagram</span>
           </a>
         </div>
       </div>
