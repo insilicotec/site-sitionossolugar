@@ -67,8 +67,8 @@ const ComoChegar = () => {
             }}
           ></div>
           <div className="container px-4 text-center relative z-10">
-            <h1 className="text-4xl md:text-5xl font-bold mb-6 text-white animate-slide-up">Como Chegar</h1>
-            <p className="text-xl max-w-3xl mx-auto text-white/90 animate-slide-up" style={{animationDelay: '0.2s'}}>
+            <h1 className="text-4xl md:text-5xl font-bold mb-6 text-black animate-slide-up">Como Chegar</h1>
+            <p className="text-xl max-w-3xl mx-auto text-black animate-slide-up" style={{animationDelay: '0.2s'}}>
               Encontre o caminho para o Sítio Nosso Lugar e aproveite momentos inesquecíveis na natureza.
             </p>
           </div>

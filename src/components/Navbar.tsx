@@ -1,5 +1,6 @@
+
 import { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Menu, X, Instagram, Home, Calendar, MapPin, Handshake } from 'lucide-react';
 import { motion } from 'framer-motion';
 
@@ -7,6 +8,7 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -20,7 +22,15 @@ const Navbar = () => {
   // Close menu when route changes
   useEffect(() => {
     setIsOpen(false);
+    // Scroll to top when route changes
+    window.scrollTo(0, 0);
   }, [location]);
+
+  // Função para navegar e garantir que vá para o topo
+  const handleNavigation = (path: string) => {
+    navigate(path);
+    window.scrollTo(0, 0);
+  };
 
   return (
     <motion.header
@@ -38,6 +48,10 @@ const Navbar = () => {
           {/* Logo */}
           <Link 
             to="/" 
+            onClick={(e) => {
+              e.preventDefault();
+              handleNavigation('/');
+            }}
             className="text-2xl font-display font-bold"
           >
             <span className="text-gray-900">
@@ -47,22 +61,54 @@ const Navbar = () => {
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-1">
-            <NavLink to="/" active={location.pathname === '/'} scrolled={scrolled}>
+            <NavLink 
+              to="/" 
+              active={location.pathname === '/'} 
+              scrolled={scrolled}
+              onClick={(e) => {
+                e.preventDefault();
+                handleNavigation('/');
+              }}
+            >
               <Home size={16} className="mr-1" />
               <span>Início</span>
             </NavLink>
             
-            <NavLink to="/agendamento" active={location.pathname === '/agendamento'} scrolled={scrolled}>
+            <NavLink 
+              to="/agendamento" 
+              active={location.pathname === '/agendamento'} 
+              scrolled={scrolled}
+              onClick={(e) => {
+                e.preventDefault();
+                handleNavigation('/agendamento');
+              }}
+            >
               <Calendar size={16} className="mr-1" />
               <span>Agendamento</span>
             </NavLink>
             
-            <NavLink to="/como-chegar" active={location.pathname === '/como-chegar'} scrolled={scrolled}>
+            <NavLink 
+              to="/como-chegar" 
+              active={location.pathname === '/como-chegar'} 
+              scrolled={scrolled}
+              onClick={(e) => {
+                e.preventDefault();
+                handleNavigation('/como-chegar');
+              }}
+            >
               <MapPin size={16} className="mr-1" />
               <span>Como Chegar</span>
             </NavLink>
             
-            <NavLink to="/parcerias" active={location.pathname === '/parcerias'} scrolled={scrolled}>
+            <NavLink 
+              to="/parcerias" 
+              active={location.pathname === '/parcerias'} 
+              scrolled={scrolled}
+              onClick={(e) => {
+                e.preventDefault();
+                handleNavigation('/parcerias');
+              }}
+            >
               <Handshake size={16} className="mr-1" />
               <span>Parcerias</span>
             </NavLink>
@@ -98,22 +144,50 @@ const Navbar = () => {
             className="md:hidden bg-white rounded-lg mt-4 shadow-lg overflow-hidden"
           >
             <div className="flex flex-col p-4 gap-2">
-              <MobileNavLink to="/" active={location.pathname === '/'}>
+              <MobileNavLink 
+                to="/" 
+                active={location.pathname === '/'}
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleNavigation('/');
+                }}
+              >
                 <Home size={18} className="mr-2" />
                 <span>Início</span>
               </MobileNavLink>
               
-              <MobileNavLink to="/agendamento" active={location.pathname === '/agendamento'}>
+              <MobileNavLink 
+                to="/agendamento" 
+                active={location.pathname === '/agendamento'}
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleNavigation('/agendamento');
+                }}
+              >
                 <Calendar size={18} className="mr-2" />
                 <span>Agendamento</span>
               </MobileNavLink>
               
-              <MobileNavLink to="/como-chegar" active={location.pathname === '/como-chegar'}>
+              <MobileNavLink 
+                to="/como-chegar" 
+                active={location.pathname === '/como-chegar'}
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleNavigation('/como-chegar');
+                }}
+              >
                 <MapPin size={18} className="mr-2" />
                 <span>Como Chegar</span>
               </MobileNavLink>
               
-              <MobileNavLink to="/parcerias" active={location.pathname === '/parcerias'}>
+              <MobileNavLink 
+                to="/parcerias" 
+                active={location.pathname === '/parcerias'}
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleNavigation('/parcerias');
+                }}
+              >
                 <Handshake size={18} className="mr-2" />
                 <span>Parcerias</span>
               </MobileNavLink>
@@ -141,16 +215,19 @@ const NavLink = ({
   to, 
   active, 
   scrolled, 
-  children 
+  children,
+  onClick
 }: { 
   to: string; 
   active: boolean; 
   scrolled: boolean;
-  children: React.ReactNode 
+  children: React.ReactNode;
+  onClick?: (e: React.MouseEvent<HTMLAnchorElement>) => void;
 }) => {
   return (
     <Link 
       to={to} 
+      onClick={onClick}
       className={`relative flex items-center gap-1 rounded-full px-3 py-2 font-medium transition-all duration-300 overflow-hidden group ${
         active
           ? 'text-nature-700 bg-nature-50'
@@ -173,15 +250,18 @@ const NavLink = ({
 const MobileNavLink = ({ 
   to, 
   active, 
-  children 
+  children,
+  onClick
 }: { 
   to: string; 
   active: boolean; 
-  children: React.ReactNode 
+  children: React.ReactNode;
+  onClick?: (e: React.MouseEvent<HTMLAnchorElement>) => void; 
 }) => {
   return (
     <Link 
       to={to} 
+      onClick={onClick}
       className={`flex items-center py-3 px-4 rounded-lg ${
         active 
           ? 'bg-nature-50 text-nature-700 font-medium' 
