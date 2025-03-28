@@ -54,10 +54,11 @@ export default {
 					foreground: 'hsl(var(--card-foreground))'
 				},
 				sitio: {
-					"green-dark": "#2C5F2D",
-					"green-light": "#97BC62",
-					"sand": "#FCED9F",
-					"earth": "#5A3921",
+					"green-dark": "#1F6E5B",
+					"green-light": "#73C9A0",
+					"sand": "#FFE9C5",
+					"earth": "#8B5D33",
+					"accent": "#E6A44E",
 				}
 			},
 			borderRadius: {
@@ -81,11 +82,40 @@ export default {
 					to: {
 						height: '0'
 					}
+				},
+				'float': {
+					'0%, 100%': {
+						transform: 'translateY(0)'
+					},
+					'50%': {
+						transform: 'translateY(-10px)'
+					}
+				},
+				'pulse-soft': {
+					'0%, 100%': {
+						opacity: '1'
+					},
+					'50%': {
+						opacity: '0.8'
+					}
+				},
+				'slide-up': {
+					'0%': {
+						transform: 'translateY(20px)',
+						opacity: '0'
+					},
+					'100%': {
+						transform: 'translateY(0)',
+						opacity: '1'
+					}
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				'float': 'float 5s ease-in-out infinite',
+				'pulse-soft': 'pulse-soft 3s ease-in-out infinite',
+				'slide-up': 'slide-up 0.8s ease-out'
 			}
 		}
 	},

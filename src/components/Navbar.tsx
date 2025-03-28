@@ -1,35 +1,75 @@
 
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { Menu, X, Instagram } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import { Menu, X, Instagram, Home, Calendar, Handshake, MapPin } from 'lucide-react';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const location = useLocation();
+
+  // Detectar rolagem para mudar a aparência da navbar
+  useEffect(() => {
+    const handleScroll = () => {
+      const offset = window.scrollY;
+      if (offset > 50) {
+        setScrolled(true);
+      } else {
+        setScrolled(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
+  // Fechar menu ao mudar de página
+  useEffect(() => {
+    setIsOpen(false);
+  }, [location]);
+
+  // Verificar se um link está ativo
+  const isActive = (path: string) => location.pathname === path;
 
   return (
-    <nav className="bg-sitio-sand shadow-md relative z-50">
-      <div className="container mx-auto px-4 py-3">
+    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      scrolled ? 'bg-white shadow-md py-2' : 'bg-sitio-sand/80 backdrop-blur-sm py-4'
+    }`}>
+      <div className="container mx-auto px-4">
         <div className="flex justify-between items-center">
-          <Link to="/" className="flex items-center">
-            <h1 className="text-sitio-green-dark text-2xl font-bold">Sítio Nosso Lugar</h1>
+          <Link to="/" className="flex items-center group">
+            <h1 className={`text-sitio-green-dark text-2xl font-bold transition-all group-hover:scale-105 ${
+              scrolled ? '' : 'text-shadow-sm'
+            }`}>
+              Sítio Nosso Lugar
+            </h1>
           </Link>
 
           {/* Desktop Menu */}
-          <div className="hidden md:flex space-x-6 items-center">
-            <Link to="/" className="text-sitio-green-dark hover:text-sitio-earth transition-colors">
-              Início
-            </Link>
-            <Link to="/agendamento" className="text-sitio-green-dark hover:text-sitio-earth transition-colors">
-              Agendamento
-            </Link>
-            <Link to="/parcerias" className="text-sitio-green-dark hover:text-sitio-earth transition-colors">
-              Parcerias
-            </Link>
+          <div className="hidden md:flex space-x-1 items-center">
+            <NavLink to="/" active={isActive('/')}>
+              <Home size={18} className="mr-1" />
+              <span>Início</span>
+            </NavLink>
+            <NavLink to="/agendamento" active={isActive('/agendamento')}>
+              <Calendar size={18} className="mr-1" />
+              <span>Agendamento</span>
+            </NavLink>
+            <NavLink to="/como-chegar" active={isActive('/como-chegar')}>
+              <MapPin size={18} className="mr-1" />
+              <span>Como Chegar</span>
+            </NavLink>
+            <NavLink to="/parcerias" active={isActive('/parcerias')}>
+              <Handshake size={18} className="mr-1" />
+              <span>Parcerias</span>
+            </NavLink>
             <a 
               href="https://www.instagram.com/sitionossolugar/" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="flex items-center space-x-1 text-sitio-green-dark hover:text-sitio-earth transition-colors"
+              className="flex items-center space-x-1 text-sitio-green-dark hover:text-sitio-earth transition-colors px-3 py-2 rounded-full hover:bg-sitio-sand/50"
             >
               <Instagram size={20} />
               <span>Instagram</span>
@@ -38,8 +78,9 @@ const Navbar = () => {
 
           {/* Mobile Menu Button */}
           <button 
-            className="md:hidden text-sitio-green-dark"
+            className="md:hidden text-sitio-green-dark p-2 rounded-full hover:bg-sitio-sand/50 transition-colors"
             onClick={() => setIsOpen(!isOpen)}
+            aria-label={isOpen ? "Fechar menu" : "Abrir menu"}
           >
             {isOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
@@ -47,36 +88,31 @@ const Navbar = () => {
 
         {/* Mobile Menu */}
         {isOpen && (
-          <div className="md:hidden absolute top-full left-0 right-0 bg-sitio-sand shadow-lg py-4 px-4 z-50">
-            <div className="flex flex-col space-y-4">
-              <Link 
-                to="/" 
-                className="text-sitio-green-dark hover:text-sitio-earth transition-colors"
-                onClick={() => setIsOpen(false)}
-              >
-                Início
-              </Link>
-              <Link 
-                to="/agendamento" 
-                className="text-sitio-green-dark hover:text-sitio-earth transition-colors"
-                onClick={() => setIsOpen(false)}
-              >
-                Agendamento
-              </Link>
-              <Link 
-                to="/parcerias" 
-                className="text-sitio-green-dark hover:text-sitio-earth transition-colors"
-                onClick={() => setIsOpen(false)}
-              >
-                Parcerias
-              </Link>
+          <div className="md:hidden absolute top-full left-0 right-0 bg-white shadow-lg py-4 px-4 z-50 animate-slide-up">
+            <div className="flex flex-col space-y-2">
+              <MobileNavLink to="/" active={isActive('/')}>
+                <Home size={18} className="mr-2" />
+                <span>Início</span>
+              </MobileNavLink>
+              <MobileNavLink to="/agendamento" active={isActive('/agendamento')}>
+                <Calendar size={18} className="mr-2" />
+                <span>Agendamento</span>
+              </MobileNavLink>
+              <MobileNavLink to="/como-chegar" active={isActive('/como-chegar')}>
+                <MapPin size={18} className="mr-2" />
+                <span>Como Chegar</span>
+              </MobileNavLink>
+              <MobileNavLink to="/parcerias" active={isActive('/parcerias')}>
+                <Handshake size={18} className="mr-2" />
+                <span>Parcerias</span>
+              </MobileNavLink>
               <a 
                 href="https://www.instagram.com/sitionossolugar/" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="flex items-center space-x-1 text-sitio-green-dark hover:text-sitio-earth transition-colors"
+                className="flex items-center text-sitio-green-dark p-3 rounded-lg hover:bg-sitio-sand/30 transition-colors"
               >
-                <Instagram size={20} />
+                <Instagram size={20} className="mr-2" />
                 <span>Instagram</span>
               </a>
             </div>
@@ -84,6 +120,58 @@ const Navbar = () => {
         )}
       </div>
     </nav>
+  );
+};
+
+// Componente de link de navegação para desktop
+const NavLink = ({ 
+  to, 
+  active, 
+  children 
+}: { 
+  to: string; 
+  active: boolean; 
+  children: React.ReactNode 
+}) => {
+  return (
+    <Link 
+      to={to} 
+      className={`
+        flex items-center px-3 py-2 rounded-full transition-all duration-300
+        ${active 
+          ? 'bg-sitio-green-dark text-white font-medium shadow-md' 
+          : 'text-sitio-green-dark hover:bg-sitio-sand/50 hover:text-sitio-earth'
+        }
+      `}
+    >
+      {children}
+    </Link>
+  );
+};
+
+// Componente de link de navegação para mobile
+const MobileNavLink = ({ 
+  to, 
+  active, 
+  children 
+}: { 
+  to: string; 
+  active: boolean; 
+  children: React.ReactNode 
+}) => {
+  return (
+    <Link 
+      to={to} 
+      className={`
+        flex items-center p-3 rounded-lg transition-all duration-300
+        ${active 
+          ? 'bg-sitio-green-dark text-white font-medium' 
+          : 'text-sitio-green-dark hover:bg-sitio-sand/30'
+        }
+      `}
+    >
+      {children}
+    </Link>
   );
 };
 
