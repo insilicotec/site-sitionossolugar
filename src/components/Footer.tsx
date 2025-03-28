@@ -82,8 +82,8 @@ const Footer = () => {
                   <MapPin size={16} className="text-nature-400" />
                 </div>
                 <div>
-                  <p className="text-gray-300 font-medium">Rod. Bernardo Sayão, Km 5</p>
-                  <p className="text-gray-500 text-sm">Vila Fátima, Belém - PA</p>
+                  <p className="text-gray-300 font-medium">Rodovia BR 316</p>
+                  <p className="text-gray-500 text-sm">Vila Fátima - Tracuateua Pará</p>
                 </div>
               </div>
               

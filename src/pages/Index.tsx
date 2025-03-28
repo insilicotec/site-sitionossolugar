@@ -9,6 +9,7 @@ import WhatsappButton from '@/components/WhatsappButton';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 import GoogleMap from '@/components/GoogleMap';
+
 const photos = [{
   id: 1,
   src: "/lovable-uploads/57f7a25d-1204-4c33-9a72-f8f9cd835e02.png",
@@ -46,6 +47,7 @@ const photos = [{
   src: "/lovable-uploads/4a1d4b9c-1ea8-418a-8a24-ab78a8f64d53.png",
   alt: "Piscina com mãe e filha brincando com bola vermelha"
 }];
+
 const videos = [{
   id: 1,
   src: "/videos/sample-video.mp4",
@@ -62,6 +64,7 @@ const videos = [{
   thumbnail: "https://images.unsplash.com/photo-1517022812141-23620dba5c23",
   title: "Área de Lazer"
 }];
+
 const useIntersectionObserver = (options = {}): [(element: HTMLElement | null) => void, IntersectionObserverEntry[]] => {
   const [elements, setElements] = useState<HTMLElement[]>([]);
   const [entries, setEntries] = useState<IntersectionObserverEntry[]>([]);
@@ -88,6 +91,7 @@ const useIntersectionObserver = (options = {}): [(element: HTMLElement | null) =
   };
   return [ref, entries];
 };
+
 const FloatingLeaf = ({
   delay = 0,
   size = 24,
@@ -103,6 +107,7 @@ const FloatingLeaf = ({
       <Leaf size={size} className="animate-leaf-sway" />
     </div>;
 };
+
 const Index = () => {
   const [ref, entries] = useIntersectionObserver({
     threshold: 0.1
@@ -180,7 +185,11 @@ const Index = () => {
               <div className="relative" ref={ref}>
                 <div className="absolute -bottom-6 -right-6 w-full h-full border-4 border-sitio-leaf/30 rounded-xl z-0"></div>
                 <div className="relative z-10 overflow-hidden rounded-xl">
-                  <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb" alt="Visão panorâmica do Sítio Nosso Lugar" className="w-full h-[400px] object-cover hover:scale-105 transition-transform duration-700" />
+                  <img 
+                    src="/lovable-uploads/494226ba-0fa4-44db-b762-3a3011b9997f.png" 
+                    alt="Piscina do Sítio Nosso Lugar com vista para a área de lazer" 
+                    className="w-full h-[400px] object-cover hover:scale-105 transition-transform duration-700" 
+                  />
                 </div>
                 <div className="absolute -top-4 -left-4 p-4 bg-sitio-green-dark text-white rounded-lg shadow-nature">
                   <Bird size={24} className="animate-bounce-subtle" />
@@ -453,4 +462,5 @@ const Index = () => {
       <WhatsappButton phone="559184731385" message="Olá! Gostaria de mais informações sobre o Sítio Nosso Lugar." />
     </div>;
 };
+
 export default Index;
