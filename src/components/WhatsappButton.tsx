@@ -25,7 +25,7 @@ const WhatsappButton = ({ phone, message }: WhatsappButtonProps) => {
             initial={{ opacity: 0, scale: 0.8, y: 0 }}
             animate={{ opacity: 1, scale: 1, y: -20 }}
             exit={{ opacity: 0, scale: 0.8, y: 0 }}
-            className="absolute bottom-full right-0 mb-2 bg-white rounded-lg shadow-lg p-4 w-64"
+            className="absolute bottom-full right-0 mb-2 bg-white rounded-xl shadow-lg p-4 w-64"
           >
             <button
               onClick={() => setShowTooltip(false)}
@@ -42,7 +42,7 @@ const WhatsappButton = ({ phone, message }: WhatsappButtonProps) => {
       </AnimatePresence>
       
       <motion.button
-        className="bg-nature-500 hover:bg-nature-600 text-white p-3 rounded-full shadow-lg flex items-center justify-center"
+        className="bg-nature-500 hover:bg-nature-600 text-white p-4 rounded-xl shadow-lg flex items-center justify-center"
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
         onClick={handleClick}

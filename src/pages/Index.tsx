@@ -1,3 +1,4 @@
+
 import { 
   Cake, 
   Calendar, 
@@ -11,7 +12,8 @@ import {
   Leaf,
   Sun,
   Sparkles,
-  Bird
+  Bird,
+  CalendarClock
 } from 'lucide-react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -21,7 +23,7 @@ import VideoGallery from '@/components/VideoGallery';
 import WhatsappButton from '@/components/WhatsappButton';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
-import { useEffect, useState, useRef, RefObject } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import GoogleMap from '@/components/GoogleMap';
 
 const photos = [
@@ -158,7 +160,7 @@ const Index = () => {
       
       <main className="flex-grow">
         {/* Hero Section */}
-        <section className="hero-section h-[80vh] flex items-center justify-center text-white text-center relative">
+        <section className="hero-section hero-fix h-[80vh] flex items-center justify-center text-white text-center relative">
           <FloatingLeaf delay={2} size={36} left="15%" duration={20} />
           <FloatingLeaf delay={5} size={28} left="85%" duration={18} />
           <FloatingLeaf delay={8} size={32} left="45%" duration={22} />
@@ -181,11 +183,14 @@ const Index = () => {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link to="/agendamento">
-                <Button className="bg-sitio-green-dark hover:bg-sitio-leaf text-white px-8 py-6 text-lg group relative overflow-hidden">
+                <Button 
+                  className="bg-white/90 hover:bg-white text-nature-700 hover:text-nature-800 px-8 py-6 text-lg group relative overflow-hidden border-2 border-white/80 backdrop-blur-sm shadow-lg rounded-xl transition-all duration-300 hover:scale-105"
+                >
                   <span className="relative z-10 flex items-center gap-2">
-                    <Calendar size={20} className="transition-transform group-hover:rotate-12" />
+                    <CalendarClock size={20} className="transition-transform group-hover:rotate-12" />
                     Agendar Visita
                   </span>
+                  <span className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/80 to-white/0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 transform -translate-x-full group-hover:translate-x-full"></span>
                 </Button>
               </Link>
               <a 
@@ -193,7 +198,10 @@ const Index = () => {
                 target="_blank" 
                 rel="noopener noreferrer"
               >
-                <Button variant="outline" className="text-white border-white hover:bg-white/20 px-8 py-6 text-lg">
+                <Button 
+                  variant="outline" 
+                  className="text-white border-white/70 hover:border-white hover:bg-white/20 px-8 py-6 text-lg backdrop-blur-sm rounded-xl"
+                >
                   <span className="flex items-center gap-2">
                     Conheça no Instagram
                   </span>
@@ -444,7 +452,7 @@ const Index = () => {
         </section>
         
         {/* Call to Action */}
-        <section className="py-20 bg-sitio-green-dark text-white relative overflow-hidden">
+        <section className="py-20 bg-nature-600 text-white relative overflow-hidden">
           <div className="absolute top-0 right-0 opacity-10">
             <svg width="400" height="400" viewBox="0 0 200 200">
               <path 
@@ -465,7 +473,7 @@ const Index = () => {
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link to="/agendamento">
-                  <Button className="bg-white text-sitio-green-dark hover:bg-sitio-sand hover:text-sitio-green-forest px-8 py-3 text-lg group">
+                  <Button className="bg-white text-nature-700 hover:bg-nature-50 hover:text-nature-800 px-8 py-3 text-lg group rounded-xl transition-all duration-300 hover:scale-105 shadow-lg">
                     <span className="flex items-center gap-2">
                       <Calendar size={20} className="transition-transform group-hover:rotate-12" />
                       Fazer Reserva
@@ -477,7 +485,10 @@ const Index = () => {
                   target="_blank" 
                   rel="noopener noreferrer"
                 >
-                  <Button variant="outline" className="border-white text-white hover:bg-white/20 px-8 py-3 text-lg">
+                  <Button 
+                    variant="outline" 
+                    className="border-white text-white hover:bg-white/20 px-8 py-3 text-lg rounded-xl"
+                  >
                     Fale Conosco
                   </Button>
                 </a>
