@@ -88,8 +88,8 @@ export function PartnershipForm() {
   };
 
   return (
-    <div className="w-full max-w-3xl mx-auto p-4 md:p-6 bg-white rounded-xl shadow-md">
-      <Tabs defaultValue="company" onValueChange={setActiveTab}>
+    <div className="w-full max-w-3xl mx-auto p-4 md:p-6 bg-white rounded-xl">
+      <Tabs defaultValue="company" value={activeTab} onValueChange={setActiveTab}>
         <TabsList className="grid w-full grid-cols-2 mb-6">
           <TabsTrigger value="company" className="text-center py-3">
             <Building2 className="w-4 h-4 mr-2" />
