@@ -20,7 +20,6 @@ const ReservationForm = ({ onSubmit }: ReservationFormProps) => {
     resolver: zodResolver(formSchema),
     defaultValues: {
       nome: '',
-      telefone: '',
       cidade: '',
       dataEvento: undefined,
       tipoEvento: '',
