@@ -1,5 +1,6 @@
 
 import { ReactNode } from 'react';
+import { motion } from 'framer-motion';
 
 interface ServiceCardProps {
   title: string;
@@ -9,25 +10,25 @@ interface ServiceCardProps {
 
 const ServiceCard = ({ title, description, icon }: ServiceCardProps) => {
   return (
-    <div className="bg-white rounded-xl shadow-nature hover:shadow-leaf transition-all duration-500 p-6 text-center relative overflow-hidden group">
-      {/* Top corner decoration */}
-      <div className="absolute top-0 right-0 w-0 h-0 border-t-[50px] border-t-sitio-leaf/20 border-l-[50px] border-l-transparent"></div>
-      
-      {/* Icon container with animation */}
-      <div className="mx-auto w-20 h-20 flex items-center justify-center bg-gradient-to-br from-sitio-green-light/30 to-sitio-blue-water/10 rounded-full mb-4 text-sitio-green-dark relative z-10 group-hover:scale-110 transition-transform duration-500">
-        <div className="absolute inset-0 rounded-full bg-sitio-leaf/10 animate-pulse-soft"></div>
-        <div className="transform group-hover:rotate-12 transition-transform duration-500">
-          {icon}
+    <motion.div 
+      className="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md border border-gray-100 transition-all duration-300"
+      whileHover={{ y: -8, boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.1)' }}
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.5 }}
+    >
+      <div className="p-6">
+        <div className="mb-4 text-emerald-600">
+          <div className="w-14 h-14 flex items-center justify-center bg-emerald-50 rounded-lg">
+            {icon}
+          </div>
         </div>
+        <h3 className="text-xl font-semibold mb-2 text-gray-800">{title}</h3>
+        <p className="text-gray-600 text-sm">{description}</p>
       </div>
-      
-      {/* Text content */}
-      <h3 className="text-xl font-semibold mb-3 text-sitio-green-forest group-hover:text-sitio-leaf transition-colors duration-300">{title}</h3>
-      <p className="text-gray-600 relative z-10">{description}</p>
-      
-      {/* Bottom decoration */}
-      <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-sitio-green-dark via-sitio-leaf to-sitio-blue-water transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
-    </div>
+      <div className="h-1 bg-gradient-to-r from-emerald-400 to-teal-500"></div>
+    </motion.div>
   );
 };
 

@@ -1,39 +1,41 @@
 
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   :root {
-    --background: 50 30% 98%;
-    --foreground: 150 15% 15%;
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
 
     --card: 0 0% 100%;
-    --card-foreground: 150 15% 15%;
+    --card-foreground: 222.2 84% 4.9%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 150 15% 15%;
+    --popover-foreground: 222.2 84% 4.9%;
 
-    --primary: 150 50% 25%;
-    --primary-foreground: 60 30% 98%;
+    --primary: 142.1 76.2% 36.3%;
+    --primary-foreground: 355.7 100% 97.3%;
 
-    --secondary: 145 30% 65%;
-    --secondary-foreground: 155 15% 15%;
+    --secondary: 142.1 76.2% 96.3%;
+    --secondary-foreground: 142.1 76.2% 36.3%;
 
-    --muted: 150 10% 92%;
-    --muted-foreground: 150 10% 40%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
 
-    --accent: 355 100% 70%;
-    --accent-foreground: 0 0% 100%;
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 150 15% 85%;
-    --input: 150 31.8% 91.4%;
-    --ring: 150 50% 25%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 142.1 76.2% 36.3%;
 
-    --radius: 1rem;
+    --radius: 0.75rem;
   }
 }
 
@@ -43,299 +45,110 @@
   }
 
   body {
-    @apply bg-background text-foreground;
-    font-family: 'Poppins', sans-serif;
+    @apply bg-white text-gray-800 font-sans;
+    font-feature-settings: "rlig" 1, "calt" 1;
     scroll-behavior: smooth;
-    background-image: url('/images/subtle-nature-pattern.png');
-    background-size: 400px;
-    background-repeat: repeat;
-    background-attachment: fixed;
-    background-blend-mode: soft-light;
   }
   
-  h1, h2, h3, h4, h5, h6 {
-    @apply font-semibold tracking-tight;
+  h1, h2, h3 {
+    @apply font-display text-gray-900;
   }
-
-  /* Enhanced headings */
+  
   h1 {
-    @apply text-4xl md:text-5xl relative inline-block;
-  }
-  
-  h1::after {
-    @apply content-[''] absolute -bottom-2 left-0 w-1/2 h-1 bg-sitio-leaf rounded-full origin-left transform transition-all duration-500;
-  }
-  
-  h1:hover::after {
-    @apply w-full;
+    @apply text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight;
   }
   
   h2 {
-    @apply text-3xl md:text-4xl relative;
-  }
-  
-  h2.decorated {
-    @apply pb-3 relative;
-  }
-  
-  h2.decorated::before {
-    @apply content-[''] absolute -bottom-1 left-0 w-16 h-1 bg-sitio-leaf rounded-full;
-  }
-  
-  h2.decorated::after {
-    @apply content-[''] absolute -bottom-1 left-0 w-8 h-1 bg-sitio-accent rounded-full ml-20;
+    @apply text-3xl md:text-4xl font-bold;
   }
   
   h3 {
-    @apply text-2xl md:text-3xl;
+    @apply text-xl md:text-2xl font-semibold;
   }
 }
 
 @layer components {
   .hero-section {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.4)), url('/images/hero-bg.jpg');
-    background-size: cover;
-    background-position: center;
-    position: relative;
-    overflow: hidden;
+    @apply relative flex items-center justify-center text-white overflow-hidden;
+    min-height: calc(100vh - 80px);
   }
   
   .hero-section::before {
+    @apply absolute inset-0 bg-black/30 z-[1];
     content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(135deg, rgba(26, 71, 49, 0.6) 0%, rgba(94, 75, 47, 0.3) 100%);
-    z-index: 1;
   }
   
-  .hero-section::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 150px;
-    background: linear-gradient(to top, rgba(252, 252, 252, 1) 0%, rgba(252, 252, 252, 0) 100%);
-    z-index: 1;
+  .hero-bg-image {
+    @apply absolute inset-0 w-full h-full object-cover;
+    filter: saturate(1.2);
   }
   
-  .hero-section > * {
-    position: relative;
-    z-index: 2;
-  }
-  
-  .btn-primary {
-    @apply bg-sitio-green-dark text-white hover:bg-sitio-leaf transition-all transform hover:scale-[1.02] shadow-nature rounded-md relative overflow-hidden;
-  }
-  
-  .btn-primary::before {
-    @apply content-[''] absolute top-0 left-0 w-full h-full bg-white opacity-0 transition-opacity duration-500;
-  }
-  
-  .btn-primary:hover::before {
-    @apply opacity-20;
-  }
-  
-  .btn-primary::after {
-    @apply content-[''] absolute top-0 left-0 h-full w-0 bg-sitio-accent opacity-20 transition-all duration-500 skew-x-12;
-  }
-  
-  .btn-primary:hover::after {
-    @apply w-full;
-  }
-  
-  .card-hover {
-    @apply transition-all duration-500 hover:shadow-leaf hover:scale-[1.02] relative;
-  }
-  
-  .card-hover::before {
-    @apply content-[''] absolute -bottom-1 -right-1 w-0 h-0 bg-sitio-leaf rounded-br-lg transition-all duration-500 z-[-1];
-  }
-  
-  .card-hover:hover::before {
-    @apply w-16 h-16;
+  .hero-content {
+    @apply relative z-10 container mx-auto px-4 text-center;
   }
   
   .section-title {
-    @apply relative text-3xl font-bold text-sitio-green-forest mb-6 inline-block;
+    @apply inline-flex flex-col font-display relative;
   }
   
   .section-title::after {
-    @apply content-[''] absolute -bottom-2 left-0 right-0 h-1 bg-gradient-to-r from-sitio-leaf to-sitio-blue-water rounded-full transform transition-transform duration-300;
+    @apply content-[''] absolute -bottom-2 left-0 w-1/3 h-1 bg-nature-400 rounded;
   }
   
-  .section-title:hover::after {
-    @apply scale-x-110;
+  .section-title.centered {
+    @apply mx-auto text-center;
   }
   
-  .section-divider {
-    @apply h-1 w-20 bg-gradient-to-r from-sitio-green-dark to-sitio-blue-water mx-auto rounded-full;
+  .section-title.centered::after {
+    @apply left-1/2 -translate-x-1/2;
   }
   
-  .form-input {
-    @apply border-sitio-green-dark/30 focus:border-sitio-green-dark rounded-md;
+  .btn-primary {
+    @apply bg-nature-500 text-white hover:bg-nature-600 rounded-lg px-6 py-3 font-medium shadow-sm hover:shadow transition-all;
   }
   
-  .gradient-card {
-    @apply bg-gradient-to-br from-white to-sitio-blue-sky/30 backdrop-blur-sm;
+  .btn-secondary {
+    @apply bg-white text-gray-800 hover:bg-gray-50 border border-gray-200 rounded-lg px-6 py-3 font-medium shadow-sm hover:shadow transition-all;
+  }
+  
+  .card {
+    @apply bg-white rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition-all p-6;
+  }
+  
+  .card-hover {
+    @apply transform transition-transform hover:-translate-y-2 hover:shadow-lg;
   }
   
   .glass-card {
-    @apply bg-white/85 backdrop-blur-md shadow-nature rounded-xl border border-white/20 overflow-hidden;
+    @apply bg-white/90 backdrop-blur-md border border-white/20 rounded-xl shadow-sm overflow-hidden;
   }
   
-  .nature-card {
-    @apply relative bg-white shadow-nature rounded-xl overflow-hidden border-l-4 border-sitio-leaf transition-all duration-300 hover:shadow-leaf;
-  }
-  
-  .nature-card::before {
-    @apply content-[''] absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-sitio-green-dark to-sitio-blue-water;
+  .nature-gradient {
+    @apply bg-gradient-to-r from-nature-500 to-nature-400;
   }
   
   .text-gradient {
-    @apply bg-gradient-to-r from-sitio-green-forest via-sitio-moss to-sitio-leaf bg-clip-text text-transparent;
-  }
-  
-  .water-effect {
-    @apply relative overflow-hidden;
-  }
-  
-  .water-effect::before {
-    @apply content-[''] absolute top-0 left-0 right-0 bottom-0 bg-sitio-blue-water/10 opacity-0 transition-opacity duration-700;
-  }
-  
-  .water-effect:hover::before {
-    @apply opacity-100;
-  }
-  
-  .water-effect::after {
-    @apply content-[''] absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-0 h-0 rounded-full bg-white/30 opacity-0;
-  }
-  
-  .water-effect:hover::after {
-    @apply w-full h-full opacity-100 animate-water-ripple;
-  }
-  
-  /* Ensure green text has proper contrast */
-  .text-on-green {
-    @apply text-white text-shadow-sm;
-  }
-  
-  .leaf-icon {
-    @apply animate-leaf-sway;
-  }
-  
-  .nature-breathe {
-    @apply animate-nature-breathe;
-  }
-  
-  .hover-scale {
-    @apply transition-transform duration-300 hover:scale-110;
-  }
-  
-  .hover-lift {
-    @apply transition-all duration-500 hover:-translate-y-2 hover:shadow-leaf;
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-nature-700 to-nature-500;
   }
 }
 
-/* Smooth scroll behavior */
-html {
-  scroll-behavior: smooth;
-  scroll-padding-top: 80px;
+/* Custom utilities */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
 }
 
-/* Enhanced animations */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
-.animate-fade-in {
-  animation: fadeIn 0.5s ease-out forwards;
+/* Animations */
+.animate-hover-float {
+  transition: transform 0.3s ease;
 }
 
-@keyframes shimmer {
-  0% {
-    background-position: -1000px 0;
-  }
-  100% {
-    background-position: 1000px 0;
-  }
-}
-
-.animate-shimmer {
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-  background-size: 1000px 100%;
-  animation: shimmer 3s infinite linear;
-}
-
-@keyframes bounce-subtle {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-5px);
-  }
-}
-
-.animate-bounce-subtle {
-  animation: bounce-subtle 2s ease-in-out infinite;
-}
-
-@keyframes pulse-glow {
-  0%, 100% {
-    box-shadow: 0 0 5px rgba(98, 168, 124, 0.5);
-  }
-  50% {
-    box-shadow: 0 0 20px rgba(98, 168, 124, 0.8);
-  }
-}
-
-.animate-pulse-glow {
-  animation: pulse-glow 2s infinite;
-}
-
-@keyframes rotate {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-.animate-rotate {
-  animation: rotate 20s linear infinite;
-}
-
-@keyframes leaf-grow {
-  0% {
-    height: 0;
-    opacity: 0;
-  }
-  100% {
-    height: 100%;
-    opacity: 1;
-  }
-}
-
-.animate-leaf-grow {
-  animation: leaf-grow 1.5s ease-out;
-}
-
-/* Fix for buttons anchor behavior */
-a[href^="#"] {
-  display: inline-block;
-  vertical-align: middle;
+.animate-hover-float:hover {
+  transform: translateY(-8px);
 }
 
 /* Custom scrollbar */
@@ -344,32 +157,14 @@ a[href^="#"] {
 }
 
 ::-webkit-scrollbar-track {
-  background: #f8f4ec;
+  background: #f1f1f1;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #2D5C45;
+  background: rgba(142, 198, 168, 0.6);
   border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #62A87C;
-}
-
-/* Interactive elements */
-.interactive-element {
-  @apply transition-all duration-300 hover:shadow-nature hover:scale-105;
-}
-
-/* Nature patterns */
-.leaf-pattern {
-  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%2362A87C' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-}
-
-.water-pattern {
-  background-image: url("data:image/svg+xml,%3Csvg width='52' height='26' viewBox='0 0 52 26' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23A3CFDF' fill-opacity='0.15'%3E%3Cpath d='M10 10c0-2.21-1.79-4-4-4-3.314 0-6-2.686-6-6h2c0 2.21 1.79 4 4 4 3.314 0 6 2.686 6 6 0 2.21 1.79 4 4 4 3.314 0 6 2.686 6 6 0 2.21 1.79 4 4 4v2c-3.314 0-6-2.686-6-6 0-2.21-1.79-4-4-4-3.314 0-6-2.686-6-6zm25.464-1.95l8.486 8.486-1.414 1.414-8.486-8.486 1.414-1.414z' /%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-}
-
-.forest-pattern {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cg fill='%231A4731' fill-opacity='0.08'%3E%3Cpath fill-rule='evenodd' d='M0 0h40v40H0V0zm40 40h40v40H40V40zm0-40h2l-2 2V0zm0 4l4-4h2l-6 6V4zm0 4l8-8h2L40 10V8zm0 4L52 0h2L40 14v-2zm0 4L56 0h2L40 18v-2zm0 4L60 0h2L40 22v-2zm0 4L64 0h2L40 26v-2zm0 4L68 0h2L40 30v-2zm0 4L72 0h2L40 34v-2zm0 4L76 0h2L40 38v-2zm0 4L80 0v2L42 40h-2zm4 0L80 4v2L46 40h-2zm4 0L80 8v2L50 40h-2zm4 0l28-28v2L54 40h-2zm4 0l24-24v2L58 40h-2zm4 0l20-20v2L62 40h-2zm4 0l16-16v2L66 40h-2zm4 0l12-12v2L70 40h-2zm4 0l8-8v2l-6 6h-2zm4 0l4-4v2l-2 2h-2z'/%3E%3C/g%3E%3C/svg%3E");
+  background: rgba(142, 198, 168, 0.8);
 }

@@ -1,23 +1,26 @@
 
 import React from 'react';
-import { Map, MapPin } from 'lucide-react';
+import { MapPin, Navigation, ExternalLink } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 const GoogleMap = () => {
   return (
-    <div className="relative w-full">
-      <div className="absolute -top-6 left-1/2 transform -translate-x-1/2 bg-sitio-green-dark text-white py-2 px-6 rounded-full shadow-nature z-10 flex items-center gap-2">
-        <Map size={18} className="text-sitio-sunshine" />
-        <span>Nossa Localização</span>
-      </div>
-      
-      <div className="w-full h-[450px] rounded-xl overflow-hidden shadow-nature border-2 border-sitio-leaf/20 animate-scale-up relative group">
-        <div className="absolute inset-0 bg-sitio-green-dark/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10 pointer-events-none"></div>
-        
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20 animate-pulse-soft pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-          <div className="bg-sitio-green-dark text-white py-2 px-4 rounded-lg shadow-md flex items-center gap-2">
-            <MapPin size={16} className="text-sitio-sunshine" />
-            <span>Sítio Nosso Lugar</span>
-          </div>
+    <motion.div 
+      className="w-full rounded-xl overflow-hidden shadow-lg border border-gray-100"
+      initial={{ opacity: 0, scale: 0.95 }}
+      whileInView={{ opacity: 1, scale: 1 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.5 }}
+    >
+      <div className="relative w-full h-[450px]">
+        <div className="absolute top-4 left-1/2 transform -translate-x-1/2 z-10">
+          <motion.div 
+            className="bg-white px-6 py-3 rounded-full shadow-md flex items-center gap-2"
+            whileHover={{ y: -2, boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.1)' }}
+          >
+            <MapPin className="text-emerald-500" size={18} />
+            <span className="font-medium text-gray-800">Nossa Localização</span>
+          </motion.div>
         </div>
         
         <iframe 
@@ -29,22 +32,34 @@ const GoogleMap = () => {
           loading="lazy" 
           referrerPolicy="no-referrer-when-downgrade"
           title="Localização do Sítio Nosso Lugar"
-          className="w-full h-full transition-all duration-500 group-hover:scale-105"
+          className="w-full h-full"
         ></iframe>
+        
+        <div className="absolute bottom-4 left-4 right-4 flex gap-2 justify-center">
+          <motion.a 
+            href="https://goo.gl/maps/5dR5JQZ9eMnrMnxn6" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="bg-white px-4 py-2 rounded-lg shadow-sm flex items-center gap-2 text-sm font-medium text-gray-700 hover:text-emerald-700 transition-colors"
+            whileHover={{ y: -2, boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1)' }}
+          >
+            <Navigation size={16} />
+            <span>Como Chegar</span>
+          </motion.a>
+          
+          <motion.a 
+            href="https://goo.gl/maps/5dR5JQZ9eMnrMnxn6" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="bg-emerald-500 px-4 py-2 rounded-lg shadow-sm flex items-center gap-2 text-sm font-medium text-white hover:bg-emerald-600 transition-colors"
+            whileHover={{ y: -2, boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1)' }}
+          >
+            <ExternalLink size={16} />
+            <span>Ver no Google Maps</span>
+          </motion.a>
+        </div>
       </div>
-      
-      <div className="flex justify-center mt-4">
-        <a 
-          href="https://goo.gl/maps/5dR5JQZ9eMnrMnxn6" 
-          target="_blank" 
-          rel="noopener noreferrer"
-          className="text-sitio-green-dark flex items-center gap-2 py-2 px-4 hover:bg-sitio-sand rounded-full transition-colors"
-        >
-          <MapPin size={16} />
-          <span>Ver no Google Maps</span>
-        </a>
-      </div>
-    </div>
+    </motion.div>
   );
 };
 

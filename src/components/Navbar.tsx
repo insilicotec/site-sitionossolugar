@@ -1,158 +1,188 @@
+
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Instagram, Home, Calendar, Handshake, MapPin } from 'lucide-react';
+import { Menu, X, Instagram, Home, Calendar, MapPin, Handshake, ChevronDown } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
 
-  // Detectar rolagem para mudar a aparência da navbar
   useEffect(() => {
     const handleScroll = () => {
-      const offset = window.scrollY;
-      if (offset > 50) {
-        setScrolled(true);
-      } else {
-        setScrolled(false);
-      }
+      setScrolled(window.scrollY > 20);
     };
 
     window.addEventListener('scroll', handleScroll);
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Fechar menu ao mudar de página
+  // Close menu when route changes
   useEffect(() => {
     setIsOpen(false);
   }, [location]);
 
-  // Verificar se um link está ativo
-  const isActive = (path: string) => location.pathname === path;
-
   return (
-    <>
-      <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? 'bg-white shadow-md py-2' : 'bg-white/90 backdrop-blur-sm py-3'
-      }`}>
-        <div className="container mx-auto px-4">
-          <div className="flex justify-between items-center">
-            <Link to="/" className="flex items-center group">
-              <h1 className={`text-sitio-green-dark text-2xl font-bold transition-all group-hover:scale-105 ${
-                scrolled ? '' : 'text-shadow-sm'
-              }`}>
-                Sítio Nosso Lugar
-              </h1>
-            </Link>
+    <motion.header
+      initial={{ y: -100, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.5 }}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        scrolled 
+          ? 'bg-white/95 backdrop-blur-md shadow-sm py-3' 
+          : 'bg-transparent py-5'
+      }`}
+    >
+      <div className="container mx-auto px-4">
+        <div className="flex items-center justify-between">
+          {/* Logo */}
+          <Link 
+            to="/" 
+            className="text-2xl font-display font-bold"
+          >
+            <span className={scrolled ? 'text-gray-900' : 'text-white'}>
+              Sítio Nosso Lugar
+            </span>
+          </Link>
 
-            {/* Desktop Menu */}
-            <div className="hidden md:flex space-x-1 items-center">
-              <NavLink to="/" active={isActive('/')}>
-                <Home size={18} className="mr-1" />
+          {/* Desktop Navigation */}
+          <nav className="hidden md:flex items-center space-x-1">
+            <NavLink to="/" active={location.pathname === '/'} scrolled={scrolled}>
+              <Home size={16} className="mr-1" />
+              <span>Início</span>
+            </NavLink>
+            
+            <NavLink to="/agendamento" active={location.pathname === '/agendamento'} scrolled={scrolled}>
+              <Calendar size={16} className="mr-1" />
+              <span>Agendamento</span>
+            </NavLink>
+            
+            <NavLink to="/como-chegar" active={location.pathname === '/como-chegar'} scrolled={scrolled}>
+              <MapPin size={16} className="mr-1" />
+              <span>Como Chegar</span>
+            </NavLink>
+            
+            <NavLink to="/parcerias" active={location.pathname === '/parcerias'} scrolled={scrolled}>
+              <Handshake size={16} className="mr-1" />
+              <span>Parcerias</span>
+            </NavLink>
+            
+            <a 
+              href="https://www.instagram.com/sitionossolugar/" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className={`flex items-center gap-1 rounded-full px-3 py-2 transition-all ${
+                scrolled
+                  ? 'text-nature-600 hover:bg-nature-50'
+                  : 'text-white/90 hover:text-white hover:bg-white/10'
+              }`}
+            >
+              <Instagram size={18} />
+              <span>Instagram</span>
+            </a>
+          </nav>
+
+          {/* Mobile Menu Button */}
+          <button
+            onClick={() => setIsOpen(!isOpen)}
+            className={`md:hidden p-2 rounded-full ${
+              scrolled
+                ? 'text-gray-800 hover:bg-gray-100'
+                : 'text-white hover:bg-white/10'
+            }`}
+            aria-label={isOpen ? "Fechar menu" : "Abrir menu"}
+          >
+            {isOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
+        </div>
+
+        {/* Mobile Menu */}
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.3 }}
+            className="md:hidden bg-white rounded-lg mt-4 shadow-lg overflow-hidden"
+          >
+            <div className="flex flex-col p-4 gap-2">
+              <MobileNavLink to="/" active={location.pathname === '/'}>
+                <Home size={18} className="mr-2" />
                 <span>Início</span>
-              </NavLink>
-              <NavLink to="/agendamento" active={isActive('/agendamento')}>
-                <Calendar size={18} className="mr-1" />
+              </MobileNavLink>
+              
+              <MobileNavLink to="/agendamento" active={location.pathname === '/agendamento'}>
+                <Calendar size={18} className="mr-2" />
                 <span>Agendamento</span>
-              </NavLink>
-              <NavLink to="/como-chegar" active={isActive('/como-chegar')}>
-                <MapPin size={18} className="mr-1" />
+              </MobileNavLink>
+              
+              <MobileNavLink to="/como-chegar" active={location.pathname === '/como-chegar'}>
+                <MapPin size={18} className="mr-2" />
                 <span>Como Chegar</span>
-              </NavLink>
-              <NavLink to="/parcerias" active={isActive('/parcerias')}>
-                <Handshake size={18} className="mr-1" />
+              </MobileNavLink>
+              
+              <MobileNavLink to="/parcerias" active={location.pathname === '/parcerias'}>
+                <Handshake size={18} className="mr-2" />
                 <span>Parcerias</span>
-              </NavLink>
+              </MobileNavLink>
+              
+              <div className="w-full h-px bg-gray-100 my-1"></div>
+              
               <a 
                 href="https://www.instagram.com/sitionossolugar/" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="flex items-center space-x-1 text-sitio-green-dark hover:text-sitio-accent transition-colors px-3 py-2 rounded-full hover:bg-sitio-blue-light/50"
+                className="flex items-center py-3 px-4 rounded-lg text-gray-600 hover:bg-gray-50"
               >
-                <Instagram size={20} />
+                <Instagram size={18} className="mr-2 text-pink-500" />
                 <span>Instagram</span>
               </a>
             </div>
-
-            {/* Mobile Menu Button */}
-            <button 
-              className="md:hidden text-sitio-green-dark p-2 rounded-full hover:bg-sitio-blue-light/50 transition-colors"
-              onClick={() => setIsOpen(!isOpen)}
-              aria-label={isOpen ? "Fechar menu" : "Abrir menu"}
-            >
-              {isOpen ? <X size={24} /> : <Menu size={24} />}
-            </button>
-          </div>
-
-          {/* Mobile Menu */}
-          {isOpen && (
-            <div className="md:hidden absolute top-full left-0 right-0 bg-white shadow-lg py-4 px-4 z-50 animate-slide-up">
-              <div className="flex flex-col space-y-2">
-                <MobileNavLink to="/" active={isActive('/')}>
-                  <Home size={18} className="mr-2" />
-                  <span>Início</span>
-                </MobileNavLink>
-                <MobileNavLink to="/agendamento" active={isActive('/agendamento')}>
-                  <Calendar size={18} className="mr-2" />
-                  <span>Agendamento</span>
-                </MobileNavLink>
-                <MobileNavLink to="/como-chegar" active={isActive('/como-chegar')}>
-                  <MapPin size={18} className="mr-2" />
-                  <span>Como Chegar</span>
-                </MobileNavLink>
-                <MobileNavLink to="/parcerias" active={isActive('/parcerias')}>
-                  <Handshake size={18} className="mr-2" />
-                  <span>Parcerias</span>
-                </MobileNavLink>
-                <a 
-                  href="https://www.instagram.com/sitionossolugar/" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="flex items-center text-sitio-green-dark p-3 rounded-lg hover:bg-sitio-blue-light/30 transition-colors"
-                >
-                  <Instagram size={20} className="mr-2" />
-                  <span>Instagram</span>
-                </a>
-              </div>
-            </div>
-          )}
-        </div>
-      </nav>
-      {/* Add spacer div to prevent content from being hidden under the navbar */}
-      <div className="h-16 md:h-20"></div>
-    </>
+          </motion.div>
+        )}
+      </div>
+    </motion.header>
   );
 };
 
-// Componente de link de navegação para desktop
 const NavLink = ({ 
   to, 
   active, 
+  scrolled, 
   children 
 }: { 
   to: string; 
   active: boolean; 
+  scrolled: boolean;
   children: React.ReactNode 
 }) => {
   return (
     <Link 
       to={to} 
-      className={`
-        flex items-center px-3 py-2 rounded-full transition-all duration-300
-        ${active 
-          ? 'bg-sitio-green-dark text-white font-medium shadow-md' 
-          : 'text-sitio-green-dark hover:bg-sitio-sand/50 hover:text-sitio-earth'
-        }
-      `}
+      className={`relative flex items-center gap-1 rounded-full px-3 py-2 font-medium transition-all duration-300 overflow-hidden group ${
+        active
+          ? scrolled 
+            ? 'text-nature-700 bg-nature-50'
+            : 'text-white bg-white/20'
+          : scrolled
+            ? 'text-gray-700 hover:text-nature-700 hover:bg-nature-50/50'
+            : 'text-white/80 hover:text-white hover:bg-white/10'
+      }`}
     >
+      {active && (
+        <motion.span 
+          layoutId="navCircle"
+          className={`absolute bottom-0 left-1/2 w-1 h-1 rounded-full ${scrolled ? 'bg-nature-500' : 'bg-white'}`}
+          transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+          style={{ translateX: '-50%', translateY: '8px' }}
+        />
+      )}
       {children}
     </Link>
   );
 };
 
-// Componente de link de navegação para mobile
 const MobileNavLink = ({ 
   to, 
   active, 
@@ -165,13 +195,11 @@ const MobileNavLink = ({
   return (
     <Link 
       to={to} 
-      className={`
-        flex items-center p-3 rounded-lg transition-all duration-300
-        ${active 
-          ? 'bg-sitio-green-dark text-white font-medium' 
-          : 'text-sitio-green-dark hover:bg-sitio-sand/30'
-        }
-      `}
+      className={`flex items-center py-3 px-4 rounded-lg ${
+        active 
+          ? 'bg-nature-50 text-nature-700 font-medium' 
+          : 'text-gray-600 hover:bg-gray-50'
+      }`}
     >
       {children}
     </Link>
