@@ -17,6 +17,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { Building2, Instagram, MessageSquare } from "lucide-react";
+import { toast } from "@/hooks/use-toast";
 
 // We use the MessageSquare icon as a replacement for TikTok
 
@@ -76,20 +77,46 @@ export function PartnershipForm() {
   });
 
   const handleCompanySubmit = (values: z.infer<typeof companyFormSchema>) => {
-    const message = `Olá! Sou da empresa ${values.companyName}, do ramo de ${values.businessType}. Meu nome é ${values.contactName} e gostaria de conversar sobre uma parceria com o Sítio Nosso Lugar. ${values.message ? `Mensagem adicional: ${values.message}` : ""}`;
-    const whatsappUrl = `https://wa.me/559184731385?text=${encodeURIComponent(message)}`;
-    window.open(whatsappUrl, "_blank");
+    try {
+      const message = `Olá! Sou da empresa ${values.companyName}, do ramo de ${values.businessType}. Meu nome é ${values.contactName} e gostaria de conversar sobre uma parceria com o Sítio Nosso Lugar. ${values.message ? `Mensagem adicional: ${values.message}` : ""}`;
+      const whatsappUrl = `https://wa.me/559184731385?text=${encodeURIComponent(message)}`;
+      window.open(whatsappUrl, "_blank");
+      toast({
+        title: "Proposta enviada!",
+        description: "Você será redirecionado para o WhatsApp para concluir o envio.",
+      });
+    } catch (error) {
+      console.error("Erro ao enviar proposta:", error);
+      toast({
+        title: "Erro ao enviar proposta",
+        description: "Por favor, tente novamente.",
+        variant: "destructive",
+      });
+    }
   };
 
   const handleInfluencerSubmit = (values: z.infer<typeof influencerFormSchema>) => {
-    const message = `Olá! Sou ${values.name} de ${values.city}, meu @ é ${values.socialHandle}. Gostaria de conversar sobre uma parceria de influenciador com o Sítio Nosso Lugar.`;
-    const whatsappUrl = `https://wa.me/559184731385?text=${encodeURIComponent(message)}`;
-    window.open(whatsappUrl, "_blank");
+    try {
+      const message = `Olá! Sou ${values.name} de ${values.city}, meu @ é ${values.socialHandle}. Gostaria de conversar sobre uma parceria de influenciador com o Sítio Nosso Lugar.`;
+      const whatsappUrl = `https://wa.me/559184731385?text=${encodeURIComponent(message)}`;
+      window.open(whatsappUrl, "_blank");
+      toast({
+        title: "Proposta enviada!",
+        description: "Você será redirecionado para o WhatsApp para concluir o envio.",
+      });
+    } catch (error) {
+      console.error("Erro ao enviar proposta:", error);
+      toast({
+        title: "Erro ao enviar proposta",
+        description: "Por favor, tente novamente.",
+        variant: "destructive",
+      });
+    }
   };
 
   return (
     <div className="w-full max-w-3xl mx-auto p-4 md:p-6 bg-white rounded-xl">
-      <Tabs defaultValue="company" value={activeTab} onValueChange={setActiveTab}>
+      <Tabs value={activeTab} onValueChange={setActiveTab}>
         <TabsList className="grid w-full grid-cols-2 mb-6">
           <TabsTrigger value="company" className="text-center py-3">
             <Building2 className="w-4 h-4 mr-2" />
