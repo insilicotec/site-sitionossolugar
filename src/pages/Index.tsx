@@ -1,3 +1,4 @@
+import React, { useEffect, useState, useRef } from 'react';
 import { 
   Cake, 
   Calendar, 
@@ -387,7 +388,7 @@ const Index = () => {
         </section>
         
         <section className="py-20 bg-sitio-sand relative">
-          <div className="forest-pattern absolute inset-0 opacity-30"></div>
+          <div className="leaf-pattern absolute inset-0 opacity-20"></div>
           
           <div className="container px-4">
             <div className="text-center mb-12" ref={ref}>
