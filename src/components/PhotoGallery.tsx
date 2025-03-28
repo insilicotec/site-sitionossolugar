@@ -41,6 +41,16 @@ const PhotoGallery = ({ photos }: PhotoGalleryProps) => {
     setSelectedPhoto(photos[newIndex]);
   };
 
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === 'ArrowLeft') {
+      showPreviousPhoto(e as unknown as React.MouseEvent);
+    } else if (e.key === 'ArrowRight') {
+      showNextPhoto(e as unknown as React.MouseEvent);
+    } else if (e.key === 'Escape') {
+      closePhotoViewer();
+    }
+  };
+
   return (
     <div>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
@@ -60,7 +70,11 @@ const PhotoGallery = ({ photos }: PhotoGalleryProps) => {
       </div>
 
       <Dialog open={!!selectedPhoto} onOpenChange={closePhotoViewer}>
-        <DialogContent className="max-w-6xl p-0 bg-black/95 border-none relative">
+        <DialogContent 
+          className="max-w-6xl p-0 bg-black/95 border-none relative"
+          onKeyDown={handleKeyDown}
+          tabIndex={0}
+        >
           {selectedPhoto && (
             <>
               <Button 
@@ -96,6 +110,12 @@ const PhotoGallery = ({ photos }: PhotoGalleryProps) => {
                 >
                   <ChevronRight className="h-8 w-8" />
                 </Button>
+              </div>
+              
+              <div className="absolute bottom-4 left-0 right-0 flex justify-center">
+                <div className="px-4 py-2 bg-black/60 rounded-full text-white text-sm">
+                  {currentIndex + 1} / {photos.length}
+                </div>
               </div>
             </>
           )}

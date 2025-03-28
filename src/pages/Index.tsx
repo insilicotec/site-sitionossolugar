@@ -68,6 +68,11 @@ const photos = [
     id: 8,
     src: "/lovable-uploads/4eedf5e9-d6cb-42cf-91ab-5a025f837f33.png",
     alt: "Salão de festas com mesas douradas decoradas para evento"
+  },
+  {
+    id: 9,
+    src: "/lovable-uploads/4a1d4b9c-1ea8-418a-8a24-ab78a8f64d53.png",
+    alt: "Piscina com mãe e filha brincando com bola vermelha"
   }
 ];
 

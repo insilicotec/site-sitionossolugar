@@ -52,8 +52,13 @@ const Navbar = () => {
               e.preventDefault();
               handleNavigation('/');
             }}
-            className="text-2xl font-display font-bold"
+            className="flex items-center gap-2 text-2xl font-display font-bold"
           >
+            <img 
+              src="/lovable-uploads/c50697da-7566-40b0-92fa-8c29cca1201a.png" 
+              alt="Sítio Nosso Lugar Logo" 
+              className="h-12 w-12 object-contain"
+            />
             <span className="text-gray-900">
               Sítio Nosso Lugar
             </span>
