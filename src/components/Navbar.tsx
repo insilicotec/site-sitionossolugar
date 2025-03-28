@@ -1,7 +1,7 @@
 
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Instagram, Home, Calendar, MapPin, Handshake, ChevronDown } from 'lucide-react';
+import { Menu, X, Instagram, Home, Calendar, MapPin, Handshake } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const Navbar = () => {
@@ -30,8 +30,8 @@ const Navbar = () => {
       transition={{ duration: 0.5 }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled 
-          ? 'bg-white/95 backdrop-blur-md shadow-sm py-3' 
-          : 'bg-transparent py-5'
+          ? 'bg-white shadow-sm py-3' 
+          : 'bg-white/90 backdrop-blur-md py-5'
       }`}
     >
       <div className="container mx-auto px-4">
@@ -41,7 +41,7 @@ const Navbar = () => {
             to="/" 
             className="text-2xl font-display font-bold"
           >
-            <span className={scrolled ? 'text-gray-900' : 'text-white'}>
+            <span className="text-gray-900">
               Sítio Nosso Lugar
             </span>
           </Link>
@@ -72,11 +72,7 @@ const Navbar = () => {
               href="https://www.instagram.com/sitionossolugar/" 
               target="_blank" 
               rel="noopener noreferrer"
-              className={`flex items-center gap-1 rounded-full px-3 py-2 transition-all ${
-                scrolled
-                  ? 'text-nature-600 hover:bg-nature-50'
-                  : 'text-white/90 hover:text-white hover:bg-white/10'
-              }`}
+              className="flex items-center gap-1 rounded-full px-3 py-2 transition-all text-nature-600 hover:bg-nature-50"
             >
               <Instagram size={18} />
               <span>Instagram</span>
@@ -86,11 +82,7 @@ const Navbar = () => {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className={`md:hidden p-2 rounded-full ${
-              scrolled
-                ? 'text-gray-800 hover:bg-gray-100'
-                : 'text-white hover:bg-white/10'
-            }`}
+            className="md:hidden p-2 rounded-full text-gray-800 hover:bg-gray-100"
             aria-label={isOpen ? "Fechar menu" : "Abrir menu"}
           >
             {isOpen ? <X size={24} /> : <Menu size={24} />}
@@ -162,18 +154,14 @@ const NavLink = ({
       to={to} 
       className={`relative flex items-center gap-1 rounded-full px-3 py-2 font-medium transition-all duration-300 overflow-hidden group ${
         active
-          ? scrolled 
-            ? 'text-nature-700 bg-nature-50'
-            : 'text-white bg-white/20'
-          : scrolled
-            ? 'text-gray-700 hover:text-nature-700 hover:bg-nature-50/50'
-            : 'text-white/80 hover:text-white hover:bg-white/10'
+          ? 'text-nature-700 bg-nature-50'
+          : 'text-gray-700 hover:text-nature-700 hover:bg-nature-50/50'
       }`}
     >
       {active && (
         <motion.span 
           layoutId="navCircle"
-          className={`absolute bottom-0 left-1/2 w-1 h-1 rounded-full ${scrolled ? 'bg-nature-500' : 'bg-white'}`}
+          className="absolute bottom-0 left-1/2 w-1 h-1 rounded-full bg-nature-500"
           transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
           style={{ translateX: '-50%', translateY: '8px' }}
         />

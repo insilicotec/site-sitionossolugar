@@ -42,7 +42,7 @@ const WhatsappButton = ({ phone, message }: WhatsappButtonProps) => {
       </AnimatePresence>
       
       <motion.button
-        className="bg-green-500 hover:bg-green-600 text-white p-3 rounded-full shadow-lg flex items-center justify-center"
+        className="bg-nature-500 hover:bg-nature-600 text-white p-3 rounded-full shadow-lg flex items-center justify-center"
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
         onClick={handleClick}
