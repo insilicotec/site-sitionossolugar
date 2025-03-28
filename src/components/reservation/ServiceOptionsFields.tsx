@@ -37,6 +37,7 @@ const ServiceOptionsFields = ({ form }: ServiceOptionsFieldsProps) => {
                   htmlFor={`checkbox-apenas-local`}
                 >
                   Apenas o local
+                  {field.value && <span className="ml-2 text-sitio-green-dark">✓</span>}
                 </FormLabel>
               </div>
             </FormItem>
@@ -63,6 +64,7 @@ const ServiceOptionsFields = ({ form }: ServiceOptionsFieldsProps) => {
                   htmlFor={`checkbox-inclui-comida`}
                 >
                   Inclui comida
+                  {field.value && <span className="ml-2 text-sitio-green-dark">✓</span>}
                 </FormLabel>
               </div>
             </FormItem>
@@ -90,6 +92,7 @@ const ServiceOptionsFields = ({ form }: ServiceOptionsFieldsProps) => {
                     htmlFor={`checkbox-buffet`}
                   >
                     Buffet completo
+                    {field.value && <span className="ml-2 text-sitio-green-dark">✓</span>}
                   </FormLabel>
                 </div>
               </FormItem>
@@ -117,6 +120,7 @@ const ServiceOptionsFields = ({ form }: ServiceOptionsFieldsProps) => {
                   htmlFor={`checkbox-dj`}
                 >
                   DJ
+                  {field.value && <span className="ml-2 text-sitio-green-dark">✓</span>}
                 </FormLabel>
               </div>
             </FormItem>
@@ -143,6 +147,7 @@ const ServiceOptionsFields = ({ form }: ServiceOptionsFieldsProps) => {
                   htmlFor={`checkbox-decoracao`}
                 >
                   Decoração
+                  {field.value && <span className="ml-2 text-sitio-green-dark">✓</span>}
                 </FormLabel>
               </div>
             </FormItem>
