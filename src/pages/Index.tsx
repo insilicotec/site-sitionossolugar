@@ -50,18 +50,18 @@ const photos = [{
 
 const videos = [{
   id: 1,
-  src: "/videos/sample-video.mp4",
-  thumbnail: "https://images.unsplash.com/photo-1482938289607-e9573fc25ebb",
+  youtubeId: "P1p7TOXDEHs",
+  thumbnail: "https://i.ytimg.com/vi/P1p7TOXDEHs/hqdefault.jpg",
   title: "Conheça o Sítio Nosso Lugar"
 }, {
   id: 2,
-  src: "/videos/sample-video.mp4",
-  thumbnail: "https://images.unsplash.com/photo-1506744038136-46273834b3fb",
+  youtubeId: "TawdKsGX0DM",
+  thumbnail: "https://i.ytimg.com/vi/TawdKsGX0DM/hqdefault.jpg",
   title: "Eventos no Sítio"
 }, {
   id: 3,
-  src: "/videos/sample-video.mp4",
-  thumbnail: "https://images.unsplash.com/photo-1517022812141-23620dba5c23",
+  youtubeId: "OTJQOUpMu9M",
+  thumbnail: "https://i.ytimg.com/vi/OTJQOUpMu9M/hqdefault.jpg",
   title: "Área de Lazer"
 }];
 
