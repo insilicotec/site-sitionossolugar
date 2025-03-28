@@ -1,6 +1,8 @@
-import { Instagram, Phone, MapPin, Mail, Clock, Heart, MessageSquare } from 'lucide-react';
+
+import { Instagram, Phone, MapPin, Mail, Clock, Heart } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
+
 const Footer = () => {
   const currentYear = new Date().getFullYear();
   return <footer className="text-white pt-16 pb-8 bg-black bg-[nature-earth-600]">
@@ -111,47 +113,8 @@ const Footer = () => {
           </motion.div>
         </div>
         
-        {/* WhatsApp Group Button - replacing Newsletter */}
-        <motion.div initial={{
-        opacity: 0,
-        y: 20
-      }} whileInView={{
-        opacity: 1,
-        y: 0
-      }} transition={{
-        duration: 0.5,
-        delay: 0.3
-      }} viewport={{
-        once: true
-      }} className="mt-12 mb-8 rounded-xl p-6 bg-gray-900">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-            <div className="md:w-1/2">
-              <h3 className="text-xl font-medium mb-2 text-slate-50">Fique por dentro das novidades</h3>
-              <p className="text-amber-200">Entre para nosso grupo exclusivo e receba promoções e datas especiais diretamente no WhatsApp</p>
-            </div>
-            <div className="w-full md:w-1/2 flex justify-center md:justify-end">
-              <motion.a href="https://chat.whatsapp.com/IUGj1YdwulH8GWZCDxnDil" target="_blank" rel="noopener noreferrer" className="bg-emerald-600 hover:bg-emerald-700 text-white px-6 py-3 rounded-lg flex items-center gap-3 group transition-all duration-300 hover:scale-105 shadow-lg" whileHover={{
-              y: -3
-            }}>
-                <div className="relative">
-                  <MessageSquare size={24} className="text-white" />
-                  <motion.div className="absolute -top-1 -right-1 w-3 h-3 bg-white rounded-full" animate={{
-                  scale: [1, 1.2, 1]
-                }} transition={{
-                  duration: 2,
-                  repeat: Infinity,
-                  repeatType: "loop"
-                }} />
-                </div>
-                <span className="font-medium">Participar do Grupo</span>
-                <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
-              </motion.a>
-            </div>
-          </div>
-        </motion.div>
-        
         {/* Copyright & Bottom Bar */}
-        <div className="border-t border-gray-800 mt-8 pt-6 flex flex-col md:flex-row justify-between items-center gap-4 text-gray-500 text-sm">
+        <div className="border-t border-gray-800 mt-12 pt-6 flex flex-col md:flex-row justify-between items-center gap-4 text-gray-500 text-sm">
           <div className="flex items-center gap-1">
             <span>&copy; {currentYear} Sítio Nosso Lugar</span>
             <span className="text-gray-700">•</span>
@@ -165,6 +128,7 @@ const Footer = () => {
       </div>
     </footer>;
 };
+
 const FooterLink = ({
   to,
   children
@@ -177,6 +141,7 @@ const FooterLink = ({
       {children}
     </Link>
   </li>;
+
 const SocialLink = ({
   href,
   icon
@@ -188,4 +153,5 @@ const SocialLink = ({
 }}>
     {icon}
   </motion.a>;
+
 export default Footer;

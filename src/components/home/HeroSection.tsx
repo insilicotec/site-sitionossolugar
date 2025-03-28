@@ -30,7 +30,7 @@ const HeroSection = () => {
           </p>
           
           <a href="https://www.instagram.com/sitionossolugar/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-8 py-4 font-medium text-white transition-all duration-300 bg-amber-700 rounded-lg hover:bg-amber-800 shadow-lg hover:scale-105">
-            <img src="/lovable-uploads/494226ba-0fa4-44db-b762-3a3011b9997f.png" alt="Instagram" className="w-5 h-5 animate-pulse" />
+            <img src="/lovable-uploads/494226ba-0fa4-44db-b762-3a3011b9997f.png" alt="Instagram" className="w-5 h-5" />
             Conheça no Instagram
           </a>
         </div>
