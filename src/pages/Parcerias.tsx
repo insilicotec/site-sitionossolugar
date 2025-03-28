@@ -2,29 +2,45 @@
 import { useState } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import PartnershipForm, { PartnershipData } from '@/components/PartnershipForm';
+import PartnershipForm, { PartnershipData, InfluencerData, PartnershipType } from '@/components/PartnershipForm';
 import WhatsappButton from '@/components/WhatsappButton';
-import { Handshake, Briefcase, Presentation, Users } from 'lucide-react';
+import { Handshake, Briefcase, Presentation, Users, Camera, Instagram, TikTok } from 'lucide-react';
 
 const Parcerias = () => {
-  const [formData, setFormData] = useState<PartnershipData | null>(null);
+  const [formData, setFormData] = useState<PartnershipData | InfluencerData | null>(null);
   const [whatsappMessage, setWhatsappMessage] = useState('');
 
-  const handleSubmit = (data: PartnershipData) => {
+  const handleSubmit = (data: PartnershipData | InfluencerData, type: PartnershipType) => {
     setFormData(data);
     
-    // Create WhatsApp message
-    const message = `*Nova Solicitação de Parceria*
+    // Create WhatsApp message based on partnership type
+    let message = '';
     
+    if (type === 'business') {
+      const businessData = data as PartnershipData;
+      message = `*Nova Solicitação de Parceria - Agência/Negócio*
+      
 *Dados da Agência:*
-Nome da Agência: ${data.nomeAgencia}
-Responsável: ${data.responsavel}
-Telefone: ${data.telefone}
-Cidade: ${data.cidade}
-Website/Rede Social: ${data.website || "Não informado"}
+Nome da Agência: ${businessData.nomeAgencia}
+Responsável: ${businessData.responsavel}
+Telefone: ${businessData.telefone}
+Cidade: ${businessData.cidade}
+Website/Rede Social: ${businessData.website || "Não informado"}
 
 *Proposta de Parceria:*
-${data.descricao}`;
+${businessData.descricao}`;
+    } else {
+      const influencerData = data as InfluencerData;
+      message = `*Nova Solicitação de Parceria - Influenciador*
+      
+*Dados do Influenciador:*
+Nome: ${influencerData.nome}
+Instagram/TikTok: @${influencerData.social}
+Telefone: ${influencerData.telefone}
+Cidade: ${influencerData.cidade}
+
+${influencerData.mensagem ? `*Mensagem:*\n${influencerData.mensagem}` : ''}`;
+    }
 
     setWhatsappMessage(message);
     
@@ -67,13 +83,13 @@ ${data.descricao}`;
                 <div className="h-1 w-20 bg-sitio-green-dark mx-auto"></div>
               </div>
               
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
                 <div className="bg-sitio-sand/40 p-8 rounded-lg shadow-lg transform transition-all hover:scale-[1.02] border-l-4 border-sitio-green-dark">
                   <div className="flex items-center mb-6">
                     <div className="bg-sitio-green-dark p-3 rounded-full mr-4">
                       <Briefcase className="h-6 w-6 text-white" />
                     </div>
-                    <h3 className="text-2xl font-semibold text-sitio-green-dark">Para Agências de Viagem</h3>
+                    <h3 className="text-2xl font-semibold text-sitio-green-dark">Para Agências</h3>
                   </div>
                   <ul className="space-y-3 text-gray-700">
                     <li className="flex items-start">
@@ -92,10 +108,6 @@ ${data.descricao}`;
                       <span className="text-sitio-green-dark mr-2 font-bold">•</span>
                       <span>Atendimento prioritário</span>
                     </li>
-                    <li className="flex items-start">
-                      <span className="text-sitio-green-dark mr-2 font-bold">•</span>
-                      <span>Visitas técnicas gratuitas</span>
-                    </li>
                   </ul>
                 </div>
                 
@@ -104,7 +116,7 @@ ${data.descricao}`;
                     <div className="bg-sitio-green-dark p-3 rounded-full mr-4">
                       <Presentation className="h-6 w-6 text-white" />
                     </div>
-                    <h3 className="text-2xl font-semibold text-sitio-green-dark">Para Promotores de Eventos</h3>
+                    <h3 className="text-2xl font-semibold text-sitio-green-dark">Para Eventos</h3>
                   </div>
                   <ul className="space-y-3 text-gray-700">
                     <li className="flex items-start">
@@ -117,15 +129,38 @@ ${data.descricao}`;
                     </li>
                     <li className="flex items-start">
                       <span className="text-sitio-green-dark mr-2 font-bold">•</span>
-                      <span>Flexibilidade em datas e horários</span>
+                      <span>Flexibilidade em datas</span>
                     </li>
                     <li className="flex items-start">
                       <span className="text-sitio-green-dark mr-2 font-bold">•</span>
-                      <span>Divulgação conjunta em redes sociais</span>
+                      <span>Divulgação conjunta</span>
+                    </li>
+                  </ul>
+                </div>
+                
+                <div className="bg-sitio-sand/40 p-8 rounded-lg shadow-lg transform transition-all hover:scale-[1.02] border-l-4 border-sitio-green-dark">
+                  <div className="flex items-center mb-6">
+                    <div className="bg-sitio-green-dark p-3 rounded-full mr-4">
+                      <Camera className="h-6 w-6 text-white" />
+                    </div>
+                    <h3 className="text-2xl font-semibold text-sitio-green-dark">Para Influencers</h3>
+                  </div>
+                  <ul className="space-y-3 text-gray-700">
+                    <li className="flex items-start">
+                      <span className="text-sitio-green-dark mr-2 font-bold">•</span>
+                      <span>Parcerias com conteúdos exclusivos</span>
                     </li>
                     <li className="flex items-start">
                       <span className="text-sitio-green-dark mr-2 font-bold">•</span>
-                      <span>Suporte completo para seus eventos</span>
+                      <span>Acesso a locais especiais para fotos</span>
+                    </li>
+                    <li className="flex items-start">
+                      <span className="text-sitio-green-dark mr-2 font-bold">•</span>
+                      <span>Visibilidade em nossas redes sociais</span>
+                    </li>
+                    <li className="flex items-start">
+                      <span className="text-sitio-green-dark mr-2 font-bold">•</span>
+                      <span>Experiências personalizadas</span>
                     </li>
                   </ul>
                 </div>
@@ -134,7 +169,7 @@ ${data.descricao}`;
               <div className="text-center px-4 py-10 bg-sitio-green-dark/10 rounded-xl shadow-inner mb-12">
                 <Handshake className="h-12 w-12 mx-auto text-sitio-green-dark mb-4" />
                 <p className="text-xl text-gray-800">
-                  Juntos podemos criar experiências inesquecíveis para seus clientes e expandir nossos negócios.
+                  Juntos podemos criar experiências inesquecíveis para seus seguidores e clientes.
                 </p>
               </div>
             </div>
@@ -166,7 +201,7 @@ ${data.descricao}`;
                 <div className="h-1 w-20 bg-sitio-green-dark mx-auto"></div>
               </div>
               
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div className="bg-white p-8 rounded-lg shadow-lg border border-sitio-green-dark/10 relative">
                   <div className="absolute -top-5 -left-5 bg-sitio-green-dark text-white p-3 rounded-full">
                     <Users className="h-6 w-6" />
@@ -187,7 +222,7 @@ ${data.descricao}`;
                 
                 <div className="bg-white p-8 rounded-lg shadow-lg border border-sitio-green-dark/10 relative">
                   <div className="absolute -top-5 -left-5 bg-sitio-green-dark text-white p-3 rounded-full">
-                    <Users className="h-6 w-6" />
+                    <Presentation className="h-6 w-6" />
                   </div>
                   <p className="text-gray-700 italic mb-6 pt-4">
                     "Como promotor de eventos, encontrar o Sítio Nosso Lugar foi um diferencial para meus clientes. O espaço é perfeito e a equipe sempre pronta para ajudar com todas as necessidades."
@@ -199,6 +234,24 @@ ${data.descricao}`;
                     <div className="ml-4">
                       <p className="font-semibold text-sitio-green-dark">João Santos</p>
                       <p className="text-sm text-gray-600">JS Eventos</p>
+                    </div>
+                  </div>
+                </div>
+                
+                <div className="bg-white p-8 rounded-lg shadow-lg border border-sitio-green-dark/10 relative">
+                  <div className="absolute -top-5 -left-5 bg-sitio-green-dark text-white p-3 rounded-full">
+                    <Instagram className="h-6 w-6" />
+                  </div>
+                  <p className="text-gray-700 italic mb-6 pt-4">
+                    "Fazer uma parceria com o Sítio Nosso Lugar elevou o nível do meu conteúdo. As fotos ficaram incríveis e meus seguidores adoraram conhecer esse paraíso através das minhas redes."
+                  </p>
+                  <div className="flex items-center">
+                    <div className="h-12 w-12 bg-sitio-green-dark/20 rounded-full flex items-center justify-center text-sitio-green-dark font-bold text-xl">
+                      AP
+                    </div>
+                    <div className="ml-4">
+                      <p className="font-semibold text-sitio-green-dark">Ana Paula</p>
+                      <p className="text-sm text-gray-600">@ana.viagens</p>
                     </div>
                   </div>
                 </div>
