@@ -22,17 +22,22 @@ const Agendamento = () => {
       ? format(data.dataEvento, "dd/MM/yyyy", { locale: ptBR }) 
       : "Data não selecionada";
     
-    // Generate services list from checked options only
-    const selectedServices = [];
-    if (data.apenasLocal) selectedServices.push("🏠 Apenas o local");
-    if (data.incluiComida) selectedServices.push("🍽️ Inclui comida");
-    if (data.buffet) selectedServices.push("🍲 Buffet completo");
-    if (data.dj) selectedServices.push("🎵 DJ");
-    if (data.decoracao) selectedServices.push("🎊 Decoração");
+    // Generate services list showing all options and marking which ones are selected
+    const servicesList = [
+      { name: "Apenas o local", value: data.apenasLocal, emoji: "🏠" },
+      { name: "Inclui comida", value: data.incluiComida, emoji: "🍽️" },
+      { name: "Buffet completo", value: data.buffet, emoji: "🍲" },
+      { name: "DJ", value: data.dj, emoji: "🎵" },
+      { name: "Decoração", value: data.decoracao, emoji: "🎊" }
+    ];
     
-    const servicesText = selectedServices.length > 0 
-      ? selectedServices.join("\n") 
-      : "Nenhum serviço adicional selecionado";
+    // Map all services, indicating which ones are selected with emoji and plain text for non-selected
+    const servicesText = servicesList
+      .map(service => {
+        const prefix = service.value ? `${service.emoji} ✅` : `${service.emoji} ❌`;
+        return `${prefix} ${service.name}`;
+      })
+      .join("\n");
     
     // Create WhatsApp message with emojis and better formatting
     const message = `✨ *NOVA RESERVA - SÍTIO NOSSO LUGAR* ✨
@@ -56,12 +61,12 @@ ${data.observacoes ? `💬 *OBSERVAÇÕES*\n${data.observacoes}` : ""}
 
     setWhatsappMessage(encodeURIComponent(message));
     
-    // Redirect to WhatsApp (delayed slightly to ensure state is updated)
+    // Redirect to WhatsApp with a slight delay to ensure state is updated
     setTimeout(() => {
       const whatsappUrl = `https://wa.me/559184731385?text=${encodeURIComponent(message)}`;
       console.log("Opening WhatsApp URL:", whatsappUrl);
       window.open(whatsappUrl, '_blank');
-    }, 100);
+    }, 300);
   };
 
   const getEventTypeText = (eventType: string): string => {
