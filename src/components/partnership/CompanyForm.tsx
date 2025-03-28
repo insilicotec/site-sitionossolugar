@@ -30,6 +30,7 @@ export function CompanyForm() {
       businessType: "",
       message: "",
     },
+    mode: "onBlur"
   });
 
   const handleSubmit = (values: CompanyFormValues) => {
@@ -41,6 +42,7 @@ export function CompanyForm() {
         title: "Proposta enviada!",
         description: "Você será redirecionado para o WhatsApp para concluir o envio.",
       });
+      form.reset();
     } catch (error) {
       console.error("Erro ao enviar proposta:", error);
       toast({
@@ -137,7 +139,7 @@ export function CompanyForm() {
               <FormControl>
                 <Textarea 
                   placeholder="Descreva sua proposta de parceria..." 
-                  className="min-h-32"
+                  className="min-h-32 resize-y"
                   {...field} 
                 />
               </FormControl>

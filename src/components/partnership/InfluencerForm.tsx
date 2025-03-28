@@ -26,6 +26,7 @@ export function InfluencerForm() {
       name: "",
       city: "",
     },
+    mode: "onBlur"
   });
 
   const handleSubmit = (values: InfluencerFormValues) => {
@@ -37,6 +38,7 @@ export function InfluencerForm() {
         title: "Proposta enviada!",
         description: "Você será redirecionado para o WhatsApp para concluir o envio.",
       });
+      form.reset();
     } catch (error) {
       console.error("Erro ao enviar proposta:", error);
       toast({
