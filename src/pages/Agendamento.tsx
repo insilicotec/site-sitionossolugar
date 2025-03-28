@@ -1,3 +1,4 @@
+
 import { useState } from 'react';
 import { format } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
@@ -91,7 +92,7 @@ ${data.observacoes ? `💬 *OBSERVAÇÕES*\n${data.observacoes}` : ""}
         <section className="bg-sitio-green-dark text-white py-12">
           <div className="container px-4 text-center">
             <h1 className="text-3xl md:text-4xl font-bold mb-4">Agende Seu Evento</h1>
-            <p className="text-lg max-w-3xl mx-auto text-gray-200">
+            <p className="text-lg max-w-3xl mx-auto text-black">
               Preencha o formulário abaixo com os detalhes do seu evento.
               Entraremos em contato para confirmar a disponibilidade e finalizar sua reserva.
             </p>
