@@ -1,3 +1,4 @@
+
 import { useState } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -49,8 +50,8 @@ ${data.descricao}`;
             }}
           ></div>
           <div className="container px-4 text-center relative z-10">
-            <h1 className="text-4xl md:text-5xl font-bold mb-6 text-white">Parcerias Estratégicas</h1>
-            <p className="text-xl max-w-3xl mx-auto text-white/90">
+            <h1 className="text-4xl md:text-5xl font-bold mb-6 text-black">Parcerias Estratégicas</h1>
+            <p className="text-xl max-w-3xl mx-auto text-black/90">
               Amplie seus negócios com o Sítio Nosso Lugar.
               Uma experiência única para oferecer aos seus clientes.
             </p>
