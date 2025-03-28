@@ -1,4 +1,3 @@
-
 import { 
   Cake, 
   Calendar, 
@@ -6,8 +5,8 @@ import {
   Utensils, 
   Music, 
   Palmtree, 
-  SwimmingPool, 
-  Hiking,
+  Waves, 
+  Mountain,
   Heart
 } from 'lucide-react';
 import Navbar from '@/components/Navbar';
@@ -194,12 +193,12 @@ const Index = () => {
               <ServiceCard 
                 title="Piscina" 
                 description="Área de piscina para refrescantes momentos de lazer."
-                icon={<SwimmingPool size={32} />}
+                icon={<Waves size={32} />}
               />
               <ServiceCard 
                 title="Trilha Natural" 
                 description="Explore a natureza em nossas trilhas seguras e bem sinalizadas."
-                icon={<Hiking size={32} />}
+                icon={<Mountain size={32} />}
               />
             </div>
             
