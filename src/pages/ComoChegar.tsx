@@ -1,54 +1,12 @@
-
-import React, { useEffect, useRef, useState } from 'react';
-import mapboxgl from 'mapbox-gl';
-import 'mapbox-gl/dist/mapbox-gl.css';
+import React from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { MapPin, Navigation, Video } from 'lucide-react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import WhatsappButton from '@/components/WhatsappButton';
+import GoogleMap from '@/components/GoogleMap';
 
 const ComoChegar = () => {
-  const mapContainer = useRef<HTMLDivElement>(null);
-  const map = useRef<mapboxgl.Map | null>(null);
-  const [mapboxToken, setMapboxToken] = useState('');
-  const [showTokenInput, setShowTokenInput] = useState(true);
-
-  useEffect(() => {
-    if (!mapContainer.current || !mapboxToken) return;
-    
-    // Inicializar mapa
-    mapboxgl.accessToken = mapboxToken;
-    
-    map.current = new mapboxgl.Map({
-      container: mapContainer.current,
-      style: 'mapbox://styles/mapbox/streets-v11',
-      zoom: 14,
-      center: [-46.9619, -1.1414], // Coordenadas atualizadas para Ramal do Piquiá
-    });
-
-    // Adicionar controles de navegação
-    map.current.addControl(
-      new mapboxgl.NavigationControl(),
-      'top-right'
-    );
-
-    // Adicionar marcador
-    new mapboxgl.Marker({ color: '#1F6E5B' })
-      .setLngLat([-46.9619, -1.1414])
-      .addTo(map.current);
-
-    // Cleanup
-    return () => {
-      map.current?.remove();
-    };
-  }, [mapboxToken]);
-
-  const handleTokenSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setShowTokenInput(false);
-  };
-
   return (
     <div className="min-h-screen flex flex-col bg-gradient-to-b from-white to-sitio-sand/20">
       <Navbar />
@@ -85,42 +43,7 @@ const ComoChegar = () => {
               </div>
               
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
-                <Card className="shadow-xl overflow-hidden border-none bg-gradient-to-br from-white to-sitio-sand/20 p-1 animate-float">
-                  <CardContent className="p-0 relative h-[400px]">
-                    {showTokenInput ? (
-                      <div className="flex flex-col items-center justify-center h-full p-6 bg-sitio-sand/10">
-                        <MapPin size={48} className="text-sitio-green-dark mb-4" />
-                        <h3 className="text-xl font-semibold mb-4">Mapa Interativo</h3>
-                        <p className="text-gray-600 mb-6 text-center">
-                          Para visualizar o mapa, insira seu token público do Mapbox.
-                          <br />
-                          <span className="text-sm">
-                            (Obtenha seu token em <a href="https://mapbox.com/" target="_blank" rel="noopener noreferrer" className="text-sitio-green-dark hover:underline">mapbox.com</a>)
-                          </span>
-                        </p>
-                        <form onSubmit={handleTokenSubmit} className="w-full max-w-md">
-                          <div className="flex gap-2">
-                            <input 
-                              type="text" 
-                              placeholder="Token público do Mapbox"
-                              value={mapboxToken}
-                              onChange={(e) => setMapboxToken(e.target.value)}
-                              className="flex-1 px-4 py-2 border border-sitio-green-dark/30 rounded-md focus:outline-none focus:ring-2 focus:ring-sitio-green-dark"
-                            />
-                            <button 
-                              type="submit"
-                              className="bg-sitio-green-dark text-white px-4 py-2 rounded-md hover:bg-sitio-green-dark/90 transition-colors"
-                            >
-                              Aplicar
-                            </button>
-                          </div>
-                        </form>
-                      </div>
-                    ) : (
-                      <div ref={mapContainer} className="h-full" />
-                    )}
-                  </CardContent>
-                </Card>
+                <GoogleMap />
                 
                 <div className="space-y-6">
                   <Card className="shadow-lg overflow-hidden border-none bg-gradient-to-br from-white to-sitio-green-light/10 animate-pulse-soft">
