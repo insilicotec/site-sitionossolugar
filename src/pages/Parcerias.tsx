@@ -1,10 +1,9 @@
-
 import { useState } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import PartnershipForm, { PartnershipData } from '@/components/PartnershipForm';
 import WhatsappButton from '@/components/WhatsappButton';
-import { Handshake, Briefcase, PresentationChart, Users } from 'lucide-react';
+import { Handshake, Briefcase, Presentation, Users } from 'lucide-react';
 
 const Parcerias = () => {
   const [formData, setFormData] = useState<PartnershipData | null>(null);
@@ -102,7 +101,7 @@ ${data.descricao}`;
                 <div className="bg-sitio-sand/40 p-8 rounded-lg shadow-lg transform transition-all hover:scale-[1.02] border-l-4 border-sitio-green-dark">
                   <div className="flex items-center mb-6">
                     <div className="bg-sitio-green-dark p-3 rounded-full mr-4">
-                      <PresentationChart className="h-6 w-6 text-white" />
+                      <Presentation className="h-6 w-6 text-white" />
                     </div>
                     <h3 className="text-2xl font-semibold text-sitio-green-dark">Para Promotores de Eventos</h3>
                   </div>
