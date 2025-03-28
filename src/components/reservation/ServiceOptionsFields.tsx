@@ -2,6 +2,7 @@
 import { FormField, FormItem, FormLabel, FormControl } from "@/components/ui/form";
 import { UseFormReturn } from "react-hook-form";
 import { ReservationData } from "./types";
+import { Check } from "lucide-react";
 
 interface ServiceOptionsFieldsProps {
   form: UseFormReturn<ReservationData>;
@@ -24,14 +25,26 @@ const ServiceOptionsFields = ({ form }: ServiceOptionsFieldsProps) => {
             <FormItem>
               <FormControl>
                 <div 
-                  className={`flex items-center justify-center rounded-md border p-4 shadow-sm bg-white hover:bg-gray-50 cursor-pointer transition-all ${
-                    field.value ? "border-sitio-green-dark ring-1 ring-sitio-green-dark bg-green-100/60 backdrop-blur-sm" : ""
-                  }`}
+                  className={`
+                    relative flex items-center justify-center rounded-lg border p-4 
+                    cursor-pointer transition-all duration-300 ease-in-out group
+                    ${field.value 
+                      ? "bg-nature-100/70 border-nature-400 ring-2 ring-nature-300" 
+                      : "bg-white hover:bg-nature-50/50 border-gray-200 hover:border-nature-300"}
+                  `}
                   onClick={() => field.onChange(!field.value)}
                 >
-                  <FormLabel className="cursor-pointer text-center font-medium m-0">
+                  <FormLabel className="cursor-pointer text-center font-medium text-gray-700 group-hover:text-nature-600">
                     Apenas o local
                   </FormLabel>
+                  {field.value && (
+                    <Check 
+                      className="absolute top-2 right-2 text-nature-500 
+                      transition-transform duration-300 ease-in-out 
+                      scale-100 group-hover:scale-110"
+                      size={20} 
+                    />
+                  )}
                 </div>
               </FormControl>
             </FormItem>
@@ -46,14 +59,26 @@ const ServiceOptionsFields = ({ form }: ServiceOptionsFieldsProps) => {
             <FormItem>
               <FormControl>
                 <div 
-                  className={`flex items-center justify-center rounded-md border p-4 shadow-sm bg-white hover:bg-gray-50 cursor-pointer transition-all ${
-                    field.value ? "border-sitio-green-dark ring-1 ring-sitio-green-dark bg-green-100/60 backdrop-blur-sm" : ""
-                  }`}
+                  className={`
+                    relative flex items-center justify-center rounded-lg border p-4 
+                    cursor-pointer transition-all duration-300 ease-in-out group
+                    ${field.value 
+                      ? "bg-nature-100/70 border-nature-400 ring-2 ring-nature-300" 
+                      : "bg-white hover:bg-nature-50/50 border-gray-200 hover:border-nature-300"}
+                  `}
                   onClick={() => field.onChange(!field.value)}
                 >
-                  <FormLabel className="cursor-pointer text-center font-medium m-0">
+                  <FormLabel className="cursor-pointer text-center font-medium text-gray-700 group-hover:text-nature-600">
                     Inclui comida
                   </FormLabel>
+                  {field.value && (
+                    <Check 
+                      className="absolute top-2 right-2 text-nature-500 
+                      transition-transform duration-300 ease-in-out 
+                      scale-100 group-hover:scale-110"
+                      size={20} 
+                    />
+                  )}
                 </div>
               </FormControl>
             </FormItem>
@@ -69,14 +94,26 @@ const ServiceOptionsFields = ({ form }: ServiceOptionsFieldsProps) => {
               <FormItem>
                 <FormControl>
                   <div 
-                    className={`flex items-center justify-center rounded-md border p-4 shadow-sm bg-white hover:bg-gray-50 cursor-pointer transition-all ${
-                      field.value ? "border-sitio-green-dark ring-1 ring-sitio-green-dark bg-green-100/60 backdrop-blur-sm" : ""
-                    }`}
+                    className={`
+                      relative flex items-center justify-center rounded-lg border p-4 
+                      cursor-pointer transition-all duration-300 ease-in-out group
+                      ${field.value 
+                        ? "bg-nature-100/70 border-nature-400 ring-2 ring-nature-300" 
+                        : "bg-white hover:bg-nature-50/50 border-gray-200 hover:border-nature-300"}
+                    `}
                     onClick={() => field.onChange(!field.value)}
                   >
-                    <FormLabel className="cursor-pointer text-center font-medium m-0">
+                    <FormLabel className="cursor-pointer text-center font-medium text-gray-700 group-hover:text-nature-600">
                       Buffet completo
                     </FormLabel>
+                    {field.value && (
+                      <Check 
+                        className="absolute top-2 right-2 text-nature-500 
+                        transition-transform duration-300 ease-in-out 
+                        scale-100 group-hover:scale-110"
+                        size={20} 
+                      />
+                    )}
                   </div>
                 </FormControl>
               </FormItem>
@@ -92,14 +129,26 @@ const ServiceOptionsFields = ({ form }: ServiceOptionsFieldsProps) => {
             <FormItem>
               <FormControl>
                 <div 
-                  className={`flex items-center justify-center rounded-md border p-4 shadow-sm bg-white hover:bg-gray-50 cursor-pointer transition-all ${
-                    field.value ? "border-sitio-green-dark ring-1 ring-sitio-green-dark bg-green-100/60 backdrop-blur-sm" : ""
-                  }`}
+                  className={`
+                    relative flex items-center justify-center rounded-lg border p-4 
+                    cursor-pointer transition-all duration-300 ease-in-out group
+                    ${field.value 
+                      ? "bg-nature-100/70 border-nature-400 ring-2 ring-nature-300" 
+                      : "bg-white hover:bg-nature-50/50 border-gray-200 hover:border-nature-300"}
+                  `}
                   onClick={() => field.onChange(!field.value)}
                 >
-                  <FormLabel className="cursor-pointer text-center font-medium m-0">
+                  <FormLabel className="cursor-pointer text-center font-medium text-gray-700 group-hover:text-nature-600">
                     DJ
                   </FormLabel>
+                  {field.value && (
+                    <Check 
+                      className="absolute top-2 right-2 text-nature-500 
+                      transition-transform duration-300 ease-in-out 
+                      scale-100 group-hover:scale-110"
+                      size={20} 
+                    />
+                  )}
                 </div>
               </FormControl>
             </FormItem>
@@ -114,14 +163,26 @@ const ServiceOptionsFields = ({ form }: ServiceOptionsFieldsProps) => {
             <FormItem>
               <FormControl>
                 <div 
-                  className={`flex items-center justify-center rounded-md border p-4 shadow-sm bg-white hover:bg-gray-50 cursor-pointer transition-all ${
-                    field.value ? "border-sitio-green-dark ring-1 ring-sitio-green-dark bg-green-100/60 backdrop-blur-sm" : ""
-                  }`}
+                  className={`
+                    relative flex items-center justify-center rounded-lg border p-4 
+                    cursor-pointer transition-all duration-300 ease-in-out group
+                    ${field.value 
+                      ? "bg-nature-100/70 border-nature-400 ring-2 ring-nature-300" 
+                      : "bg-white hover:bg-nature-50/50 border-gray-200 hover:border-nature-300"}
+                  `}
                   onClick={() => field.onChange(!field.value)}
                 >
-                  <FormLabel className="cursor-pointer text-center font-medium m-0">
+                  <FormLabel className="cursor-pointer text-center font-medium text-gray-700 group-hover:text-nature-600">
                     Decoração
                   </FormLabel>
+                  {field.value && (
+                    <Check 
+                      className="absolute top-2 right-2 text-nature-500 
+                      transition-transform duration-300 ease-in-out 
+                      scale-100 group-hover:scale-110"
+                      size={20} 
+                    />
+                  )}
                 </div>
               </FormControl>
             </FormItem>
