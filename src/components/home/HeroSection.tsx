@@ -22,6 +22,8 @@ const HeroSection = () => {
         <div className="max-w-3xl mx-auto bg-slate-50 p-8 rounded-xl shadow-md">
           <img src="/lovable-uploads/c50697da-7566-40b0-92fa-8c29cca1201a.png" alt="Sítio Nosso Lugar Logo" className="h-32 w-32 mx-auto mb-6 object-contain" />
           
+          <h1 className="text-3xl font-bold text-amber-900 mb-4">Eventos e Hospedagem em Meio à Natureza</h1>
+          
           <p className="max-w-2xl mx-auto mb-6 text-lg text-amber-900/90 md:text-xl">
             Um refúgio natural perfeito para seus momentos mais especiais, onde a natureza e o conforto se encontram para criar experiências inesquecíveis.
           </p>

@@ -53,6 +53,18 @@ const photos = [{
   id: 9,
   src: `/lovable-uploads/4a1d4b9c-1ea8-418a-8a24-ab78a8f64d53.png`,
   alt: "Piscina com mãe e filha brincando com bola vermelha"
+}, {
+  id: 10,
+  src: `/lovable-uploads/1a16f3af-286f-4d72-ba63-12a8c2d8677b.png`,
+  alt: "Mulher com vestido azul em caminho de madeira em área verde"
+}, {
+  id: 11,
+  src: `/lovable-uploads/d9cf6811-08ca-43e0-a3b1-185afbdd0a34.png`,
+  alt: "Vestido de noiva branco pendurado em janela com vista para jardim"
+}, {
+  id: 12,
+  src: `/lovable-uploads/a903567d-fbbc-477e-b192-7f5f7c51ee91.png`,
+  alt: "Três pessoas sorridentes desfrutando da piscina em dia ensolarado"
 }];
 
 const videos = [{
