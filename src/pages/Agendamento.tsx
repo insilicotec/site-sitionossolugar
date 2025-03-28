@@ -1,3 +1,4 @@
+
 import { useState } from 'react';
 import { format } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
@@ -6,10 +7,9 @@ import Footer from '@/components/Footer';
 import ReservationForm from '@/components/ReservationForm';
 import { ReservationData } from '@/components/reservation/types';
 import WhatsappButton from '@/components/WhatsappButton';
-import GoogleMap from '@/components/GoogleMap';
-import { toast } from 'sonner';
 import { Instagram, Phone, Star, Sparkles } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { toast } from 'sonner';
 
 const Agendamento = () => {
   const [whatsappMessage, setWhatsappMessage] = useState('Olá! Gostaria de fazer uma reserva no Sítio Nosso Lugar.');
@@ -106,19 +106,6 @@ ${data.observacoes ? `💬 *OBSERVAÇÕES*\n${data.observacoes}` : ""}
             <div className="max-w-3xl mx-auto bg-white rounded-lg shadow-md p-6 md:p-8">
               <h2 className="text-2xl font-bold text-sitio-green-dark mb-6">Formulário de Reserva</h2>
               <ReservationForm onSubmit={handleSubmit} />
-            </div>
-          </div>
-        </section>
-        
-        {/* Map Section */}
-        <section className="py-12 bg-sitio-blue-light/20">
-          <div className="container px-4">
-            <div className="max-w-5xl mx-auto">
-              <h2 className="text-2xl font-bold text-sitio-green-dark mb-6 text-center">Nossa Localização</h2>
-              <p className="text-center mb-8 text-gray-700">
-                Estamos localizados na Vila Fátima, com fácil acesso pela Rodovia Bernardo Sayão.
-              </p>
-              <GoogleMap />
             </div>
           </div>
         </section>
