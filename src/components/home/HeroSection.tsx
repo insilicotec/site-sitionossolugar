@@ -1,10 +1,7 @@
-
 import React from 'react';
 import { Leaf } from 'lucide-react';
-
 const HeroSection = () => {
-  return (
-    <section className="relative pt-28 md:pt-32 min-h-[85vh] flex items-center justify-center overflow-hidden bg-gradient-to-r from-amber-50 to-amber-100">
+  return <section className="relative pt-28 md:pt-32 min-h-[85vh] flex items-center justify-center overflow-hidden bg-gradient-to-r from-amber-50 to-amber-100">
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1501854140801-50d01698950b')] bg-cover bg-center opacity-20"></div>
         <div className="absolute inset-0 bg-gradient-to-b from-white/60 to-amber-100/60"></div>
@@ -19,18 +16,14 @@ const HeroSection = () => {
       
       <div className="container relative z-10 px-6 py-16 mx-auto text-center bg-slate-50">
         <div className="max-w-3xl mx-auto">
-          <img 
-            src="/lovable-uploads/c50697da-7566-40b0-92fa-8c29cca1201a.png" 
-            alt="Sítio Nosso Lugar Logo" 
-            className="h-32 w-32 mx-auto mb-6 object-contain"
-          />
+          <img src="/lovable-uploads/c50697da-7566-40b0-92fa-8c29cca1201a.png" alt="Sítio Nosso Lugar Logo" className="h-32 w-32 mx-auto mb-6 object-contain" />
           
           <p className="max-w-2xl mx-auto mb-10 text-lg text-amber-900/90 md:text-xl">
             Um refúgio natural perfeito para seus momentos mais especiais, onde a natureza e o conforto se encontram para criar experiências inesquecíveis.
           </p>
           
           <a href="https://www.instagram.com/sitionossolugar/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-8 py-4 font-medium text-white transition-all duration-300 bg-amber-700 rounded-lg hover:bg-amber-800 shadow-lg hover:scale-105">
-            <img src="/lovable-uploads/494226ba-0fa4-44db-b762-3a3011b9997f.png" alt="Instagram" className="w-5 h-5" />
+            
             Conheça no Instagram
           </a>
         </div>
@@ -43,8 +36,6 @@ const HeroSection = () => {
           <path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" />
         </svg>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default HeroSection;
