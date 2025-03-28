@@ -1,7 +1,7 @@
 
 import { FormField, FormItem, FormLabel, FormControl } from "@/components/ui/form";
 import { Checkbox } from '@/components/ui/checkbox';
-import { UseFormReturn, useWatch } from "react-hook-form";
+import { UseFormReturn } from "react-hook-form";
 import { ReservationData } from "./types";
 
 interface ServiceOptionsFieldsProps {
@@ -9,12 +9,8 @@ interface ServiceOptionsFieldsProps {
 }
 
 const ServiceOptionsFields = ({ form }: ServiceOptionsFieldsProps) => {
-  // Watch tipoEvento to show/hide buffet option
-  const tipoEvento = useWatch({
-    control: form.control,
-    name: 'tipoEvento',
-  });
-  
+  // Get tipoEvento from form values
+  const tipoEvento = form.watch('tipoEvento');
   const isDayUse = tipoEvento === 'dayuse';
   
   return (
@@ -28,25 +24,17 @@ const ServiceOptionsFields = ({ form }: ServiceOptionsFieldsProps) => {
           name="apenasLocal"
           render={({ field }) => (
             <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-3 shadow-sm bg-white hover:bg-gray-50 cursor-pointer"
-              onClick={() => {
-                field.onChange(!field.value);
-                console.log("Clicked apenasLocal, new value:", !field.value);
-              }}
+              onClick={() => field.onChange(!field.value)}
             >
               <FormControl>
                 <Checkbox
                   checked={field.value}
-                  onCheckedChange={(checked) => {
-                    field.onChange(checked);
-                    console.log("Checkbox apenasLocal changed to:", checked);
-                  }}
-                  id="apenasLocal"
+                  onCheckedChange={field.onChange}
                   className="data-[state=checked]:bg-sitio-green-dark data-[state=checked]:border-sitio-green-dark mt-1"
                 />
               </FormControl>
               <div className="w-full space-y-1">
                 <FormLabel 
-                  htmlFor="apenasLocal" 
                   className="font-medium cursor-pointer"
                 >
                   Apenas o local
@@ -62,25 +50,17 @@ const ServiceOptionsFields = ({ form }: ServiceOptionsFieldsProps) => {
           name="incluiComida"
           render={({ field }) => (
             <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-3 shadow-sm bg-white hover:bg-gray-50 cursor-pointer"
-              onClick={() => {
-                field.onChange(!field.value);
-                console.log("Clicked incluiComida, new value:", !field.value);
-              }}
+              onClick={() => field.onChange(!field.value)}
             >
               <FormControl>
                 <Checkbox
                   checked={field.value}
-                  onCheckedChange={(checked) => {
-                    field.onChange(checked);
-                    console.log("Checkbox incluiComida changed to:", checked);
-                  }}
-                  id="incluiComida"
+                  onCheckedChange={field.onChange}
                   className="data-[state=checked]:bg-sitio-green-dark data-[state=checked]:border-sitio-green-dark mt-1"
                 />
               </FormControl>
               <div className="w-full space-y-1">
                 <FormLabel 
-                  htmlFor="incluiComida" 
                   className="font-medium cursor-pointer"
                 >
                   Inclui comida
@@ -97,25 +77,17 @@ const ServiceOptionsFields = ({ form }: ServiceOptionsFieldsProps) => {
             name="buffet"
             render={({ field }) => (
               <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-3 shadow-sm bg-white hover:bg-gray-50 cursor-pointer"
-                onClick={() => {
-                  field.onChange(!field.value);
-                  console.log("Clicked buffet, new value:", !field.value);
-                }}
+                onClick={() => field.onChange(!field.value)}
               >
                 <FormControl>
                   <Checkbox
                     checked={field.value}
-                    onCheckedChange={(checked) => {
-                      field.onChange(checked);
-                      console.log("Checkbox buffet changed to:", checked);
-                    }}
-                    id="buffet"
+                    onCheckedChange={field.onChange}
                     className="data-[state=checked]:bg-sitio-green-dark data-[state=checked]:border-sitio-green-dark mt-1"
                   />
                 </FormControl>
                 <div className="w-full space-y-1">
                   <FormLabel 
-                    htmlFor="buffet" 
                     className="font-medium cursor-pointer"
                   >
                     Buffet completo
@@ -132,25 +104,17 @@ const ServiceOptionsFields = ({ form }: ServiceOptionsFieldsProps) => {
           name="dj"
           render={({ field }) => (
             <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-3 shadow-sm bg-white hover:bg-gray-50 cursor-pointer"
-              onClick={() => {
-                field.onChange(!field.value);
-                console.log("Clicked dj, new value:", !field.value);
-              }}
+              onClick={() => field.onChange(!field.value)}
             >
               <FormControl>
                 <Checkbox
                   checked={field.value}
-                  onCheckedChange={(checked) => {
-                    field.onChange(checked);
-                    console.log("Checkbox dj changed to:", checked);
-                  }}
-                  id="dj"
+                  onCheckedChange={field.onChange}
                   className="data-[state=checked]:bg-sitio-green-dark data-[state=checked]:border-sitio-green-dark mt-1"
                 />
               </FormControl>
               <div className="w-full space-y-1">
                 <FormLabel 
-                  htmlFor="dj" 
                   className="font-medium cursor-pointer"
                 >
                   DJ
@@ -166,25 +130,17 @@ const ServiceOptionsFields = ({ form }: ServiceOptionsFieldsProps) => {
           name="decoracao"
           render={({ field }) => (
             <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-3 shadow-sm bg-white hover:bg-gray-50 cursor-pointer"
-              onClick={() => {
-                field.onChange(!field.value);
-                console.log("Clicked decoracao, new value:", !field.value);
-              }}
+              onClick={() => field.onChange(!field.value)}
             >
               <FormControl>
                 <Checkbox
                   checked={field.value}
-                  onCheckedChange={(checked) => {
-                    field.onChange(checked);
-                    console.log("Checkbox decoracao changed to:", checked);
-                  }}
-                  id="decoracao"
+                  onCheckedChange={field.onChange}
                   className="data-[state=checked]:bg-sitio-green-dark data-[state=checked]:border-sitio-green-dark mt-1"
                 />
               </FormControl>
               <div className="w-full space-y-1">
                 <FormLabel 
-                  htmlFor="decoracao" 
                   className="font-medium cursor-pointer"
                 >
                   Decoração

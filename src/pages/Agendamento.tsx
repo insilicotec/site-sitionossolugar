@@ -70,7 +70,7 @@ ${data.observacoes ? `💬 *OBSERVAÇÕES*\n${data.observacoes}` : ""}
       const whatsappUrl = `https://wa.me/559184731385?text=${encodeURIComponent(message)}`;
       console.log("Opening WhatsApp URL:", whatsappUrl);
       window.open(whatsappUrl, '_blank');
-    }, 1000); // Increased delay to 1 second
+    }, 500);
   };
 
   const getEventTypeText = (eventType: string): string => {
@@ -89,7 +89,7 @@ ${data.observacoes ? `💬 *OBSERVAÇÕES*\n${data.observacoes}` : ""}
     <div className="min-h-screen flex flex-col">
       <Navbar />
       
-      <main className="flex-grow">
+      <main className="flex-grow pt-24">
         {/* Hero Section */}
         <section className="bg-sitio-green-dark text-white py-12">
           <div className="container px-4 text-center">
