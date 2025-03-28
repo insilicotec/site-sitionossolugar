@@ -11,7 +11,7 @@ interface PersonalInfoFieldsProps {
 const PersonalInfoFields = ({ form }: PersonalInfoFieldsProps) => {
   return (
     <>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-1 gap-6">
         {/* Nome Field */}
         <FormField
           control={form.control}
@@ -22,25 +22,6 @@ const PersonalInfoFields = ({ form }: PersonalInfoFieldsProps) => {
               <FormControl>
                 <Input 
                   placeholder="Seu nome completo"
-                  {...field} 
-                  className="border-sitio-green-dark/30 focus:border-sitio-green-dark"
-                />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-
-        {/* Telefone Field */}
-        <FormField
-          control={form.control}
-          name="telefone"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Telefone/WhatsApp</FormLabel>
-              <FormControl>
-                <Input 
-                  placeholder="Seu telefone com DDD"
                   {...field} 
                   className="border-sitio-green-dark/30 focus:border-sitio-green-dark"
                 />

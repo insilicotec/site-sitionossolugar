@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { format } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
@@ -16,12 +15,12 @@ const Agendamento = () => {
   const handleSubmit = (data: ReservationData) => {
     try {
       console.log("Reservation data received:", data);
-      
+    
       // Format the date
       const formattedDate = data.dataEvento 
         ? format(data.dataEvento, "dd/MM/yyyy", { locale: ptBR }) 
         : "Data não selecionada";
-      
+    
       // Generate services text
       const servicesText = [
         { name: "Apenas o local", value: data.apenasLocal, emoji: "🏠" },
@@ -35,13 +34,12 @@ const Agendamento = () => {
           return `${service.emoji} ${status} ${service.name}`;
         })
         .join("\n");
-      
-      // Create WhatsApp message
-      const message = `✨ *NOVA RESERVA - SÍTIO NOSSO LUGAR* ✨
-      
+    
+    // Create WhatsApp message
+    const message = `✨ *NOVA RESERVA - SÍTIO NOSSO LUGAR* ✨
+    
 📋 *DADOS PESSOAIS*
 👤 Nome: ${data.nome}
-📱 Telefone: ${data.telefone}
 🏙️ Cidade: ${data.cidade}
 
 📅 *DETALHES DO EVENTO*
@@ -56,21 +54,21 @@ ${data.observacoes ? `💬 *OBSERVAÇÕES*\n${data.observacoes}` : ""}
 --
 🙏 Agradecemos seu interesse em realizar seu evento no Sítio Nosso Lugar!`;
 
-      setWhatsappMessage(message);
-      
-      toast.success("Formulário enviado com sucesso!");
-      
-      // Redirect to WhatsApp
-      setTimeout(() => {
-        const whatsappUrl = `https://wa.me/559184731385?text=${encodeURIComponent(message)}`;
-        console.log("Opening WhatsApp URL");
-        window.open(whatsappUrl, '_blank');
-      }, 1000);
-    } catch (error) {
-      console.error("Error processing form:", error);
-      toast.error("Erro ao processar o formulário");
-    }
-  };
+    setWhatsappMessage(message);
+    
+    toast.success("Formulário enviado com sucesso!");
+    
+    // Redirect to WhatsApp
+    setTimeout(() => {
+      const whatsappUrl = `https://wa.me/559184731385?text=${encodeURIComponent(message)}`;
+      console.log("Opening WhatsApp URL");
+      window.open(whatsappUrl, '_blank');
+    }, 1000);
+  } catch (error) {
+    console.error("Error processing form:", error);
+    toast.error("Erro ao processar o formulário");
+  }
+};
 
   const getEventTypeText = (eventType: string): string => {
     const eventTypes: Record<string, string> = {
