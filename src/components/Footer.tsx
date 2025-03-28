@@ -19,7 +19,7 @@ const Footer = () => {
           }} viewport={{
             once: true
           }}>
-              <h2 className="font-display text-2xl font-bold mb-4">Sítio Nosso Lugar</h2>
+              <h2 className="font-display text-2xl font-bold mb-4 text-zinc-50">Sítio Nosso Lugar</h2>
               <p className="text-gray-400 mb-6">
                 Seu refúgio natural para momentos especiais. Um espaço cercado pela natureza e projetado para suas melhores celebrações.
               </p>
