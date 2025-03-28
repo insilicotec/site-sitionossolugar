@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { format } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
@@ -9,6 +8,8 @@ import { ReservationData } from '@/components/reservation/types';
 import WhatsappButton from '@/components/WhatsappButton';
 import GoogleMap from '@/components/GoogleMap';
 import { toast } from 'sonner';
+import { Instagram, Phone, Star, Sparkles } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 const Agendamento = () => {
   const [whatsappMessage, setWhatsappMessage] = useState('Olá! Gostaria de fazer uma reserva no Sítio Nosso Lugar.');
@@ -174,6 +175,125 @@ ${data.observacoes ? `💬 *OBSERVAÇÕES*\n${data.observacoes}` : ""}
                 </div>
               </div>
             </div>
+          </div>
+        </section>
+        
+        {/* Developer Credits Section */}
+        <section className="py-12 bg-gradient-to-r from-sitio-green-dark/10 to-sitio-blue-light/20">
+          <div className="container px-4">
+            <motion.div 
+              className="max-w-4xl mx-auto bg-white rounded-xl shadow-xl overflow-hidden"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+            >
+              <div className="p-6 md:p-8">
+                <div className="text-center mb-6">
+                  <motion.div
+                    initial={{ scale: 0.8, opacity: 0 }}
+                    whileInView={{ scale: 1, opacity: 1 }}
+                    transition={{ delay: 0.2, duration: 0.5 }}
+                    viewport={{ once: true }}
+                    className="inline-block mb-3"
+                  >
+                    <Sparkles className="h-10 w-10 text-sitio-green-dark mb-2 mx-auto" />
+                  </motion.div>
+                  <motion.h2 
+                    className="text-2xl md:text-3xl font-bold text-sitio-green-dark mb-2"
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    transition={{ delay: 0.3, duration: 0.5 }}
+                    viewport={{ once: true }}
+                  >
+                    Desenvolvimento Web por Robert Corrêa
+                  </motion.h2>
+                  <motion.div 
+                    className="h-1 w-20 bg-sitio-green-dark mx-auto mb-4"
+                    initial={{ width: 0 }}
+                    whileInView={{ width: 80 }}
+                    transition={{ delay: 0.4, duration: 0.5 }}
+                    viewport={{ once: true }}
+                  />
+                  <motion.p 
+                    className="text-gray-600 mb-6"
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    transition={{ delay: 0.5, duration: 0.5 }}
+                    viewport={{ once: true }}
+                  >
+                    Precisa de um site profissional para o seu negócio? Entre em contato!
+                  </motion.p>
+                </div>
+                
+                <motion.div 
+                  className="grid grid-cols-1 md:grid-cols-2 gap-4"
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  transition={{ delay: 0.6, duration: 0.5 }}
+                  viewport={{ once: true }}
+                >
+                  {/* WhatsApp Contact */}
+                  <motion.a
+                    href="https://wa.me/5591988939655"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="bg-emerald-500 text-white p-4 rounded-lg flex items-center gap-3 hover:bg-emerald-600 transition-all transform hover:scale-[1.02]"
+                    whileHover={{ scale: 1.03 }}
+                    whileTap={{ scale: 0.98 }}
+                  >
+                    <div className="bg-white/20 p-3 rounded-full">
+                      <Phone className="h-6 w-6" />
+                    </div>
+                    <div>
+                      <p className="font-semibold">WhatsApp</p>
+                      <p className="text-sm text-white/80">(91) 98893-9655</p>
+                    </div>
+                    <div className="ml-auto">
+                      <span className="text-xl">→</span>
+                    </div>
+                  </motion.a>
+                  
+                  {/* Instagram Contact */}
+                  <motion.a
+                    href="https://www.instagram.com/robertgcorrea/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="bg-gradient-to-r from-purple-500 to-pink-500 text-white p-4 rounded-lg flex items-center gap-3 hover:from-purple-600 hover:to-pink-600 transition-all transform hover:scale-[1.02]"
+                    whileHover={{ scale: 1.03 }}
+                    whileTap={{ scale: 0.98 }}
+                  >
+                    <div className="bg-white/20 p-3 rounded-full">
+                      <Instagram className="h-6 w-6" />
+                    </div>
+                    <div>
+                      <p className="font-semibold">Instagram</p>
+                      <p className="text-sm text-white/80">@robertgcorrea</p>
+                    </div>
+                    <div className="ml-auto">
+                      <span className="text-xl">→</span>
+                    </div>
+                  </motion.a>
+                </motion.div>
+                
+                <motion.div 
+                  className="mt-6 text-center text-gray-500 text-sm"
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 0.7 }}
+                  transition={{ delay: 0.8, duration: 0.5 }}
+                  viewport={{ once: true }}
+                >
+                  <div className="flex items-center justify-center gap-1">
+                    <Star className="h-3 w-3 text-sitio-green-dark" />
+                    <Star className="h-4 w-4 text-sitio-green-dark" />
+                    <Star className="h-5 w-5 text-sitio-green-dark" />
+                    <Star className="h-4 w-4 text-sitio-green-dark" />
+                    <Star className="h-3 w-3 text-sitio-green-dark" />
+                  </div>
+                  <p className="mt-2">Desenvolvimento de sites profissionais, responsivos e otimizados</p>
+                </motion.div>
+              </div>
+            </motion.div>
           </div>
         </section>
       </main>
