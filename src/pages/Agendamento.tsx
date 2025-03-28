@@ -25,36 +25,35 @@ const Agendamento = () => {
     
       // Generate services text
       const servicesText = [
-        { name: "Apenas o local", value: data.apenasLocal, emoji: "🏠" },
-        { name: "Inclui comida", value: data.incluiComida, emoji: "🍽️" },
-        { name: "Buffet completo", value: data.buffet, emoji: "🍲" },
-        { name: "DJ", value: data.dj, emoji: "🎵" },
-        { name: "Decoração", value: data.decoracao, emoji: "🎊" }
+        { name: "Apenas o local", value: data.apenasLocal },
+        { name: "Inclui comida", value: data.incluiComida },
+        { name: "Buffet completo", value: data.buffet },
+        { name: "DJ", value: data.dj },
+        { name: "Decoracao", value: data.decoracao }
       ]
         .map(service => {
-          const status = service.value ? "✅" : "❌";
-          return `${service.emoji} ${status} ${service.name}`;
+          const status = service.value ? "Sim" : "Nao";
+          return `${status} - ${service.name}`;
         })
         .join("\n");
     
     // Create WhatsApp message
-    const message = `✨ *NOVA RESERVA - SÍTIO NOSSO LUGAR* ✨
+    const message = `NOVA RESERVA - SITIO NOSSO LUGAR
     
-📋 *DADOS PESSOAIS*
-👤 Nome: ${data.nome}
-🏙️ Cidade: ${data.cidade}
+DADOS PESSOAIS
+Nome: ${data.nome}
+Cidade: ${data.cidade}
 
-📅 *DETALHES DO EVENTO*
-📆 Data: ${formattedDate}
-🎭 Tipo: ${getEventTypeText(data.tipoEvento)}
+DETALHES DO EVENTO
+Data: ${formattedDate}
+Tipo: ${getEventTypeText(data.tipoEvento)}
 
-🛠️ *SERVIÇOS SOLICITADOS*
+SERVICOS SOLICITADOS
 ${servicesText}
 
-${data.observacoes ? `💬 *OBSERVAÇÕES*\n${data.observacoes}` : ""}
+${data.observacoes ? `OBSERVACOES\n${data.observacoes}` : ""}
 
---
-🙏 Agradecemos seu interesse em realizar seu evento no Sítio Nosso Lugar!`;
+Agradecemos seu interesse em realizar seu evento no Sitio Nosso Lugar!`;
 
     setWhatsappMessage(message);
     
@@ -74,10 +73,10 @@ ${data.observacoes ? `💬 *OBSERVAÇÕES*\n${data.observacoes}` : ""}
 
   const getEventTypeText = (eventType: string): string => {
     const eventTypes: Record<string, string> = {
-      'casamento': 'Casamento 💍',
-      'aniversario': 'Aniversário 🎂',
-      'corporativo': 'Evento Corporativo 💼',
-      'dayuse': 'Day Use 🌴',
+      'casamento': 'Casamento',
+      'aniversario': 'Aniversario',
+      'corporativo': 'Evento Corporativo',
+      'dayuse': 'Day Use',
       'outro': 'Outro evento'
     };
     
@@ -240,3 +239,4 @@ ${data.observacoes ? `💬 *OBSERVAÇÕES*\n${data.observacoes}` : ""}
 };
 
 export default Agendamento;
+
