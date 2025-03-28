@@ -123,61 +123,6 @@ ${data.observacoes ? `💬 *OBSERVAÇÕES*\n${data.observacoes}` : ""}
           </div>
         </section>
         
-        {/* Information Section */}
-        <section className="py-12 bg-white">
-          <div className="container px-4">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <div className="bg-white p-6 rounded-lg shadow-md">
-                <h2 className="text-2xl font-bold text-sitio-green-dark mb-4">Informações Importantes</h2>
-                <ul className="space-y-3 text-gray-700">
-                  <li className="flex items-start">
-                    <span className="text-sitio-accent mr-2">•</span>
-                    <span>As reservas devem ser feitas com pelo menos 15 dias de antecedência.</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-sitio-accent mr-2">•</span>
-                    <span>É necessário um sinal de 30% para confirmação da reserva.</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-sitio-accent mr-2">•</span>
-                    <span>Horário de funcionamento dos eventos: das 10h às 23h.</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-sitio-accent mr-2">•</span>
-                    <span>Capacidade máxima: 200 pessoas (verificar disponibilidade).</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-sitio-accent mr-2">•</span>
-                    <span>Os valores variam conforme os serviços solicitados.</span>
-                  </li>
-                </ul>
-              </div>
-              
-              <div className="bg-white p-6 rounded-lg shadow-md">
-                <h2 className="text-2xl font-bold text-sitio-green-dark mb-4">Dúvidas Frequentes</h2>
-                <div className="space-y-4">
-                  <div>
-                    <h3 className="font-semibold text-sitio-green-dark">Posso levar meu próprio buffet?</h3>
-                    <p className="text-gray-700">Sim, você pode optar por contratar seu próprio serviço de buffet, mas oferecemos opções completas também.</p>
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-sitio-green-dark">Há estacionamento no local?</h3>
-                    <p className="text-gray-700">Sim, oferecemos estacionamento gratuito para os convidados.</p>
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-sitio-green-dark">O espaço é coberto?</h3>
-                    <p className="text-gray-700">Sim, temos espaços cobertos e ao ar livre para seu evento.</p>
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-sitio-green-dark">Como funciona o agendamento?</h3>
-                    <p className="text-gray-700">Após o envio do formulário, entraremos em contato para confirmar detalhes e disponibilidade.</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-        
         {/* Developer Credits Section */}
         <section className="py-12 bg-gradient-to-r from-sitio-green-dark/10 to-sitio-blue-light/20">
           <div className="container px-4">
@@ -206,7 +151,7 @@ ${data.observacoes ? `💬 *OBSERVAÇÕES*\n${data.observacoes}` : ""}
                     transition={{ delay: 0.3, duration: 0.5 }}
                     viewport={{ once: true }}
                   >
-                    Desenvolvimento Web por Robert Corrêa
+                    Desenvolvido por Insilico tecnologia
                   </motion.h2>
                   <motion.div 
                     className="h-1 w-20 bg-sitio-green-dark mx-auto mb-4"
@@ -256,7 +201,7 @@ ${data.observacoes ? `💬 *OBSERVAÇÕES*\n${data.observacoes}` : ""}
                   
                   {/* Instagram Contact */}
                   <motion.a
-                    href="https://www.instagram.com/robertgcorrea/"
+                    href="https://www.instagram.com/insilicotec/"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="bg-gradient-to-r from-purple-500 to-pink-500 text-white p-4 rounded-lg flex items-center gap-3 hover:from-purple-600 hover:to-pink-600 transition-all transform hover:scale-[1.02]"
@@ -268,7 +213,7 @@ ${data.observacoes ? `💬 *OBSERVAÇÕES*\n${data.observacoes}` : ""}
                     </div>
                     <div>
                       <p className="font-semibold">Instagram</p>
-                      <p className="text-sm text-white/80">@robertgcorrea</p>
+                      <p className="text-sm text-white/80">@insilicotec</p>
                     </div>
                     <div className="ml-auto">
                       <span className="text-xl">→</span>
