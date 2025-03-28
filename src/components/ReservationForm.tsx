@@ -1,5 +1,5 @@
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useForm } from "react-hook-form";
 import { Calendar } from '@/components/ui/calendar';
 import { Button } from '@/components/ui/button';
@@ -85,6 +85,17 @@ const ReservationForm = ({ onSubmit }: ReservationFormProps) => {
     }
   });
 
+  // Watch tipoEvento to show/hide buffet option
+  const tipoEvento = form.watch('tipoEvento');
+  const isDayUse = tipoEvento === 'dayuse';
+  
+  // Reset buffet when changing event type to day use
+  useEffect(() => {
+    if (isDayUse) {
+      form.setValue('buffet', false);
+    }
+  }, [isDayUse, form]);
+
   // Handle form submission
   const handleSubmit = (data: ReservationData) => {
     onSubmit(data);
@@ -104,6 +115,7 @@ const ReservationForm = ({ onSubmit }: ReservationFormProps) => {
                   <Input 
                     placeholder="Seu nome"
                     {...field} 
+                    className="border-sitio-green-dark/30 focus:border-sitio-green-dark"
                   />
                 </FormControl>
                 <FormMessage />
@@ -121,6 +133,7 @@ const ReservationForm = ({ onSubmit }: ReservationFormProps) => {
                   <Input 
                     placeholder="Seu sobrenome"
                     {...field} 
+                    className="border-sitio-green-dark/30 focus:border-sitio-green-dark"
                   />
                 </FormControl>
                 <FormMessage />
@@ -139,6 +152,7 @@ const ReservationForm = ({ onSubmit }: ReservationFormProps) => {
                 <Input 
                   placeholder="Sua cidade"
                   {...field} 
+                  className="border-sitio-green-dark/30 focus:border-sitio-green-dark"
                 />
               </FormControl>
               <FormMessage />
@@ -158,7 +172,7 @@ const ReservationForm = ({ onSubmit }: ReservationFormProps) => {
                     <Button
                       variant="outline"
                       className={cn(
-                        "w-full pl-3 text-left font-normal",
+                        "w-full pl-3 text-left font-normal border-sitio-green-dark/30 hover:border-sitio-green-dark",
                         !field.value && "text-muted-foreground"
                       )}
                     >
@@ -198,7 +212,7 @@ const ReservationForm = ({ onSubmit }: ReservationFormProps) => {
                 defaultValue={field.value}
               >
                 <FormControl>
-                  <SelectTrigger>
+                  <SelectTrigger className="border-sitio-green-dark/30 focus:border-sitio-green-dark">
                     <SelectValue placeholder="Selecione o tipo de evento" />
                   </SelectTrigger>
                 </FormControl>
@@ -206,6 +220,7 @@ const ReservationForm = ({ onSubmit }: ReservationFormProps) => {
                   <SelectItem value="casamento">Casamento</SelectItem>
                   <SelectItem value="aniversario">Aniversário</SelectItem>
                   <SelectItem value="corporativo">Evento Corporativo</SelectItem>
+                  <SelectItem value="dayuse">Day Use</SelectItem>
                   <SelectItem value="outro">Outro</SelectItem>
                 </SelectContent>
               </Select>
@@ -217,7 +232,7 @@ const ReservationForm = ({ onSubmit }: ReservationFormProps) => {
         <div className="space-y-4">
           <FormLabel>Opções de Serviço</FormLabel>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 bg-sitio-sand/30 p-4 rounded-lg">
             <FormField
               control={form.control}
               name="apenasLocal"
@@ -227,6 +242,7 @@ const ReservationForm = ({ onSubmit }: ReservationFormProps) => {
                     <Checkbox
                       checked={field.value}
                       onCheckedChange={field.onChange}
+                      className="data-[state=checked]:bg-sitio-green-dark data-[state=checked]:border-sitio-green-dark"
                     />
                   </FormControl>
                   <div className="space-y-1 leading-none">
@@ -245,6 +261,7 @@ const ReservationForm = ({ onSubmit }: ReservationFormProps) => {
                     <Checkbox
                       checked={field.value}
                       onCheckedChange={field.onChange}
+                      className="data-[state=checked]:bg-sitio-green-dark data-[state=checked]:border-sitio-green-dark"
                     />
                   </FormControl>
                   <div className="space-y-1 leading-none">
@@ -254,23 +271,26 @@ const ReservationForm = ({ onSubmit }: ReservationFormProps) => {
               )}
             />
             
-            <FormField
-              control={form.control}
-              name="buffet"
-              render={({ field }) => (
-                <FormItem className="flex flex-row items-start space-x-3 space-y-0">
-                  <FormControl>
-                    <Checkbox
-                      checked={field.value}
-                      onCheckedChange={field.onChange}
-                    />
-                  </FormControl>
-                  <div className="space-y-1 leading-none">
-                    <FormLabel>Buffet completo</FormLabel>
-                  </div>
-                </FormItem>
-              )}
-            />
+            {!isDayUse && (
+              <FormField
+                control={form.control}
+                name="buffet"
+                render={({ field }) => (
+                  <FormItem className="flex flex-row items-start space-x-3 space-y-0">
+                    <FormControl>
+                      <Checkbox
+                        checked={field.value}
+                        onCheckedChange={field.onChange}
+                        className="data-[state=checked]:bg-sitio-green-dark data-[state=checked]:border-sitio-green-dark"
+                      />
+                    </FormControl>
+                    <div className="space-y-1 leading-none">
+                      <FormLabel>Buffet completo</FormLabel>
+                    </div>
+                  </FormItem>
+                )}
+              />
+            )}
             
             <FormField
               control={form.control}
@@ -281,6 +301,7 @@ const ReservationForm = ({ onSubmit }: ReservationFormProps) => {
                     <Checkbox
                       checked={field.value}
                       onCheckedChange={field.onChange}
+                      className="data-[state=checked]:bg-sitio-green-dark data-[state=checked]:border-sitio-green-dark"
                     />
                   </FormControl>
                   <div className="space-y-1 leading-none">
@@ -299,6 +320,7 @@ const ReservationForm = ({ onSubmit }: ReservationFormProps) => {
                     <Checkbox
                       checked={field.value}
                       onCheckedChange={field.onChange}
+                      className="data-[state=checked]:bg-sitio-green-dark data-[state=checked]:border-sitio-green-dark"
                     />
                   </FormControl>
                   <div className="space-y-1 leading-none">
@@ -321,6 +343,7 @@ const ReservationForm = ({ onSubmit }: ReservationFormProps) => {
                   placeholder="Detalhes adicionais sobre seu evento..." 
                   rows={4}
                   {...field}
+                  className="border-sitio-green-dark/30 focus:border-sitio-green-dark resize-none"
                 />
               </FormControl>
               <FormMessage />
@@ -330,7 +353,7 @@ const ReservationForm = ({ onSubmit }: ReservationFormProps) => {
 
         <Button 
           type="submit" 
-          className="w-full bg-sitio-green-dark hover:bg-sitio-earth text-white"
+          className="w-full bg-sitio-green-dark hover:bg-sitio-earth text-white transition-all transform hover:scale-[1.02] shadow-md"
         >
           Enviar para WhatsApp
         </Button>

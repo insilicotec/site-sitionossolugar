@@ -33,7 +33,7 @@
     --input: 214.3 31.8% 91.4%;
     --ring: 140 36% 27%;
 
-    --radius: 0.5rem;
+    --radius: 0.8rem;
   }
 }
 
@@ -45,13 +45,84 @@
   body {
     @apply bg-background text-foreground;
     font-family: 'Poppins', sans-serif;
+    scroll-behavior: smooth;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-semibold tracking-tight;
   }
 }
 
 @layer components {
   .hero-section {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('/images/hero-bg.jpg');
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/images/hero-bg.jpg');
     background-size: cover;
     background-position: center;
   }
+  
+  .btn-primary {
+    @apply bg-sitio-green-dark text-white hover:bg-sitio-earth transition-all transform hover:scale-[1.02] shadow-md rounded-md;
+  }
+  
+  .card-hover {
+    @apply transition-all duration-300 hover:shadow-lg hover:scale-[1.02];
+  }
+  
+  .section-title {
+    @apply text-3xl font-bold text-sitio-earth mb-4;
+  }
+  
+  .section-divider {
+    @apply h-1 w-20 bg-sitio-green-dark mx-auto;
+  }
+  
+  .form-input {
+    @apply border-sitio-green-dark/30 focus:border-sitio-green-dark rounded-md;
+  }
+}
+
+/* Smooth scroll behavior */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px;
+}
+
+/* Custom animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+/* Fix for buttons anchor behavior */
+a[href^="#"] {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #2C5F2D;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #5A3921;
 }
