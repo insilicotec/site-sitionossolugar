@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState, useRef } from 'react';
 import { 
   Cake, 
@@ -293,9 +292,7 @@ const Index = () => {
           <div className="container px-4">
             <div className="text-center mb-12" ref={ref}>
               <div className="mb-6">
-                <p className="text-lg text-gray-700 max-w-3xl mx-auto mb-4">
-                  Cada detalhe do nosso espaço foi pensado para proporcionar conforto e uma experiência autêntica, onde seus convidados se sentirão acolhidos pela beleza da natureza.
-                </p>
+                
               </div>
               
               <h2 className="text-3xl md:text-5xl font-bold text-sitio-green-forest mb-6 decorated">
