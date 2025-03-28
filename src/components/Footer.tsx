@@ -15,7 +15,7 @@ const Footer = () => {
                 href="https://www.instagram.com/sitionossolugar/" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="w-10 h-10 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center transition-colors"
+                className="w-10 h-10 bg-white/10 hover:bg-sitio-accent/70 rounded-full flex items-center justify-center transition-colors"
                 aria-label="Instagram"
               >
                 <Instagram size={20} />
@@ -24,7 +24,7 @@ const Footer = () => {
                 href="https://wa.me/559184731385" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="w-10 h-10 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center transition-colors"
+                className="w-10 h-10 bg-white/10 hover:bg-sitio-accent/70 rounded-full flex items-center justify-center transition-colors"
                 aria-label="WhatsApp"
               >
                 <Phone size={20} />
@@ -41,7 +41,7 @@ const Footer = () => {
                   href="https://wa.me/559184731385" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="hover:underline"
+                  className="hover:text-sitio-accent transition-colors"
                 >
                   (91) 8473-1385
                 </a>
@@ -50,14 +50,14 @@ const Footer = () => {
                 <Mail size={18} className="mt-1 mr-3 flex-shrink-0" />
                 <a 
                   href="mailto:contato@sitionossolugar.com.br" 
-                  className="hover:underline"
+                  className="hover:text-sitio-accent transition-colors"
                 >
                   contato@sitionossolugar.com.br
                 </a>
               </div>
               <div className="flex items-start">
                 <MapPin size={18} className="mt-1 mr-3 flex-shrink-0" />
-                <p>Rod. Bernardo Sayão, Km 5, Estrada do Outeiro, Belém - PA</p>
+                <p>Rod. Bernardo Sayão, Km 5, Vila Fátima, Belém - PA</p>
               </div>
               <div className="flex items-start">
                 <Clock size={18} className="mt-1 mr-3 flex-shrink-0" />
@@ -70,22 +70,22 @@ const Footer = () => {
             <h3 className="text-xl font-semibold mb-4">Navegação</h3>
             <ul className="space-y-2">
               <li>
-                <Link to="/" className="hover:text-sitio-sand transition-colors flex items-center">
+                <Link to="/" className="hover:text-sitio-accent transition-colors flex items-center">
                   <span className="mr-2">•</span> Início
                 </Link>
               </li>
               <li>
-                <Link to="/agendamento" className="hover:text-sitio-sand transition-colors flex items-center">
+                <Link to="/agendamento" className="hover:text-sitio-accent transition-colors flex items-center">
                   <span className="mr-2">•</span> Agendamento
                 </Link>
               </li>
               <li>
-                <Link to="/como-chegar" className="hover:text-sitio-sand transition-colors flex items-center">
+                <Link to="/como-chegar" className="hover:text-sitio-accent transition-colors flex items-center">
                   <span className="mr-2">•</span> Como Chegar
                 </Link>
               </li>
               <li>
-                <Link to="/parcerias" className="hover:text-sitio-sand transition-colors flex items-center">
+                <Link to="/parcerias" className="hover:text-sitio-accent transition-colors flex items-center">
                   <span className="mr-2">•</span> Parcerias
                 </Link>
               </li>
@@ -103,4 +103,3 @@ const Footer = () => {
 };
 
 export default Footer;
-

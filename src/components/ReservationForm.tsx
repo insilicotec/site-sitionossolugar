@@ -39,7 +39,7 @@ interface ReservationFormProps {
 
 export interface ReservationData {
   nome: string;
-  sobrenome: string;
+  telefone: string;
   cidade: string;
   dataEvento: Date | undefined;
   tipoEvento: string;
@@ -53,10 +53,12 @@ export interface ReservationData {
 
 // Create a schema for form validation
 const formSchema = z.object({
-  nome: z.string().min(2, "Nome é obrigatório"),
-  sobrenome: z.string().min(2, "Sobrenome é obrigatório"),
+  nome: z.string().min(2, "Nome completo é obrigatório"),
+  telefone: z.string().min(8, "Telefone é obrigatório"),
   cidade: z.string().min(2, "Cidade é obrigatória"),
-  dataEvento: z.date().optional(),
+  dataEvento: z.date({
+    required_error: "Por favor selecione uma data para o evento",
+  }),
   tipoEvento: z.string().min(1, "Selecione o tipo de evento"),
   apenasLocal: z.boolean().default(false),
   incluiComida: z.boolean().default(false),
@@ -72,7 +74,7 @@ const ReservationForm = ({ onSubmit }: ReservationFormProps) => {
     resolver: zodResolver(formSchema),
     defaultValues: {
       nome: '',
-      sobrenome: '',
+      telefone: '',
       cidade: '',
       dataEvento: undefined,
       tipoEvento: '',
@@ -110,10 +112,10 @@ const ReservationForm = ({ onSubmit }: ReservationFormProps) => {
             name="nome"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Nome</FormLabel>
+                <FormLabel>Nome Completo</FormLabel>
                 <FormControl>
                   <Input 
-                    placeholder="Seu nome"
+                    placeholder="Seu nome completo"
                     {...field} 
                     className="border-sitio-green-dark/30 focus:border-sitio-green-dark"
                   />
@@ -125,13 +127,13 @@ const ReservationForm = ({ onSubmit }: ReservationFormProps) => {
 
           <FormField
             control={form.control}
-            name="sobrenome"
+            name="telefone"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Sobrenome</FormLabel>
+                <FormLabel>Telefone/WhatsApp</FormLabel>
                 <FormControl>
                   <Input 
-                    placeholder="Seu sobrenome"
+                    placeholder="Seu telefone com DDD"
                     {...field} 
                     className="border-sitio-green-dark/30 focus:border-sitio-green-dark"
                   />
@@ -160,79 +162,81 @@ const ReservationForm = ({ onSubmit }: ReservationFormProps) => {
           )}
         />
 
-        <FormField
-          control={form.control}
-          name="dataEvento"
-          render={({ field }) => (
-            <FormItem className="flex flex-col">
-              <FormLabel>Data do Evento</FormLabel>
-              <Popover>
-                <PopoverTrigger asChild>
-                  <FormControl>
-                    <Button
-                      variant="outline"
-                      className={cn(
-                        "w-full pl-3 text-left font-normal border-sitio-green-dark/30 hover:border-sitio-green-dark",
-                        !field.value && "text-muted-foreground"
-                      )}
-                    >
-                      {field.value ? (
-                        format(field.value, "PPP", { locale: ptBR })
-                      ) : (
-                        <span>Selecione uma data</span>
-                      )}
-                      <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
-                    </Button>
-                  </FormControl>
-                </PopoverTrigger>
-                <PopoverContent className="w-auto p-0" align="start">
-                  <Calendar
-                    mode="single"
-                    selected={field.value}
-                    onSelect={field.onChange}
-                    initialFocus
-                    locale={ptBR}
-                    className={cn("p-3 pointer-events-auto")}
-                  />
-                </PopoverContent>
-              </Popover>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <FormField
+            control={form.control}
+            name="dataEvento"
+            render={({ field }) => (
+              <FormItem className="flex flex-col">
+                <FormLabel>Data do Evento</FormLabel>
+                <Popover>
+                  <PopoverTrigger asChild>
+                    <FormControl>
+                      <Button
+                        variant="outline"
+                        className={cn(
+                          "w-full pl-3 text-left font-normal border-sitio-green-dark/30 hover:border-sitio-green-dark",
+                          !field.value && "text-muted-foreground"
+                        )}
+                      >
+                        {field.value ? (
+                          format(field.value, "PPP", { locale: ptBR })
+                        ) : (
+                          <span>Selecione uma data</span>
+                        )}
+                        <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
+                      </Button>
+                    </FormControl>
+                  </PopoverTrigger>
+                  <PopoverContent className="w-auto p-0" align="start">
+                    <Calendar
+                      mode="single"
+                      selected={field.value}
+                      onSelect={field.onChange}
+                      initialFocus
+                      locale={ptBR}
+                      className={cn("p-3 pointer-events-auto")}
+                    />
+                  </PopoverContent>
+                </Popover>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
 
-        <FormField
-          control={form.control}
-          name="tipoEvento"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Tipo de Evento</FormLabel>
-              <Select 
-                onValueChange={field.onChange}
-                defaultValue={field.value}
-              >
-                <FormControl>
-                  <SelectTrigger className="border-sitio-green-dark/30 focus:border-sitio-green-dark">
-                    <SelectValue placeholder="Selecione o tipo de evento" />
-                  </SelectTrigger>
-                </FormControl>
-                <SelectContent>
-                  <SelectItem value="casamento">Casamento</SelectItem>
-                  <SelectItem value="aniversario">Aniversário</SelectItem>
-                  <SelectItem value="corporativo">Evento Corporativo</SelectItem>
-                  <SelectItem value="dayuse">Day Use</SelectItem>
-                  <SelectItem value="outro">Outro</SelectItem>
-                </SelectContent>
-              </Select>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+          <FormField
+            control={form.control}
+            name="tipoEvento"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Tipo de Evento</FormLabel>
+                <Select 
+                  onValueChange={field.onChange}
+                  defaultValue={field.value}
+                >
+                  <FormControl>
+                    <SelectTrigger className="border-sitio-green-dark/30 focus:border-sitio-green-dark">
+                      <SelectValue placeholder="Selecione o tipo de evento" />
+                    </SelectTrigger>
+                  </FormControl>
+                  <SelectContent>
+                    <SelectItem value="casamento">Casamento</SelectItem>
+                    <SelectItem value="aniversario">Aniversário</SelectItem>
+                    <SelectItem value="corporativo">Evento Corporativo</SelectItem>
+                    <SelectItem value="dayuse">Day Use</SelectItem>
+                    <SelectItem value="outro">Outro</SelectItem>
+                  </SelectContent>
+                </Select>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        </div>
 
         <div className="space-y-4">
           <FormLabel>Opções de Serviço</FormLabel>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 bg-sitio-sand/30 p-4 rounded-lg">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 bg-sitio-blue-light/30 p-4 rounded-lg">
             <FormField
               control={form.control}
               name="apenasLocal"
@@ -353,7 +357,7 @@ const ReservationForm = ({ onSubmit }: ReservationFormProps) => {
 
         <Button 
           type="submit" 
-          className="w-full bg-sitio-green-dark hover:bg-sitio-earth text-white transition-all transform hover:scale-[1.02] shadow-md"
+          className="w-full bg-sitio-green-dark hover:bg-sitio-accent text-white transition-all transform hover:scale-[1.02] shadow-md"
         >
           Enviar para WhatsApp
         </Button>

@@ -54,11 +54,11 @@ export default {
 					foreground: 'hsl(var(--card-foreground))'
 				},
 				sitio: {
-					"green-dark": "#1F6E5B",
-					"green-light": "#73C9A0",
-					"sand": "#FFE9C5",
-					"earth": "#8B5D33",
-					"accent": "#E6A44E",
+					"green-dark": "#0D5D56",
+					"green-light": "#65B891",
+					"blue-light": "#BFDCDD",
+					"white": "#F7F7F7",
+					"accent": "#FF6B6B",
 				}
 			},
 			borderRadius: {

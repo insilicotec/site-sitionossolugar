@@ -5,33 +5,33 @@
 
 @layer base {
   :root {
-    --background: 36 40% 98%;
-    --foreground: 30 15% 15%;
+    --background: 0 0% 97%;
+    --foreground: 200 15% 15%;
 
     --card: 0 0% 100%;
-    --card-foreground: 30 15% 15%;
+    --card-foreground: 200 15% 15%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 30 15% 15%;
+    --popover-foreground: 200 15% 15%;
 
-    --primary: 162 56% 28%;
-    --primary-foreground: 36 40% 98%;
+    --primary: 175 76% 21%;
+    --primary-foreground: 0 0% 97%;
 
-    --secondary: 151 40% 62%;
-    --secondary-foreground: 30 15% 15%;
+    --secondary: 152 30% 55%;
+    --secondary-foreground: 200 15% 15%;
 
-    --muted: 36 30% 92%;
-    --muted-foreground: 30 10% 40%;
+    --muted: 200 10% 92%;
+    --muted-foreground: 200 10% 40%;
 
-    --accent: 33 78% 60%;
+    --accent: 355 100% 70%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 30 15% 85%;
+    --border: 200 15% 85%;
     --input: 214.3 31.8% 91.4%;
-    --ring: 162 56% 28%;
+    --ring: 175 76% 21%;
 
     --radius: 0.8rem;
   }
@@ -69,7 +69,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(135deg, rgba(31, 110, 91, 0.5) 0%, rgba(230, 164, 78, 0.3) 100%);
+    background: linear-gradient(135deg, rgba(13, 93, 86, 0.5) 0%, rgba(255, 107, 107, 0.3) 100%);
     z-index: 1;
   }
   
@@ -79,7 +79,7 @@
   }
   
   .btn-primary {
-    @apply bg-sitio-green-dark text-white hover:bg-sitio-earth transition-all transform hover:scale-[1.02] shadow-md rounded-md;
+    @apply bg-sitio-green-dark text-white hover:bg-sitio-accent transition-all transform hover:scale-[1.02] shadow-md rounded-md;
   }
   
   .card-hover {
@@ -87,7 +87,7 @@
   }
   
   .section-title {
-    @apply text-3xl font-bold text-sitio-earth mb-4;
+    @apply text-3xl font-bold text-sitio-green-dark mb-4;
   }
   
   .section-divider {
@@ -99,7 +99,7 @@
   }
   
   .gradient-card {
-    @apply bg-gradient-to-br from-white to-sitio-sand/30 backdrop-blur-sm;
+    @apply bg-gradient-to-br from-white to-sitio-blue-light/30 backdrop-blur-sm;
   }
   
   .glass-card {
@@ -164,10 +164,10 @@ a[href^="#"] {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #1F6E5B;
+  background: #0D5D56;
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #8B5D33;
+  background: #FF6B6B;
 }
