@@ -158,7 +158,7 @@ const Index = () => {
       <Navbar />
       
       <main className="flex-grow">
-        <section className="relative min-h-[85vh] flex items-center justify-center overflow-hidden bg-gradient-to-r from-emerald-50 to-teal-50">
+        <section className="relative pt-28 md:pt-32 min-h-[85vh] flex items-center justify-center overflow-hidden bg-gradient-to-r from-emerald-50 to-teal-50">
           <div className="absolute inset-0 overflow-hidden">
             <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1501854140801-50d01698950b')] bg-cover bg-center opacity-20"></div>
             <div className="absolute inset-0 bg-gradient-to-b from-white/60 to-emerald-50/60"></div>
@@ -185,18 +185,15 @@ const Index = () => {
                 Um refúgio natural perfeito para seus momentos mais especiais, onde a natureza e o conforto se encontram para criar experiências inesquecíveis.
               </p>
               
-              <div className="relative inline-block p-1 mt-4 bg-white/50 backdrop-blur-sm rounded-xl shadow-xl">
-                <div className="p-px bg-gradient-to-r from-emerald-200/50 via-emerald-400/50 to-emerald-200/50 rounded-lg">
-                  <a 
-                    href="https://www.instagram.com/sitionossolugar/" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="inline-block px-8 py-4 font-medium text-emerald-700 transition-all duration-300 bg-white rounded-lg hover:bg-emerald-50 hover:text-emerald-800"
-                  >
-                    Conheça no Instagram
-                  </a>
-                </div>
-              </div>
+              <a 
+                href="https://www.instagram.com/sitionossolugar/" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-8 py-4 font-medium text-white transition-all duration-300 bg-emerald-600 rounded-lg hover:bg-emerald-700 shadow-lg hover:scale-105"
+              >
+                <Instagram size={20} className="animate-pulse" />
+                Conheça no Instagram
+              </a>
             </div>
           </div>
           
@@ -436,8 +433,18 @@ const Index = () => {
           </div>
         </section>
         
-        <section className="py-20 bg-emerald-700 text-white relative overflow-hidden">
-          <div className="absolute top-0 right-0 opacity-10">
+        <section className="py-20 bg-gradient-to-br from-emerald-700 via-emerald-600 to-teal-600 text-white relative overflow-hidden">
+          <div className="absolute top-10 left-10 text-white/20 animate-pulse">
+            <Sparkles size={40} />
+          </div>
+          <div className="absolute bottom-10 right-10 text-white/20 animate-pulse" style={{animationDelay: "1s"}}>
+            <Sparkles size={30} />
+          </div>
+          <div className="absolute top-1/2 right-1/4 text-white/10 animate-pulse" style={{animationDelay: "1.5s"}}>
+            <Sparkles size={50} />
+          </div>
+          
+          <div className="absolute -top-20 -right-20 opacity-10">
             <svg width="400" height="400" viewBox="0 0 200 200">
               <path 
                 fill="#FFFFFF" 
@@ -449,21 +456,34 @@ const Index = () => {
           </div>
           
           <div className="container px-4 text-center relative z-10">
-            <div ref={ref}>
-              <h2 className="text-3xl md:text-5xl font-bold mb-6">Reserve Agora Seu Evento</h2>
-              <p className="text-xl mb-8 max-w-2xl mx-auto">
+            <div ref={ref} className="max-w-4xl mx-auto">
+              <div className="inline-block relative mb-8">
+                <h2 className="text-3xl md:text-5xl font-bold mb-2 inline-block bg-clip-text text-transparent bg-gradient-to-r from-white via-yellow-100 to-white">
+                  <span className="relative">
+                    <Sparkles className="absolute -top-8 -left-8 text-yellow-200" size={24} />
+                    Reserve Agora Seu Evento
+                    <Sparkles className="absolute -bottom-8 -right-8 text-yellow-200" size={24} />
+                  </span>
+                </h2>
+                <div className="h-1 w-40 bg-gradient-to-r from-transparent via-yellow-200 to-transparent mx-auto mt-2"></div>
+              </div>
+              
+              <p className="text-xl mb-10 max-w-2xl mx-auto">
                 Não perca a oportunidade de realizar seu evento em um espaço único e especial.
                 Entre em contato conosco para verificar disponibilidade e realizar seu agendamento.
               </p>
+              
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link to="/agendamento">
-                  <Button className="bg-white text-emerald-700 hover:bg-emerald-50 hover:text-emerald-800 px-8 py-3 text-lg group rounded-xl transition-all duration-300 hover:scale-105 shadow-lg">
-                    <span className="flex items-center gap-2">
+                  <Button className="group relative overflow-hidden bg-white text-emerald-700 hover:bg-white hover:text-emerald-800 px-8 py-6 text-lg rounded-xl transition-all duration-300 hover:scale-105 shadow-xl">
+                    <div className="absolute inset-0 bg-gradient-to-r from-yellow-100/30 via-transparent to-yellow-100/30 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                    <span className="relative z-10 flex items-center gap-2">
                       <Calendar size={20} className="transition-transform group-hover:rotate-12" />
                       Fazer Reserva
                     </span>
                   </Button>
                 </Link>
+                
                 <a 
                   href="https://wa.me/559184731385" 
                   target="_blank" 
@@ -471,9 +491,12 @@ const Index = () => {
                 >
                   <Button 
                     variant="outline" 
-                    className="border-white text-white hover:bg-white/20 bg-emerald-600/40 backdrop-blur-sm px-8 py-3 text-lg rounded-xl"
+                    className="border-white text-white hover:bg-white/20 bg-emerald-600/40 backdrop-blur-sm px-8 py-6 text-lg rounded-xl"
                   >
-                    Fale Conosco
+                    <span className="flex items-center gap-2">
+                      <MessageSquare size={20} />
+                      Fale Conosco
+                    </span>
                   </Button>
                 </a>
               </div>
