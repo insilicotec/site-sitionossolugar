@@ -1,6 +1,6 @@
-
 import React from 'react';
 import { Calendar, Heart, Utensils, Users, Music, Palmtree, Waves, Mountain } from 'lucide-react';
+import Cake from './Cake'; // Import our custom Cake component
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 
