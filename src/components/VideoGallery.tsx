@@ -19,7 +19,7 @@ const VideoGallery = ({ videos }: VideoGalleryProps) => {
   const [selectedVideo, setSelectedVideo] = useState<Video | null>(null);
 
   const getYoutubeEmbedUrl = useCallback((youtubeId: string) => {
-    return `https://www.youtube.com/embed/${youtubeId}`;
+    return `https://www.youtube.com/embed/${youtubeId}?autoplay=1`;
   }, []);
 
   return (
@@ -37,6 +37,7 @@ const VideoGallery = ({ videos }: VideoGalleryProps) => {
                     src={video.thumbnail}
                     alt={video.title}
                     className="w-full h-48 object-cover"
+                    loading="lazy"
                   />
                   <div className="absolute inset-0 flex items-center justify-center">
                     <div className="bg-black bg-opacity-50 rounded-full p-3">

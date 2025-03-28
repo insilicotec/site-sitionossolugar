@@ -64,6 +64,7 @@ const PhotoGallery = ({ photos }: PhotoGalleryProps) => {
               alt={photo.alt}
               className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
               onClick={() => openPhotoViewer(photo)}
+              loading="lazy"
             />
           </div>
         ))}

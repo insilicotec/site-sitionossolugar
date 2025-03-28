@@ -12,56 +12,56 @@ import GoogleMap from '@/components/GoogleMap';
 
 const photos = [{
   id: 1,
-  src: "/lovable-uploads/57f7a25d-1204-4c33-9a72-f8f9cd835e02.png",
+  src: "/lovable-uploads/57f7a25d-1204-4c33-9a72-f8f9cd835e02.png?v=" + new Date().getTime(),
   alt: "Evento organizado com mesas e cadeiras douradas em ambiente natural"
 }, {
   id: 2,
-  src: "/lovable-uploads/a6c3f3e5-afad-4cdd-ba30-4af367d78ade.png",
+  src: "/lovable-uploads/a6c3f3e5-afad-4cdd-ba30-4af367d78ade.png?v=" + new Date().getTime(),
   alt: "Área de lazer noturna com mesas e iluminação especial"
 }, {
   id: 3,
-  src: "/lovable-uploads/1ceb5176-485a-4c1d-b418-3449ff8518ac.png",
+  src: "/lovable-uploads/1ceb5176-485a-4c1d-b418-3449ff8518ac.png?v=" + new Date().getTime(),
   alt: "Família em momento especial com roupões brancos"
 }, {
   id: 4,
-  src: "/lovable-uploads/3b453679-06d7-4e57-89b2-e348b049a975.png",
+  src: "/lovable-uploads/3b453679-06d7-4e57-89b2-e348b049a975.png?v=" + new Date().getTime(),
   alt: "Quarto com camas em tons rosados"
 }, {
   id: 5,
-  src: "/lovable-uploads/d51eb3b7-e8ca-4c8c-9561-d4447900704c.png",
+  src: "/lovable-uploads/d51eb3b7-e8ca-4c8c-9561-d4447900704c.png?v=" + new Date().getTime(),
   alt: "Corredor para cerimônia com cadeiras e decoração floral"
 }, {
   id: 6,
-  src: "/lovable-uploads/2048c0e9-be7a-4fa6-abea-eb2c0dcf4e1b.png",
+  src: "/lovable-uploads/2048c0e9-be7a-4fa6-abea-eb2c0dcf4e1b.png?v=" + new Date().getTime(),
   alt: "Área de descanso com pergolados e cortinas brancas"
 }, {
   id: 7,
-  src: "/lovable-uploads/5bddaa83-3589-4afd-ac73-eb5317e1bc34.png",
+  src: "/lovable-uploads/5bddaa83-3589-4afd-ac73-eb5317e1bc34.png?v=" + new Date().getTime(),
   alt: "Área verde com caminho de madeira e palmeiras"
 }, {
   id: 8,
-  src: "/lovable-uploads/4eedf5e9-d6cb-42cf-91ab-5a025f837f33.png",
+  src: "/lovable-uploads/4eedf5e9-d6cb-42cf-91ab-5a025f837f33.png?v=" + new Date().getTime(),
   alt: "Salão de festas com mesas douradas decoradas para evento"
 }, {
   id: 9,
-  src: "/lovable-uploads/4a1d4b9c-1ea8-418a-8a24-ab78a8f64d53.png",
+  src: "/lovable-uploads/4a1d4b9c-1ea8-418a-8a24-ab78a8f64d53.png?v=" + new Date().getTime(),
   alt: "Piscina com mãe e filha brincando com bola vermelha"
 }];
 
 const videos = [{
   id: 1,
   youtubeId: "P1p7TOXDEHs",
-  thumbnail: "https://i.ytimg.com/vi/P1p7TOXDEHs/hqdefault.jpg",
+  thumbnail: "https://i.ytimg.com/vi/P1p7TOXDEHs/hqdefault.jpg?v=" + new Date().getTime(),
   title: "Conheça o Sítio Nosso Lugar"
 }, {
   id: 2,
   youtubeId: "TawdKsGX0DM",
-  thumbnail: "https://i.ytimg.com/vi/TawdKsGX0DM/hqdefault.jpg",
+  thumbnail: "https://i.ytimg.com/vi/TawdKsGX0DM/hqdefault.jpg?v=" + new Date().getTime(),
   title: "Eventos no Sítio"
 }, {
   id: 3,
   youtubeId: "OTJQOUpMu9M",
-  thumbnail: "https://i.ytimg.com/vi/OTJQOUpMu9M/hqdefault.jpg",
+  thumbnail: "https://i.ytimg.com/vi/OTJQOUpMu9M/hqdefault.jpg?v=" + new Date().getTime(),
   title: "Área de Lazer"
 }];
 
@@ -186,7 +186,7 @@ const Index = () => {
                 <div className="absolute -bottom-6 -right-6 w-full h-full border-4 border-sitio-leaf/30 rounded-xl z-0"></div>
                 <div className="relative z-10 overflow-hidden rounded-xl">
                   <img 
-                    src="/lovable-uploads/494226ba-0fa4-44db-b762-3a3011b9997f.png" 
+                    src={`/lovable-uploads/494226ba-0fa4-44db-b762-3a3011b9997f.png?v=${new Date().getTime()}`} 
                     alt="Piscina do Sítio Nosso Lugar com vista para a área de lazer" 
                     className="w-full h-[400px] object-cover hover:scale-105 transition-transform duration-700" 
                   />
