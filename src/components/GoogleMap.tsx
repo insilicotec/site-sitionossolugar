@@ -18,7 +18,7 @@ const GoogleMap = () => {
             className="bg-white px-6 py-3 rounded-full shadow-md flex items-center gap-2"
             whileHover={{ y: -2, boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.1)' }}
           >
-            <MapPin className="text-emerald-500" size={18} />
+            <MapPin className="text-amber-700" size={18} />
             <span className="font-medium text-gray-800">Nossa Localização</span>
           </motion.div>
         </div>
@@ -40,7 +40,7 @@ const GoogleMap = () => {
             href="https://www.google.com/maps/place/Ramal+do+Piqui%C3%A1,+Tracuateua+-+PA,+68647-000/@-1.1414,-46.9619,17z/data=!4m6!3m5!1s0x92af183a59423115:0xeb1cb758244c3e1!8m2!3d-1.1310506!4d-46.9679359!16s%2Fg%2F11vpgvkpxf?hl=pt-BR&entry=ttu" 
             target="_blank" 
             rel="noopener noreferrer"
-            className="bg-white px-4 py-2 rounded-lg shadow-sm flex items-center gap-2 text-sm font-medium text-gray-700 hover:text-emerald-700 transition-colors"
+            className="bg-white px-4 py-2 rounded-lg shadow-sm flex items-center gap-2 text-sm font-medium text-gray-700 hover:text-amber-700 transition-colors"
             whileHover={{ y: -2, boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1)' }}
           >
             <Navigation size={16} />
@@ -51,7 +51,7 @@ const GoogleMap = () => {
             href="https://www.google.com/maps/place/Ramal+do+Piqui%C3%A1,+Tracuateua+-+PA,+68647-000/@-1.1414,-46.9619,17z/data=!4m6!3m5!1s0x92af183a59423115:0xeb1cb758244c3e1!8m2!3d-1.1310506!4d-46.9679359!16s%2Fg%2F11vpgvkpxf?hl=pt-BR&entry=ttu" 
             target="_blank" 
             rel="noopener noreferrer"
-            className="bg-emerald-500 px-4 py-2 rounded-lg shadow-sm flex items-center gap-2 text-sm font-medium text-white hover:bg-emerald-600 transition-colors"
+            className="bg-amber-700 px-4 py-2 rounded-lg shadow-sm flex items-center gap-2 text-sm font-medium text-white hover:bg-amber-800 transition-colors"
             whileHover={{ y: -2, boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1)' }}
           >
             <ExternalLink size={16} />

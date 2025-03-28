@@ -8,12 +8,12 @@ const MapSection = ({ useIntersectionObserver }: {
   const [ref, entries] = useIntersectionObserver({ threshold: 0.1 });
 
   return (
-    <section className="py-20 bg-sitio-sand relative">
+    <section className="py-20 bg-amber-50 relative">
       <div className="leaf-pattern absolute inset-0 opacity-20"></div>
       
       <div className="container px-4">
         <div className="text-center mb-16" ref={ref}>
-          <h2 className="text-3xl md:text-5xl font-bold text-sitio-green-forest mb-6 decorated">
+          <h2 className="text-3xl md:text-5xl font-bold text-amber-900 mb-6 decorated">
             Como Chegar
           </h2>
           <p className="text-lg text-gray-700 max-w-3xl mx-auto">

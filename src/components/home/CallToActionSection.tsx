@@ -10,7 +10,7 @@ const CallToActionSection = ({ useIntersectionObserver }: {
   const [ref, entries] = useIntersectionObserver({ threshold: 0.1 });
 
   return (
-    <section className="py-20 bg-gradient-to-br from-emerald-700 via-emerald-600 to-teal-600 text-white relative overflow-hidden">
+    <section className="py-20 bg-gradient-to-br from-amber-900 via-amber-800 to-amber-700 text-white relative overflow-hidden">
       <div className="absolute top-10 left-10 text-white/20 animate-pulse">
         <Sparkles size={40} />
       </div>
@@ -30,14 +30,14 @@ const CallToActionSection = ({ useIntersectionObserver }: {
       <div className="container px-4 text-center relative z-10">
         <div ref={ref} className="max-w-4xl mx-auto">
           <div className="inline-block relative mb-8">
-            <h2 className="text-3xl md:text-5xl font-bold mb-2 inline-block bg-clip-text text-transparent bg-gradient-to-r from-white via-yellow-100 to-white">
+            <h2 className="text-3xl md:text-5xl font-bold mb-2 inline-block bg-clip-text text-transparent bg-gradient-to-r from-white via-amber-100 to-white">
               <span className="relative">
-                <Sparkles className="absolute -top-8 -left-8 text-yellow-200" size={24} />
+                <Sparkles className="absolute -top-8 -left-8 text-amber-200" size={24} />
                 Reserve Agora Seu Evento
-                <Sparkles className="absolute -bottom-8 -right-8 text-yellow-200" size={24} />
+                <Sparkles className="absolute -bottom-8 -right-8 text-amber-200" size={24} />
               </span>
             </h2>
-            <div className="h-1 w-40 bg-gradient-to-r from-transparent via-yellow-200 to-transparent mx-auto mt-2"></div>
+            <div className="h-1 w-40 bg-gradient-to-r from-transparent via-amber-200 to-transparent mx-auto mt-2"></div>
           </div>
           
           <p className="text-xl mb-10 max-w-2xl mx-auto">
@@ -47,8 +47,8 @@ const CallToActionSection = ({ useIntersectionObserver }: {
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link to="/agendamento">
-              <Button className="group relative overflow-hidden bg-white text-emerald-700 hover:bg-white hover:text-emerald-800 px-8 py-6 text-lg rounded-xl transition-all duration-300 hover:scale-105 shadow-xl">
-                <div className="absolute inset-0 bg-gradient-to-r from-yellow-100/30 via-transparent to-yellow-100/30 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+              <Button className="group relative overflow-hidden bg-white text-amber-800 hover:bg-white hover:text-amber-900 px-8 py-6 text-lg rounded-xl transition-all duration-300 hover:scale-105 shadow-xl">
+                <div className="absolute inset-0 bg-gradient-to-r from-amber-100/30 via-transparent to-amber-100/30 opacity-0 group-hover:opacity-100 transition-opacity"></div>
                 <span className="relative z-10 flex items-center gap-2">
                   <Calendar size={20} className="transition-transform group-hover:rotate-12" />
                   Fazer Reserva
@@ -57,7 +57,7 @@ const CallToActionSection = ({ useIntersectionObserver }: {
             </Link>
             
             <a href="https://wa.me/559184731385" target="_blank" rel="noopener noreferrer">
-              <Button variant="outline" className="border-white text-white hover:bg-white/20 bg-emerald-600/40 backdrop-blur-sm px-8 py-6 text-lg rounded-xl">
+              <Button variant="outline" className="border-white text-white hover:bg-white/20 bg-amber-800/40 backdrop-blur-sm px-8 py-6 text-lg rounded-xl">
                 <span className="flex items-center gap-2">
                   <MessageSquare size={20} />
                   Fale Conosco

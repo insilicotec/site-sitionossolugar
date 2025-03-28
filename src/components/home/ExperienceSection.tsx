@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Calendar, Heart, Utensils, Users, Music, Palmtree, Waves, Mountain } from 'lucide-react';
 import Cake from './Cake'; // Import our custom Cake component
@@ -15,7 +16,7 @@ const ExperienceSection = ({ useIntersectionObserver }: { useIntersectionObserve
         <div className="text-center mb-12" ref={ref}>
           <div className="mb-6"></div>
           
-          <h2 className="text-3xl md:text-5xl font-bold text-sitio-green-forest mb-6 decorated">
+          <h2 className="text-3xl md:text-5xl font-bold text-amber-900 mb-6 decorated">
             Experiências Únicas
           </h2>
         
@@ -44,7 +45,7 @@ const ExperienceSection = ({ useIntersectionObserver }: { useIntersectionObserve
         
         <div className="text-center mt-12" ref={ref}>
           <Link to="/agendamento">
-            <Button className="bg-sitio-leaf hover:bg-sitio-green-dark text-white px-8 py-3 group relative overflow-hidden">
+            <Button className="bg-amber-700 hover:bg-amber-800 text-white px-8 py-3 group relative overflow-hidden">
               <span className="relative z-10 flex items-center gap-2">
                 <Calendar size={20} />
                 Agendar Sua Experiência
@@ -68,10 +69,10 @@ interface ExperienceCardProps {
 const ExperienceCard = ({ icon, title, description, refProp }: ExperienceCardProps) => {
   return (
     <div className="nature-card p-6 text-center" ref={refProp}>
-      <div className="mx-auto w-16 h-16 flex items-center justify-center bg-sitio-green-light/20 rounded-full mb-4 text-sitio-green-dark">
+      <div className="mx-auto w-16 h-16 flex items-center justify-center bg-amber-600/20 rounded-full mb-4 text-amber-800">
         <div className="nature-breathe">{icon}</div>
       </div>
-      <h3 className="text-xl font-semibold mb-2 text-sitio-green-forest">{title}</h3>
+      <h3 className="text-xl font-semibold mb-2 text-amber-900">{title}</h3>
       <p className="text-gray-600">{description}</p>
     </div>
   );
