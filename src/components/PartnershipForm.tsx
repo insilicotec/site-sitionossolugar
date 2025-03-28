@@ -1,7 +1,6 @@
 
 import { useState } from 'react';
 import { useForm } from "react-hook-form";
-import { Button } from '@/components/ui/button';
 import {
   Form,
   FormControl,
@@ -14,6 +13,7 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import PartnershipSubmitButton from './partnership/PartnershipSubmitButton';
 
 interface PartnershipFormProps {
   onSubmit: (data: PartnershipData) => void;
@@ -171,12 +171,7 @@ const PartnershipForm = ({ onSubmit }: PartnershipFormProps) => {
           )}
         />
 
-        <Button 
-          type="submit" 
-          className="w-full bg-sitio-green-dark hover:bg-sitio-earth text-white transition-all transform hover:scale-[1.02] shadow-md"
-        >
-          Enviar para WhatsApp
-        </Button>
+        <PartnershipSubmitButton />
       </form>
     </Form>
   );
