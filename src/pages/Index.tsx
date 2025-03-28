@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState, useRef } from 'react';
 import { 
   Cake, 
@@ -26,7 +27,6 @@ import VideoGallery from '@/components/VideoGallery';
 import WhatsappButton from '@/components/WhatsappButton';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
-import { useEffect, useState, useRef } from 'react';
 import GoogleMap from '@/components/GoogleMap';
 
 const photos = [
