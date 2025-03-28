@@ -12,7 +12,9 @@ const WhatsappButton = ({ phone, message }: WhatsappButtonProps) => {
   const [showTooltip, setShowTooltip] = useState(false);
   
   const handleClick = () => {
-    window.open(`https://wa.me/${phone}?text=${encodeURIComponent(message)}`, '_blank');
+    // Format the phone number and message for WhatsApp API
+    const formattedMessage = encodeURIComponent(message);
+    window.open(`https://wa.me/${phone}?text=${formattedMessage}`, '_blank');
   };
 
   return (
