@@ -151,7 +151,7 @@ export function CompanyForm() {
           )}
         />
         
-        <Button type="submit" className="w-full md:w-auto bg-emerald-600 hover:bg-emerald-700">
+        <Button type="submit" className="w-full md:w-auto bg-amber-700 hover:bg-amber-800 text-white">
           <MessageSquare className="mr-2 h-4 w-4" />
           Enviar Proposta via WhatsApp
         </Button>

@@ -1,6 +1,8 @@
 
 import React from 'react';
-import { Leaf, Instagram } from 'lucide-react';
+import { Leaf, Instagram, Calendar, Hotel } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { Button } from '@/components/ui/button';
 
 const HeroSection = () => {
   return <section className="relative pt-28 md:pt-32 min-h-[85vh] flex items-center justify-center overflow-hidden bg-gradient-to-r from-amber-50 to-amber-100">
@@ -20,14 +22,34 @@ const HeroSection = () => {
         <div className="max-w-3xl mx-auto bg-slate-50 p-8 rounded-xl shadow-md">
           <img src="/lovable-uploads/c50697da-7566-40b0-92fa-8c29cca1201a.png" alt="Sítio Nosso Lugar Logo" className="h-32 w-32 mx-auto mb-6 object-contain" />
           
-          <p className="max-w-2xl mx-auto mb-10 text-lg text-amber-900/90 md:text-xl">
+          <p className="max-w-2xl mx-auto mb-6 text-lg text-amber-900/90 md:text-xl">
             Um refúgio natural perfeito para seus momentos mais especiais, onde a natureza e o conforto se encontram para criar experiências inesquecíveis.
           </p>
           
-          <a href="https://www.instagram.com/sitionossolugar/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-8 py-4 font-medium text-white transition-all duration-300 rounded-lg shadow-lg hover:scale-105 bg-gradient-to-r from-amber-600 via-red-600 to-purple-600">
-            <Instagram size={20} />
-            <span>Conheça no Instagram</span>
-          </a>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
+            <div className="bg-amber-50 p-4 rounded-lg shadow-sm flex items-center">
+              <Calendar className="h-6 w-6 text-amber-700 mr-3" />
+              <span className="text-amber-800 font-medium">Estrutura completa para eventos</span>
+            </div>
+            <div className="bg-amber-50 p-4 rounded-lg shadow-sm flex items-center">
+              <Hotel className="h-6 w-6 text-amber-700 mr-3" />
+              <span className="text-amber-800 font-medium">Hospedagem confortável</span>
+            </div>
+          </div>
+          
+          <div className="space-y-4 sm:space-y-0 sm:space-x-4 flex flex-col sm:flex-row justify-center">
+            <Link to="/agendamento">
+              <Button className="w-full sm:w-auto bg-amber-700 hover:bg-amber-800 text-white px-6">
+                <Calendar className="mr-2 h-4 w-4" />
+                Agendar Visita
+              </Button>
+            </Link>
+            
+            <a href="https://www.instagram.com/sitionossolugar/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-6 py-2 font-medium text-white transition-all duration-300 rounded-lg shadow-lg hover:scale-105 bg-gradient-to-r from-amber-600 via-red-600 to-purple-600">
+              <Instagram size={20} />
+              <span>Conheça no Instagram</span>
+            </a>
+          </div>
         </div>
       </div>
       
