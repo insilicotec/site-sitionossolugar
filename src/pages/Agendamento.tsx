@@ -11,38 +11,34 @@ import GoogleMap from '@/components/GoogleMap';
 import { toast } from 'sonner';
 
 const Agendamento = () => {
-  const [formData, setFormData] = useState<ReservationData | null>(null);
-  const [whatsappMessage, setWhatsappMessage] = useState('');
+  const [whatsappMessage, setWhatsappMessage] = useState('Olá! Gostaria de fazer uma reserva no Sítio Nosso Lugar.');
 
   const handleSubmit = (data: ReservationData) => {
-    console.log("Reservation data received:", data);
-    setFormData(data);
-    
-    // Format the date
-    const formattedDate = data.dataEvento 
-      ? format(data.dataEvento, "dd/MM/yyyy", { locale: ptBR }) 
-      : "Data não selecionada";
-    
-    // Generate services list showing all options with emojis
-    const servicesList = [
-      { name: "Apenas o local", value: data.apenasLocal, emoji: "🏠" },
-      { name: "Inclui comida", value: data.incluiComida, emoji: "🍽️" },
-      { name: "Buffet completo", value: data.buffet, emoji: "🍲" },
-      { name: "DJ", value: data.dj, emoji: "🎵" },
-      { name: "Decoração", value: data.decoracao, emoji: "🎊" }
-    ];
-    
-    // Map all services, indicating which ones are selected
-    const servicesText = servicesList
-      .map(service => {
-        const prefix = service.value ? `${service.emoji} ✅` : `${service.emoji} ❌`;
-        return `${prefix} ${service.name}`;
-      })
-      .join("\n");
-    
-    // Create WhatsApp message with emojis and better formatting
-    const message = `✨ *NOVA RESERVA - SÍTIO NOSSO LUGAR* ✨
-    
+    try {
+      console.log("Reservation data received:", data);
+      
+      // Format the date
+      const formattedDate = data.dataEvento 
+        ? format(data.dataEvento, "dd/MM/yyyy", { locale: ptBR }) 
+        : "Data não selecionada";
+      
+      // Generate services text
+      const servicesText = [
+        { name: "Apenas o local", value: data.apenasLocal, emoji: "🏠" },
+        { name: "Inclui comida", value: data.incluiComida, emoji: "🍽️" },
+        { name: "Buffet completo", value: data.buffet, emoji: "🍲" },
+        { name: "DJ", value: data.dj, emoji: "🎵" },
+        { name: "Decoração", value: data.decoracao, emoji: "🎊" }
+      ]
+        .map(service => {
+          const status = service.value ? "✅" : "❌";
+          return `${service.emoji} ${status} ${service.name}`;
+        })
+        .join("\n");
+      
+      // Create WhatsApp message
+      const message = `✨ *NOVA RESERVA - SÍTIO NOSSO LUGAR* ✨
+      
 📋 *DADOS PESSOAIS*
 👤 Nome: ${data.nome}
 📱 Telefone: ${data.telefone}
@@ -60,17 +56,20 @@ ${data.observacoes ? `💬 *OBSERVAÇÕES*\n${data.observacoes}` : ""}
 --
 🙏 Agradecemos seu interesse em realizar seu evento no Sítio Nosso Lugar!`;
 
-    // Store the raw message (not encoded) for the fixed WhatsApp button
-    setWhatsappMessage(message);
-    
-    toast.success("Formulário enviado com sucesso!");
-    
-    // Redirect to WhatsApp with a delay to ensure state is updated
-    setTimeout(() => {
-      const whatsappUrl = `https://wa.me/559184731385?text=${encodeURIComponent(message)}`;
-      console.log("Opening WhatsApp URL:", whatsappUrl);
-      window.open(whatsappUrl, '_blank');
-    }, 500);
+      setWhatsappMessage(message);
+      
+      toast.success("Formulário enviado com sucesso!");
+      
+      // Redirect to WhatsApp
+      setTimeout(() => {
+        const whatsappUrl = `https://wa.me/559184731385?text=${encodeURIComponent(message)}`;
+        console.log("Opening WhatsApp URL");
+        window.open(whatsappUrl, '_blank');
+      }, 1000);
+    } catch (error) {
+      console.error("Error processing form:", error);
+      toast.error("Erro ao processar o formulário");
+    }
   };
 
   const getEventTypeText = (eventType: string): string => {
@@ -183,7 +182,7 @@ ${data.observacoes ? `💬 *OBSERVAÇÕES*\n${data.observacoes}` : ""}
       <Footer />
       <WhatsappButton 
         phone="559184731385" 
-        message={whatsappMessage || "Olá! Gostaria de fazer uma reserva no Sítio Nosso Lugar."} 
+        message={whatsappMessage} 
       />
     </div>
   );

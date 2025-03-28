@@ -12,12 +12,8 @@ const WhatsappButton = ({ phone, message }: WhatsappButtonProps) => {
   const [showTooltip, setShowTooltip] = useState(false);
   
   const handleClick = () => {
-    // Format the phone number and message for WhatsApp API
     const formattedMessage = encodeURIComponent(message);
     const whatsappUrl = `https://wa.me/${phone}?text=${formattedMessage}`;
-    console.log("Opening WhatsApp with URL:", whatsappUrl);
-    
-    // Open in a new tab
     window.open(whatsappUrl, '_blank');
   };
 
@@ -54,18 +50,7 @@ const WhatsappButton = ({ phone, message }: WhatsappButtonProps) => {
         onMouseLeave={() => setShowTooltip(false)}
         aria-label="Fale conosco pelo WhatsApp"
       >
-        <motion.div 
-          animate={{ 
-            scale: [1, 1.1, 1],
-          }}
-          transition={{
-            duration: 2,
-            repeat: Infinity,
-            repeatType: "loop"
-          }}
-        >
-          <MessageSquare size={30} fill="white" />
-        </motion.div>
+        <MessageSquare size={30} fill="white" />
       </motion.button>
     </div>
   );
