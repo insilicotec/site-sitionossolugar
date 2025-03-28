@@ -7,7 +7,11 @@ import {
   Palmtree, 
   Waves, 
   Mountain,
-  Heart
+  Heart,
+  Leaf,
+  Sun,
+  Sparkles,
+  Bird
 } from 'lucide-react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -17,6 +21,8 @@ import VideoGallery from '@/components/VideoGallery';
 import WhatsappButton from '@/components/WhatsappButton';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
+import { useEffect, useState, useRef } from 'react';
+import GoogleMap from '@/components/GoogleMap';
 
 const photos = [
   {
@@ -82,21 +88,92 @@ const videos = [
   }
 ];
 
-const Index = () => {
+const useIntersectionObserver = (options = {}) => {
+  const [elements, setElements] = useState([]);
+  const [entries, setEntries] = useState([]);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver((observedEntries) => {
+      setEntries(observedEntries);
+    }, options);
+
+    elements.forEach(el => observer.observe(el));
+
+    return () => observer.disconnect();
+  }, [elements, options]);
+
+  const ref = (element) => {
+    if (element && !elements.includes(element)) {
+      setElements(prev => [...prev, element]);
+    }
+  };
+
+  return [ref, entries];
+};
+
+const FloatingLeaf = ({ delay = 0, size = 24, left = "10%", duration = 15 }) => {
   return (
-    <div className="min-h-screen flex flex-col">
+    <div 
+      className="absolute text-sitio-leaf opacity-70 animate-float pointer-events-none"
+      style={{ 
+        left, 
+        top: `-${size}px`, 
+        animationDelay: `${delay}s`,
+        animationDuration: `${duration}s`,
+      }}
+    >
+      <Leaf size={size} className="animate-leaf-sway" />
+    </div>
+  );
+};
+
+const Index = () => {
+  const [ref, entries] = useIntersectionObserver({ threshold: 0.1 });
+  const [activeEntries, setActiveEntries] = useState([]);
+  
+  useEffect(() => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        setActiveEntries(prev => [...prev, entry.target]);
+        entry.target.classList.add('animate-slide-up');
+      }
+    });
+  }, [entries]);
+
+  return (
+    <div className="min-h-screen flex flex-col relative overflow-hidden">
       <Navbar />
       
       <main className="flex-grow">
         {/* Hero Section */}
-        <section className="hero-section h-[70vh] flex items-center justify-center text-white text-center">
+        <section className="hero-section h-[80vh] flex items-center justify-center text-white text-center relative">
+          <FloatingLeaf delay={2} size={36} left="15%" duration={20} />
+          <FloatingLeaf delay={5} size={28} left="85%" duration={18} />
+          <FloatingLeaf delay={8} size={32} left="45%" duration={22} />
+          
+          <div className="absolute top-10 right-10 text-sitio-sunshine animate-pulse-soft opacity-70">
+            <Sun size={64} />
+          </div>
+          
           <div className="container px-4">
-            <h1 className="text-4xl md:text-6xl font-bold mb-4">Sítio Nosso Lugar</h1>
-            <p className="text-xl md:text-2xl mb-8">O espaço ideal para seus momentos especiais</p>
+            <div className="relative">
+              <h1 className="text-5xl md:text-7xl font-bold mb-6 text-white relative inline-block">
+                Sítio Nosso Lugar
+                <span className="absolute -top-6 -right-6 text-sitio-sunshine animate-pulse-soft">
+                  <Sparkles size={32} />
+                </span>
+              </h1>
+            </div>
+            <p className="text-xl md:text-2xl mb-8 max-w-2xl mx-auto">
+              Um refúgio natural perfeito para seus momentos mais especiais
+            </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link to="/agendamento">
-                <Button className="bg-sitio-green-dark hover:bg-sitio-earth text-white px-8 py-6 text-lg">
-                  Agendar Evento
+                <Button className="bg-sitio-green-dark hover:bg-sitio-leaf text-white px-8 py-6 text-lg group relative overflow-hidden">
+                  <span className="relative z-10 flex items-center gap-2">
+                    <Calendar size={20} className="transition-transform group-hover:rotate-12" />
+                    Agendar Visita
+                  </span>
                 </Button>
               </Link>
               <a 
@@ -105,107 +182,189 @@ const Index = () => {
                 rel="noopener noreferrer"
               >
                 <Button variant="outline" className="text-white border-white hover:bg-white/20 px-8 py-6 text-lg">
-                  Conheça no Instagram
+                  <span className="flex items-center gap-2">
+                    Conheça no Instagram
+                  </span>
                 </Button>
               </a>
             </div>
           </div>
+          
+          <div className="absolute bottom-0 left-0 w-full overflow-hidden leading-0">
+            <svg 
+              preserveAspectRatio="none" 
+              width="100%" 
+              height="100" 
+              viewBox="0 0 1200 120" 
+              className="fill-sitio-sand"
+            >
+              <path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".25"/>
+              <path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" opacity=".5"/>
+              <path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z"/>
+            </svg>
+          </div>
         </section>
         
         {/* About Section */}
-        <section className="py-16 bg-sitio-sand">
+        <section className="py-20 bg-sitio-sand relative">
+          <div className="leaf-pattern absolute inset-0 opacity-20"></div>
+          
           <div className="container px-4">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-sitio-earth mb-4">Sobre o Sítio Nosso Lugar</h2>
+            <div className="text-center mb-12" ref={ref}>
+              <h2 className="text-3xl md:text-5xl font-bold text-sitio-green-forest mb-6 decorated">
+                Nossa História
+              </h2>
               <p className="text-lg text-gray-700 max-w-3xl mx-auto">
-                Um local encantador cercado pela natureza, perfeito para celebrar momentos únicos. 
-                Nosso espaço oferece tranquilidade e beleza para tornar seu evento verdadeiramente especial.
+                Um santuário natural cuidadosamente preservado, criado para proporcionar experiências inesquecíveis em harmonia com a natureza.
               </p>
             </div>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-              <div>
-                <img 
-                  src="https://images.unsplash.com/photo-1506744038136-46273834b3fb" 
-                  alt="Visão panorâmica do Sítio Nosso Lugar" 
-                  className="rounded-lg shadow-lg w-full h-auto"
-                />
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+              <div className="relative" ref={ref}>
+                <div className="absolute -bottom-6 -right-6 w-full h-full border-4 border-sitio-leaf/30 rounded-xl z-0"></div>
+                <div className="relative z-10 overflow-hidden rounded-xl">
+                  <img 
+                    src="https://images.unsplash.com/photo-1506744038136-46273834b3fb" 
+                    alt="Visão panorâmica do Sítio Nosso Lugar" 
+                    className="w-full h-[400px] object-cover hover:scale-105 transition-transform duration-700"
+                  />
+                </div>
+                <div className="absolute -top-4 -left-4 p-4 bg-sitio-green-dark text-white rounded-lg shadow-nature">
+                  <Bird size={24} className="animate-bounce-subtle" />
+                </div>
               </div>
-              <div className="space-y-4">
-                <p className="text-gray-700">
-                  O Sítio Nosso Lugar é um espaço privilegiado, combinando conforto e natureza para proporcionar 
-                  experiências inesquecíveis. Contamos com uma ampla estrutura para atender diferentes tipos de eventos, 
-                  desde casamentos e aniversários até encontros corporativos.
-                </p>
-                <p className="text-gray-700">
-                  Nosso compromisso é oferecer um ambiente acolhedor, com excelente atendimento e serviços de qualidade, 
-                  para que você e seus convidados aproveitem cada momento com tranquilidade e alegria.
-                </p>
-                <p className="text-gray-700">
-                  Trabalhamos exclusivamente com sistema de agendamento, garantindo atenção personalizada para cada evento.
-                </p>
+              
+              <div className="space-y-6" ref={ref}>
+                <div className="glass-card p-6 hover-lift">
+                  <p className="text-gray-700 relative pl-6">
+                    <span className="absolute left-0 top-0 text-sitio-leaf">
+                      <Leaf size={20} className="leaf-icon" />
+                    </span>
+                    O Sítio Nosso Lugar nasceu do sonho de criar um refúgio onde as pessoas pudessem se reconectar com a natureza enquanto celebram momentos especiais.
+                  </p>
+                </div>
+                
+                <div className="glass-card p-6 hover-lift">
+                  <p className="text-gray-700 relative pl-6">
+                    <span className="absolute left-0 top-0 text-sitio-leaf">
+                      <Leaf size={20} className="leaf-icon" />
+                    </span>
+                    Preservamos a vegetação nativa e integramos nossa estrutura à paisagem natural, criando ambientes que respeitam e valorizam o meio ambiente.
+                  </p>
+                </div>
+                
+                <div className="glass-card p-6 hover-lift">
+                  <p className="text-gray-700 relative pl-6">
+                    <span className="absolute left-0 top-0 text-sitio-leaf">
+                      <Leaf size={20} className="leaf-icon" />
+                    </span>
+                    Cada detalhe do nosso espaço foi pensado para proporcionar conforto e uma experiência autêntica, onde seus convidados se sentirão acolhidos pela beleza da natureza.
+                  </p>
+                </div>
+                
+                <div className="mt-8">
+                  <Link to="/como-chegar">
+                    <Button className="group bg-sitio-leaf hover:bg-sitio-green-dark text-white">
+                      <span className="flex items-center gap-2">
+                        Conheça Nossa Estrutura
+                        <span className="transition-transform group-hover:translate-x-1">→</span>
+                      </span>
+                    </Button>
+                  </Link>
+                </div>
               </div>
             </div>
           </div>
         </section>
         
         {/* Services Section */}
-        <section className="py-16 bg-white">
+        <section className="py-20 bg-white relative">
+          <div className="water-pattern absolute inset-0 opacity-30"></div>
+          
           <div className="container px-4">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-sitio-earth mb-4">Nossos Serviços</h2>
+            <div className="text-center mb-12" ref={ref}>
+              <h2 className="text-3xl md:text-5xl font-bold text-sitio-green-forest mb-6 decorated">
+                Experiências Únicas
+              </h2>
               <p className="text-lg text-gray-700 max-w-3xl mx-auto">
-                Oferecemos uma variedade de serviços para tornar seu evento perfeito e memorável.
+                Criamos experiências memoráveis para todos os momentos especiais da sua vida, com atendimento personalizado e serviços de qualidade.
               </p>
             </div>
             
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-              <ServiceCard 
-                title="Aniversários" 
-                description="Celebre seu dia especial em um ambiente natural e acolhedor."
-                icon={<Cake size={32} />}
-              />
-              <ServiceCard 
-                title="Casamentos" 
-                description="O cenário perfeito para celebrar o amor em meio à natureza."
-                icon={<Heart size={32} />}
-              />
-              <ServiceCard 
-                title="Buffet Completo" 
-                description="Deliciosa culinária local preparada com ingredientes frescos."
-                icon={<Utensils size={32} />}
-              />
-              <ServiceCard 
-                title="Espaço para Eventos" 
-                description="Amplo salão de festas com capacidade para diversos convidados."
-                icon={<Users size={32} />}
-              />
-              <ServiceCard 
-                title="DJ e Som" 
-                description="Anime seu evento com música e iluminação profissional."
-                icon={<Music size={32} />}
-              />
-              <ServiceCard 
-                title="Área de Lazer" 
-                description="Espaços recreativos para diversão de todas as idades."
-                icon={<Palmtree size={32} />}
-              />
-              <ServiceCard 
-                title="Piscina" 
-                description="Área de piscina para refrescantes momentos de lazer."
-                icon={<Waves size={32} />}
-              />
-              <ServiceCard 
-                title="Trilha Natural" 
-                description="Explore a natureza em nossas trilhas seguras e bem sinalizadas."
-                icon={<Mountain size={32} />}
-              />
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+              <div className="nature-card p-6 text-center" ref={ref}>
+                <div className="mx-auto w-16 h-16 flex items-center justify-center bg-sitio-green-light/20 rounded-full mb-4 text-sitio-green-dark">
+                  <Cake size={32} className="nature-breathe" />
+                </div>
+                <h3 className="text-xl font-semibold mb-2 text-sitio-green-forest">Aniversários</h3>
+                <p className="text-gray-600">Celebre seu dia especial em um ambiente natural e acolhedor.</p>
+              </div>
+              
+              <div className="nature-card p-6 text-center" ref={ref}>
+                <div className="mx-auto w-16 h-16 flex items-center justify-center bg-sitio-green-light/20 rounded-full mb-4 text-sitio-green-dark">
+                  <Heart size={32} className="nature-breathe" />
+                </div>
+                <h3 className="text-xl font-semibold mb-2 text-sitio-green-forest">Casamentos</h3>
+                <p className="text-gray-600">O cenário perfeito para celebrar o amor em meio à natureza.</p>
+              </div>
+              
+              <div className="nature-card p-6 text-center" ref={ref}>
+                <div className="mx-auto w-16 h-16 flex items-center justify-center bg-sitio-green-light/20 rounded-full mb-4 text-sitio-green-dark">
+                  <Utensils size={32} className="nature-breathe" />
+                </div>
+                <h3 className="text-xl font-semibold mb-2 text-sitio-green-forest">Buffet Completo</h3>
+                <p className="text-gray-600">Deliciosa culinária local preparada com ingredientes frescos.</p>
+              </div>
+              
+              <div className="nature-card p-6 text-center" ref={ref}>
+                <div className="mx-auto w-16 h-16 flex items-center justify-center bg-sitio-green-light/20 rounded-full mb-4 text-sitio-green-dark">
+                  <Users size={32} className="nature-breathe" />
+                </div>
+                <h3 className="text-xl font-semibold mb-2 text-sitio-green-forest">Espaço para Eventos</h3>
+                <p className="text-gray-600">Amplo salão de festas com capacidade para diversos convidados.</p>
+              </div>
+              
+              <div className="nature-card p-6 text-center" ref={ref}>
+                <div className="mx-auto w-16 h-16 flex items-center justify-center bg-sitio-green-light/20 rounded-full mb-4 text-sitio-green-dark">
+                  <Music size={32} className="nature-breathe" />
+                </div>
+                <h3 className="text-xl font-semibold mb-2 text-sitio-green-forest">DJ e Som</h3>
+                <p className="text-gray-600">Anime seu evento com música e iluminação profissional.</p>
+              </div>
+              
+              <div className="nature-card p-6 text-center" ref={ref}>
+                <div className="mx-auto w-16 h-16 flex items-center justify-center bg-sitio-green-light/20 rounded-full mb-4 text-sitio-green-dark">
+                  <Palmtree size={32} className="nature-breathe" />
+                </div>
+                <h3 className="text-xl font-semibold mb-2 text-sitio-green-forest">Área de Lazer</h3>
+                <p className="text-gray-600">Espaços recreativos para diversão de todas as idades.</p>
+              </div>
+              
+              <div className="nature-card p-6 text-center" ref={ref}>
+                <div className="mx-auto w-16 h-16 flex items-center justify-center bg-sitio-green-light/20 rounded-full mb-4 text-sitio-green-dark">
+                  <Waves size={32} className="nature-breathe" />
+                </div>
+                <h3 className="text-xl font-semibold mb-2 text-sitio-green-forest">Piscina</h3>
+                <p className="text-gray-600">Área de piscina para refrescantes momentos de lazer.</p>
+              </div>
+              
+              <div className="nature-card p-6 text-center" ref={ref}>
+                <div className="mx-auto w-16 h-16 flex items-center justify-center bg-sitio-green-light/20 rounded-full mb-4 text-sitio-green-dark">
+                  <Mountain size={32} className="nature-breathe" />
+                </div>
+                <h3 className="text-xl font-semibold mb-2 text-sitio-green-forest">Trilha Natural</h3>
+                <p className="text-gray-600">Explore a natureza em nossas trilhas seguras e bem sinalizadas.</p>
+              </div>
             </div>
             
-            <div className="text-center mt-12">
+            <div className="text-center mt-12" ref={ref}>
               <Link to="/agendamento">
-                <Button className="bg-sitio-green-dark hover:bg-sitio-earth text-white px-8 py-3">
-                  Agendar Agora
+                <Button className="bg-sitio-leaf hover:bg-sitio-green-dark text-white px-8 py-3 group relative overflow-hidden">
+                  <span className="relative z-10 flex items-center gap-2">
+                    <Calendar size={20} />
+                    Agendar Sua Experiência
+                    <span className="transition-transform group-hover:translate-x-1">→</span>
+                  </span>
                 </Button>
               </Link>
             </div>
@@ -213,56 +372,104 @@ const Index = () => {
         </section>
         
         {/* Gallery Section */}
-        <section className="py-16 bg-sitio-sand">
+        <section className="py-20 bg-sitio-sand relative">
+          <div className="forest-pattern absolute inset-0 opacity-30"></div>
+          
           <div className="container px-4">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-sitio-earth mb-4">Galeria</h2>
+            <div className="text-center mb-12" ref={ref}>
+              <h2 className="text-3xl md:text-5xl font-bold text-sitio-green-forest mb-6 decorated">
+                Galeria de Momentos
+              </h2>
               <p className="text-lg text-gray-700 max-w-3xl mx-auto">
-                Conheça nosso espaço através de imagens que capturam a beleza e tranquilidade do Sítio Nosso Lugar.
+                Capture a essência do Sítio Nosso Lugar através das imagens que registram a beleza natural e os momentos especiais aqui vividos.
               </p>
             </div>
             
-            <PhotoGallery photos={photos} />
+            <div ref={ref}>
+              <PhotoGallery photos={photos} />
+            </div>
           </div>
         </section>
         
         {/* Videos Section */}
-        <section className="py-16 bg-white">
+        <section className="py-20 bg-white relative">
+          <div className="water-pattern absolute inset-0 opacity-30"></div>
+          
           <div className="container px-4">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-sitio-earth mb-4">Vídeos</h2>
+            <div className="text-center mb-12" ref={ref}>
+              <h2 className="text-3xl md:text-5xl font-bold text-sitio-green-forest mb-6 decorated">
+                Experiência em Movimento
+              </h2>
               <p className="text-lg text-gray-700 max-w-3xl mx-auto">
-                Assista e sinta a experiência de estar no Sítio Nosso Lugar.
+                Assista e sinta-se parte da natureza e tranquilidade do Sítio Nosso Lugar através dos nossos vídeos.
               </p>
             </div>
             
-            <VideoGallery videos={videos} />
+            <div ref={ref}>
+              <VideoGallery videos={videos} />
+            </div>
+          </div>
+        </section>
+        
+        {/* Map Section */}
+        <section className="py-20 bg-sitio-sand relative">
+          <div className="leaf-pattern absolute inset-0 opacity-20"></div>
+          
+          <div className="container px-4">
+            <div className="text-center mb-16" ref={ref}>
+              <h2 className="text-3xl md:text-5xl font-bold text-sitio-green-forest mb-6 decorated">
+                Como Chegar
+              </h2>
+              <p className="text-lg text-gray-700 max-w-3xl mx-auto">
+                Estamos localizados em Vila Fátima, no Pará, em um local de fácil acesso rodeado pela beleza natural da região.
+              </p>
+            </div>
+            
+            <div ref={ref}>
+              <GoogleMap />
+            </div>
           </div>
         </section>
         
         {/* Call to Action */}
-        <section className="py-20 bg-sitio-green-dark text-white">
-          <div className="container px-4 text-center">
-            <h2 className="text-3xl font-bold mb-6">Reserve Agora Seu Evento</h2>
-            <p className="text-xl mb-8 max-w-2xl mx-auto">
-              Não perca a oportunidade de realizar seu evento em um espaço único e especial.
-              Entre em contato conosco para verificar disponibilidade e realizar seu agendamento.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link to="/agendamento">
-                <Button className="bg-white text-sitio-green-dark hover:bg-gray-100 px-8 py-3 text-lg">
-                  Fazer Reserva
-                </Button>
-              </Link>
-              <a 
-                href="https://wa.me/559184731385" 
-                target="_blank" 
-                rel="noopener noreferrer"
-              >
-                <Button variant="outline" className="border-white text-white hover:bg-white/20 px-8 py-3 text-lg">
-                  Fale Conosco
-                </Button>
-              </a>
+        <section className="py-20 bg-sitio-green-dark text-white relative overflow-hidden">
+          <div className="absolute top-0 right-0 opacity-10">
+            <svg width="400" height="400" viewBox="0 0 200 200">
+              <path 
+                fill="#FFFFFF" 
+                d="M42.7,-76.4C53.2,-67.8,58.5,-51.5,65.3,-37.2C72,-22.9,80.3,-10.7,81.2,2.2C82.2,15.1,76,30.9,66.2,42.6C56.4,54.3,43.1,62.1,29.2,69.7C15.3,77.4,0.8,85,-14.9,85.1C-30.5,85.2,-47.3,77.8,-58.8,65.9C-70.3,54,-76.6,37.5,-79.8,21C-83.1,4.4,-83.3,-12.3,-76.3,-24.9C-69.3,-37.6,-55,-46.2,-41.8,-53.9C-28.5,-61.5,-16.1,-68.2,0,-68.3C16.2,-68.3,32.3,-84.9,42.7,-76.4Z" 
+                transform="translate(100 100)" 
+                className="animate-rotate-slow"
+              />
+            </svg>
+          </div>
+          
+          <div className="container px-4 text-center relative z-10">
+            <div ref={ref}>
+              <h2 className="text-3xl md:text-5xl font-bold mb-6">Reserve Agora Seu Evento</h2>
+              <p className="text-xl mb-8 max-w-2xl mx-auto">
+                Não perca a oportunidade de realizar seu evento em um espaço único e especial.
+                Entre em contato conosco para verificar disponibilidade e realizar seu agendamento.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <Link to="/agendamento">
+                  <Button className="bg-white text-sitio-green-dark hover:bg-sitio-sand hover:text-sitio-green-forest px-8 py-3 text-lg group">
+                    <span className="flex items-center gap-2">
+                      <Calendar size={20} className="transition-transform group-hover:rotate-12" />
+                      Fazer Reserva
+                    </span>
+                  </Button>
+                </Link>
+                <a 
+                  href="https://wa.me/559184731385" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                >
+                  <Button variant="outline" className="border-white text-white hover:bg-white/20 px-8 py-3 text-lg">
+                    Fale Conosco
+                  </Button>
+                </a>
+              </div>
             </div>
           </div>
         </section>

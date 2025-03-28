@@ -54,15 +54,20 @@ export default {
 					foreground: 'hsl(var(--card-foreground))'
 				},
 				sitio: {
-					"green-dark": "#0D5D56",
-					"green-light": "#65B891",
-					"blue-light": "#BFDCDD",
-					"white": "#F7F7F7",
+					"green-dark": "#2D5C45",
+					"green-light": "#8BC8AA",
+					"green-forest": "#1A4731",
+					"blue-water": "#A3CFDF",
+					"blue-sky": "#C9E4F8",
+					"white": "#FCFCFC",
 					"accent": "#FF6B6B",
-					"earth": "#054A41",
-					"sand": "#F2EDE4",
+					"earth": "#5E4B2F",
+					"earth-light": "#D0B894",
+					"sand": "#F8F4EC",
 					"coral": "#FF8E7F",
-					"sky": "#A3D9FF",
+					"leaf": "#62A87C",
+					"moss": "#718F6A",
+					"sunshine": "#FFC857",
 				}
 			},
 			borderRadius: {
@@ -150,6 +155,34 @@ export default {
 					'100%': {
 						transform: 'rotate(360deg)'
 					}
+				},
+				'nature-breathe': {
+					'0%, 100%': {
+						transform: 'scale(1)',
+						opacity: '1'
+					},
+					'50%': {
+						transform: 'scale(1.05)',
+						opacity: '0.9'
+					}
+				},
+				'leaf-sway': {
+					'0%, 100%': {
+						transform: 'rotate(-3deg)'
+					},
+					'50%': {
+						transform: 'rotate(3deg)'
+					}
+				},
+				'water-ripple': {
+					'0%': {
+						transform: 'scale(0)',
+						opacity: '1'
+					},
+					'100%': {
+						transform: 'scale(4)',
+						opacity: '0'
+					}
 				}
 			},
 			animation: {
@@ -161,12 +194,17 @@ export default {
 				'slide-in-right': 'slide-in-right 0.5s ease-out',
 				'slide-in-left': 'slide-in-left 0.5s ease-out',
 				'scale-up': 'scale-up 0.4s ease-out',
-				'rotate-slow': 'rotate-slow 20s linear infinite'
+				'rotate-slow': 'rotate-slow 20s linear infinite',
+				'nature-breathe': 'nature-breathe 4s ease-in-out infinite',
+				'leaf-sway': 'leaf-sway 3s ease-in-out infinite',
+				'water-ripple': 'water-ripple 3s ease-out infinite'
 			},
 			boxShadow: {
 				'inner-light': 'inset 0 2px 4px 0 rgba(255, 255, 255, 0.06)',
 				'soft': '0 4px 12px rgba(0, 0, 0, 0.05)',
 				'elevated': '0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.05)',
+				'nature': '0 5px 15px rgba(45, 92, 69, 0.15)',
+				'leaf': '0 8px 20px rgba(98, 168, 124, 0.2)',
 			},
 			textShadow: {
 				'sm': '0 1px 2px rgba(0, 0, 0, 0.2)',
@@ -176,6 +214,12 @@ export default {
 			transitionDuration: {
 				'2000': '2000ms',
 				'3000': '3000ms',
+			},
+			backgroundImage: {
+				'nature-gradient': 'linear-gradient(135deg, #8BC8AA 0%, #C9E4F8 100%)',
+				'forest-gradient': 'linear-gradient(135deg, #1A4731 0%, #62A87C 100%)',
+				'sunset-gradient': 'linear-gradient(135deg, #FFC857 0%, #FF6B6B 100%)',
+				'earth-gradient': 'linear-gradient(135deg, #5E4B2F 0%, #D0B894 100%)',
 			}
 		}
 	},
