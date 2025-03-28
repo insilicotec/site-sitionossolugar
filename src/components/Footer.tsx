@@ -127,7 +127,7 @@ const Footer = () => {
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
             <div className="md:w-1/2">
               <h3 className="text-xl font-medium mb-2 text-slate-50">Fique por dentro das novidades</h3>
-              <p className="text-yellow-400">Entre para nosso grupo exclusivo e receba promoções e datas especiais diretamente no WhatsApp</p>
+              <p className="text-amber-200">Entre para nosso grupo exclusivo e receba promoções e datas especiais diretamente no WhatsApp</p>
             </div>
             <div className="w-full md:w-1/2 flex justify-center md:justify-end">
               <motion.a href="https://chat.whatsapp.com/IUGj1YdwulH8GWZCDxnDil" target="_blank" rel="noopener noreferrer" className="bg-emerald-600 hover:bg-emerald-700 text-white px-6 py-3 rounded-lg flex items-center gap-3 group transition-all duration-300 hover:scale-105 shadow-lg" whileHover={{
