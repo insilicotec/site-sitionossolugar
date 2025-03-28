@@ -44,7 +44,7 @@ const Footer = () => {
         }} viewport={{
           once: true
         }}>
-            <h3 className="text-xl font-medium mb-4">Navegação</h3>
+            <h3 className="text-xl font-medium mb-4 text-slate-50">Navegação</h3>
             <ul className="space-y-2">
               <FooterLink to="/">Página Inicial</FooterLink>
               <FooterLink to="/agendamento">Agendamento</FooterLink>
