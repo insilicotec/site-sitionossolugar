@@ -41,11 +41,25 @@ const VideoGallery = ({ videos }: VideoGalleryProps) => {
     return `https://www.youtube.com/embed/${youtubeId}?autoplay=1`;
   }, []);
 
-  // Ensure YouTube thumbnails are properly loaded
-  const getYoutubeThumbnail = (youtubeId: string) => {
-    // Use higher quality thumbnail
-    return `https://img.youtube.com/vi/${youtubeId}/hqdefault.jpg?v=${new Date().getTime()}`;
-  };
+  // Melhorando a função para obter miniaturas de qualidade mais alta do YouTube
+  const getYoutubeThumbnail = useCallback((youtubeId: string) => {
+    // Tentamos carregar maxresdefault (alta qualidade)
+    // Se falhar, o manipulador de erros carregará hqdefault (qualidade padrão)
+    return `https://img.youtube.com/vi/${youtubeId}/maxresdefault.jpg`;
+  }, []);
+
+  // Fallback para miniatura de qualidade padrão se a alta qualidade falhar
+  const handleThumbnailError = useCallback((id: number, youtubeId?: string) => {
+    if (youtubeId) {
+      // Substitui a URL da miniatura pela versão hqdefault (qualidade mais baixa, mas mais confiável)
+      const thumbnailElement = document.getElementById(`thumb-${id}`) as HTMLImageElement;
+      if (thumbnailElement) {
+        thumbnailElement.src = `https://img.youtube.com/vi/${youtubeId}/hqdefault.jpg`;
+      }
+    }
+    // Marca como carregado para remover o skeleton
+    handleThumbnailLoad(id);
+  }, []);
 
   return (
     <div>
@@ -59,15 +73,16 @@ const VideoGallery = ({ videos }: VideoGalleryProps) => {
               >
                 <div className="relative">
                   {!loadedThumbnails[video.id] && (
-                    <Skeleton className="w-full h-48" />
+                    <Skeleton className="w-full h-48 absolute inset-0" />
                   )}
                   <img
+                    id={`thumb-${video.id}`}
                     src={video.youtubeId ? getYoutubeThumbnail(video.youtubeId) : video.thumbnail}
                     alt={video.title}
                     className={`w-full h-48 object-cover ${!loadedThumbnails[video.id] ? 'opacity-0' : 'opacity-100 transition-opacity duration-300'}`}
                     loading="lazy"
                     onLoad={() => handleThumbnailLoad(video.id)}
-                    onError={() => handleThumbnailLoad(video.id)} // Also mark as loaded on error to remove skeleton
+                    onError={() => handleThumbnailError(video.id, video.youtubeId)}
                   />
                   <div className="absolute inset-0 flex items-center justify-center">
                     <div className="bg-black bg-opacity-50 rounded-full p-3">

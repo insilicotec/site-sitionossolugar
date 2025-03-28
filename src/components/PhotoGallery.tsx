@@ -82,13 +82,13 @@ const PhotoGallery = ({ photos }: PhotoGalleryProps) => {
               <Skeleton className="w-full h-full absolute" />
             )}
             <img
-              src={`${photo.src}`}
+              src={photo.src}
               alt={photo.alt}
               className={`w-full h-full object-cover hover:scale-105 transition-transform duration-300 ${!loadedImages[photo.id] ? 'opacity-0' : 'opacity-100 transition-opacity duration-300'}`}
               onClick={() => openPhotoViewer(photo)}
               loading="lazy"
               onLoad={() => handleImageLoad(photo.id)}
-              onError={() => handleImageLoad(photo.id)} // Also mark as loaded on error to remove skeleton
+              onError={() => handleImageLoad(photo.id)}
             />
           </div>
         ))}
