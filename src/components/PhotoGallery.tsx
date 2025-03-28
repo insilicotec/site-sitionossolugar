@@ -1,8 +1,9 @@
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Dialog, DialogContent } from '@/components/ui/dialog';
 import { ChevronLeft, ChevronRight, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { Skeleton } from '@/components/ui/skeleton';
 
 interface Photo {
   id: number;
@@ -17,6 +18,24 @@ interface PhotoGalleryProps {
 const PhotoGallery = ({ photos }: PhotoGalleryProps) => {
   const [selectedPhoto, setSelectedPhoto] = useState<Photo | null>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [loadedImages, setLoadedImages] = useState<Record<number, boolean>>({});
+
+  useEffect(() => {
+    // Initialize all images as not loaded
+    const initialLoadState = photos.reduce((acc, photo) => {
+      acc[photo.id] = false;
+      return acc;
+    }, {} as Record<number, boolean>);
+    
+    setLoadedImages(initialLoadState);
+  }, [photos]);
+
+  const handleImageLoad = (id: number) => {
+    setLoadedImages(prev => ({
+      ...prev,
+      [id]: true
+    }));
+  };
 
   const openPhotoViewer = (photo: Photo) => {
     setSelectedPhoto(photo);
@@ -59,12 +78,17 @@ const PhotoGallery = ({ photos }: PhotoGalleryProps) => {
             key={photo.id} 
             className="overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow cursor-pointer bg-white aspect-square"
           >
+            {!loadedImages[photo.id] && (
+              <Skeleton className="w-full h-full absolute" />
+            )}
             <img
-              src={photo.src}
+              src={`${photo.src}`}
               alt={photo.alt}
-              className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+              className={`w-full h-full object-cover hover:scale-105 transition-transform duration-300 ${!loadedImages[photo.id] ? 'opacity-0' : 'opacity-100 transition-opacity duration-300'}`}
               onClick={() => openPhotoViewer(photo)}
               loading="lazy"
+              onLoad={() => handleImageLoad(photo.id)}
+              onError={() => handleImageLoad(photo.id)} // Also mark as loaded on error to remove skeleton
             />
           </div>
         ))}

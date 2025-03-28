@@ -1,7 +1,8 @@
 
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import { Dialog, DialogContent } from '@/components/ui/dialog';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
+import { Skeleton } from '@/components/ui/skeleton';
 
 interface Video {
   id: number;
@@ -17,10 +18,34 @@ interface VideoGalleryProps {
 
 const VideoGallery = ({ videos }: VideoGalleryProps) => {
   const [selectedVideo, setSelectedVideo] = useState<Video | null>(null);
+  const [loadedThumbnails, setLoadedThumbnails] = useState<Record<number, boolean>>({});
+
+  useEffect(() => {
+    // Initialize all thumbnails as not loaded
+    const initialLoadState = videos.reduce((acc, video) => {
+      acc[video.id] = false;
+      return acc;
+    }, {} as Record<number, boolean>);
+    
+    setLoadedThumbnails(initialLoadState);
+  }, [videos]);
+
+  const handleThumbnailLoad = (id: number) => {
+    setLoadedThumbnails(prev => ({
+      ...prev,
+      [id]: true
+    }));
+  };
 
   const getYoutubeEmbedUrl = useCallback((youtubeId: string) => {
     return `https://www.youtube.com/embed/${youtubeId}?autoplay=1`;
   }, []);
+
+  // Ensure YouTube thumbnails are properly loaded
+  const getYoutubeThumbnail = (youtubeId: string) => {
+    // Use higher quality thumbnail
+    return `https://img.youtube.com/vi/${youtubeId}/hqdefault.jpg?v=${new Date().getTime()}`;
+  };
 
   return (
     <div>
@@ -33,11 +58,16 @@ const VideoGallery = ({ videos }: VideoGalleryProps) => {
                 onClick={() => setSelectedVideo(video)}
               >
                 <div className="relative">
+                  {!loadedThumbnails[video.id] && (
+                    <Skeleton className="w-full h-48" />
+                  )}
                   <img
-                    src={video.thumbnail}
+                    src={video.youtubeId ? getYoutubeThumbnail(video.youtubeId) : video.thumbnail}
                     alt={video.title}
-                    className="w-full h-48 object-cover"
+                    className={`w-full h-48 object-cover ${!loadedThumbnails[video.id] ? 'opacity-0' : 'opacity-100 transition-opacity duration-300'}`}
                     loading="lazy"
+                    onLoad={() => handleThumbnailLoad(video.id)}
+                    onError={() => handleThumbnailLoad(video.id)} // Also mark as loaded on error to remove skeleton
                   />
                   <div className="absolute inset-0 flex items-center justify-center">
                     <div className="bg-black bg-opacity-50 rounded-full p-3">
