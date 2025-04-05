@@ -23,22 +23,8 @@ const Agendamento = () => {
         ? format(data.dataEvento, "dd/MM/yyyy", { locale: ptBR }) 
         : "Data não selecionada";
     
-      // Generate services text
-      const servicesText = [
-        { name: "Apenas o local", value: data.apenasLocal },
-        { name: "Inclui comida", value: data.incluiComida },
-        { name: "Buffet completo", value: data.buffet },
-        { name: "DJ", value: data.dj },
-        { name: "Decoracao", value: data.decoracao }
-      ]
-        .map(service => {
-          const status = service.value ? "Sim" : "Nao";
-          return `${status} - ${service.name}`;
-        })
-        .join("\n");
-    
-    // Create WhatsApp message
-    const message = `NOVA RESERVA - SITIO NOSSO LUGAR
+      // Create WhatsApp message
+      const message = `NOVA RESERVA - SITIO NOSSO LUGAR
     
 DADOS PESSOAIS
 Nome: ${data.nome}
@@ -47,9 +33,6 @@ Cidade: ${data.cidade}
 DETALHES DO EVENTO
 Data: ${formattedDate}
 Tipo: ${getEventTypeText(data.tipoEvento)}
-
-SERVICOS SOLICITADOS
-${servicesText}
 
 ${data.observacoes ? `OBSERVACOES\n${data.observacoes}` : ""}
 
@@ -77,6 +60,7 @@ Agradecemos seu interesse em realizar seu evento no Sitio Nosso Lugar!`;
       'aniversario': 'Aniversario',
       'corporativo': 'Evento Corporativo',
       'dayuse': 'Day Use',
+      'pacoteFechado': 'Pacote fechado (apenas o espaço)',
       'outro': 'Outro evento'
     };
     
@@ -239,4 +223,3 @@ Agradecemos seu interesse em realizar seu evento no Sitio Nosso Lugar!`;
 };
 
 export default Agendamento;
-

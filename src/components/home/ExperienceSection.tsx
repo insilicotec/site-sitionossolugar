@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Calendar, Heart, Utensils, Users, Music, Palmtree, Waves, Mountain } from 'lucide-react';
+import { Calendar, Heart, Utensils, Users, Music, Palmtree, Waves, Mountain, Coffee, Hotel, Trophy, Gamepad } from 'lucide-react';
 import Cake from './Cake'; // Import our custom Cake component
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
@@ -35,6 +35,16 @@ const ExperienceSection = ({ useIntersectionObserver }: { useIntersectionObserve
           <ExperienceCard icon={<Users size={32} />} title="Espaço para Eventos" description="Amplo salão de festas com capacidade para diversos convidados." refProp={ref} />
           
           <ExperienceCard icon={<Music size={32} />} title="DJ e Som" description="Anime seu evento com música e iluminação profissional." refProp={ref} />
+          
+          <ExperienceCard icon={<Trophy size={32} />} title="Área de Esportes" description="Espaços para prática de esportes e atividades físicas." refProp={ref} />
+          
+          <ExperienceCard icon={<Gamepad size={32} />} title="Área de Jogos" description="Diversão garantida com jogos de mesa e entretenimento." refProp={ref} />
+          
+          <ExperienceCard icon={<Coffee size={32} />} title="Café da Manhã" description="Delicioso café da manhã com opções variadas." refProp={ref} />
+          
+          <ExperienceCard icon={<Coffee size={32} />} title="Café da Tarde" description="Momento especial com lanches e bebidas da tarde." refProp={ref} />
+          
+          <ExperienceCard icon={<Hotel size={32} />} title="17 Suítes" description="Acomodações confortáveis para hospedagem completa." refProp={ref} />
           
           <ExperienceCard icon={<Palmtree size={32} />} title="Área de Lazer" description="Espaços recreativos para diversão de todas as idades." refProp={ref} />
           

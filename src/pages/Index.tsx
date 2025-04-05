@@ -35,16 +35,16 @@ const photos = [{
   alt: "Quarto com camas em tons rosados"
 }, {
   id: 5,
-  src: `/lovable-uploads/d51eb3b7-e8ca-4c8c-9561-d4447900704c.png`,
-  alt: "Corredor para cerimônia com cadeiras e decoração floral"
+  src: `/lovable-uploads/1851a7c1-30ec-44d7-935e-1ef9c096df56.png`,
+  alt: "Cozinha exterior com panelas de barro e vista para a natureza"
 }, {
   id: 6,
-  src: `/lovable-uploads/2048c0e9-be7a-4fa6-abea-eb2c0dcf4e1b.png`,
-  alt: "Área de descanso com pergolados e cortinas brancas"
+  src: `/lovable-uploads/ddbfc5be-12bf-4f57-a537-a2a14fa040fc.png`,
+  alt: "Mulher com vestido azul em trilha natural de madeira"
 }, {
   id: 7,
-  src: `/lovable-uploads/5bddaa83-3589-4afd-ac73-eb5317e1bc34.png`,
-  alt: "Área verde com caminho de madeira e palmeiras"
+  src: `/lovable-uploads/1e2ec1cf-3b26-4f02-b3f6-d75b298840c2.png`,
+  alt: "Área de evento com mesas decoradas e tenda branca"
 }, {
   id: 8,
   src: `/lovable-uploads/4eedf5e9-d6cb-42cf-91ab-5a025f837f33.png`,
@@ -55,8 +55,8 @@ const photos = [{
   alt: "Piscina com mãe e filha brincando com bola vermelha"
 }, {
   id: 10,
-  src: `/lovable-uploads/1a16f3af-286f-4d72-ba63-12a8c2d8677b.png`,
-  alt: "Mulher com vestido azul em caminho de madeira em área verde"
+  src: `/lovable-uploads/becaf84a-a175-46a9-a9d2-dcc53e9a8136.png`,
+  alt: "Vista externa da estrutura principal do Sítio com áreas verdes"
 }, {
   id: 11,
   src: `/lovable-uploads/d9cf6811-08ca-43e0-a3b1-185afbdd0a34.png`,

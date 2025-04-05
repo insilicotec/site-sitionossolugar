@@ -5,7 +5,6 @@ import { Form } from '@/components/ui/form';
 import { ReservationData, formSchema } from './reservation/types';
 import PersonalInfoFields from './reservation/PersonalInfoFields';
 import EventDetailsFields from './reservation/EventDetailsFields';
-import ServiceOptionsFields from './reservation/ServiceOptionsFields';
 import AdditionalNotesField from './reservation/AdditionalNotesField';
 import SubmitButton from './reservation/SubmitButton';
 import { useEffect } from "react";
@@ -54,7 +53,6 @@ const ReservationForm = ({ onSubmit }: ReservationFormProps) => {
       >
         <PersonalInfoFields form={form} />
         <EventDetailsFields form={form} />
-        <ServiceOptionsFields form={form} />
         <AdditionalNotesField form={form} />
         <SubmitButton />
       </form>
