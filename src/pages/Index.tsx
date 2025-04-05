@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -34,18 +33,6 @@ const photos = [{
   src: `/lovable-uploads/3b453679-06d7-4e57-89b2-e348b049a975.png`,
   alt: "Quarto com camas em tons rosados"
 }, {
-  id: 5,
-  src: `/lovable-uploads/1851a7c1-30ec-44d7-935e-1ef9c096df56.png`,
-  alt: "Cozinha exterior com panelas de barro e vista para a natureza"
-}, {
-  id: 6,
-  src: `/lovable-uploads/ddbfc5be-12bf-4f57-a537-a2a14fa040fc.png`,
-  alt: "Mulher com vestido azul em trilha natural de madeira"
-}, {
-  id: 7,
-  src: `/lovable-uploads/1e2ec1cf-3b26-4f02-b3f6-d75b298840c2.png`,
-  alt: "Área de evento com mesas decoradas e tenda branca"
-}, {
   id: 8,
   src: `/lovable-uploads/4eedf5e9-d6cb-42cf-91ab-5a025f837f33.png`,
   alt: "Salão de festas com mesas douradas decoradas para evento"
@@ -53,18 +40,6 @@ const photos = [{
   id: 9,
   src: `/lovable-uploads/4a1d4b9c-1ea8-418a-8a24-ab78a8f64d53.png`,
   alt: "Piscina com mãe e filha brincando com bola vermelha"
-}, {
-  id: 10,
-  src: `/lovable-uploads/becaf84a-a175-46a9-a9d2-dcc53e9a8136.png`,
-  alt: "Vista externa da estrutura principal do Sítio com áreas verdes"
-}, {
-  id: 11,
-  src: `/lovable-uploads/d9cf6811-08ca-43e0-a3b1-185afbdd0a34.png`,
-  alt: "Vestido de noiva branco pendurado em janela com vista para jardim"
-}, {
-  id: 12,
-  src: `/lovable-uploads/a903567d-fbbc-477e-b192-7f5f7c51ee91.png`,
-  alt: "Três pessoas sorridentes desfrutando da piscina em dia ensolarado"
 }];
 
 const videos = [{

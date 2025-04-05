@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Calendar, Heart, Utensils, Users, Music, Palmtree, Waves, Mountain, Coffee, Hotel, Trophy, Gamepad } from 'lucide-react';
+import { Calendar, Heart, Utensils, Users, Palmtree, Waves, Mountain, Coffee, Hotel, Trophy, Gamepad } from 'lucide-react';
 import Cake from './Cake'; // Import our custom Cake component
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
@@ -33,8 +33,6 @@ const ExperienceSection = ({ useIntersectionObserver }: { useIntersectionObserve
           <ExperienceCard icon={<Utensils size={32} />} title="Buffet Completo" description="Deliciosa culinária local preparada com ingredientes frescos." refProp={ref} />
           
           <ExperienceCard icon={<Users size={32} />} title="Espaço para Eventos" description="Amplo salão de festas com capacidade para diversos convidados." refProp={ref} />
-          
-          <ExperienceCard icon={<Music size={32} />} title="DJ e Som" description="Anime seu evento com música e iluminação profissional." refProp={ref} />
           
           <ExperienceCard icon={<Trophy size={32} />} title="Área de Esportes" description="Espaços para prática de esportes e atividades físicas." refProp={ref} />
           
