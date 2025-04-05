@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -63,17 +62,17 @@ const videos = [{
   id: 1,
   youtubeId: "P1p7TOXDEHs",
   thumbnail: `https://img.youtube.com/vi/P1p7TOXDEHs/maxresdefault.jpg`,
-  title: "Conheça o Sítio Nosso Lugar"
+  title: "Seu casamento Perfeito"
 }, {
   id: 2,
   youtubeId: "TawdKsGX0DM",
   thumbnail: `https://img.youtube.com/vi/TawdKsGX0DM/maxresdefault.jpg`,
-  title: "Eventos no Sítio"
+  title: "Viva a experiência de dormir em meio à natureza"
 }, {
   id: 3,
   youtubeId: "OTJQOUpMu9M",
   thumbnail: `https://img.youtube.com/vi/OTJQOUpMu9M/maxresdefault.jpg`,
-  title: "Área de Lazer"
+  title: "Um pouco da nossa culinária local"
 }];
 
 const Index = () => {

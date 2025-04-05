@@ -1,8 +1,9 @@
 
 import { useState, useCallback, useEffect } from 'react';
-import { Dialog, DialogContent } from '@/components/ui/dialog';
+import { Dialog, DialogContent, DialogTitle } from '@/components/ui/dialog';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
 import { Skeleton } from '@/components/ui/skeleton';
+import { VisuallyHidden } from '@radix-ui/react-visually-hidden';
 
 interface Video {
   id: number;
@@ -112,27 +113,32 @@ const VideoGallery = ({ videos }: VideoGalleryProps) => {
       <Dialog open={!!selectedVideo} onOpenChange={() => setSelectedVideo(null)}>
         <DialogContent className="max-w-4xl p-0 bg-transparent border-none">
           {selectedVideo && (
-            <div className="bg-black rounded-lg overflow-hidden">
-              {selectedVideo.youtubeId ? (
-                <iframe
-                  src={getYoutubeEmbedUrl(selectedVideo.youtubeId)}
-                  title={selectedVideo.title}
-                  frameBorder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                  className="w-full aspect-video"
-                />
-              ) : selectedVideo.src ? (
-                <video 
-                  src={selectedVideo.src} 
-                  controls 
-                  autoPlay 
-                  className="w-full h-auto max-h-[80vh]"
-                >
-                  Seu navegador não suporta o elemento de vídeo.
-                </video>
-              ) : null}
-            </div>
+            <>
+              <VisuallyHidden>
+                <DialogTitle>{selectedVideo.title}</DialogTitle>
+              </VisuallyHidden>
+              <div className="bg-black rounded-lg overflow-hidden">
+                {selectedVideo.youtubeId ? (
+                  <iframe
+                    src={getYoutubeEmbedUrl(selectedVideo.youtubeId)}
+                    title={selectedVideo.title}
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                    className="w-full aspect-video"
+                  />
+                ) : selectedVideo.src ? (
+                  <video 
+                    src={selectedVideo.src} 
+                    controls 
+                    autoPlay 
+                    className="w-full h-auto max-h-[80vh]"
+                  >
+                    Seu navegador não suporta o elemento de vídeo.
+                  </video>
+                ) : null}
+              </div>
+            </>
           )}
         </DialogContent>
       </Dialog>
