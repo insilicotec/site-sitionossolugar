@@ -1,6 +1,7 @@
 
 import React from 'react';
 import VideoGallery from '@/components/VideoGallery';
+import { ScrollArea } from '@/components/ui/scroll-area';
 
 interface Video {
   id: number;
@@ -30,7 +31,7 @@ const VideoSection = ({ videos, useIntersectionObserver }: {
           </p>
         </div>
         
-        <div ref={ref}>
+        <div ref={ref} className="overflow-hidden">
           <VideoGallery videos={videos} />
         </div>
       </div>

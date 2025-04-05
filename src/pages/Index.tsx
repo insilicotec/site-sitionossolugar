@@ -73,6 +73,11 @@ const videos = [{
   youtubeId: "OTJQOUpMu9M",
   thumbnail: `https://img.youtube.com/vi/OTJQOUpMu9M/maxresdefault.jpg`,
   title: "Um pouco da nossa culinária local"
+}, {
+  id: 4,
+  youtubeId: "TZMxYuCEqBU",
+  thumbnail: `https://img.youtube.com/vi/TZMxYuCEqBU/maxresdefault.jpg`,
+  title: "Day Use"
 }];
 
 const Index = () => {

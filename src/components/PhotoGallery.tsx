@@ -19,15 +19,22 @@ const PhotoGallery = ({ photos }: PhotoGalleryProps) => {
   const [selectedPhoto, setSelectedPhoto] = useState<Photo | null>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [loadedImages, setLoadedImages] = useState<Record<number, boolean>>({});
+  const [imageErrors, setImageErrors] = useState<Record<number, boolean>>({});
 
   useEffect(() => {
-    // Initialize all images as not loaded
+    // Initialize all images as not loaded and no errors
     const initialLoadState = photos.reduce((acc, photo) => {
       acc[photo.id] = false;
       return acc;
     }, {} as Record<number, boolean>);
     
+    const initialErrorState = photos.reduce((acc, photo) => {
+      acc[photo.id] = false;
+      return acc;
+    }, {} as Record<number, boolean>);
+    
     setLoadedImages(initialLoadState);
+    setImageErrors(initialErrorState);
   }, [photos]);
 
   const handleImageLoad = (id: number) => {
@@ -37,7 +44,20 @@ const PhotoGallery = ({ photos }: PhotoGalleryProps) => {
     }));
   };
 
+  const handleImageError = (id: number) => {
+    console.error(`Failed to load image with ID ${id}`);
+    setImageErrors(prev => ({
+      ...prev,
+      [id]: true
+    }));
+    // Mark as loaded to remove skeleton
+    handleImageLoad(id);
+  };
+
   const openPhotoViewer = (photo: Photo) => {
+    // Don't open viewer for images with errors
+    if (imageErrors[photo.id]) return;
+    
     setSelectedPhoto(photo);
     setCurrentIndex(photos.findIndex(p => p.id === photo.id));
   };
@@ -48,14 +68,32 @@ const PhotoGallery = ({ photos }: PhotoGalleryProps) => {
 
   const showPreviousPhoto = (e: React.MouseEvent) => {
     e.stopPropagation();
-    const newIndex = (currentIndex - 1 + photos.length) % photos.length;
+    
+    // Find next valid photo (skipping ones with errors)
+    let newIndex = (currentIndex - 1 + photos.length) % photos.length;
+    let attempts = 0;
+    
+    while (imageErrors[photos[newIndex].id] && attempts < photos.length) {
+      newIndex = (newIndex - 1 + photos.length) % photos.length;
+      attempts++;
+    }
+    
     setCurrentIndex(newIndex);
     setSelectedPhoto(photos[newIndex]);
   };
 
   const showNextPhoto = (e: React.MouseEvent) => {
     e.stopPropagation();
-    const newIndex = (currentIndex + 1) % photos.length;
+    
+    // Find next valid photo (skipping ones with errors)
+    let newIndex = (currentIndex + 1) % photos.length;
+    let attempts = 0;
+    
+    while (imageErrors[photos[newIndex].id] && attempts < photos.length) {
+      newIndex = (newIndex + 1) % photos.length;
+      attempts++;
+    }
+    
     setCurrentIndex(newIndex);
     setSelectedPhoto(photos[newIndex]);
   };
@@ -70,26 +108,34 @@ const PhotoGallery = ({ photos }: PhotoGalleryProps) => {
     }
   };
 
+  // Count valid (non-error) photos
+  const validPhotoCount = photos.filter(photo => !imageErrors[photo.id]).length;
+
   return (
     <div>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
         {photos.map((photo) => (
           <div 
             key={photo.id} 
-            className="overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow cursor-pointer bg-white aspect-square"
+            className={`overflow-hidden rounded-lg shadow-md transition-shadow bg-white aspect-square ${!imageErrors[photo.id] ? 'hover:shadow-xl cursor-pointer' : 'opacity-50'}`}
           >
-            {!loadedImages[photo.id] && (
+            {!loadedImages[photo.id] && !imageErrors[photo.id] && (
               <Skeleton className="w-full h-full absolute" />
             )}
             <img
               src={photo.src}
               alt={photo.alt}
-              className={`w-full h-full object-cover hover:scale-105 transition-transform duration-300 ${!loadedImages[photo.id] ? 'opacity-0' : 'opacity-100 transition-opacity duration-300'}`}
+              className={`w-full h-full object-cover ${!imageErrors[photo.id] && 'hover:scale-105 transition-transform duration-300'} ${!loadedImages[photo.id] ? 'opacity-0' : 'opacity-100 transition-opacity duration-300'}`}
               onClick={() => openPhotoViewer(photo)}
               loading="lazy"
               onLoad={() => handleImageLoad(photo.id)}
-              onError={() => handleImageLoad(photo.id)}
+              onError={() => handleImageError(photo.id)}
             />
+            {imageErrors[photo.id] && (
+              <div className="absolute inset-0 flex items-center justify-center">
+                <p className="text-gray-500 text-sm">Imagem indisponível</p>
+              </div>
+            )}
           </div>
         ))}
       </div>
@@ -139,7 +185,7 @@ const PhotoGallery = ({ photos }: PhotoGalleryProps) => {
               
               <div className="absolute bottom-4 left-0 right-0 flex justify-center">
                 <div className="px-4 py-2 bg-black/60 rounded-full text-white text-sm">
-                  {currentIndex + 1} / {photos.length}
+                  {validPhotoCount > 0 ? `${currentIndex + 1} / ${validPhotoCount}` : '0 / 0'}
                 </div>
               </div>
             </>

@@ -65,11 +65,11 @@ const VideoGallery = ({ videos }: VideoGalleryProps) => {
   return (
     <div>
       <Carousel className="w-full">
-        <CarouselContent>
+        <CarouselContent className="py-4">
           {videos.map((video) => (
-            <CarouselItem key={video.id} className="sm:basis-1/2 md:basis-1/3">
+            <CarouselItem key={video.id} className="sm:basis-1/2 md:basis-1/3 lg:basis-1/4">
               <div 
-                className="overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow cursor-pointer h-full"
+                className="overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow cursor-pointer h-full mx-2"
                 onClick={() => setSelectedVideo(video)}
               >
                 <div className="relative">
@@ -104,7 +104,7 @@ const VideoGallery = ({ videos }: VideoGalleryProps) => {
             </CarouselItem>
           ))}
         </CarouselContent>
-        <div className="flex justify-end gap-2 mt-4">
+        <div className="flex justify-center gap-4 mt-4">
           <CarouselPrevious className="relative inset-0 translate-y-0" />
           <CarouselNext className="relative inset-0 translate-y-0" />
         </div>
