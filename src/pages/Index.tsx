@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -33,13 +34,29 @@ const photos = [{
   src: `/lovable-uploads/3b453679-06d7-4e57-89b2-e348b049a975.png`,
   alt: "Quarto com camas em tons rosados"
 }, {
-  id: 8,
+  id: 5,
   src: `/lovable-uploads/4eedf5e9-d6cb-42cf-91ab-5a025f837f33.png`,
   alt: "Salão de festas com mesas douradas decoradas para evento"
 }, {
-  id: 9,
+  id: 6,
   src: `/lovable-uploads/4a1d4b9c-1ea8-418a-8a24-ab78a8f64d53.png`,
   alt: "Piscina com mãe e filha brincando com bola vermelha"
+}, {
+  id: 7,
+  src: `/lovable-uploads/209c83d3-a164-40bd-925d-004d8d6f1e34.png`,
+  alt: "Mulher com vestido azul em trilha natural de madeira"
+}, {
+  id: 8,
+  src: `/lovable-uploads/0941020c-d30d-4d2b-86c2-7d7872760f84.png`,
+  alt: "Área de evento com decoração de casamento ao ar livre"
+}, {
+  id: 9,
+  src: `/lovable-uploads/fd5cc62f-3ca6-4313-89c0-c69b361945ec.png`,
+  alt: "Vista externa da estrutura principal do Sítio com áreas verdes"
+}, {
+  id: 10,
+  src: `/lovable-uploads/ed7b837d-f057-49ef-b72a-c506dbb995d4.png`,
+  alt: "Cozinha exterior com panelas de barro e vista para a natureza"
 }];
 
 const videos = [{

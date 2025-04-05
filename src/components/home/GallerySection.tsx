@@ -1,6 +1,6 @@
 
 import React from 'react';
-import PhotoGallery from '@/components/PhotoGallery';
+import CarouselGallery from '@/components/CarouselGallery';
 import { Leaf } from 'lucide-react';
 
 const GallerySection = ({ photos, useIntersectionObserver }: { 
@@ -30,8 +30,8 @@ const GallerySection = ({ photos, useIntersectionObserver }: {
           </p>
         </div>
         
-        <div ref={ref}>
-          <PhotoGallery photos={photos} />
+        <div className="relative px-10" ref={ref}>
+          <CarouselGallery photos={photos} />
         </div>
       </div>
     </section>
