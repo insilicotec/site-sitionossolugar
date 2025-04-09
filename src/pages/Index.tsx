@@ -42,19 +42,19 @@ const photos = [{
   alt: "Piscina com mãe e filha brincando com bola vermelha"
 }, {
   id: 7,
-  src: `/lovable-uploads/209c83d3-a164-40bd-925d-004d8d6f1e34.png`,
+  src: "src/img/mulher-vestido-azul-trilha-ecologica.jpg",
   alt: "Mulher com vestido azul em trilha natural de madeira"
 }, {
   id: 8,
-  src: `/lovable-uploads/0941020c-d30d-4d2b-86c2-7d7872760f84.png`,
+  src: "src/img/mesas-ao-ar-livre.jpg",
   alt: "Área de evento com decoração de casamento ao ar livre"
 }, {
   id: 9,
-  src: `/lovable-uploads/fd5cc62f-3ca6-4313-89c0-c69b361945ec.png`,
+  src: "src/img/piscina-vista.jpg",
   alt: "Vista externa da estrutura principal do Sítio com áreas verdes"
 }, {
   id: 10,
-  src: `/lovable-uploads/ed7b837d-f057-49ef-b72a-c506dbb995d4.png`,
+  src: "src/img/panelas-fogao-barro.jpg",
   alt: "Cozinha exterior com panelas de barro e vista para a natureza"
 }];
 
