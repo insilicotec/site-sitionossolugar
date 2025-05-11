@@ -43,7 +43,7 @@ const HeroSection = () => {
             <Link to="/agendamento">
               <Button className="w-full sm:w-auto bg-amber-700 hover:bg-amber-800 text-white px-6">
                 <Calendar className="mr-2 h-4 w-4" />
-                Agendar Visita
+                Entre em contato com a gente
               </Button>
             </Link>
             
