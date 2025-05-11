@@ -85,7 +85,7 @@ Agradecemos seu interesse em realizar seu evento no Sitio Nosso Lugar!`;
         {/* Reservation Form Section */}
         <section className="py-12 bg-white">
           <div className="container px-4">
-            <div className="max-w-3xl mx-auto bg-white rounded-lg shadow-md p-6 md:p-8">
+            <div className="max-w-3xl mx-auto bg-gradient-to-br from-amber-50 to-amber-100 rounded-lg shadow-lg p-6 md:p-8 border border-amber-200 transition-all duration-300 hover:shadow-xl animate-fade-in">
               <h2 className="text-2xl font-bold text-sitio-green-dark mb-6">Formulário de Reserva</h2>
               <ReservationForm onSubmit={handleSubmit} />
             </div>
