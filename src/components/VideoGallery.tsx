@@ -54,7 +54,7 @@ const VideoGallery = ({ videos }: VideoGalleryProps) => {
     if (youtubeId) {
       // Substitui a URL da miniatura pela versão hqdefault (qualidade mais baixa, mas mais confiável)
       const thumbnailElement = document.getElementById(`thumb-${id}`) as HTMLImageElement;
-      if (thumbnailElement) {
+      if (thumbnailElement && thumbnailElement.src.includes('maxresdefault')) {
         thumbnailElement.src = `https://img.youtube.com/vi/${youtubeId}/hqdefault.jpg`;
       }
     }

@@ -84,6 +84,7 @@ const CarouselGallery = ({ photos }: CarouselGalleryProps) => {
                     className={`w-full h-full object-cover hover:scale-105 transition-transform duration-300 ${!loadedImages[photo.id] ? 'opacity-0' : 'opacity-100 transition-opacity duration-300'}`}
                     onClick={() => openPhotoViewer(photo)}
                     loading="lazy"
+                    decoding="async"
                     onLoad={() => handleImageLoad(photo.id)}
                     onError={() => handleImageLoad(photo.id)}
                   />

@@ -42,19 +42,19 @@ const photos = [{
   alt: "Piscina com mãe e filha brincando com bola vermelha"
 }, {
   id: 7,
-  src: "src/img/mulher-vestido-azul-trilha-ecologica.jpg",
+  src: "/src/img/mulher-vestido-azul-trilha-ecologica.jpg",
   alt: "Mulher com vestido azul em trilha natural de madeira"
 }, {
   id: 8,
-  src: "src/img/mesas-ao-ar-livre.jpg",
+  src: "/src/img/mesas-ao-ar-livre.jpg",
   alt: "Área de evento com decoração de casamento ao ar livre"
 }, {
   id: 9,
-  src: "src/img/piscina-vista.jpg",
+  src: "/src/img/piscina-vista.jpg",
   alt: "Vista externa da estrutura principal do Sítio com áreas verdes"
 }, {
   id: 10,
-  src: "src/img/panelas-fogao-barro.jpg",
+  src: "/src/img/panelas-fogao-barro.jpg",
   alt: "Cozinha exterior com panelas de barro e vista para a natureza"
 }];
 
@@ -88,12 +88,12 @@ const Index = () => {
   
   useEffect(() => {
     entries.forEach(entry => {
-      if (entry.isIntersecting) {
+      if (entry.isIntersecting && !activeEntries.includes(entry.target)) {
         setActiveEntries(prev => [...prev, entry.target]);
         entry.target.classList.add('animate-slide-up');
       }
     });
-  }, [entries]);
+  }, [entries, activeEntries]);
 
   return (
     <div className="min-h-screen flex flex-col relative overflow-hidden">
