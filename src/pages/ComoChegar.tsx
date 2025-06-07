@@ -65,11 +65,10 @@ const ComoChegar = () => {
                 <div className="grid grid-cols-1 xl:grid-cols-3 gap-8 items-start">
                 {/* Mapa */}
                 <div className="xl:col-span-2 relative">
-                  <GoogleMap />
-                  {/* Botão do Waze sobreposto no mapa */}
+                  <GoogleMap />                  {/* Botão do Waze sobreposto no mapa */}
                   <div className="absolute top-4 right-4 z-10">
                     <a 
-                      href="https://waze.com/ul?ll=-1.1414,-46.9619&navigate=yes" 
+                      href="https://waze.com/ul?ll=-1.138923,-46.9632637&navigate=yes" 
                       target="_blank" 
                       rel="noopener noreferrer"
                       className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-3 rounded-lg shadow-lg transition-all duration-300 hover:shadow-xl flex items-center gap-2 font-semibold"
@@ -96,9 +95,8 @@ const ComoChegar = () => {
                           Tracuateua - PA<br />
                           CEP 68647-000
                         </p>
-                        <div className="flex flex-col gap-2">
-                          <a 
-                            href="https://www.google.com/maps/place/Ramal+do+Piqui%C3%A1,+Tracuateua+-+PA,+68647-000/@-1.1414,-46.9619,17z/data=!4m6!3m5!1s0x92af183a59423115:0xeb1cb758244c3e1!8m2!3d-1.1310506!4d-46.9679359!16s%2Fg%2F11vpgvkpxf?hl=pt-BR&entry=ttu" 
+                        <div className="flex flex-col gap-2">                          <a 
+                            href="https://www.google.com/maps/place/Sitio+Nosso+Lugar/@-1.1395237,-46.9644975,17z/data=!4m6!3m5!1s0x92af19c9f0d36633:0x4df4b7afb66ebf9a!8m2!3d-1.138923!4d-46.9632637!16s%2Fg%2F11g8whxq5j?entry=ttu&g_ep=EgoyMDI1MDYwNC4wIKXMDSoASAFQAw%3D%3D" 
                             target="_blank" 
                             rel="noopener noreferrer"
                             className="text-sm bg-white/20 backdrop-blur-sm text-white px-4 py-2 rounded-lg hover:bg-white/30 transition-colors flex items-center gap-2 justify-center"
@@ -107,7 +105,7 @@ const ComoChegar = () => {
                             Google Maps
                           </a>
                           <a 
-                            href="https://waze.com/ul?ll=-1.1414,-46.9619&navigate=yes" 
+                            href="https://waze.com/ul?ll=-1.138923,-46.9632637&navigate=yes" 
                             target="_blank" 
                             rel="noopener noreferrer"
                             className="text-sm bg-white/20 backdrop-blur-sm text-white px-4 py-2 rounded-lg hover:bg-white/30 transition-colors flex items-center gap-2 justify-center"
