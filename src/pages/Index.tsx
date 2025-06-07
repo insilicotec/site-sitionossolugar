@@ -85,15 +85,19 @@ const Index = () => {
   const [ref, entries] = useIntersectionObserver({
     threshold: 0.1
   });
-  
-  useEffect(() => {
+    useEffect(() => {
     entries.forEach(entry => {
       if (entry.isIntersecting && !activeEntries.includes(entry.target)) {
-        setActiveEntries(prev => [...prev, entry.target]);
+        setActiveEntries(prev => {
+          if (!prev.includes(entry.target)) {
+            return [...prev, entry.target];
+          }
+          return prev;
+        });
         entry.target.classList.add('animate-slide-up');
       }
     });
-  }, [entries, activeEntries]);
+  }, [entries]);
 
   return (
     <div className="min-h-screen flex flex-col relative overflow-hidden">

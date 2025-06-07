@@ -36,12 +36,16 @@ const useIntersectionObserver = (options = {}): [(element: HTMLElement | null) =
       }
     };
   }, [elements]);
-  
-  const ref = useCallback((element: HTMLElement | null) => {
-    if (element && !elements.includes(element)) {
-      setElements(prev => [...prev, element]);
+    const ref = useCallback((element: HTMLElement | null) => {
+    if (element) {
+      setElements(prev => {
+        if (!prev.includes(element)) {
+          return [...prev, element];
+        }
+        return prev;
+      });
     }
-  }, [elements]);
+  }, []);
   
   return [ref, entries];
 };
