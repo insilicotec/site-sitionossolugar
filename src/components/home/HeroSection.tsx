@@ -1,5 +1,5 @@
 
-import { Leaf, Instagram, Calendar, Hotel } from 'lucide-react';
+import { Leaf, Instagram, Calendar, Hotel, Utensils } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 
@@ -35,14 +35,12 @@ const HeroSection = () => {
             Eventos e Hospedagem
             <span className="block text-amber-800">em Meio à Natureza</span>
           </h1>
-          
-          {/* Subtitle */}
+            {/* Subtitle */}
           <p className="max-w-3xl mx-auto mb-10 text-lg md:text-xl text-gray-700 leading-relaxed">
-            Um refúgio natural perfeito para seus momentos mais especiais, onde a natureza e o conforto se encontram para criar experiências inesquecíveis.
+            Um refúgio natural perfeito para <span className="text-amber-800 font-semibold">seus momentos mais especiais</span>, onde a natureza e o conforto se encontram para criar experiências inesquecíveis.
           </p>
-          
-          {/* Feature highlights */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-2xl mx-auto mb-10">
+            {/* Feature highlights */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 max-w-4xl mx-auto mb-10">
             <div className="bg-white/80 backdrop-blur-sm p-5 rounded-xl border border-amber-200/50 flex items-center space-x-4">
               <div className="bg-amber-100 p-2 rounded-lg">
                 <Calendar className="h-6 w-6 text-amber-700" />
@@ -54,6 +52,12 @@ const HeroSection = () => {
                 <Hotel className="h-6 w-6 text-amber-700" />
               </div>
               <span className="text-gray-800 font-medium">Hospedagem confortável</span>
+            </div>
+            <div className="bg-white/80 backdrop-blur-sm p-5 rounded-xl border border-amber-200/50 flex items-center space-x-4">
+              <div className="bg-amber-100 p-2 rounded-lg">
+                <Utensils className="h-6 w-6 text-amber-700" />
+              </div>
+              <span className="text-gray-800 font-medium">Restaurante completo</span>
             </div>
           </div>
           
