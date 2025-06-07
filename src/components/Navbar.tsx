@@ -47,23 +47,29 @@ const Navbar = () => {
     >
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between">
-          {/* Logo */}
-          <Link 
+          {/* Logo */}          <Link
             to="/" 
             onClick={(e) => {
               e.preventDefault();
               handleNavigation('/');
             }}
-            className="flex items-center gap-2 text-2xl font-display font-bold"
+            className="flex items-center gap-3 text-2xl font-display font-bold group transition-all duration-300 hover:scale-105"
           >
-            <img 
-              src="/lovable-uploads/c50697da-7566-40b0-92fa-8c29cca1201a.png" 
-              alt="Sítio Nosso Lugar Logo" 
-              className="h-12 w-12 object-contain"
-            />
-            <span className="text-gray-900">
-              Sítio Nosso Lugar
-            </span>
+            <div className="relative">
+              <img 
+                src="/lovable-uploads/c50697da-7566-40b0-92fa-8c29cca1201a.png" 
+                alt="Sítio Nosso Lugar Logo" 
+                className="h-12 w-12 object-contain group-hover:rotate-6 transition-transform duration-300"
+              />
+              <div className="absolute -inset-1 bg-gradient-to-r from-amber-400 to-amber-600 rounded-full opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
+            </div>            <div className="flex flex-col">
+              <span className="text-gray-900 leading-tight bg-gradient-to-r from-amber-900 via-amber-800 to-amber-700 bg-clip-text text-transparent">
+                Sítio Nosso Lugar
+              </span>
+              <span className="text-xs font-normal text-amber-800 leading-tight opacity-95">
+                Eventos & Hospedagem
+              </span>
+            </div>
           </Link>
 
           {/* Desktop Navigation */}
