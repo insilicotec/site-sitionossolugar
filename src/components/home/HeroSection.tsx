@@ -1,5 +1,4 @@
 
-import React from 'react';
 import { Leaf, Instagram, Calendar, Hotel } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
