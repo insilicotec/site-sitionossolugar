@@ -77,13 +77,15 @@ ${data.observacoes ? `📝 *OBSERVAÇÕES*\n${data.observacoes}\n\n` : ""}🙏 A
               Preencha o formulário abaixo com os detalhes do seu evento.
               Entraremos em contato para confirmar a disponibilidade e finalizar sua reserva.
             </p>
-          </div>        </section>
+          </div>
+        </section>
         
         {/* Reservation Form Section */}
-        <section className="pt-2 pb-12 bg-gradient-to-br from-gray-50 to-gray-100">
+        <section className="py-20 bg-gradient-to-br from-gray-50 to-gray-100">
           <div className="container px-4">
             <div className="max-w-5xl mx-auto">
-              <div className="text-center mb-4">
+              <div className="text-center mb-12">
+                <h2 className="text-4xl font-bold text-gray-900 mb-4">Reserve Seu Evento</h2>
                 <p className="text-lg text-gray-600 max-w-2xl mx-auto">
                   Siga os passos abaixo para fazer sua reserva de forma simples e rápida
                 </p>
