@@ -21,15 +21,6 @@ const Agendamento = () => {
       const formattedDate = data.dataEvento 
         ? format(data.dataEvento, "dd/MM/yyyy", { locale: ptBR }) 
         : "Data não selecionada";
-    
-      // Create services list
-      const services = [];
-      if (data.apenasLocal) services.push("Apenas o local");
-      if (data.incluiComida) services.push("Inclui comida");
-      if (data.buffet) services.push("Buffet completo");
-      if (data.dj) services.push("DJ");
-      if (data.decoracao) services.push("Decoração");
-      
       // Create WhatsApp message
       const message = `🌟 *NOVA RESERVA - SÍTIO NOSSO LUGAR* 🌿
 
@@ -42,7 +33,7 @@ const Agendamento = () => {
 • 🎊 Tipo: ${getEventTypeText(data.tipoEvento)}
 • 👥 Quantidade de Pessoas: ${data.quantidadePessoas}
 
-${services.length > 0 ? `🛠️ *SERVIÇOS SELECIONADOS*\n${services.map(service => `• ${service}`).join('\n')}\n\n` : ""}${data.observacoes ? `📝 *OBSERVAÇÕES*\n${data.observacoes}\n\n` : ""}🙏 Agradecemos seu interesse em realizar seu evento no Sítio Nosso Lugar!
+${data.observacoes ? `📝 *OBSERVAÇÕES*\n${data.observacoes}\n\n` : ""}🙏 Agradecemos seu interesse em realizar seu evento no Sítio Nosso Lugar!
 
 💚 Em breve entraremos em contato para confirmar os detalhes.`;
 

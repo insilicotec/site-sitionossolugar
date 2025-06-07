@@ -6,7 +6,6 @@ import { ReservationData, formSchema } from './reservation/types';
 import PersonalInfoFields from './reservation/PersonalInfoFields';
 import EventDetailsFields from './reservation/EventDetailsFields';
 import GuestCountField from './reservation/GuestCountField';
-import ServiceOptionsFields from './reservation/ServiceOptionsFields';
 import AdditionalNotesField from './reservation/AdditionalNotesField';
 import SubmitButton from './reservation/SubmitButton';
 import { useEffect } from "react";
@@ -18,18 +17,12 @@ interface ReservationFormProps {
 const ReservationForm = ({ onSubmit }: ReservationFormProps) => {
   // Initialize react-hook-form with zod resolver
   const form = useForm<ReservationData>({
-    resolver: zodResolver(formSchema),
-    defaultValues: {
+    resolver: zodResolver(formSchema),    defaultValues: {
       nome: '',
       cidade: '',
       dataEvento: undefined,
       tipoEvento: '',
       quantidadePessoas: undefined,
-      apenasLocal: false,
-      incluiComida: false,
-      buffet: false,
-      dj: false,
-      decoracao: false,
       observacoes: '',
     }
   });
@@ -53,11 +46,9 @@ const ReservationForm = ({ onSubmit }: ReservationFormProps) => {
       <form 
         onSubmit={form.handleSubmit(handleSubmit)} 
         className="space-y-6"
-      >
-        <PersonalInfoFields form={form} />
+      >        <PersonalInfoFields form={form} />
         <EventDetailsFields form={form} />
         <GuestCountField form={form} />
-        <ServiceOptionsFields form={form} />
         <AdditionalNotesField form={form} />
         <SubmitButton />
       </form>

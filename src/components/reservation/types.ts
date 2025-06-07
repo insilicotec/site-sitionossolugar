@@ -13,11 +13,6 @@ export const formSchema = z.object({
     z.number().min(1, { message: "Mínimo de 1 pessoa" }).max(200, { message: "Máximo de 200 pessoas" }),
     z.undefined()
   ]).refine((val) => val !== undefined, { message: "Número de pessoas é obrigatório" }),
-  apenasLocal: z.boolean().default(false),
-  incluiComida: z.boolean().default(false),
-  buffet: z.boolean().default(false),
-  dj: z.boolean().default(false),
-  decoracao: z.boolean().default(false),
   observacoes: z.string().optional(),
 });
 
