@@ -42,10 +42,9 @@ const StorySection = ({ useIntersectionObserver }: { useIntersectionObserver: (o
                 <div className="p-3 bg-green-500 rounded-xl flex-shrink-0">
                   <Leaf size={24} className="text-white" />
                 </div>
-                <div>
-                  <h3 className="text-xl font-semibold text-gray-900 mb-3">Conexão com a Natureza</h3>
+                <div>                <h3 className="text-xl font-semibold text-gray-900 mb-3">Conexão com a Natureza</h3>
                   <p className="text-gray-700 leading-relaxed text-lg">
-                    O Sítio Nosso Lugar nasceu do sonho de criar um refúgio onde as pessoas pudessem se reconectar com a natureza enquanto celebram momentos especiais.
+                    O Sítio Nosso Lugar nasceu do sonho de criar um refúgio onde as pessoas pudessem se reconectar com a natureza enquanto celebram momentos especiais. Com mais de 10 anos de experiência, construímos uma reputação sólida oferecendo momentos únicos em meio à natureza.
                   </p>
                 </div>
               </div>

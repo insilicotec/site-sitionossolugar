@@ -1,6 +1,6 @@
 
 import GoogleMap from '@/components/GoogleMap';
-import { MapPin, Navigation, Car, Clock } from 'lucide-react';
+import { MapPin, Navigation, Car, Clock, Route } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 
@@ -63,11 +63,22 @@ const MapSection = ({ useIntersectionObserver }: {
               <p className="text-gray-600 text-sm leading-relaxed">Coordenadas disponíveis</p>
             </div>
           </div>
-        </div>
-        
+        </div>        
         {/* Google Map */}
-        <div className="mb-10" ref={ref}>
+        <div className="mb-10 relative" ref={ref}>
           <GoogleMap />
+          {/* Botão do Waze sobreposto no mapa */}
+          <div className="absolute top-4 right-4 z-10">
+            <a 
+              href="https://waze.com/ul?ll=-1.138923,-46.9632637&navigate=yes" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-3 rounded-lg shadow-lg transition-all duration-300 hover:shadow-xl flex items-center gap-2 font-semibold"
+            >
+              <Route className="w-5 h-5" />
+              Abrir no Waze
+            </a>
+          </div>
         </div>
 
         {/* CTA Button */}

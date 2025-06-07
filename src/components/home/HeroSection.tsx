@@ -65,12 +65,11 @@ const HeroSection = () => {
                 Entre em contato conosco
               </Button>
             </Link>
-            
-            <a 
+              <a 
               href="https://www.instagram.com/sitionossolugar/" 
               target="_blank" 
               rel="noopener noreferrer" 
-              className="inline-flex items-center gap-3 px-8 py-3 text-lg font-medium text-white bg-gradient-to-r from-pink-500 to-purple-600 rounded-lg hover:from-pink-600 hover:to-purple-700 transition-colors"
+              className="inline-flex items-center gap-3 px-8 py-3 text-lg font-medium text-white bg-gradient-to-r from-amber-600 via-red-600 to-purple-600 rounded-lg hover:from-amber-700 hover:via-red-700 hover:to-purple-700 transition-colors"
             >
               <Instagram size={20} />
               <span>Instagram</span>
