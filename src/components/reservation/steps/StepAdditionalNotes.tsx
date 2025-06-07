@@ -1,56 +1,13 @@
 import { UseFormReturn } from 'react-hook-form';
 import { FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Textarea } from '@/components/ui/textarea';
-import { MessageSquare, Lightbulb, Clock, Utensils, Music, Camera } from 'lucide-react';
+import { MessageSquare } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { ReservationData } from '../types';
 
 interface StepAdditionalNotesProps {
   form: UseFormReturn<ReservationData>;
 }
-
-const suggestionCategories = [
-  {
-    title: 'Decoração & Ambiente',
-    icon: Lightbulb,
-    suggestions: [
-      'Decoração temática específica',
-      'Cores preferenciais',
-      'Arranjos florais especiais',
-      'Iluminação personalizada'
-    ]
-  },
-  {
-    title: 'Horários & Cronograma',
-    icon: Clock,
-    suggestions: [
-      'Horário de início da festa',
-      'Duração prevista do evento',
-      'Momentos especiais (cerimônia, corte do bolo)',
-      'Preferências de música'
-    ]
-  },
-  {
-    title: 'Alimentação & Bebidas',
-    icon: Utensils,
-    suggestions: [
-      'Restrições alimentares dos convidados',
-      'Preferências do cardápio',
-      'Bebidas especiais',
-      'Horário das refeições'
-    ]
-  },
-  {
-    title: 'Entretenimento & Registro',
-    icon: Music,
-    suggestions: [
-      'Tipo de música preferida',
-      'Necessidades de som e microfone',
-      'Espaço para dança',
-      'Fotografia e filmagem'
-    ]
-  }
-];
 
 const quickSuggestions = [
   'Decoração',
@@ -108,9 +65,7 @@ const StepAdditionalNotes = ({ form }: StepAdditionalNotesProps) => {
               </p>
             </FormItem>
           )}
-        />
-
-        {/* Quick Suggestions */}
+        />        {/* Quick Suggestions */}
         <div className="space-y-4">
           <h4 className="text-sm font-medium text-gray-700">Sugestões rápidas:</h4>
           <div className="flex flex-wrap gap-2">
@@ -124,48 +79,6 @@ const StepAdditionalNotes = ({ form }: StepAdditionalNotesProps) => {
                 {suggestion}
               </Badge>
             ))}
-          </div>
-        </div>
-
-        {/* Suggestion Categories */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {suggestionCategories.map((category, index) => {
-            const IconComponent = category.icon;
-            return (
-              <div key={index} className="bg-gray-50 rounded-lg p-4 border border-gray-200">
-                <div className="flex items-center gap-2 mb-3">
-                  <IconComponent className="w-5 h-5 text-amber-600" />
-                  <h5 className="text-sm font-medium text-gray-800">{category.title}</h5>
-                </div>
-                <div className="space-y-1">
-                  {category.suggestions.map((suggestion, suggestionIndex) => (
-                    <button
-                      key={suggestionIndex}
-                      type="button"
-                      onClick={() => addSuggestion(suggestion)}
-                      className="block text-xs text-gray-600 hover:text-amber-600 transition-colors text-left"
-                    >
-                      • {suggestion}
-                    </button>
-                  ))}
-                </div>
-              </div>
-            );
-          })}
-        </div>
-      </div>
-
-      <div className="bg-green-50 rounded-xl p-4 border border-green-200">
-        <div className="flex items-start gap-3">
-          <Camera className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
-          <div>
-            <p className="text-sm text-green-800 font-medium mb-1">
-              Dica especial
-            </p>
-            <p className="text-sm text-green-700">
-              Quanto mais detalhes você nos fornecer, melhor poderemos preparar seu evento. 
-              Nossa equipe entrará em contato para alinhar todos os detalhes e garantir que tudo saia perfeito!
-            </p>
           </div>
         </div>
       </div>

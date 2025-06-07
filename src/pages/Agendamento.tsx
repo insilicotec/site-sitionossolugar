@@ -76,8 +76,7 @@ ${data.observacoes ? `📝 *OBSERVAÇÕES*\n${data.observacoes}\n\n` : ""}🙏 A
             <p className="text-lg max-w-3xl mx-auto text-black">
               Preencha o formulário abaixo com os detalhes do seu evento.
               Entraremos em contato para confirmar a disponibilidade e finalizar sua reserva.
-            </p>
-          </div>        </section>
+            </p>          </div>        </section>
         
         {/* Reservation Form Section */}
         <section className="pt-2 pb-12 bg-gradient-to-br from-gray-50 to-gray-100">

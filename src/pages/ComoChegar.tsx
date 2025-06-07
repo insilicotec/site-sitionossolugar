@@ -1,6 +1,14 @@
-import React from 'react';
 import { Card, CardContent } from '@/components/ui/card';
-import { MapPin, Navigation, Video } from 'lucide-react';
+import { 
+  MapPin, 
+  Navigation, 
+  Clock, 
+  Phone, 
+  Info,
+  Route,
+  ParkingCircle,
+  AlertTriangle
+} from 'lucide-react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import WhatsappButton from '@/components/WhatsappButton';
@@ -10,94 +18,130 @@ const ComoChegar = () => {
   return (
     <div className="min-h-screen flex flex-col bg-gradient-to-b from-white to-sitio-sand/20">
       <Navbar />
-      
-      <main className="flex-grow">
+        <main className="flex-grow">
         {/* Hero Section */}
-        <section className="relative py-20 overflow-hidden">
-          <div className="absolute inset-0 bg-sitio-green-dark opacity-80 z-0"></div>
+        <section className="relative py-16 md:py-20 overflow-hidden">
+          <div className="absolute inset-0 bg-sitio-green-dark opacity-90 z-0"></div>
           <div 
             className="absolute inset-0 z-0 opacity-30" 
             style={{
               backgroundImage: 'url("/images/hero-bg.jpg")',
               backgroundSize: 'cover',
               backgroundPosition: 'center',
-              filter: 'blur(3px)'
+              filter: 'blur(2px)'
             }}
           ></div>
           <div className="container px-4 text-center relative z-10">
-            <h1 className="text-4xl md:text-5xl font-bold mb-6 text-black animate-slide-up">Como Chegar</h1>
-            <p className="text-xl max-w-3xl mx-auto text-black animate-slide-up" style={{animationDelay: '0.2s'}}>
-              Encontre o caminho para o Sítio Nosso Lugar e aproveite momentos inesquecíveis na natureza.
-            </p>
+            <div className="max-w-4xl mx-auto">
+              <h1 className="text-3xl md:text-5xl font-bold mb-4 text-white animate-slide-up">
+                Como Chegar ao Sítio
+              </h1>
+              <p className="text-lg md:text-xl max-w-3xl mx-auto text-white/90 animate-slide-up mb-6" style={{animationDelay: '0.2s'}}>
+                Encontre o caminho mais fácil para chegar até nós e desfrute de momentos únicos na natureza
+              </p>
+              <div className="flex flex-wrap justify-center gap-4 animate-slide-up" style={{animationDelay: '0.4s'}}>
+                <div className="bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full text-white text-sm flex items-center gap-2">
+                  <Clock className="w-4 h-4" />
+                  <span>30-40 min de Belém</span>
+                </div>
+                <div className="bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full text-white text-sm flex items-center gap-2">
+                  <ParkingCircle className="w-4 h-4" />
+                  <span>Estacionamento gratuito</span>
+                </div>
+              </div>
+            </div>
           </div>
-        </section>
-        
-        {/* Mapa Section */}
-        <section className="py-16 bg-white">
+        </section>        
+        {/* Mapa e Informações Principais */}
+        <section className="py-12 md:py-16 bg-white">
           <div className="container px-4">
-            <div className="max-w-5xl mx-auto">
-              <div className="text-center mb-10">
-                <h2 className="text-3xl font-bold text-gradient mb-4">Nossa Localização</h2>
-                <p className="text-lg text-gray-600 mb-6">Sítio Nosso Lugar está localizado em um local privilegiado, com fácil acesso e cercado pela natureza.</p>
+            <div className="max-w-6xl mx-auto">              <div className="text-center mb-10">
+                <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">Nossa Localização</h2>
+                <p className="text-lg text-gray-600 mb-6">
+                  Localizado em Vila Fátima, oferecemos fácil acesso e amplo estacionamento
+                </p>
                 <div className="h-1 w-20 bg-sitio-green-dark mx-auto"></div>
               </div>
-              
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
-                <GoogleMap />
+                <div className="grid grid-cols-1 xl:grid-cols-3 gap-8 items-start">
+                {/* Mapa */}
+                <div className="xl:col-span-2 relative">
+                  <GoogleMap />
+                  {/* Botão do Waze sobreposto no mapa */}
+                  <div className="absolute top-4 right-4 z-10">
+                    <a 
+                      href="https://waze.com/ul?ll=-1.1414,-46.9619&navigate=yes" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-3 rounded-lg shadow-lg transition-all duration-300 hover:shadow-xl flex items-center gap-2 font-semibold"
+                    >
+                      <Route className="w-5 h-5" />
+                      Abrir no Waze
+                    </a>
+                  </div>
+                </div>
                 
+                {/* Informações de Contato e Endereço */}
                 <div className="space-y-6">
-                  <Card className="shadow-lg overflow-hidden border-none bg-gradient-to-br from-white to-sitio-green-light/10 animate-pulse-soft">
+                  <Card className="shadow-lg border-0 bg-gradient-to-br from-sitio-green-dark to-sitio-green-dark/90 text-white">
                     <CardContent className="p-6">
                       <div className="flex items-center mb-4">
-                        <div className="p-3 bg-sitio-green-dark rounded-full mr-4">
-                          <Navigation className="h-5 w-5 text-white" />
+                        <div className="p-3 bg-white/20 rounded-full mr-4">
+                          <MapPin className="h-5 w-5 text-white" />
                         </div>
-                        <h3 className="text-xl font-semibold text-sitio-earth">Endereço</h3>
+                        <h3 className="text-xl font-semibold">Endereço</h3>
                       </div>
-                      <div className="pl-12">
-                        <p className="text-gray-700 mb-2">
-                          Ramal do Piquiá
+                      <div className="space-y-3">
+                        <p className="text-white/90">
+                          Ramal do Piquiá<br />
+                          Tracuateua - PA<br />
+                          CEP 68647-000
                         </p>
-                        <p className="text-gray-700 mb-4">
-                          Tracuateua - PA, CEP 68647-000
-                        </p>
-                        <div className="flex gap-3">
+                        <div className="flex flex-col gap-2">
                           <a 
                             href="https://www.google.com/maps/place/Ramal+do+Piqui%C3%A1,+Tracuateua+-+PA,+68647-000/@-1.1414,-46.9619,17z/data=!4m6!3m5!1s0x92af183a59423115:0xeb1cb758244c3e1!8m2!3d-1.1310506!4d-46.9679359!16s%2Fg%2F11vpgvkpxf?hl=pt-BR&entry=ttu" 
                             target="_blank" 
                             rel="noopener noreferrer"
-                            className="text-sm bg-sitio-green-dark text-white px-3 py-1 rounded-full hover:bg-sitio-earth transition-colors"
+                            className="text-sm bg-white/20 backdrop-blur-sm text-white px-4 py-2 rounded-lg hover:bg-white/30 transition-colors flex items-center gap-2 justify-center"
                           >
-                            Abrir no Google Maps
+                            <Navigation className="w-4 h-4" />
+                            Google Maps
                           </a>
                           <a 
                             href="https://waze.com/ul?ll=-1.1414,-46.9619&navigate=yes" 
                             target="_blank" 
                             rel="noopener noreferrer"
-                            className="text-sm bg-sitio-accent text-white px-3 py-1 rounded-full hover:bg-sitio-accent/80 transition-colors"
+                            className="text-sm bg-white/20 backdrop-blur-sm text-white px-4 py-2 rounded-lg hover:bg-white/30 transition-colors flex items-center gap-2 justify-center"
                           >
-                            Abrir no Waze
+                            <Route className="w-4 h-4" />
+                            Waze
                           </a>
                         </div>
                       </div>
                     </CardContent>
                   </Card>
                   
-                  <Card className="shadow-lg overflow-hidden border-none bg-gradient-to-br from-white to-sitio-sand/30 animate-pulse-soft" style={{animationDelay: '1s'}}>
+                  <Card className="shadow-lg border-0">
                     <CardContent className="p-6">
                       <div className="flex items-center mb-4">
                         <div className="p-3 bg-sitio-green-dark rounded-full mr-4">
-                          <MapPin className="h-5 w-5 text-white" />
+                          <Phone className="h-5 w-5 text-white" />
                         </div>
-                        <h3 className="text-xl font-semibold text-sitio-earth">Como Chegar</h3>
+                        <h3 className="text-xl font-semibold text-gray-900">Contato</h3>
                       </div>
-                      <div className="pl-12">
-                        <ul className="list-disc pl-5 space-y-2 text-gray-700">
-                          <li>Acesse o Ramal do Piquiá em Tracuateua</li>
-                          <li>Siga as placas para "Sítio Nosso Lugar"</li>
-                          <li>A entrada principal está sinalizada</li>
-                          <li>Em caso de dúvidas, utilize o botão de WhatsApp para orientações</li>
-                        </ul>
+                      <div className="space-y-3">
+                        <p className="text-gray-600">
+                          Dúvidas sobre como chegar?<br />
+                          Entre em contato conosco!
+                        </p>
+                        <a 
+                          href="https://wa.me/559184731385"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-sm bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-colors flex items-center gap-2 justify-center"
+                        >
+                          <Phone className="w-4 h-4" />
+                          WhatsApp: (91) 8473-1385
+                        </a>
                       </div>
                     </CardContent>
                   </Card>
@@ -105,39 +149,74 @@ const ComoChegar = () => {
               </div>
             </div>
           </div>
-        </section>
-        
-        {/* Vídeo Section */}
-        <section className="py-16 bg-sitio-sand/20">
+        </section>        {/* Informações Importantes */}
+        <section className="py-12 md:py-16 bg-white">
           <div className="container px-4">
             <div className="max-w-4xl mx-auto">
-              <div className="text-center mb-10">
-                <h2 className="text-3xl font-bold text-gradient mb-4">Veja Como Chegar</h2>
-                <p className="text-lg text-gray-600 mb-6">
-                  Assista ao vídeo para facilitar sua chegada ao Sítio Nosso Lugar.
+              <div className="text-center mb-12">
+                <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">Informações Importantes</h2>
+                <p className="text-lg text-gray-600">
+                  Tudo que você precisa saber antes de viajar
                 </p>
-                <div className="h-1 w-20 bg-sitio-green-dark mx-auto"></div>
               </div>
-              
-              <Card className="shadow-xl overflow-hidden border-none bg-gradient-to-br from-white to-sitio-green-light/10 animate-float" style={{animationDelay: '0.5s'}}>
-                <CardContent className="p-0">
-                  <div className="relative pt-[56.25%]">
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <Video size={48} className="text-sitio-green-dark" />
-                      <p className="mt-4 text-center text-gray-600">
-                        Vídeo demonstrativo - Em breve disponível
+
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <Card className="shadow-lg border-0 text-center">
+                  <CardContent className="p-6">
+                    <div className="w-16 h-16 bg-amber-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                      <Clock className="w-8 h-8 text-amber-600" />
+                    </div>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-2">Horário de Funcionamento</h3>
+                    <p className="text-gray-600 text-sm">
+                      Todos os dias<br />
+                      08:00 às 18:00
+                    </p>
+                  </CardContent>
+                </Card>
+
+                <Card className="shadow-lg border-0 text-center">
+                  <CardContent className="p-6">
+                    <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                      <ParkingCircle className="w-8 h-8 text-green-600" />
+                    </div>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-2">Estacionamento</h3>
+                    <p className="text-gray-600 text-sm">
+                      Gratuito e amplo<br />
+                      Para carros e ônibus
+                    </p>
+                  </CardContent>
+                </Card>
+
+                <Card className="shadow-lg border-0 text-center">
+                  <CardContent className="p-6">
+                    <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                      <Info className="w-8 h-8 text-blue-600" />
+                    </div>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-2">Dica Importante</h3>
+                    <p className="text-gray-600 text-sm">
+                      GPS pode não funcionar<br />
+                      perfeitamente no ramal
+                    </p>
+                  </CardContent>
+                </Card>
+              </div>
+
+              {/* Aviso sobre condições da estrada */}
+              <Card className="mt-8 shadow-lg border-l-4 border-l-amber-500 bg-amber-50">
+                <CardContent className="p-6">
+                  <div className="flex items-start gap-4">
+                    <AlertTriangle className="w-6 h-6 text-amber-600 flex-shrink-0 mt-1" />
+                    <div>
+                      <h3 className="text-lg font-semibold text-amber-800 mb-2">Condições da Estrada</h3>
+                      <p className="text-amber-700 mb-3">
+                        O acesso ao sítio é feito por estrada de terra. Recomendamos dirigir com cuidado, 
+                        especialmente em dias de chuva.
+                      </p>
+                      <p className="text-amber-700 text-sm">
+                        💡 <strong>Dica:</strong> Em caso de dúvidas sobre as condições da estrada ou 
+                        dificuldades para encontrar o local, entre em contato conosco pelo WhatsApp.
                       </p>
                     </div>
-                    {/* Uma vez que o vídeo estiver disponível, descomente este código:
-                    <iframe 
-                      src="https://www.youtube.com/embed/VIDEO_ID" 
-                      className="absolute inset-0 w-full h-full"
-                      title="Como chegar ao Sítio Nosso Lugar"
-                      frameBorder="0"
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                      allowFullScreen
-                    ></iframe>
-                    */}
                   </div>
                 </CardContent>
               </Card>
@@ -145,15 +224,8 @@ const ComoChegar = () => {
           </div>
         </section>
       </main>
-      
-      <Footer />
-      <WhatsappButton phone="559184731385" message="🗺️ *AJUDA PARA CHEGAR* 🚗
-
-Olá! Preciso de ajuda para chegar ao Sítio Nosso Lugar.
-
-📍 Poderiam me enviar as coordenadas ou indicações mais detalhadas de como chegar?
-
-🙏 Obrigado!" />
+        <Footer />
+      <WhatsappButton />
     </div>
   );
 };
