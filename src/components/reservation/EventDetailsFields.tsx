@@ -51,7 +51,12 @@ const EventDetailsFields = ({ form }: EventDetailsFieldsProps) => {
                   mode="single"
                   selected={field.value}
                   onSelect={field.onChange}
-                  disabled={(date) => date < new Date()}
+                  disabled={(date) => {
+                    const today = new Date();
+                    const maxDate = new Date();
+                    maxDate.setFullYear(today.getFullYear() + 2);
+                    return date < today || date > maxDate;
+                  }}
                   locale={ptBR}
                   initialFocus
                 />

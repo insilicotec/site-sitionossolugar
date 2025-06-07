@@ -32,6 +32,7 @@ Cidade: ${data.cidade}
 DETALHES DO EVENTO
 Data: ${formattedDate}
 Tipo: ${getEventTypeText(data.tipoEvento)}
+Quantidade de Pessoas: ${data.quantidadePessoas}
 
 ${data.observacoes ? `OBSERVACOES\n${data.observacoes}` : ""}
 

@@ -33,6 +33,16 @@ const ServiceOptionsFields = ({ form }: ServiceOptionsFieldsProps) => {
                       : "bg-white hover:bg-nature-50/50 border-gray-200 hover:border-nature-300"}
                   `}
                   onClick={() => field.onChange(!field.value)}
+                  role="checkbox"
+                  aria-checked={field.value}
+                  aria-label="Apenas o local"
+                  tabIndex={0}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                      e.preventDefault();
+                      field.onChange(!field.value);
+                    }
+                  }}
                 >
                   <FormLabel className="cursor-pointer text-center font-medium text-gray-700 group-hover:text-nature-600">
                     Apenas o local
