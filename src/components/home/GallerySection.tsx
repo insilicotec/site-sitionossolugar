@@ -1,36 +1,26 @@
 
-import React from 'react';
 import CarouselGallery from '@/components/CarouselGallery';
-import { Leaf } from 'lucide-react';
 
 const GallerySection = ({ photos, useIntersectionObserver }: { 
   photos: Array<{ id: number; src: string; alt: string; }>;
   useIntersectionObserver: (options?: any) => [(element: HTMLElement | null) => void, IntersectionObserverEntry[]];
 }) => {
   const [ref, entries] = useIntersectionObserver({ threshold: 0.1 });
-
   return (
-    <section className="py-20 bg-amber-50 relative">
-      <div className="leaf-pattern absolute inset-0 opacity-20"></div>
-      <div className="absolute top-20 right-20 text-amber-700/10">
-        <Leaf size={180} />
-      </div>
-      <div className="absolute bottom-20 left-20 text-amber-700/10">
-        <Leaf size={140} className="rotate-45" />
-      </div>
-      
-      <div className="container px-4 mx-auto">
-        <div className="text-center mb-12" ref={ref}>
-          <h2 className="text-3xl md:text-5xl font-bold text-amber-900 mb-6 decorated">
+    <section className="py-20 md:py-28 bg-gradient-to-br from-white via-gray-50/30 to-amber-50/20 relative">
+      <div className="container px-6 mx-auto">
+        {/* Header */}
+        <div className="text-center mb-20" ref={ref}>
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-amber-900 mb-6 leading-tight">
             Galeria de Momentos
           </h2>
-          <p className="text-lg text-gray-700 max-w-3xl mx-auto">
-            Capture a essência do Sítio Nosso Lugar através das imagens que registram eventos especiais, 
-            casamentos inesquecíveis e momentos de lazer em nossa natureza exuberante.
-          </p>
-        </div>
+          <div className="w-24 h-1 bg-amber-600 mx-auto mb-8 rounded-full"></div>
+          <p className="text-xl md:text-2xl text-gray-700 max-w-4xl mx-auto leading-relaxed font-light">
+            Reviva os momentos especiais capturados em nossos espaços, onde cada imagem conta uma história de alegria e celebração.
+          </p>        </div>
         
-        <div className="relative px-10" ref={ref}>
+        {/* Carousel Gallery */}
+        <div className="relative" ref={ref}>
           <CarouselGallery photos={photos} />
         </div>
       </div>
