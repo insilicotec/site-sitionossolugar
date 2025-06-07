@@ -9,6 +9,7 @@ import { toast } from 'sonner';
 
 const Agendamento = () => {
   const [whatsappMessage, setWhatsappMessage] = useState('🌿 *SÍTIO NOSSO LUGAR* 🌟\n\nOlá! Gostaria de fazer uma reserva para um evento especial.\n\n💚 Aguardo contato!');
+  const [currentStep, setCurrentStep] = useState(1);
 
   const handleSubmit = (data: ReservationData) => {
     try {
@@ -67,27 +68,32 @@ ${data.observacoes ? `📝 *OBSERVAÇÕES*\n${data.observacoes}\n\n` : ""}🙏 A
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar />
-      
-      <main className="flex-grow pt-24">
-        {/* Hero Section */}
-        <section className="bg-sitio-green-dark text-white py-12">
-          <div className="container px-4 text-center">
-            <h1 className="text-3xl md:text-4xl font-bold mb-4">Agende Seu Evento</h1>
-            <p className="text-lg max-w-3xl mx-auto text-black">
-              Preencha o formulário abaixo com os detalhes do seu evento.
-              Entraremos em contato para confirmar a disponibilidade e finalizar sua reserva.
-            </p>          </div>        </section>
+        <main className="flex-grow pt-24">
+        {/* Hero Section - Only show on first step */}
+        {currentStep === 1 && (
+          <section className="bg-sitio-green-dark text-white py-12">
+            <div className="container px-4 text-center">
+              <h1 className="text-3xl md:text-4xl font-bold mb-4">Agende Seu Evento</h1>
+              <p className="text-lg max-w-3xl mx-auto text-black">
+                Preencha o formulário abaixo com os detalhes do seu evento.
+                Entraremos em contato para confirmar a disponibilidade e finalizar sua reserva.
+              </p>
+            </div>
+          </section>
+        )}
         
         {/* Reservation Form Section */}
-        <section className="pt-2 pb-12 bg-gradient-to-br from-gray-50 to-gray-100">
+        <section className={`pb-12 bg-gradient-to-br from-gray-50 to-gray-100 ${currentStep === 1 ? 'pt-2' : 'pt-8'}`}>
           <div className="container px-4">
             <div className="max-w-5xl mx-auto">
-              <div className="text-center mb-4">
-                <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-                  Siga os passos abaixo para fazer sua reserva de forma simples e rápida
-                </p>
-              </div>
-              <StepperForm onSubmit={handleSubmit} />
+              {currentStep === 1 && (
+                <div className="text-center mb-4">
+                  <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+                    Siga os passos abaixo para fazer sua reserva de forma simples e rápida
+                  </p>
+                </div>
+              )}
+              <StepperForm onSubmit={handleSubmit} onStepChange={setCurrentStep} />
             </div>
           </div>
         </section>

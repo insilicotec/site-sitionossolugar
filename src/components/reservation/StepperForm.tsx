@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Form } from '@/components/ui/form';
@@ -12,6 +12,7 @@ import StepAdditionalNotes from './steps/StepAdditionalNotes.tsx';
 
 interface StepperFormProps {
   onSubmit: (data: ReservationData) => void;
+  onStepChange?: (step: number) => void;
 }
 
 const STEPS = [
@@ -21,8 +22,9 @@ const STEPS = [
   { id: 4, title: 'Observações', description: 'Informações adicionais' },
 ];
 
-const StepperForm = ({ onSubmit }: StepperFormProps) => {
+const StepperForm = ({ onSubmit, onStepChange }: StepperFormProps) => {
   const [currentStep, setCurrentStep] = useState(1);
+  const formRef = useRef<HTMLDivElement>(null);
   
   const form = useForm<ReservationData>({
     resolver: zodResolver(formSchema),
@@ -53,11 +55,31 @@ const StepperForm = ({ onSubmit }: StepperFormProps) => {
       default:
         return true;
     }
-  };
-  const nextStep = async () => {
+  };  const nextStep = async () => {
     const isValid = await validateStep(currentStep);
     if (isValid && currentStep < STEPS.length) {
-      setCurrentStep(currentStep + 1);
+      const newStep = currentStep + 1;
+      setCurrentStep(newStep);
+      onStepChange?.(newStep);
+      
+      // Gentle scroll to keep form in view when hero section disappears
+      if (currentStep === 1) {
+        setTimeout(() => {
+          if (formRef.current) {
+            const navbarHeight = 80;
+            const currentScrollY = window.scrollY;
+            const formTop = formRef.current.offsetTop - navbarHeight;
+            
+            // Only scroll if the form would be out of view or too close to top
+            if (currentScrollY > formTop - 50 || currentScrollY < formTop - 200) {
+              window.scrollTo({
+                top: Math.max(0, formTop - 50), // Add small buffer from navbar
+                behavior: 'smooth'
+              });
+            }
+          }
+        }, 200); // Slightly longer delay to allow hero section to hide first
+      }
     }
   };
 
@@ -71,7 +93,9 @@ const StepperForm = ({ onSubmit }: StepperFormProps) => {
 
   const prevStep = () => {
     if (currentStep > 1) {
-      setCurrentStep(currentStep - 1);
+      const newStep = currentStep - 1;
+      setCurrentStep(newStep);
+      onStepChange?.(newStep);
     }
   };
 
@@ -106,9 +130,8 @@ const StepperForm = ({ onSubmit }: StepperFormProps) => {
       default:
         return false;
     }  };
-
   return (
-    <div className="w-full max-w-4xl mx-auto">
+    <div ref={formRef} className="w-full max-w-4xl mx-auto">
       {/* Form Content */}
       <Form {...form}>
         <form onSubmit={form.handleSubmit(handleSubmit)} className="space-y-6">
