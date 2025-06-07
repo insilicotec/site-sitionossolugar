@@ -1,16 +1,125 @@
 
 import { Calendar, Heart, Utensils, Users, Palmtree, Waves, Mountain, Coffee, Hotel, Trophy, Gamepad } from 'lucide-react';
+import { useState } from 'react';
 import Cake from './Cake';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 
+type TabType = 'eventos' | 'hospedagem' | 'lazer';
+
 const ExperienceSection = ({ useIntersectionObserver }: { useIntersectionObserver: (options?: any) => [(element: HTMLElement | null) => void, IntersectionObserverEntry[]] }) => {
   const [ref, entries] = useIntersectionObserver({ threshold: 0.1 });
+  const [activeTab, setActiveTab] = useState<TabType>('eventos');
+
+  const tabs = [
+    { id: 'eventos' as TabType, label: 'Eventos Especiais', emoji: '🎉' },
+    { id: 'hospedagem' as TabType, label: 'Hospedagem & Alimentação', emoji: '🏨' },
+    { id: 'lazer' as TabType, label: 'Lazer & Natureza', emoji: '🌿' }
+  ];
+
+  const experienceData = {
+    eventos: {
+      title: "Eventos Especiais",
+      subtitle: "Momentos únicos merecem cenários únicos",
+      emoji: "🎉",
+      cards: [
+        {
+          icon: <Heart size={32} />,
+          title: "Casamentos",
+          description: "O cenário perfeito para celebrar o amor em meio à natureza.",
+          color: "rose"
+        },
+        {
+          icon: <Cake size={32} />,
+          title: "Aniversários",
+          description: "Celebre seu dia especial em um ambiente natural e acolhedor.",
+          color: "purple"
+        },
+        {
+          icon: <Users size={32} />,
+          title: "Espaço para Eventos",
+          description: "Amplo salão de festas com capacidade para diversos convidados.",
+          color: "blue"
+        },
+        {
+          icon: <Utensils size={32} />,
+          title: "Buffet Completo",
+          description: "Deliciosa culinária local preparada com ingredientes frescos.",
+          color: "amber"
+        }
+      ]
+    },
+    hospedagem: {
+      title: "Hospedagem & Alimentação",
+      subtitle: "Conforto e sabor em perfeita harmonia",
+      emoji: "🏨",
+      cards: [
+        {
+          icon: <Hotel size={32} />,
+          title: "17 Suítes",
+          description: "Acomodações confortáveis para hospedagem completa.",
+          color: "indigo"
+        },
+        {
+          icon: <Coffee size={32} />,
+          title: "Café da Manhã",
+          description: "Delicioso café da manhã com opções variadas.",
+          color: "orange"
+        },
+        {
+          icon: <Coffee size={32} />,
+          title: "Café da Tarde",
+          description: "Momento especial com lanches e bebidas da tarde.",
+          color: "yellow"
+        }
+      ]
+    },
+    lazer: {
+      title: "Lazer & Natureza",
+      subtitle: "Diversão e relaxamento em meio à natureza",
+      emoji: "🌿",
+      cards: [
+        {
+          icon: <Waves size={32} />,
+          title: "Piscina",
+          description: "Área de piscina para refrescantes momentos de lazer.",
+          color: "cyan"
+        },
+        {
+          icon: <Palmtree size={32} />,
+          title: "Área de Lazer",
+          description: "Espaços recreativos para diversão de todas as idades.",
+          color: "green"
+        },
+        {
+          icon: <Trophy size={32} />,
+          title: "Área de Esportes",
+          description: "Espaços para prática de esportes e atividades físicas.",
+          color: "emerald"
+        },
+        {
+          icon: <Gamepad size={32} />,
+          title: "Área de Jogos",
+          description: "Diversão garantida com jogos de mesa e entretenimento.",
+          color: "violet"
+        },
+        {
+          icon: <Mountain size={32} />,
+          title: "Trilha Natural",
+          description: "Explore a natureza em nossas trilhas seguras e bem sinalizadas.",
+          color: "teal"
+        }
+      ]
+    }
+  };
+
+  const currentExperience = experienceData[activeTab];
+
   return (
     <section className="py-20 md:py-28 bg-gradient-to-br from-gray-50 to-gray-100/50 relative">
       <div className="container px-6 mx-auto">
         {/* Header */}
-        <div className="text-center mb-20" ref={ref}>          
+        <div className="text-center mb-16" ref={ref}>          
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-amber-900 mb-6 leading-tight">
             Experiências Únicas
           </h2>
@@ -19,121 +128,50 @@ const ExperienceSection = ({ useIntersectionObserver }: { useIntersectionObserve
             Criamos experiências memoráveis para todos os momentos especiais da sua vida, com atendimento personalizado e serviços de qualidade.
           </p>
         </div>
-        
-        {/* Seção Principal - Eventos */}
-        <div className="mb-20">
-          <div className="text-center mb-12">
-            <span className="text-3xl mb-4 block">🎉</span>
-            <h3 className="text-3xl md:text-4xl font-bold text-amber-800 mb-4">Eventos Especiais</h3>
-            <p className="text-gray-600 max-w-2xl mx-auto">Momentos únicos merecem cenários únicos</p>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <ExperienceCard 
-              icon={<Heart size={32} />} 
-              title="Casamentos" 
-              description="O cenário perfeito para celebrar o amor em meio à natureza."
-              color="rose"
-              refProp={ref} 
-            />
-            <ExperienceCard 
-              icon={<Cake size={32} />} 
-              title="Aniversários" 
-              description="Celebre seu dia especial em um ambiente natural e acolhedor."
-              color="purple"
-              refProp={ref} 
-            />
-            <ExperienceCard 
-              icon={<Users size={32} />} 
-              title="Espaço para Eventos" 
-              description="Amplo salão de festas com capacidade para diversos convidados."
-              color="blue"
-              refProp={ref} 
-            />
-            <ExperienceCard 
-              icon={<Utensils size={32} />} 
-              title="Buffet Completo" 
-              description="Deliciosa culinária local preparada com ingredientes frescos."
-              color="amber"
-              refProp={ref} 
-            />
-          </div>
+
+        {/* Tabs Navigation */}
+        <div className="flex flex-wrap justify-center gap-4 mb-12">
+          {tabs.map((tab) => (
+            <button
+              key={tab.id}
+              onClick={() => setActiveTab(tab.id)}
+              className={`px-6 py-3 rounded-full text-lg font-medium transition-all duration-300 flex items-center gap-3 ${
+                activeTab === tab.id
+                  ? 'bg-amber-600 text-white shadow-lg scale-105'
+                  : 'bg-white text-gray-600 hover:bg-amber-50 hover:text-amber-700 border border-gray-200'
+              }`}
+            >
+              <span className="text-xl">{tab.emoji}</span>
+              {tab.label}
+            </button>
+          ))}
         </div>
         
-        {/* Seção Hospedagem e Alimentação */}
+        {/* Content Section */}
         <div className="mb-20">
           <div className="text-center mb-12">
-            <span className="text-3xl mb-4 block">🏨</span>
-            <h3 className="text-3xl md:text-4xl font-bold text-amber-800 mb-4">Hospedagem & Alimentação</h3>
-            <p className="text-gray-600 max-w-2xl mx-auto">Conforto e sabor em perfeita harmonia</p>
+            <span className="text-3xl mb-4 block">{currentExperience.emoji}</span>
+            <h3 className="text-3xl md:text-4xl font-bold text-amber-800 mb-4">{currentExperience.title}</h3>
+            <p className="text-gray-600 max-w-2xl mx-auto">{currentExperience.subtitle}</p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
-            <ExperienceCard 
-              icon={<Hotel size={32} />} 
-              title="17 Suítes" 
-              description="Acomodações confortáveis para hospedagem completa."
-              color="indigo"
-              refProp={ref} 
-            />
-            <ExperienceCard 
-              icon={<Coffee size={32} />} 
-              title="Café da Manhã" 
-              description="Delicioso café da manhã com opções variadas."
-              color="orange"
-              refProp={ref} 
-            />
-            <ExperienceCard 
-              icon={<Coffee size={32} />} 
-              title="Café da Tarde" 
-              description="Momento especial com lanches e bebidas da tarde."
-              color="yellow"
-              refProp={ref} 
-            />
-          </div>
-        </div>
-        
-        {/* Seção Lazer e Natureza */}
-        <div className="mb-20">
-          <div className="text-center mb-12">
-            <span className="text-3xl mb-4 block">🌿</span>
-            <h3 className="text-3xl md:text-4xl font-bold text-amber-800 mb-4">Lazer & Natureza</h3>
-            <p className="text-gray-600 max-w-2xl mx-auto">Diversão e relaxamento em meio à natureza</p>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
-            <ExperienceCard 
-              icon={<Waves size={32} />} 
-              title="Piscina" 
-              description="Área de piscina para refrescantes momentos de lazer."
-              color="cyan"
-              refProp={ref} 
-            />
-            <ExperienceCard 
-              icon={<Palmtree size={32} />} 
-              title="Área de Lazer" 
-              description="Espaços recreativos para diversão de todas as idades."
-              color="green"
-              refProp={ref} 
-            />
-            <ExperienceCard 
-              icon={<Trophy size={32} />} 
-              title="Área de Esportes" 
-              description="Espaços para prática de esportes e atividades físicas."
-              color="emerald"
-              refProp={ref} 
-            />
-            <ExperienceCard 
-              icon={<Gamepad size={32} />} 
-              title="Área de Jogos" 
-              description="Diversão garantida com jogos de mesa e entretenimento."
-              color="violet"
-              refProp={ref} 
-            />
-            <ExperienceCard 
-              icon={<Mountain size={32} />} 
-              title="Trilha Natural" 
-              description="Explore a natureza em nossas trilhas seguras e bem sinalizadas."
-              color="teal"
-              refProp={ref} 
-            />
+          
+          <div className={`grid gap-8 ${
+            activeTab === 'eventos' 
+              ? 'grid-cols-1 md:grid-cols-2 lg:grid-cols-4' 
+              : activeTab === 'hospedagem'
+              ? 'grid-cols-1 md:grid-cols-3 max-w-4xl mx-auto'
+              : 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5'
+          }`}>
+            {currentExperience.cards.map((card, index) => (
+              <ExperienceCard 
+                key={index}
+                icon={card.icon}
+                title={card.title}
+                description={card.description}
+                color={card.color}
+                refProp={ref}
+              />
+            ))}
           </div>
         </div>
         
