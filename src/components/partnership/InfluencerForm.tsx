@@ -28,13 +28,15 @@ export function InfluencerForm() {
       name: "",
       socialHandle: "",
       city: "",
+      platform: "instagram",
     },
     mode: "onBlur"
   });
 
   const handleSubmit = (values: InfluencerFormValues) => {
     try {
-      const message = `Olá! Sou ${values.name} (@${values.socialHandle}), de ${values.city}, e gostaria de conversar sobre uma parceria com o Sítio Nosso Lugar como influenciador.`;
+      const platformText = values.platform === "instagram" ? "Instagram" : "TikTok";
+      const message = `Olá! Sou ${values.name} (@${values.socialHandle}), de ${values.city}, e gostaria de conversar sobre uma parceria com o Sítio Nosso Lugar como influenciador. Minha plataforma principal é ${platformText}.`;
       const whatsappUrl = `https://wa.me/559184731385?text=${encodeURIComponent(message)}`;
       window.open(whatsappUrl, "_blank");
       toast({
@@ -113,20 +115,22 @@ export function InfluencerForm() {
         />
         
         <FormField
+          control={form.control}
           name="platform"
-          render={() => (
+          render={({ field }) => (
             <FormItem className="space-y-3">
               <FormLabel>Principal Plataforma</FormLabel>
               <FormControl>
                 <RadioGroup
-                  defaultValue="instagram"
+                  onValueChange={field.onChange}
+                  defaultValue={field.value}
                   className="flex flex-wrap gap-4"
                 >
                   <div className="flex items-center space-x-2">
                     <RadioGroupItem value="instagram" id="instagram" />
                     <label
                       htmlFor="instagram"
-                      className="flex items-center gap-1 text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                      className="flex items-center gap-1 text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 cursor-pointer"
                     >
                       <Instagram className="h-4 w-4" /> Instagram
                     </label>
@@ -135,7 +139,7 @@ export function InfluencerForm() {
                     <RadioGroupItem value="tiktok" id="tiktok" />
                     <label
                       htmlFor="tiktok"
-                      className="flex items-center gap-1 text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                      className="flex items-center gap-1 text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 cursor-pointer"
                     >
                       <MessageSquare className="h-4 w-4" /> TikTok
                     </label>
@@ -147,9 +151,13 @@ export function InfluencerForm() {
           )}
         />
         
-        <Button type="submit" className="w-full md:w-auto bg-gradient-to-r from-amber-600 via-red-600 to-purple-600 hover:from-amber-700 hover:via-red-700 hover:to-purple-700 text-white">
+        <Button 
+          type="submit" 
+          className="w-full md:w-auto bg-gradient-to-r from-amber-600 via-red-600 to-purple-600 hover:from-amber-700 hover:via-red-700 hover:to-purple-700 text-white disabled:opacity-50 disabled:cursor-not-allowed" 
+          disabled={form.formState.isSubmitting}
+        >
           <MessageSquare className="mr-2 h-4 w-4" />
-          Enviar Proposta via WhatsApp
+          {form.formState.isSubmitting ? "Enviando..." : "Enviar Proposta via WhatsApp"}
         </Button>
       </form>
     </Form>

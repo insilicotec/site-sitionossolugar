@@ -108,7 +108,11 @@ export function CompanyForm() {
               <FormItem>
                 <FormLabel>Telefone</FormLabel>
                 <FormControl>
-                  <Input placeholder="(XX) XXXXX-XXXX" {...field} />
+                  <Input 
+                    placeholder="(XX) XXXXX-XXXX" 
+                    type="tel"
+                    {...field} 
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -151,9 +155,13 @@ export function CompanyForm() {
           )}
         />
         
-        <Button type="submit" className="w-full md:w-auto bg-amber-700 hover:bg-amber-800 text-white">
+        <Button 
+          type="submit" 
+          className="w-full md:w-auto bg-amber-700 hover:bg-amber-800 text-white disabled:opacity-50 disabled:cursor-not-allowed" 
+          disabled={form.formState.isSubmitting}
+        >
           <MessageSquare className="mr-2 h-4 w-4" />
-          Enviar Proposta via WhatsApp
+          {form.formState.isSubmitting ? "Enviando..." : "Enviar Proposta via WhatsApp"}
         </Button>
       </form>
     </Form>

@@ -13,9 +13,9 @@ const Parcerias = () => {
       
       <main className="flex-grow">
         <section className="py-16 md:py-24 relative overflow-hidden">
-          <div className="absolute inset-0 bg-amber-800 opacity-5 pattern-leaves"></div>
+          <div className="absolute inset-0 bg-gradient-to-br from-amber-50 via-amber-100 to-orange-100 opacity-30"></div>
           
-          <div className="container px-4 mx-auto">
+          <div className="container px-4 mx-auto relative z-10">
             <div className="text-center max-w-3xl mx-auto mb-16">
               <h1 className="text-4xl md:text-5xl font-bold text-amber-900 mb-6">Parcerias e Colaborações</h1>
               <p className="text-lg text-gray-700">
