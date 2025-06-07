@@ -3,14 +3,12 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Form } from '@/components/ui/form';
 import { Button } from '@/components/ui/button';
-import { Progress } from '@/components/ui/progress';
 import { ChevronLeft, ChevronRight, Check } from 'lucide-react';
 import { ReservationData, formSchema } from './types';
 import StepPersonalInfo from './steps/StepPersonalInfo.tsx';
 import StepEventDetails from './steps/StepEventDetails.tsx';
 import StepGuestCount from './steps/StepGuestCount.tsx';
 import StepAdditionalNotes from './steps/StepAdditionalNotes.tsx';
-import StepSummary from './steps/StepSummary.tsx';
 
 interface StepperFormProps {
   onSubmit: (data: ReservationData) => void;
@@ -21,7 +19,6 @@ const STEPS = [
   { id: 2, title: 'Detalhes do Evento', description: 'Data e tipo do evento' },
   { id: 3, title: 'Quantidade de Pessoas', description: 'Número de convidados' },
   { id: 4, title: 'Observações', description: 'Informações adicionais' },
-  { id: 5, title: 'Confirmar', description: 'Revisar e enviar' },
 ];
 
 const StepperForm = ({ onSubmit }: StepperFormProps) => {
@@ -57,11 +54,18 @@ const StepperForm = ({ onSubmit }: StepperFormProps) => {
         return true;
     }
   };
-
   const nextStep = async () => {
     const isValid = await validateStep(currentStep);
     if (isValid && currentStep < STEPS.length) {
       setCurrentStep(currentStep + 1);
+    }
+  };
+
+  const handleFormSubmit = async () => {
+    const isValid = await validateStep(currentStep);
+    if (isValid) {
+      const data = form.getValues();
+      handleSubmit(data);
     }
   };
 
@@ -73,8 +77,7 @@ const StepperForm = ({ onSubmit }: StepperFormProps) => {
 
   const handleSubmit = (data: ReservationData) => {
     onSubmit(data);
-  };
-  const renderStep = () => {
+  };  const renderStep = () => {
     switch (currentStep) {
       case 1:
         return <StepPersonalInfo form={form} />;
@@ -84,8 +87,6 @@ const StepperForm = ({ onSubmit }: StepperFormProps) => {
         return <StepGuestCount form={form} />;
       case 4:
         return <StepAdditionalNotes form={form} />;
-      case 5:
-        return <StepSummary form={form} goToStep={setCurrentStep} />;
       default:
         return null;
     }
@@ -104,10 +105,9 @@ const StepperForm = ({ onSubmit }: StepperFormProps) => {
         return true; // observacoes is optional
       default:
         return false;
-    }
-  };
+    }  };
 
-  const progressPercentage = ((currentStep - 1) / (STEPS.length - 1)) * 100;  return (
+  return (
     <div className="w-full max-w-4xl mx-auto">
       {/* Form Content */}
       <Form {...form}>
@@ -127,9 +127,7 @@ const StepperForm = ({ onSubmit }: StepperFormProps) => {
             >
               <ChevronLeft size={16} />
               Voltar
-            </Button>
-
-            <div className="flex gap-3">
+            </Button>            <div className="flex gap-3">
               {currentStep < STEPS.length ? (
                 <Button
                   type="button"
@@ -141,11 +139,12 @@ const StepperForm = ({ onSubmit }: StepperFormProps) => {
                 </Button>
               ) : (
                 <Button
-                  type="submit"
+                  type="button"
+                  onClick={handleFormSubmit}
                   className="bg-green-600 hover:bg-green-700 text-white flex items-center gap-2 px-8"
                 >
                   <Check size={16} />
-                  Enviar Reserva
+                  Continuar
                 </Button>
               )}
             </div>
