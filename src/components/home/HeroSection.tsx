@@ -4,19 +4,10 @@ import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 
 const HeroSection = () => {
-  return (
-    <section className="relative pt-24 md:pt-28 min-h-[90vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-white via-amber-50/30 to-amber-100/50">
+  return (    <section className="relative pt-24 md:pt-28 min-h-[90vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-white via-amber-50/30 to-amber-100/50">
       {/* Background subtle pattern */}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1501854140801-50d01698950b')] bg-cover bg-center"></div>
-      </div>
-      
-      {/* Decorative elements - more subtle */}
-      <div className="absolute top-32 right-16 text-amber-600/20">
-        <Leaf size={120} />
-      </div>
-      <div className="absolute bottom-32 left-16 text-amber-600/15">
-        <Leaf size={100} className="rotate-45" />
       </div>
       
       <div className="container relative z-10 px-6 py-20 mx-auto">
