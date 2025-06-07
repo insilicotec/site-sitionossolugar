@@ -35,7 +35,20 @@ export function CompanyForm() {
 
   const handleSubmit = (values: CompanyFormValues) => {
     try {
-      const message = `Olá! Sou da empresa ${values.companyName}, do ramo de ${values.businessType}. Meu nome é ${values.contactName} e gostaria de conversar sobre uma parceria com o Sítio Nosso Lugar. ${values.message ? `Mensagem adicional: ${values.message}` : ""}`;
+      const message = `🤝 *PROPOSTA DE PARCERIA - EMPRESA* 🏢
+
+🏢 *DADOS DA EMPRESA*
+• Nome: ${values.companyName}
+• Ramo: ${values.businessType}
+
+👤 *CONTATO*
+• Nome: ${values.contactName}
+• Email: ${values.email}
+• Telefone: ${values.phoneNumber}
+
+${values.message ? `💭 *MENSAGEM ADICIONAL*\n${values.message}\n\n` : ""}🌿 Gostaria de conversar sobre uma parceria com o Sítio Nosso Lugar!
+
+🤝 Acreditamos que podemos criar uma colaboração valiosa entre nossas empresas.`;
       const whatsappUrl = `https://wa.me/559184731385?text=${encodeURIComponent(message)}`;
       window.open(whatsappUrl, "_blank");
       toast({

@@ -24,7 +24,7 @@ const ReservationForm = ({ onSubmit }: ReservationFormProps) => {
       cidade: '',
       dataEvento: undefined,
       tipoEvento: '',
-      quantidadePessoas: 1,
+      quantidadePessoas: undefined,
       apenasLocal: false,
       incluiComida: false,
       buffet: false,

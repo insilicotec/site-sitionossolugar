@@ -36,7 +36,19 @@ export function InfluencerForm() {
   const handleSubmit = (values: InfluencerFormValues) => {
     try {
       const platformText = values.platform === "instagram" ? "Instagram" : "TikTok";
-      const message = `Olá! Sou ${values.name} (@${values.socialHandle}), de ${values.city}, e gostaria de conversar sobre uma parceria com o Sítio Nosso Lugar como influenciador. Minha plataforma principal é ${platformText}.`;
+      const message = `🤝 *PROPOSTA DE PARCERIA - INFLUENCIADOR* 📸
+
+👤 *DADOS PESSOAIS*
+• Nome: ${values.name}
+• Handle: @${values.socialHandle}
+• Cidade: ${values.city}
+
+📱 *PLATAFORMA PRINCIPAL*
+• ${platformText}
+
+🌿 Gostaria de conversar sobre uma parceria com o Sítio Nosso Lugar como criador de conteúdo!
+
+✨ Acredito que posso mostrar experiências autênticas em meio à natureza para meu público.`;
       const whatsappUrl = `https://wa.me/559184731385?text=${encodeURIComponent(message)}`;
       window.open(whatsappUrl, "_blank");
       toast({

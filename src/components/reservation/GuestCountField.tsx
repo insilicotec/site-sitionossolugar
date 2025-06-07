@@ -1,4 +1,4 @@
-import { FormField, FormItem, FormLabel, FormControl, FormMessage, FormDescription } from "@/components/ui/form";
+import { FormField, FormItem, FormLabel, FormControl, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { UseFormReturn } from "react-hook-form";
 import { ReservationData } from "./types";
@@ -21,18 +21,21 @@ const GuestCountField = ({ form }: GuestCountFieldProps) => {
           </FormLabel>
           <FormControl>
             <Input 
-              type="number"
-              placeholder="Ex: 50"
-              min="1"
-              max="200"
+              type="text"
+              placeholder="Digite o número de pessoas"
               {...field}
-              onChange={(e) => field.onChange(Number(e.target.value))}
-              className="border-sitio-green-dark/30 focus:border-sitio-green-dark"
+              onChange={(e) => {
+                const value = e.target.value;
+                // Only allow numbers
+                if (value === '' || /^\d+$/.test(value)) {
+                  const numValue = value === '' ? undefined : Number(value);
+                  field.onChange(numValue);
+                }
+              }}
+              value={field.value ? field.value.toString() : ''}
+              className="border-sitio-green-dark/30 focus:border-sitio-green-dark [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
             />
           </FormControl>
-          <FormDescription>
-            Informe o número estimado de convidados para seu evento (mínimo: 1, máximo: 200)
-          </FormDescription>
           <FormMessage />
         </FormItem>
       )}

@@ -11,7 +11,7 @@ import { Instagram, Phone } from 'lucide-react';
 import { toast } from 'sonner';
 
 const Agendamento = () => {
-  const [whatsappMessage, setWhatsappMessage] = useState('Olá! Gostaria de fazer uma reserva no Sítio Nosso Lugar.');
+  const [whatsappMessage, setWhatsappMessage] = useState('🌿 *SÍTIO NOSSO LUGAR* 🌟\n\nOlá! Gostaria de fazer uma reserva para um evento especial.\n\n💚 Aguardo contato!');
 
   const handleSubmit = (data: ReservationData) => {
     try {
@@ -22,21 +22,29 @@ const Agendamento = () => {
         ? format(data.dataEvento, "dd/MM/yyyy", { locale: ptBR }) 
         : "Data não selecionada";
     
+      // Create services list
+      const services = [];
+      if (data.apenasLocal) services.push("Apenas o local");
+      if (data.incluiComida) services.push("Inclui comida");
+      if (data.buffet) services.push("Buffet completo");
+      if (data.dj) services.push("DJ");
+      if (data.decoracao) services.push("Decoração");
+      
       // Create WhatsApp message
-      const message = `NOVA RESERVA - SITIO NOSSO LUGAR
-    
-DADOS PESSOAIS
-Nome: ${data.nome}
-Cidade: ${data.cidade}
+      const message = `🌟 *NOVA RESERVA - SÍTIO NOSSO LUGAR* 🌿
 
-DETALHES DO EVENTO
-Data: ${formattedDate}
-Tipo: ${getEventTypeText(data.tipoEvento)}
-Quantidade de Pessoas: ${data.quantidadePessoas}
+👤 *DADOS PESSOAIS*
+• Nome: ${data.nome}
+• Cidade: ${data.cidade}
 
-${data.observacoes ? `OBSERVACOES\n${data.observacoes}` : ""}
+🎉 *DETALHES DO EVENTO*
+• 📅 Data: ${formattedDate}
+• 🎊 Tipo: ${getEventTypeText(data.tipoEvento)}
+• 👥 Quantidade de Pessoas: ${data.quantidadePessoas}
 
-Agradecemos seu interesse em realizar seu evento no Sitio Nosso Lugar!`;
+${services.length > 0 ? `🛠️ *SERVIÇOS SELECIONADOS*\n${services.map(service => `• ${service}`).join('\n')}\n\n` : ""}${data.observacoes ? `📝 *OBSERVAÇÕES*\n${data.observacoes}\n\n` : ""}🙏 Agradecemos seu interesse em realizar seu evento no Sítio Nosso Lugar!
+
+💚 Em breve entraremos em contato para confirmar os detalhes.`;
 
     setWhatsappMessage(message);
     
@@ -87,7 +95,7 @@ Agradecemos seu interesse em realizar seu evento no Sitio Nosso Lugar!`;
         <section className="py-12 bg-white">
           <div className="container px-4">
             <div className="max-w-3xl mx-auto bg-gradient-to-br from-amber-50 to-amber-100 rounded-lg shadow-lg p-6 md:p-8 border border-amber-200 transition-all duration-300 hover:shadow-xl animate-fade-in">
-              <h2 className="text-2xl font-bold text-sitio-green-dark mb-6">Formulário de Reserva</h2>
+              <h2 className="text-2xl font-bold text-sitio-green-dark mb-6">Formulário de contato</h2>
               <ReservationForm onSubmit={handleSubmit} />
             </div>
           </div>

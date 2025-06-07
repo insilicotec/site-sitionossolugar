@@ -147,7 +147,13 @@ const ComoChegar = () => {
       </main>
       
       <Footer />
-      <WhatsappButton phone="559184731385" message="Olá! Preciso de ajuda para chegar ao Sítio Nosso Lugar." />
+      <WhatsappButton phone="559184731385" message="🗺️ *AJUDA PARA CHEGAR* 🚗
+
+Olá! Preciso de ajuda para chegar ao Sítio Nosso Lugar.
+
+📍 Poderiam me enviar as coordenadas ou indicações mais detalhadas de como chegar?
+
+🙏 Obrigado!" />
     </div>
   );
 };
