@@ -1,5 +1,5 @@
 
-import { Instagram, Phone, MapPin, Mail, Clock, Heart } from 'lucide-react';
+import { Instagram, Phone, MapPin, Mail, Clock, Heart, MessageCircle } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 
@@ -113,8 +113,55 @@ const Footer = () => {
           </motion.div>
         </div>
         
+        {/* Developer Credit Section */}
+        <div className="border-t border-gray-800 mt-12 pt-8">
+          <motion.div 
+            className="flex flex-col md:flex-row justify-between items-center gap-6"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+            viewport={{ once: true }}
+          >
+            {/* Developer Credit */}
+            <div className="flex items-center gap-4">
+              <div className="text-center md:text-left">
+                <p className="text-gray-400 text-sm mb-1">Site desenvolvido por</p>
+                <motion.a 
+                  href="https://www.instagram.com/insilicotec/" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-xl font-bold bg-gradient-to-r from-nature-400 via-amber-400 to-nature-500 bg-clip-text text-transparent hover:from-nature-300 hover:via-amber-300 hover:to-nature-400 transition-all duration-300"
+                  whileHover={{ scale: 1.05 }}
+                >
+                  Insilico Tecnologia
+                </motion.a>
+              </div>
+            </div>
+            
+            {/* WhatsApp Developer Contact */}
+            <motion.a
+              href="https://wa.me/5591988939655?text=🌿%20Olá!%20Vim%20através%20do%20site%20do%20Sítio%20Nosso%20Lugar%20e%20gostaria%20de%20conversar%20sobre%20desenvolvimento%20web.%20💻✨"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group relative"
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+            >
+              {/* Soft neon glow effect */}
+              <div className="absolute -inset-0.5 bg-gradient-to-r from-nature-400/50 via-amber-400/50 to-nature-500/50 rounded-lg blur-sm opacity-60 group-hover:opacity-100 transition-all duration-500 group-hover:blur-md"></div>
+              <div className="absolute -inset-0.5 bg-gradient-to-r from-nature-400/30 via-amber-400/30 to-nature-500/30 rounded-lg animate-pulse"></div>
+              
+              {/* Button content */}
+              <div className="relative bg-gradient-to-r from-nature-600 via-nature-700 to-amber-700 hover:from-nature-500 hover:via-nature-600 hover:to-amber-600 text-white px-4 py-2.5 md:px-6 md:py-3 rounded-lg transition-all duration-300 flex items-center gap-2 md:gap-3 shadow-lg">
+                <MessageCircle size={18} className="md:w-5 md:h-5 animate-pulse" />
+                <span className="font-medium text-sm md:text-base">Fale com o Desenvolvedor</span>
+              </div>
+            </motion.a>
+          </motion.div>
+        </div>
+        
         {/* Copyright & Bottom Bar */}
-        <div className="border-t border-gray-800 mt-12 pt-6 flex flex-col md:flex-row justify-between items-center gap-4 text-gray-500 text-sm">
+        <div className="border-t border-gray-800 mt-8 pt-6 flex flex-col md:flex-row justify-between items-center gap-4 text-gray-500 text-sm">
           <div className="flex items-center gap-1">
             <span>&copy; {currentYear} Sítio Nosso Lugar</span>
             <span className="text-gray-700">•</span>
