@@ -1,21 +1,51 @@
-
-import { Calendar, Heart, Utensils, Users, Palmtree, Waves, Mountain, Coffee, Hotel, Trophy, Gamepad } from 'lucide-react';
-import { useState } from 'react';
-import Cake from './Cake';
+import { Calendar, Heart, Utensils, Users, Palmtree, Waves, Mountain, Coffee, Hotel, Trophy, Gamepad, Gift } from 'lucide-react';
+import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 
 type TabType = 'eventos' | 'hospedagem' | 'lazer';
 
+interface ExperienceCardProps {
+  icon: React.ReactNode;
+  title: string;
+  description: string;
+  color: string;
+  refProp: (element: HTMLElement | null) => void;
+  isMobile?: boolean;
+}
+
 const ExperienceSection = ({ useIntersectionObserver }: { useIntersectionObserver: (options?: any) => [(element: HTMLElement | null) => void, IntersectionObserverEntry[]] }) => {
   const [ref, entries] = useIntersectionObserver({ threshold: 0.1 });
   const [activeTab, setActiveTab] = useState<TabType>('eventos');
+  const [isPaused, setIsPaused] = useState(false);
 
   const tabs = [
     { id: 'eventos' as TabType, label: 'Eventos Especiais', emoji: '🎉' },
     { id: 'hospedagem' as TabType, label: 'Hospedagem & Alimentação', emoji: '🏨' },
     { id: 'lazer' as TabType, label: 'Lazer & Natureza', emoji: '🌿' }
   ];
+
+  // Auto-rotation effect
+  useEffect(() => {
+    if (isPaused) return;
+    
+    const interval = setInterval(() => {
+      setActiveTab(current => {
+        const currentIndex = tabs.findIndex(tab => tab.id === current);
+        const nextIndex = (currentIndex + 1) % tabs.length;
+        return tabs[nextIndex].id;
+      });
+    }, 5000); // Changes every 5 seconds
+
+    return () => clearInterval(interval);
+  }, [isPaused, tabs]);
+
+  const handleTabClick = (tabId: TabType) => {
+    setActiveTab(tabId);
+    setIsPaused(true);
+    // Resume auto-rotation after 10 seconds
+    setTimeout(() => setIsPaused(false), 10000);
+  };
 
   const experienceData = {
     eventos: {
@@ -28,9 +58,8 @@ const ExperienceSection = ({ useIntersectionObserver }: { useIntersectionObserve
           title: "Casamentos",
           description: "O cenário perfeito para celebrar o amor em meio à natureza.",
           color: "rose"
-        },
-        {
-          icon: <Cake size={32} />,
+        },        {
+          icon: <Gift size={32} />,
           title: "Aniversários",
           description: "Celebre seu dia especial em um ambiente natural e acolhedor.",
           color: "purple"
@@ -114,9 +143,16 @@ const ExperienceSection = ({ useIntersectionObserver }: { useIntersectionObserve
   };
 
   const currentExperience = experienceData[activeTab];
-
+  
   return (
     <section className="py-20 md:py-28 bg-gradient-to-br from-gray-50 to-gray-100/50 relative">
+      <style>{`
+        @keyframes progressBar {
+          0% { width: 0%; }
+          100% { width: 100%; }
+        }
+      `}</style>
+      
       <div className="container px-6 mx-auto">
         {/* Header */}
         <div className="text-center mb-16" ref={ref}>          
@@ -128,22 +164,36 @@ const ExperienceSection = ({ useIntersectionObserver }: { useIntersectionObserve
             Criamos experiências memoráveis para todos os momentos especiais da sua vida, com atendimento personalizado e serviços de qualidade.
           </p>
         </div>
-
+        
         {/* Tabs Navigation */}
         <div className="flex flex-wrap justify-center gap-4 mb-12">
           {tabs.map((tab) => (
-            <button
-              key={tab.id}
-              onClick={() => setActiveTab(tab.id)}
-              className={`px-6 py-3 rounded-full text-lg font-medium transition-all duration-300 flex items-center gap-3 ${
-                activeTab === tab.id
-                  ? 'bg-amber-600 text-white shadow-lg scale-105'
-                  : 'bg-white text-gray-600 hover:bg-amber-50 hover:text-amber-700 border border-gray-200'
-              }`}
-            >
-              <span className="text-xl">{tab.emoji}</span>
-              {tab.label}
-            </button>
+            <div key={tab.id} className="relative">
+              <button
+                onClick={() => handleTabClick(tab.id)}
+                onMouseEnter={() => setIsPaused(true)}
+                onMouseLeave={() => setIsPaused(false)}
+                className={`px-6 py-3 rounded-full text-lg font-medium transition-all duration-500 flex items-center gap-3 relative overflow-hidden ${
+                  activeTab === tab.id
+                    ? 'bg-amber-600 text-white shadow-lg scale-105'
+                    : 'bg-white text-gray-600 hover:bg-amber-50 hover:text-amber-700 border border-gray-200'
+                }`}
+              >
+                <span className="text-xl">{tab.emoji}</span>
+                <span className="hidden sm:inline">{tab.label}</span>
+                <span className="sm:hidden">{tab.label.split(' ')[0]}</span>
+                
+                {/* Progress indicator */}
+                {activeTab === tab.id && !isPaused && (
+                  <div 
+                    className="absolute bottom-0 left-0 h-1 bg-amber-300 rounded-full"
+                    style={{
+                      animation: 'progressBar 5s linear infinite',
+                    }}
+                  />
+                )}
+              </button>
+            </div>
           ))}
         </div>
         
@@ -155,23 +205,44 @@ const ExperienceSection = ({ useIntersectionObserver }: { useIntersectionObserve
             <p className="text-gray-600 max-w-2xl mx-auto">{currentExperience.subtitle}</p>
           </div>
           
-          <div className={`grid gap-8 ${
+          {/* Desktop layout: grid */}
+          <div className={`hidden md:grid gap-8 ${
             activeTab === 'eventos' 
-              ? 'grid-cols-1 md:grid-cols-2 lg:grid-cols-4' 
+              ? 'md:grid-cols-2 lg:grid-cols-4' 
               : activeTab === 'hospedagem'
-              ? 'grid-cols-1 md:grid-cols-3 max-w-4xl mx-auto'
-              : 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5'
+              ? 'md:grid-cols-3 max-w-4xl mx-auto'
+              : 'md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5'
           }`}>
             {currentExperience.cards.map((card, index) => (
               <ExperienceCard 
-                key={index}
+                key={`${activeTab}-${index}`}
                 icon={card.icon}
                 title={card.title}
                 description={card.description}
                 color={card.color}
                 refProp={ref}
+                isMobile={false}
               />
             ))}
+          </div>
+
+          {/* Mobile layout: horizontal scroll */}
+          <div className="md:hidden">
+            <div className="overflow-x-auto pb-4">
+              <div className="flex gap-4 w-max px-2">
+                {currentExperience.cards.map((card, index) => (
+                  <ExperienceCard 
+                    key={`${activeTab}-mobile-${index}`}
+                    icon={card.icon}
+                    title={card.title}
+                    description={card.description}
+                    color={card.color}
+                    refProp={ref}
+                    isMobile={true}
+                  />
+                ))}
+              </div>
+            </div>
           </div>
         </div>
         
@@ -188,15 +259,7 @@ const ExperienceSection = ({ useIntersectionObserver }: { useIntersectionObserve
   );
 };
 
-interface ExperienceCardProps {
-  icon: React.ReactNode;
-  title: string;
-  description: string;
-  color: string;
-  refProp: (element: HTMLElement | null) => void;
-}
-
-const ExperienceCard = ({ icon, title, description, color, refProp }: ExperienceCardProps) => {
+const ExperienceCard = ({ icon, title, description, color, refProp, isMobile = false }: ExperienceCardProps) => {
   // Color mapping for different themes
   const colorClasses = {
     rose: "bg-rose-50 border-rose-200/50 text-rose-600",
@@ -230,14 +293,30 @@ const ExperienceCard = ({ icon, title, description, color, refProp }: Experience
 
   return (
     <div 
-      className={`bg-white p-8 rounded-2xl border text-center transition-all duration-300 ${colorClasses[color as keyof typeof colorClasses] || colorClasses.amber}`} 
+      className={`bg-white rounded-2xl border text-center transition-all duration-300 ${
+        isMobile 
+          ? 'p-6 w-72 flex-shrink-0' 
+          : 'p-8'
+      } ${colorClasses[color as keyof typeof colorClasses] || colorClasses.amber}`} 
       ref={refProp}
     >
-      <div className={`mx-auto w-16 h-16 flex items-center justify-center rounded-full mb-6 ${iconBgClasses[color as keyof typeof iconBgClasses] || iconBgClasses.amber}`}>
-        {icon}
+      <div className={`mx-auto flex items-center justify-center rounded-full mb-4 ${
+        isMobile 
+          ? 'w-12 h-12' 
+          : 'w-16 h-16 mb-6'
+      } ${iconBgClasses[color as keyof typeof iconBgClasses] || iconBgClasses.amber}`}>
+        <div className={isMobile ? 'scale-75' : ''}>
+          {icon}
+        </div>
       </div>
-      <h3 className="text-xl font-semibold mb-3 text-gray-900">{title}</h3>
-      <p className="text-gray-600 leading-relaxed">{description}</p>
+      <h3 className={`font-semibold text-gray-900 ${
+        isMobile 
+          ? 'text-lg mb-2' 
+          : 'text-xl mb-3'
+      }`}>{title}</h3>
+      <p className={`text-gray-600 leading-relaxed ${
+        isMobile ? 'text-sm' : ''
+      }`}>{description}</p>
     </div>
   );
 };
