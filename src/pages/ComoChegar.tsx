@@ -147,7 +147,56 @@ const ComoChegar = () => {
               </div>
             </div>
           </div>
-        </section>        {/* Informações Importantes */}
+        </section>
+
+        {/* Location Info Cards - Transferred from Homepage */}
+        <section className="py-12 md:py-16 bg-gradient-to-br from-amber-50 via-white to-gray-50/30">
+          <div className="container px-4">
+            <div className="max-w-6xl mx-auto">
+              <div className="text-center mb-12">
+                <span className="text-3xl mb-4 block">🗺️</span>
+                <h2 className="text-3xl md:text-4xl font-bold text-amber-800 mb-4">Informações de Localização</h2>
+                <p className="text-gray-600 max-w-2xl mx-auto">Todos os detalhes para sua chegada tranquila</p>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+                <div className="bg-gradient-to-br from-blue-50 to-blue-100/50 p-6 rounded-2xl border border-blue-200/50 text-center">
+                  <div className="mx-auto w-14 h-14 flex items-center justify-center rounded-full mb-4 bg-blue-100">
+                    <MapPin size={28} className="text-blue-600" />
+                  </div>
+                  <h4 className="text-lg font-semibold mb-2 text-gray-900">Localização</h4>
+                  <p className="text-gray-600 text-sm leading-relaxed">Vila Fátima, Tracuateua - PA</p>
+                </div>
+
+                <div className="bg-gradient-to-br from-green-50 to-green-100/50 p-6 rounded-2xl border border-green-200/50 text-center">
+                  <div className="mx-auto w-14 h-14 flex items-center justify-center rounded-full mb-4 bg-green-100">
+                    <Route size={28} className="text-green-600" />
+                  </div>
+                  <h4 className="text-lg font-semibold mb-2 text-gray-900">Acesso</h4>
+                  <p className="text-gray-600 text-sm leading-relaxed">Estrada de fácil acesso para carros</p>
+                </div>
+
+                <div className="bg-gradient-to-br from-amber-50 to-amber-100/50 p-6 rounded-2xl border border-amber-200/50 text-center">
+                  <div className="mx-auto w-14 h-14 flex items-center justify-center rounded-full mb-4 bg-amber-100">
+                    <Clock size={28} className="text-amber-600" />
+                  </div>
+                  <h4 className="text-lg font-semibold mb-2 text-gray-900">Horário</h4>
+                  <p className="text-gray-600 text-sm leading-relaxed">24h para hospedados</p>
+                </div>
+
+                <div className="bg-gradient-to-br from-purple-50 to-purple-100/50 p-6 rounded-2xl border border-purple-200/50 text-center">
+                  <div className="mx-auto w-14 h-14 flex items-center justify-center rounded-full mb-4 bg-purple-100">
+                    <Navigation size={28} className="text-purple-600" />
+                  </div>
+                  <h4 className="text-lg font-semibold mb-2 text-gray-900">GPS</h4>
+                  <p className="text-gray-600 text-sm leading-relaxed">Coordenadas disponíveis</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        
+        {/* Informações Importantes */}
         <section className="py-12 md:py-16 bg-white">
           <div className="container px-4">
             <div className="max-w-4xl mx-auto">
