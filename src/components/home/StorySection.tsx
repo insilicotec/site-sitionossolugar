@@ -1,7 +1,5 @@
 
 import { Bird, Leaf } from 'lucide-react';
-import { Link } from 'react-router-dom';
-import { Button } from '@/components/ui/button';
 
 const StorySection = ({ useIntersectionObserver }: { useIntersectionObserver: (options?: any) => [(element: HTMLElement | null) => void, IntersectionObserverEntry[]] }) => {
   const [ref, entries] = useIntersectionObserver({ threshold: 0.1 });
@@ -76,16 +74,7 @@ const StorySection = ({ useIntersectionObserver }: { useIntersectionObserver: (o
                     <p className="text-gray-700 leading-relaxed text-lg">
                       Cada detalhe do nosso espaço foi pensado para proporcionar conforto e uma experiência autêntica, onde seus convidados se sentirão acolhidos pela beleza da natureza.
                     </p>
-                  </div>
-                </div>
-              </div>
-              
-              <div className="pt-6">
-                <Link to="/agendamento">
-                  <Button className="bg-amber-700 hover:bg-amber-800 text-white px-10 py-4 text-lg font-medium rounded-xl transition-colors">
-                    Conheça Nossa História
-                  </Button>
-                </Link>
+                  </div>                </div>
               </div>
             </div>
 
@@ -135,17 +124,8 @@ const StorySection = ({ useIntersectionObserver }: { useIntersectionObserver: (o
                       </div>
                     </div>
                   </div>
-                </div>
-              </div>
+                </div>              </div>
               
-              {/* Button below horizontal scroll */}
-              <div className="text-center">
-                <Link to="/agendamento">
-                  <Button className="bg-amber-700 hover:bg-amber-800 text-white px-8 py-3 text-base font-medium rounded-xl transition-colors">
-                    Conheça Nossa História
-                  </Button>
-                </Link>
-              </div>
             </div>
           </div>
         </div>

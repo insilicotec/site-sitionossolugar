@@ -1,7 +1,5 @@
-import { Calendar, Heart, Utensils, Users, Palmtree, Waves, Mountain, Coffee, Hotel, Trophy, Gamepad, Gift } from 'lucide-react';
+import { Heart, Utensils, Users, Palmtree, Waves, Mountain, Coffee, Hotel, Trophy, Gamepad, Gift } from 'lucide-react';
 import { useState, useEffect } from 'react';
-import { Button } from '@/components/ui/button';
-import { Link } from 'react-router-dom';
 
 type TabType = 'eventos' | 'hospedagem' | 'lazer';
 
@@ -242,17 +240,7 @@ const ExperienceSection = ({ useIntersectionObserver }: { useIntersectionObserve
                   />
                 ))}
               </div>
-            </div>
-          </div>
-        </div>
-        
-        <div className="text-center" ref={ref}>
-          <Link to="/agendamento">
-            <Button className="bg-amber-700 hover:bg-amber-800 text-white px-12 py-4 text-xl font-medium rounded-xl transition-colors">
-              <Calendar className="mr-3" size={24} />
-              Descubra Mais
-            </Button>
-          </Link>
+            </div>          </div>
         </div>
       </div>
     </section>
