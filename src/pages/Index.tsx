@@ -9,7 +9,6 @@ import HeroSection from '@/components/home/HeroSection';
 import StorySection from '@/components/home/StorySection';
 import ExperienceSection from '@/components/home/ExperienceSection';
 import GallerySection from '@/components/home/GallerySection';
-import VideoSection from '@/components/home/VideoSection';
 import MapSection from '@/components/home/MapSection';
 import CallToActionSection from '@/components/home/CallToActionSection';
 
@@ -58,27 +57,7 @@ const photos = [{
   alt: "Cozinha exterior com panelas de barro e vista para a natureza"
 }];
 
-const videos = [{
-  id: 1,
-  youtubeId: "P1p7TOXDEHs",
-  thumbnail: `https://img.youtube.com/vi/P1p7TOXDEHs/maxresdefault.jpg`,
-  title: "Seu casamento Perfeito"
-}, {
-  id: 2,
-  youtubeId: "TawdKsGX0DM",
-  thumbnail: `https://img.youtube.com/vi/TawdKsGX0DM/maxresdefault.jpg`,
-  title: "Viva a experiência de dormir em meio à natureza"
-}, {
-  id: 3,
-  youtubeId: "OTJQOUpMu9M",
-  thumbnail: `https://img.youtube.com/vi/OTJQOUpMu9M/maxresdefault.jpg`,
-  title: "Um pouco da nossa culinária local"
-}, {
-  id: 4,
-  youtubeId: "TZMxYuCEqBU",
-  thumbnail: `https://img.youtube.com/vi/TZMxYuCEqBU/maxresdefault.jpg`,
-  title: "Day Use"
-}];
+const videos = [];
 
 const Index = () => {
   const [activeEntries, setActiveEntries] = useState<Element[]>([]);
@@ -103,12 +82,10 @@ const Index = () => {
     <div className="min-h-screen flex flex-col relative overflow-hidden">
       <Navbar />
       
-      <main className="flex-grow">
-        <HeroSection />
+      <main className="flex-grow">        <HeroSection />
         <StorySection useIntersectionObserver={useIntersectionObserver} />
         <ExperienceSection useIntersectionObserver={useIntersectionObserver} />
         <GallerySection photos={photos} useIntersectionObserver={useIntersectionObserver} />
-        <VideoSection videos={videos} useIntersectionObserver={useIntersectionObserver} />
         <MapSection useIntersectionObserver={useIntersectionObserver} />
         <CallToActionSection useIntersectionObserver={useIntersectionObserver} />
       </main>
