@@ -69,11 +69,10 @@ const CarouselGallery = ({ photos }: CarouselGalleryProps) => {
           align: "start",
           loop: true,
         }}
-      >
-        <CarouselContent>
+      >        <CarouselContent className="-ml-2 md:-ml-4">
           {photos.map((photo) => (
-            <CarouselItem key={photo.id} className="md:basis-1/2 lg:basis-1/3">
-              <div className="p-1 h-full">
+            <CarouselItem key={photo.id} className="pl-2 md:pl-4 basis-4/5 sm:basis-3/5 md:basis-1/2 lg:basis-1/3">
+              <div className="h-full">
                 <div className="overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow cursor-pointer bg-white aspect-square h-full">
                   {!loadedImages[photo.id] && (
                     <Skeleton className="w-full h-full absolute" />
@@ -93,17 +92,15 @@ const CarouselGallery = ({ photos }: CarouselGalleryProps) => {
             </CarouselItem>
           ))}
         </CarouselContent>
-        <div className="absolute -left-4 top-1/2 -translate-y-1/2 z-10">
-          <CarouselPrevious className="bg-white/80 hover:bg-white border border-amber-200" />
+        <div className="absolute -left-2 md:-left-4 top-1/2 -translate-y-1/2 z-10">
+          <CarouselPrevious className="bg-white/80 hover:bg-white border border-amber-200 h-8 w-8 md:h-10 md:w-10" />
         </div>
-        <div className="absolute -right-4 top-1/2 -translate-y-1/2 z-10">
-          <CarouselNext className="bg-white/80 hover:bg-white border border-amber-200" />
+        <div className="absolute -right-2 md:-right-4 top-1/2 -translate-y-1/2 z-10">
+          <CarouselNext className="bg-white/80 hover:bg-white border border-amber-200 h-8 w-8 md:h-10 md:w-10" />
         </div>
-      </Carousel>
-
-      <Dialog open={!!selectedPhoto} onOpenChange={closePhotoViewer}>
+      </Carousel>      <Dialog open={!!selectedPhoto} onOpenChange={closePhotoViewer}>
         <DialogContent 
-          className="max-w-6xl p-0 bg-black/95 border-none relative"
+          className="max-w-6xl p-0 bg-black/95 border-none relative w-[95vw] max-h-[95vh]"
           onKeyDown={handleKeyDown}
           tabIndex={0}
         >
@@ -112,10 +109,10 @@ const CarouselGallery = ({ photos }: CarouselGalleryProps) => {
               <Button 
                 variant="ghost" 
                 size="icon" 
-                className="absolute top-2 right-2 z-50 text-white hover:bg-white/20 rounded-full"
+                className="absolute top-2 right-2 z-50 text-white hover:bg-white/20 rounded-full h-8 w-8 md:h-10 md:w-10"
                 onClick={closePhotoViewer}
               >
-                <X className="h-6 w-6" />
+                <X className="h-4 w-4 md:h-6 md:w-6" />
               </Button>
               
               <div className="relative flex items-center justify-center">
@@ -123,9 +120,9 @@ const CarouselGallery = ({ photos }: CarouselGalleryProps) => {
                   variant="ghost" 
                   size="icon" 
                   onClick={showPreviousPhoto}
-                  className="absolute left-2 z-40 rounded-full bg-black/40 hover:bg-black/60 text-white"
+                  className="absolute left-1 md:left-2 z-40 rounded-full bg-black/40 hover:bg-black/60 text-white h-8 w-8 md:h-12 md:w-12"
                 >
-                  <ChevronLeft className="h-8 w-8" />
+                  <ChevronLeft className="h-4 w-4 md:h-8 md:w-8" />
                 </Button>
                 
                 <img
@@ -138,14 +135,14 @@ const CarouselGallery = ({ photos }: CarouselGalleryProps) => {
                   variant="ghost" 
                   size="icon" 
                   onClick={showNextPhoto}
-                  className="absolute right-2 z-40 rounded-full bg-black/40 hover:bg-black/60 text-white"
+                  className="absolute right-1 md:right-2 z-40 rounded-full bg-black/40 hover:bg-black/60 text-white h-8 w-8 md:h-12 md:w-12"
                 >
-                  <ChevronRight className="h-8 w-8" />
+                  <ChevronRight className="h-4 w-4 md:h-8 md:w-8" />
                 </Button>
               </div>
               
-              <div className="absolute bottom-4 left-0 right-0 flex justify-center">
-                <div className="px-4 py-2 bg-black/60 rounded-full text-white text-sm">
+              <div className="absolute bottom-2 md:bottom-4 left-0 right-0 flex justify-center">
+                <div className="px-3 md:px-4 py-1 md:py-2 bg-black/60 rounded-full text-white text-xs md:text-sm">
                   {currentIndex + 1} / {photos.length}
                 </div>
               </div>

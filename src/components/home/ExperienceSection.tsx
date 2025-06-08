@@ -141,9 +141,8 @@ const ExperienceSection = ({ useIntersectionObserver }: { useIntersectionObserve
   };
 
   const currentExperience = experienceData[activeTab];
-  
-  return (
-    <section className="py-20 md:py-28 bg-gradient-to-br from-gray-50 to-gray-100/50 relative">
+    return (
+    <section className="py-16 md:py-20 lg:py-28 bg-gradient-to-br from-gray-50 to-gray-100/50 relative">
       <style>{`
         @keyframes progressBar {
           0% { width: 0%; }
@@ -151,35 +150,35 @@ const ExperienceSection = ({ useIntersectionObserver }: { useIntersectionObserve
         }
       `}</style>
       
-      <div className="container px-6 mx-auto">
+      <div className="container px-4 md:px-6 mx-auto">
         {/* Header */}
-        <div className="text-center mb-16" ref={ref}>          
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-amber-900 mb-6 leading-tight">
+        <div className="text-center mb-12 md:mb-16" ref={ref}>          
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-amber-900 mb-4 md:mb-6 leading-tight px-2">
             Experiências Únicas
           </h2>
-          <div className="w-24 h-1 bg-amber-600 mx-auto mb-8 rounded-full"></div>
-          <p className="text-xl md:text-2xl text-gray-700 max-w-4xl mx-auto leading-relaxed font-light">
+          <div className="w-20 md:w-24 h-1 bg-amber-600 mx-auto mb-6 md:mb-8 rounded-full"></div>
+          <p className="text-lg sm:text-xl md:text-2xl text-gray-700 max-w-4xl mx-auto leading-relaxed font-light px-2">
             Criamos experiências memoráveis para todos os momentos especiais da sua vida, com atendimento personalizado e serviços de qualidade.
           </p>
         </div>
         
         {/* Tabs Navigation */}
-        <div className="flex flex-wrap justify-center gap-4 mb-12">
+        <div className="flex flex-wrap justify-center gap-2 sm:gap-4 mb-8 md:mb-12 px-2">
           {tabs.map((tab) => (
             <div key={tab.id} className="relative">
               <button
                 onClick={() => handleTabClick(tab.id)}
                 onMouseEnter={() => setIsPaused(true)}
                 onMouseLeave={() => setIsPaused(false)}
-                className={`px-6 py-3 rounded-full text-lg font-medium transition-all duration-500 flex items-center gap-3 relative overflow-hidden ${
+                className={`px-4 sm:px-6 py-2 sm:py-3 rounded-full text-sm sm:text-lg font-medium transition-all duration-500 flex items-center gap-2 sm:gap-3 relative overflow-hidden ${
                   activeTab === tab.id
                     ? 'bg-amber-600 text-white shadow-lg scale-105'
                     : 'bg-white text-gray-600 hover:bg-amber-50 hover:text-amber-700 border border-gray-200'
                 }`}
               >
-                <span className="text-xl">{tab.emoji}</span>
+                <span className="text-lg sm:text-xl">{tab.emoji}</span>
                 <span className="hidden sm:inline">{tab.label}</span>
-                <span className="sm:hidden">{tab.label.split(' ')[0]}</span>
+                <span className="sm:hidden text-xs">{tab.label.split(' ')[0]}</span>
                 
                 {/* Progress indicator */}
                 {activeTab === tab.id && !isPaused && (
@@ -194,13 +193,12 @@ const ExperienceSection = ({ useIntersectionObserver }: { useIntersectionObserve
             </div>
           ))}
         </div>
-        
-        {/* Content Section */}
-        <div className="mb-20">
-          <div className="text-center mb-12">
-            <span className="text-3xl mb-4 block">{currentExperience.emoji}</span>
-            <h3 className="text-3xl md:text-4xl font-bold text-amber-800 mb-4">{currentExperience.title}</h3>
-            <p className="text-gray-600 max-w-2xl mx-auto">{currentExperience.subtitle}</p>
+          {/* Content Section */}
+        <div className="mb-16 md:mb-20">
+          <div className="text-center mb-8 md:mb-12">
+            <span className="text-2xl sm:text-3xl mb-3 md:mb-4 block">{currentExperience.emoji}</span>
+            <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-amber-800 mb-3 md:mb-4 px-2">{currentExperience.title}</h3>
+            <p className="text-gray-600 max-w-2xl mx-auto px-2 text-sm sm:text-base">{currentExperience.subtitle}</p>
           </div>
           
           {/* Desktop layout: grid */}

@@ -2,21 +2,19 @@
 import { Bird, Leaf } from 'lucide-react';
 
 const StorySection = ({ useIntersectionObserver }: { useIntersectionObserver: (options?: any) => [(element: HTMLElement | null) => void, IntersectionObserverEntry[]] }) => {
-  const [ref, entries] = useIntersectionObserver({ threshold: 0.1 });
-  return (
-    <section className="py-20 md:py-28 bg-white relative">
-      <div className="container px-6 mx-auto">
+  const [ref, entries] = useIntersectionObserver({ threshold: 0.1 });  return (
+    <section className="py-16 md:py-20 lg:py-28 bg-white relative">
+      <div className="container px-4 md:px-6 mx-auto">
         {/* Header */}
-        <div className="text-center mb-20" ref={ref}>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-amber-900 mb-6 leading-tight">
+        <div className="text-center mb-12 md:mb-16 lg:mb-20" ref={ref}>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-amber-900 mb-4 md:mb-6 leading-tight px-2">
             Nossa História
           </h2>
-          <div className="w-24 h-1 bg-amber-600 mx-auto mb-8 rounded-full"></div>
-          <p className="text-xl md:text-2xl text-gray-700 max-w-4xl mx-auto leading-relaxed font-light">
+          <div className="w-20 md:w-24 h-1 bg-amber-600 mx-auto mb-6 md:mb-8 rounded-full"></div>
+          <p className="text-lg sm:text-xl md:text-2xl text-gray-700 max-w-4xl mx-auto leading-relaxed font-light px-2">
             Um santuário natural cuidadosamente preservado, criado para proporcionar experiências inesquecíveis em harmonia com a natureza.
           </p>
-        </div>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-20 items-center">
+        </div>          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-16 lg:gap-20 items-center">
           {/* Image section */}
           <div className="relative order-2 lg:order-1" ref={ref}>
             <div className="relative group">
@@ -25,7 +23,7 @@ const StorySection = ({ useIntersectionObserver }: { useIntersectionObserver: (o
                 <img 
                   src="/lovable-uploads/494226ba-0fa4-44db-b762-3a3011b9997f.png" 
                   alt="Piscina do Sítio Nosso Lugar com vista para a área de lazer" 
-                  className="w-full h-[500px] object-cover transition-transform duration-500" 
+                  className="w-full h-[300px] sm:h-[400px] md:h-[500px] object-cover transition-transform duration-500" 
                   loading="lazy"
                 />
               </div>

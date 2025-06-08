@@ -4,51 +4,51 @@ import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 
 const HeroSection = () => {
-  return (    <section className="relative pt-24 md:pt-28 min-h-[90vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-white via-amber-50/30 to-amber-100/50">
+  return (    <section className="relative pt-20 md:pt-28 min-h-[85vh] md:min-h-[90vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-white via-amber-50/30 to-amber-100/50">
       {/* Background subtle pattern */}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1501854140801-50d01698950b')] bg-cover bg-center"></div>
       </div>
       
-      <div className="container relative z-10 px-6 py-20 mx-auto">
+      <div className="container relative z-10 px-4 md:px-6 py-12 md:py-20 mx-auto">
         <div className="max-w-4xl mx-auto text-center">
           {/* Logo */}
-          <div className="mb-8">
+          <div className="mb-6 md:mb-8">
             <img 
               src="/lovable-uploads/c50697da-7566-40b0-92fa-8c29cca1201a.png" 
               alt="Sítio Nosso Lugar Logo" 
-              className="h-28 w-28 mx-auto object-contain" 
+              className="h-20 w-20 md:h-28 md:w-28 mx-auto object-contain" 
             />
           </div>
           
           {/* Main title - keeping amber color */}
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-amber-900 mb-6 leading-tight">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-amber-900 mb-4 md:mb-6 leading-tight px-2">
             Eventos e Hospedagem
             <span className="block text-amber-800">em Meio à Natureza</span>
-          </h1>
-            {/* Subtitle */}
-          <p className="max-w-3xl mx-auto mb-10 text-lg md:text-xl text-gray-700 leading-relaxed">
+          </h1>            {/* Subtitle */}
+          <p className="max-w-3xl mx-auto mb-8 md:mb-10 text-base md:text-lg lg:text-xl text-gray-700 leading-relaxed px-4 md:px-0">
             Um refúgio natural perfeito para <span className="text-amber-800 font-semibold">seus momentos mais especiais</span>, onde a natureza e o conforto se encontram para criar experiências inesquecíveis.
           </p>
+            
             {/* Feature highlights */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 max-w-4xl mx-auto mb-10">
-            <div className="bg-white/80 backdrop-blur-sm p-5 rounded-xl border border-amber-200/50 flex items-center space-x-4">
-              <div className="bg-amber-100 p-2 rounded-lg">
-                <Calendar className="h-6 w-6 text-amber-700" />
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-4 max-w-4xl mx-auto mb-8 md:mb-10 px-2 md:px-0">
+            <div className="bg-white/80 backdrop-blur-sm p-4 md:p-5 rounded-xl border border-amber-200/50 flex items-center space-x-3 md:space-x-4">
+              <div className="bg-amber-100 p-2 rounded-lg flex-shrink-0">
+                <Calendar className="h-5 w-5 md:h-6 md:w-6 text-amber-700" />
               </div>
-              <span className="text-gray-800 font-medium">Estrutura completa para eventos</span>
+              <span className="text-gray-800 font-medium text-sm md:text-base">Estrutura completa para eventos</span>
             </div>
-            <div className="bg-white/80 backdrop-blur-sm p-5 rounded-xl border border-amber-200/50 flex items-center space-x-4">
-              <div className="bg-amber-100 p-2 rounded-lg">
-                <Hotel className="h-6 w-6 text-amber-700" />
+            <div className="bg-white/80 backdrop-blur-sm p-4 md:p-5 rounded-xl border border-amber-200/50 flex items-center space-x-3 md:space-x-4">
+              <div className="bg-amber-100 p-2 rounded-lg flex-shrink-0">
+                <Hotel className="h-5 w-5 md:h-6 md:w-6 text-amber-700" />
               </div>
-              <span className="text-gray-800 font-medium">Hospedagem confortável</span>
+              <span className="text-gray-800 font-medium text-sm md:text-base">Hospedagem confortável</span>
             </div>
-            <div className="bg-white/80 backdrop-blur-sm p-5 rounded-xl border border-amber-200/50 flex items-center space-x-4">
-              <div className="bg-amber-100 p-2 rounded-lg">
-                <Utensils className="h-6 w-6 text-amber-700" />
+            <div className="bg-white/80 backdrop-blur-sm p-4 md:p-5 rounded-xl border border-amber-200/50 flex items-center space-x-3 md:space-x-4 md:col-span-2 lg:col-span-1">
+              <div className="bg-amber-100 p-2 rounded-lg flex-shrink-0">
+                <Utensils className="h-5 w-5 md:h-6 md:w-6 text-amber-700" />
               </div>
-              <span className="text-gray-800 font-medium">Restaurante completo</span>
+              <span className="text-gray-800 font-medium text-sm md:text-base">Restaurante completo</span>
             </div>
           </div>
           
