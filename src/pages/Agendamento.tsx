@@ -10,15 +10,18 @@ import { toast } from 'sonner';
 const Agendamento = () => {
   const [whatsappMessage, setWhatsappMessage] = useState('🌿 *SÍTIO NOSSO LUGAR* 🌟\n\nOlá! Gostaria de fazer uma reserva para um evento especial.\n\n💚 Aguardo contato!');
   const [currentStep, setCurrentStep] = useState(1);
-
   const handleSubmit = (data: ReservationData) => {
     try {
       console.log("Reservation data received:", data);
+      
+      // Validate required fields
+      if (!data.nome || !data.cidade || !data.dataEvento || !data.tipoEvento || !data.quantidadePessoas) {
+        toast.error("Por favor, preencha todos os campos obrigatórios");
+        return;
+      }
     
       // Format the date
-      const formattedDate = data.dataEvento 
-        ? format(data.dataEvento, "dd/MM/yyyy", { locale: ptBR }) 
-        : "Data não selecionada";
+      const formattedDate = format(data.dataEvento, "dd/MM/yyyy", { locale: ptBR });
       
       // Create WhatsApp message
       const message = `🌟 *NOVA RESERVA - SÍTIO NOSSO LUGAR* 🌿
@@ -38,17 +41,17 @@ ${data.observacoes ? `📝 *OBSERVAÇÕES*\n${data.observacoes}\n\n` : ""}🙏 A
 
       setWhatsappMessage(message);
       
-      toast.success("Formulário enviado com sucesso!");
+      toast.success("Formulário enviado com sucesso! Redirecionando para WhatsApp...");
       
       // Redirect to WhatsApp
       setTimeout(() => {
         const whatsappUrl = `https://wa.me/559184731385?text=${encodeURIComponent(message)}`;
-        console.log("Opening WhatsApp URL");
+        console.log("Opening WhatsApp URL:", whatsappUrl);
         window.open(whatsappUrl, '_blank');
-      }, 1000);
+      }, 1500);
     } catch (error) {
       console.error("Error processing form:", error);
-      toast.error("Erro ao processar o formulário");
+      toast.error("Erro ao processar o formulário. Tente novamente.");
     }
   };
 

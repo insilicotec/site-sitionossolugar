@@ -81,13 +81,26 @@ const StepperForm = ({ onSubmit, onStepChange }: StepperFormProps) => {
         }, 200); // Slightly longer delay to allow hero section to hide first
       }
     }
-  };
-
-  const handleFormSubmit = async () => {
-    const isValid = await validateStep(currentStep);
-    if (isValid) {
+  };  const handleFormSubmit = async () => {
+    console.log("=== FORM SUBMISSION STARTED ===");
+    
+    // Get current form values
+    const formValues = form.getValues();
+    console.log("Current form values:", formValues);
+    
+    // Validate all form fields before submitting
+    const isFormValid = await form.trigger();
+    console.log("Form validation result:", isFormValid);
+    console.log("Form errors:", form.formState.errors);
+    
+    if (isFormValid) {
       const data = form.getValues();
+      console.log("✅ Form data being submitted:", data);
+      console.log("=== CALLING PARENT SUBMIT ===");
       handleSubmit(data);
+    } else {
+      console.log("❌ Form validation failed");
+      console.log("Detailed errors:", form.formState.errors);
     }
   };
 

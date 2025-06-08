@@ -1,5 +1,6 @@
 
 import { Toaster } from "@/components/ui/toaster";
+import { Toaster as SonnerToaster } from "sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
@@ -15,10 +16,14 @@ function App() {
   const [queryClient] = useState(() => new QueryClient());
 
   return (
-    <QueryClientProvider client={queryClient}>
-      <BrowserRouter>
+    <QueryClientProvider client={queryClient}>      <BrowserRouter>
         <TooltipProvider>
           <Toaster />
+          <SonnerToaster 
+            position="top-right" 
+            expand={true}
+            richColors={true}
+          />
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/agendamento" element={<Agendamento />} />
