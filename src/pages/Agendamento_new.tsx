@@ -102,7 +102,7 @@ ${data.observacoes ? `📝 *OBSERVAÇÕES*\n${data.observacoes}\n\n` : ""}🙏 A
       <div className="py-2 bg-gray-100 text-center text-xs text-gray-500">
         <div className="container px-4">
           <p>
-            Desenvolvido por <a href="https://www.instagram.com/insilicotec/" target="_blank" rel="noopener noreferrer" className="text-sitio-green-dark hover:underline">Insilico tecnologia</a> • 
+            Desenvolvido por <a href="https://www.instagram.com/insilicotec/" target="_blank" rel="noopener noreferrer" className="text-amber-600 hover:text-amber-700 hover:underline">Insilico tecnologia</a> • 
             <a href="https://wa.me/5591988939655" target="_blank" rel="noopener noreferrer" className="ml-1 text-sitio-green-dark hover:underline">(91) 98893-9655</a> • 
             <a href="https://www.instagram.com/insilicotec/" target="_blank" rel="noopener noreferrer" className="ml-1 text-sitio-green-dark hover:underline">@insilicotec</a>
           </p>

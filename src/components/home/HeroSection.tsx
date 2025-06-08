@@ -50,21 +50,19 @@ const HeroSection = () => {
               </div>
               <span className="text-gray-800 font-medium text-sm md:text-base">Restaurante completo</span>
             </div>
-          </div>
-          
-          {/* Action buttons */}
+          </div>          {/* Action buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <Link to="/agendamento">
-              <Button className="w-full sm:w-auto bg-amber-700 hover:bg-amber-800 text-white px-8 py-3 text-lg font-medium rounded-lg">
+              <Button className="w-full sm:w-auto bg-amber-800 hover:bg-amber-900 text-white px-8 py-3 text-lg font-medium rounded-lg transition-all duration-300 hover:shadow-lg hover:shadow-amber-800/25 transform hover:-translate-y-0.5">
                 <Calendar className="mr-2 h-5 w-5" />
                 Entre em contato conosco
               </Button>
             </Link>
-              <a 
+            <a 
               href="https://www.instagram.com/sitionossolugar/" 
               target="_blank" 
               rel="noopener noreferrer" 
-              className="inline-flex items-center gap-3 px-8 py-3 text-lg font-medium text-white bg-gradient-to-r from-amber-600 via-red-600 to-purple-600 rounded-lg hover:from-amber-700 hover:via-red-700 hover:to-purple-700 transition-colors"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-3 text-lg font-medium text-amber-800 bg-white border-2 border-amber-800 rounded-lg hover:bg-amber-800 hover:text-white transition-all duration-300 hover:shadow-lg hover:shadow-amber-800/25 transform hover:-translate-y-0.5"
             >
               <Instagram size={20} />
               <span>Instagram</span>

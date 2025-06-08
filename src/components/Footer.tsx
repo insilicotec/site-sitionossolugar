@@ -6,10 +6,9 @@ import { motion } from 'framer-motion';
 const Footer = () => {
   const currentYear = new Date().getFullYear();
   return <footer className="text-white pt-16 pb-8 bg-black bg-[nature-earth-600]">
-      <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
+      <div className="container mx-auto px-4">        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {/* Logo & About */}
-          <div className="md:col-span-4 space-y-4">
+          <div className="space-y-4">
             <motion.div initial={{
             opacity: 0,
             y: 20
@@ -29,34 +28,10 @@ const Footer = () => {
                 <SocialLink href="https://www.instagram.com/sitionossolugar/" icon={<Instagram size={20} />} />
                 <SocialLink href="tel:+559184731385" icon={<Phone size={20} />} />
                 <SocialLink href="mailto:contato@sitionossolugar.com" icon={<Mail size={20} />} />
-              </div>
-            </motion.div>
+              </div>            </motion.div>
           </div>
-          
-          {/* Links */}
-          <motion.div className="md:col-span-3 space-y-4" initial={{
-          opacity: 0,
-          y: 20
-        }} whileInView={{
-          opacity: 1,
-          y: 0
-        }} transition={{
-          duration: 0.5,
-          delay: 0.1
-        }} viewport={{
-          once: true
-        }}>
-            <h3 className="text-xl font-medium mb-4 text-slate-50">Navegação</h3>
-            <ul className="space-y-2">
-              <FooterLink to="/">Página Inicial</FooterLink>
-              <FooterLink to="/agendamento">Agendamento</FooterLink>
-              <FooterLink to="/como-chegar">Como Chegar</FooterLink>
-              <FooterLink to="/parcerias">Parcerias</FooterLink>
-            </ul>
-          </motion.div>
-          
-          {/* Contact */}
-          <motion.div className="md:col-span-5 space-y-4" initial={{
+            {/* Contact */}
+          <motion.div className="space-y-4" initial={{
           opacity: 0,
           y: 20
         }} whileInView={{
@@ -125,12 +100,11 @@ const Footer = () => {
             {/* Developer Credit */}
             <div className="flex items-center gap-4">
               <div className="text-center md:text-left">
-                <p className="text-gray-400 text-sm mb-1">Site desenvolvido por</p>
-                <motion.a 
+                <p className="text-gray-400 text-sm mb-1">Site desenvolvido por</p>                <motion.a 
                   href="https://www.instagram.com/insilicotec/" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="text-xl font-bold bg-gradient-to-r from-nature-400 via-amber-400 to-nature-500 bg-clip-text text-transparent hover:from-nature-300 hover:via-amber-300 hover:to-nature-400 transition-all duration-300"
+                  className="text-xl font-bold bg-gradient-to-r from-amber-400 via-amber-500 to-amber-600 bg-clip-text text-transparent hover:from-amber-300 hover:via-amber-400 hover:to-amber-500 transition-all duration-300"
                   whileHover={{ scale: 1.05 }}
                 >
                   Insilico Tecnologia
