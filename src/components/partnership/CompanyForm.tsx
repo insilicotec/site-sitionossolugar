@@ -16,6 +16,8 @@ import {
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 import { companyFormSchema, CompanyFormValues } from "./schemas";
 
@@ -32,23 +34,21 @@ export function CompanyForm() {
     },
     mode: "onBlur"
   });
-
   const handleSubmit = (values: CompanyFormValues) => {
-    try {
-      const message = `🤝 *PROPOSTA DE PARCERIA - EMPRESA* 🏢
+    try {      const message = `🤝 *PROPOSTA DE PARCERIA - AGÊNCIA DE TURISMO* ✈️
 
-🏢 *DADOS DA EMPRESA*
+🏢 *DADOS DA AGÊNCIA*
 • Nome: ${values.companyName}
-• Ramo: ${values.businessType}
+• Quantidade usual de pessoas: ${values.businessType}
 
 👤 *CONTATO*
 • Nome: ${values.contactName}
 • Email: ${values.email}
 • Telefone: ${values.phoneNumber}
 
-${values.message ? `💭 *MENSAGEM ADICIONAL*\n${values.message}\n\n` : ""}🌿 Gostaria de conversar sobre uma parceria com o Sítio Nosso Lugar!
+${values.message ? `💭 *PROPOSTA DE PARCERIA*\n${values.message}\n\n` : ""}🌿 Gostaria de incluir o Sítio Nosso Lugar em nossos pacotes turísticos!
 
-🤝 Acreditamos que podemos criar uma colaboração valiosa entre nossas empresas.`;
+✈️ Acreditamos que podemos oferecer experiências únicas aos nossos clientes em meio à natureza.`;
       const whatsappUrl = `https://wa.me/559184731385?text=${encodeURIComponent(message)}`;
       window.open(whatsappUrl, "_blank");
       toast({
@@ -65,34 +65,53 @@ ${values.message ? `💭 *MENSAGEM ADICIONAL*\n${values.message}\n\n` : ""}🌿 
       });
     }
   };
-
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(handleSubmit)} className="space-y-6">
+        <div className="mb-6">
+          <Card className="border-amber-200 bg-amber-50/50">
+            <CardContent className="pt-6">
+              <p className="text-amber-800">
+                Oferecemos condições especiais para agências que desejam incluir nosso espaço em seus pacotes turísticos. Temos estrutura completa para grupos, day use, eventos e experiências na natureza.
+              </p>
+            </CardContent>
+          </Card>
+        </div>
+        
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <FormField
             control={form.control}
             name="companyName"
             render={({ field }) => (
-              <FormItem>
-                <FormLabel>Nome da Empresa</FormLabel>
+              <FormItem>                <FormLabel>Nome da Agência</FormLabel>
                 <FormControl>
-                  <Input placeholder="Sua empresa" {...field} />
+                  <Input placeholder="Nome da sua agência de turismo" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
             )}
           />
-          
-          <FormField
+            <FormField
             control={form.control}
             name="businessType"
             render={({ field }) => (
-              <FormItem>
-                <FormLabel>Ramo de Atividade</FormLabel>
-                <FormControl>
-                  <Input placeholder="Seu ramo de negócio" {...field} />
-                </FormControl>
+              <FormItem>                <FormLabel>Quantidade de Pessoas</FormLabel>
+                <Select onValueChange={field.onChange} defaultValue={field.value}>
+                  <FormControl>
+                    <SelectTrigger>
+                      <SelectValue placeholder="Selecione a quantidade usual" />
+                    </SelectTrigger>
+                  </FormControl>
+                  <SelectContent>
+                    <SelectItem value="1-10">1 a 10 pessoas</SelectItem>
+                    <SelectItem value="11-20">11 a 20 pessoas</SelectItem>
+                    <SelectItem value="21-30">21 a 30 pessoas</SelectItem>
+                    <SelectItem value="31-50">31 a 50 pessoas</SelectItem>
+                    <SelectItem value="51-100">51 a 100 pessoas</SelectItem>
+                    <SelectItem value="100+">Mais de 100 pessoas</SelectItem>
+                    <SelectItem value="variavel">Quantidade variável</SelectItem>
+                  </SelectContent>
+                </Select>
                 <FormMessage />
               </FormItem>
             )}
@@ -151,17 +170,16 @@ ${values.message ? `💭 *MENSAGEM ADICIONAL*\n${values.message}\n\n` : ""}🌿 
           control={form.control}
           name="message"
           render={({ field }) => (
-            <FormItem>
-              <FormLabel>Mensagem (Opcional)</FormLabel>
+            <FormItem>              <FormLabel>Proposta de Parceria (Opcional)</FormLabel>
               <FormControl>
                 <Textarea 
-                  placeholder="Descreva sua proposta de parceria..." 
+                  placeholder="Descreva como gostaria de incluir o Sítio Nosso Lugar em seus pacotes turísticos..." 
                   className="min-h-32 resize-y"
                   {...field} 
                 />
               </FormControl>
               <FormDescription>
-                Conte-nos sobre sua ideia de parceria ou ativação com o Sítio Nosso Lugar.
+                Conte-nos sobre seu interesse em oferecer nosso espaço aos seus clientes - day use, eventos, hospedagem, etc.
               </FormDescription>
               <FormMessage />
             </FormItem>

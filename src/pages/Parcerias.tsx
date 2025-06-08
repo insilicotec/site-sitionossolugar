@@ -1,10 +1,8 @@
 
-import React from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { PartnershipForm } from '@/components/PartnershipForm';
-import WhatsappButton from '@/components/WhatsappButton';
-import { Building2, Instagram, MessageSquare, Handshake, Map, Briefcase } from 'lucide-react';
+import { Handshake, Map } from 'lucide-react';
 
 const Parcerias = () => {
   return (
@@ -23,44 +21,7 @@ const Parcerias = () => {
                 a diferentes tipos de parcerias que tragam valor para nossos visitantes e seu negócio.
               </p>
             </div>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
-              <div className="bg-white rounded-xl shadow-md p-6 hover:shadow-lg transition-shadow">
-                <div className="w-14 h-14 bg-amber-100 rounded-full flex items-center justify-center mb-4 text-amber-600">
-                  <Building2 size={28} />
-                </div>
-                <h3 className="text-xl font-semibold mb-3 text-amber-800">Agências de Turismo</h3>
-                <p className="text-gray-600 mb-4">
-                  Oferecemos opções para agências que desejam incluir nosso espaço em seus 
-                  pacotes turísticos. Temos condições especiais para grupos e estrutura completa 
-                  para hospedagem e realização de eventos.
-                </p>
-              </div>
-              
-              <div className="bg-white rounded-xl shadow-md p-6 hover:shadow-lg transition-shadow">
-                <div className="w-14 h-14 bg-amber-100 rounded-full flex items-center justify-center mb-4 text-amber-600">
-                  <Briefcase className="w-7 h-7" />
-                </div>
-                <h3 className="text-xl font-semibold mb-3 text-amber-800">Fornecedores</h3>
-                <p className="text-gray-600 mb-4">
-                  Se você é um fornecedor de produtos ou serviços para eventos, podemos estabelecer 
-                  parcerias para oferecer soluções completas aos nossos clientes, desde decoração 
-                  a serviços de catering.
-                </p>
-              </div>
-              
-              <div className="bg-white rounded-xl shadow-md p-6 hover:shadow-lg transition-shadow">
-                <div className="w-14 h-14 bg-amber-100 rounded-full flex items-center justify-center mb-4 text-amber-600">
-                  <Instagram size={28} />
-                </div>
-                <h3 className="text-xl font-semibold mb-3 text-amber-800">Influenciadores</h3>
-                <p className="text-gray-600 mb-4">
-                  Criadores de conteúdo e influenciadores digitais são bem-vindos para colaborar conosco.
-                  Vamos criar experiências autênticas que destacam a beleza e a hospitalidade do 
-                  Sítio Nosso Lugar.
-                </p>
-              </div>
-            </div>
+  
             
             <div className="max-w-3xl mx-auto mb-12">
               <div className="bg-white rounded-xl shadow-lg overflow-hidden">
@@ -96,10 +57,8 @@ const Parcerias = () => {
             </div>
           </div>
         </section>
-      </main>
-      
+      </main>      
       <Footer />
-      <WhatsappButton phone="559184731385" message="Olá! Gostaria de mais informações sobre parcerias com o Sítio Nosso Lugar." />
     </div>
   );
 };

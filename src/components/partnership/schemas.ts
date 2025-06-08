@@ -3,7 +3,7 @@ import { z } from "zod";
 
 export const companyFormSchema = z.object({
   companyName: z.string().min(3, {
-    message: "O nome da empresa deve ter pelo menos 3 caracteres.",
+    message: "O nome da agência deve ter pelo menos 3 caracteres.",
   }),
   contactName: z.string().min(3, {
     message: "O nome do contato deve ter pelo menos 3 caracteres.",
@@ -13,9 +13,8 @@ export const companyFormSchema = z.object({
   }),
   phoneNumber: z.string()
     .min(10, { message: "O número de telefone deve ter pelo menos 10 dígitos." })
-    .regex(/^[\d\s\(\)\-\+]+$/, { message: "Formato de telefone inválido. Use apenas números, espaços, parênteses, hífen ou +." }),
-  businessType: z.string().min(3, {
-    message: "O tipo de negócio deve ter pelo menos 3 caracteres.",
+    .regex(/^[\d\s\(\)\-\+]+$/, { message: "Formato de telefone inválido. Use apenas números, espaços, parênteses, hífen ou +." }),  businessType: z.string().min(1, {
+    message: "Por favor, selecione a quantidade de pessoas.",
   }),
   message: z.string().optional(),
 });

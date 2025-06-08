@@ -71,9 +71,8 @@ export function InfluencerForm() {
       <form onSubmit={form.handleSubmit(handleSubmit)} className="space-y-6">
         <div className="mb-6">
           <Card className="border-amber-200 bg-amber-50/50">
-            <CardContent className="pt-6">
-              <p className="text-amber-800">
-                Somos uma opção exclusiva para criadores de conteúdo que desejam mostrar experiências autênticas em meio à natureza. Compartilhe o Sítio Nosso Lugar com seu público!
+            <CardContent className="pt-6">              <p className="text-amber-800">
+                Somos uma opção exclusiva para criadores de conteúdo que desejam mostrar experiências autênticas. Compartilhe o Sítio Nosso Lugar com seu público!
               </p>
             </CardContent>
           </Card>
@@ -99,7 +98,7 @@ export function InfluencerForm() {
             name="socialHandle"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>@ do Instagram/TikTok</FormLabel>
+                <FormLabel>@</FormLabel>
                 <FormControl>
                   <div className="relative">
                     <span className="absolute left-3 top-2.5 text-gray-500">@</span>
@@ -162,10 +161,9 @@ export function InfluencerForm() {
             </FormItem>
           )}
         />
-        
-        <Button 
+          <Button 
           type="submit" 
-          className="w-full md:w-auto bg-gradient-to-r from-amber-600 via-red-600 to-purple-600 hover:from-amber-700 hover:via-red-700 hover:to-purple-700 text-white disabled:opacity-50 disabled:cursor-not-allowed" 
+          className="w-full md:w-auto bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 hover:from-pink-600 hover:via-purple-600 hover:to-indigo-600 text-white disabled:opacity-50 disabled:cursor-not-allowed" 
           disabled={form.formState.isSubmitting}
         >
           <MessageSquare className="mr-2 h-4 w-4" />
