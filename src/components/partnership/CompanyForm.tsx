@@ -64,21 +64,20 @@ ${values.message ? `💭 *PROPOSTA DE PARCERIA*\n${values.message}\n\n` : ""}�
         variant: "destructive",
       });
     }
-  };
-  return (
+  };  return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(handleSubmit)} className="space-y-6">
-        <div className="mb-6">
+      <form onSubmit={form.handleSubmit(handleSubmit)} className="space-y-4 sm:space-y-6">
+        <div className="mb-4 sm:mb-6">
           <Card className="border-amber-200 bg-amber-50/50">
-            <CardContent className="pt-6">
-              <p className="text-amber-800">
+            <CardContent className="pt-4 sm:pt-6">
+              <p className="text-amber-800 text-sm sm:text-base">
                 Oferecemos condições especiais para agências que desejam incluir nosso espaço em seus pacotes turísticos. Temos estrutura completa para grupos, day use, eventos e experiências na natureza.
               </p>
             </CardContent>
           </Card>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4">
           <FormField
             control={form.control}
             name="companyName"
@@ -115,10 +114,9 @@ ${values.message ? `💭 *PROPOSTA DE PARCERIA*\n${values.message}\n\n` : ""}�
                 <FormMessage />
               </FormItem>
             )}
-          />
-        </div>
+          />        </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4">
           <FormField
             control={form.control}
             name="contactName"
@@ -185,14 +183,14 @@ ${values.message ? `💭 *PROPOSTA DE PARCERIA*\n${values.message}\n\n` : ""}�
             </FormItem>
           )}
         />
-        
-        <Button 
+          <Button 
           type="submit" 
-          className="w-full md:w-auto bg-amber-700 hover:bg-amber-800 text-white disabled:opacity-50 disabled:cursor-not-allowed" 
+          className="w-full sm:w-full md:w-auto bg-amber-700 hover:bg-amber-800 text-white disabled:opacity-50 disabled:cursor-not-allowed py-3 px-4 text-sm sm:text-base" 
           disabled={form.formState.isSubmitting}
         >
-          <MessageSquare className="mr-2 h-4 w-4" />
-          {form.formState.isSubmitting ? "Enviando..." : "Enviar Proposta via WhatsApp"}
+          <MessageSquare className="mr-1 sm:mr-2 h-3 w-3 sm:h-4 sm:w-4" />
+          <span className="hidden sm:inline">{form.formState.isSubmitting ? "Enviando..." : "Enviar Proposta via WhatsApp"}</span>
+          <span className="sm:hidden">{form.formState.isSubmitting ? "Enviando..." : "Enviar via WhatsApp"}</span>
         </Button>
       </form>
     </Form>

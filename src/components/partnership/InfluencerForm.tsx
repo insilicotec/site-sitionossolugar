@@ -65,20 +65,20 @@ export function InfluencerForm() {
       });
     }
   };
-
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(handleSubmit)} className="space-y-6">
-        <div className="mb-6">
+      <form onSubmit={form.handleSubmit(handleSubmit)} className="space-y-4 sm:space-y-6">
+        <div className="mb-4 sm:mb-6">
           <Card className="border-amber-200 bg-amber-50/50">
-            <CardContent className="pt-6">              <p className="text-amber-800">
+            <CardContent className="pt-4 sm:pt-6">
+              <p className="text-amber-800 text-sm sm:text-base">
                 Somos uma opção exclusiva para criadores de conteúdo que desejam mostrar experiências autênticas. Compartilhe o Sítio Nosso Lugar com seu público!
               </p>
             </CardContent>
           </Card>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4">
           <FormField
             control={form.control}
             name="name"
@@ -110,12 +110,11 @@ export function InfluencerForm() {
             )}
           />
         </div>
-        
-        <FormField
+          <FormField
           control={form.control}
           name="city"
           render={({ field }) => (
-            <FormItem>
+            <FormItem className="col-span-full">
               <FormLabel>Cidade</FormLabel>
               <FormControl>
                 <Input placeholder="Sua cidade" {...field} />
@@ -129,13 +128,13 @@ export function InfluencerForm() {
           control={form.control}
           name="platform"
           render={({ field }) => (
-            <FormItem className="space-y-3">
+            <FormItem className="space-y-3 col-span-full">
               <FormLabel>Principal Plataforma</FormLabel>
               <FormControl>
                 <RadioGroup
                   onValueChange={field.onChange}
                   defaultValue={field.value}
-                  className="flex flex-wrap gap-4"
+                  className="flex flex-col sm:flex-row gap-2 sm:gap-4"
                 >
                   <div className="flex items-center space-x-2">
                     <RadioGroupItem value="instagram" id="instagram" />
@@ -159,15 +158,16 @@ export function InfluencerForm() {
               </FormControl>
               <FormMessage />
             </FormItem>
-          )}
-        />
-          <Button 
+          )}        />
+        
+        <Button 
           type="submit" 
-          className="w-full md:w-auto bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 hover:from-pink-600 hover:via-purple-600 hover:to-indigo-600 text-white disabled:opacity-50 disabled:cursor-not-allowed" 
+          className="w-full sm:w-full md:w-auto bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 hover:from-pink-600 hover:via-purple-600 hover:to-indigo-600 text-white disabled:opacity-50 disabled:cursor-not-allowed py-3 px-4 text-sm sm:text-base" 
           disabled={form.formState.isSubmitting}
         >
-          <MessageSquare className="mr-2 h-4 w-4" />
-          {form.formState.isSubmitting ? "Enviando..." : "Enviar Proposta via WhatsApp"}
+          <MessageSquare className="mr-1 sm:mr-2 h-3 w-3 sm:h-4 sm:w-4" />
+          <span className="hidden sm:inline">{form.formState.isSubmitting ? "Enviando..." : "Enviar Proposta via WhatsApp"}</span>
+          <span className="sm:hidden">{form.formState.isSubmitting ? "Enviando..." : "Enviar via WhatsApp"}</span>
         </Button>
       </form>
     </Form>
