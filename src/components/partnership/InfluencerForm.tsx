@@ -32,23 +32,22 @@ export function InfluencerForm() {
     },
     mode: "onBlur"
   });
-
   const handleSubmit = (values: InfluencerFormValues) => {
     try {
       const platformText = values.platform === "instagram" ? "Instagram" : "TikTok";
-      const message = `🤝 *PROPOSTA DE PARCERIA - INFLUENCIADOR* 📸
+      const message = `*PROPOSTA DE PARCERIA - INFLUENCIADOR*
 
-👤 *DADOS PESSOAIS*
+*DADOS PESSOAIS*
 • Nome: ${values.name}
 • Handle: @${values.socialHandle}
 • Cidade: ${values.city}
 
-📱 *PLATAFORMA PRINCIPAL*
+*PLATAFORMA PRINCIPAL*
 • ${platformText}
 
-🌿 Gostaria de conversar sobre uma parceria com o Sítio Nosso Lugar como criador de conteúdo!
+Gostaria de conversar sobre uma parceria com o Sítio Nosso Lugar como criador de conteúdo!
 
-✨ Acredito que posso mostrar experiências autênticas em meio à natureza para meu público.`;
+Acredito que posso mostrar experiências autênticas em meio à natureza para meu público.`;
       const whatsappUrl = `https://wa.me/559184731385?text=${encodeURIComponent(message)}`;
       window.open(whatsappUrl, "_blank");
       toast({

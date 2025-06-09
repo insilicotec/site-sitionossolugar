@@ -33,22 +33,21 @@ export function CompanyForm() {
       message: "",
     },
     mode: "onBlur"
-  });
-  const handleSubmit = (values: CompanyFormValues) => {
-    try {      const message = `🤝 *PROPOSTA DE PARCERIA - AGÊNCIA DE TURISMO* ✈️
+  });  const handleSubmit = (values: CompanyFormValues) => {
+    try {      const message = `*PROPOSTA DE PARCERIA - AGENCIA DE TURISMO*
 
-🏢 *DADOS DA AGÊNCIA*
+*DADOS DA AGENCIA*
 • Nome: ${values.companyName}
 • Quantidade usual de pessoas: ${values.businessType}
 
-👤 *CONTATO*
+*CONTATO*
 • Nome: ${values.contactName}
 • Email: ${values.email}
 • Telefone: ${values.phoneNumber}
 
-${values.message ? `💭 *PROPOSTA DE PARCERIA*\n${values.message}\n\n` : ""}🌿 Gostaria de incluir o Sítio Nosso Lugar em nossos pacotes turísticos!
+${values.message ? `*PROPOSTA DE PARCERIA*\n${values.message}\n\n` : ""}Gostaria de incluir o Sítio Nosso Lugar em nossos pacotes turísticos!
 
-✈️ Acreditamos que podemos oferecer experiências únicas aos nossos clientes em meio à natureza.`;
+Acreditamos que podemos oferecer experiências únicas aos nossos clientes em meio à natureza.`;
       const whatsappUrl = `https://wa.me/559184731385?text=${encodeURIComponent(message)}`;
       window.open(whatsappUrl, "_blank");
       toast({

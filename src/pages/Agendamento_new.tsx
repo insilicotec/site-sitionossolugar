@@ -18,22 +18,21 @@ const Agendamento = () => {
       const formattedDate = data.dataEvento 
         ? format(data.dataEvento, "dd/MM/yyyy", { locale: ptBR }) 
         : "Data não selecionada";
-      
-      // Create WhatsApp message
-      const message = `🌟 *NOVA RESERVA - SÍTIO NOSSO LUGAR* 🌿
+        // Create WhatsApp message
+      const message = `*NOVA RESERVA - SITIO NOSSO LUGAR*
 
-👤 *DADOS PESSOAIS*
+*DADOS PESSOAIS*
 • Nome: ${data.nome}
 • Cidade: ${data.cidade}
 
-🎉 *DETALHES DO EVENTO*
-• 📅 Data: ${formattedDate}
-• 🎊 Tipo: ${getEventTypeText(data.tipoEvento)}
-• 👥 Quantidade de Pessoas: ${data.quantidadePessoas}
+*DETALHES DO EVENTO*
+• Data: ${formattedDate}
+• Tipo: ${getEventTypeText(data.tipoEvento)}
+• Quantidade de Pessoas: ${data.quantidadePessoas}
 
-${data.observacoes ? `📝 *OBSERVAÇÕES*\n${data.observacoes}\n\n` : ""}🙏 Agradecemos seu interesse em realizar seu evento no Sítio Nosso Lugar!
+${data.observacoes ? `*OBSERVACOES*\n${data.observacoes}\n\n` : ""}Agradecemos seu interesse em realizar seu evento no Sítio Nosso Lugar!
 
-💚 Em breve entraremos em contato para confirmar os detalhes.`;
+Em breve entraremos em contato para confirmar os detalhes.`;
 
       setWhatsappMessage(message);
       

@@ -19,22 +19,21 @@ const Agendamento = () => {
       // Format the date
       const formattedDate = data.dataEvento 
         ? format(data.dataEvento, "dd/MM/yyyy", { locale: ptBR }) 
-        : "Data não selecionada";
-      // Create WhatsApp message
-      const message = `🌟 *NOVA RESERVA - SÍTIO NOSSO LUGAR* 🌿
+        : "Data não selecionada";      // Create WhatsApp message
+      const message = `*NOVA RESERVA - SITIO NOSSO LUGAR*
 
-👤 *DADOS PESSOAIS*
+*DADOS PESSOAIS*
 • Nome: ${data.nome}
 • Cidade: ${data.cidade}
 
-🎉 *DETALHES DO EVENTO*
-• 📅 Data: ${formattedDate}
-• 🎊 Tipo: ${getEventTypeText(data.tipoEvento)}
-• 👥 Quantidade de Pessoas: ${data.quantidadePessoas}
+*DETALHES DO EVENTO*
+• Data: ${formattedDate}
+• Tipo: ${getEventTypeText(data.tipoEvento)}
+• Quantidade de Pessoas: ${data.quantidadePessoas}
 
-${data.observacoes ? `📝 *OBSERVAÇÕES*\n${data.observacoes}\n\n` : ""}🙏 Agradecemos seu interesse em realizar seu evento no Sítio Nosso Lugar!
+${data.observacoes ? `*OBSERVACOES*\n${data.observacoes}\n\n` : ""}Agradecemos seu interesse em realizar seu evento no Sítio Nosso Lugar!
 
-💚 Em breve entraremos em contato para confirmar os detalhes.`;
+Em breve entraremos em contato para confirmar os detalhes.`;
 
     setWhatsappMessage(message);
     
@@ -97,26 +96,16 @@ ${data.observacoes ? `📝 *OBSERVAÇÕES*\n${data.observacoes}\n\n` : ""}🙏 A
       </main>
       
       <Footer />
-      
-      {/* Discreet Developer Credits */}
+        {/* Discreet Developer Credits */}
       <div className="py-2 bg-gray-100 text-center text-xs text-gray-500">
         <div className="container px-4">
           <p>
             Desenvolvido por <a href="https://www.instagram.com/insilicotec/" target="_blank" rel="noopener noreferrer" className="text-amber-600 hover:text-amber-700 hover:underline">Insilico tecnologia</a> • 
             <a href="https://wa.me/5591988939655" target="_blank" rel="noopener noreferrer" className="ml-1 text-sitio-green-dark hover:underline">(91) 98893-9655</a> • 
             <a href="https://www.instagram.com/insilicotec/" target="_blank" rel="noopener noreferrer" className="ml-1 text-sitio-green-dark hover:underline">@insilicotec</a>
-          </p>      </div>
-      
-      <WhatsappButton 
-        phone="559184731385" 
-        message={whatsappMessage} 
-      />
-    </div>
-      
-      <WhatsappButton 
-        phone="559184731385" 
-        message={whatsappMessage} 
-      />
+          </p>
+        </div>
+      </div>
     </div>
   );
 };
