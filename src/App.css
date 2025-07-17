@@ -1,3 +1,19 @@
+/* Efeito sheen específico para botões com z-index correto */
+.animate-sheen-btn {
+  position: relative;
+  overflow: hidden;
+}
+.animate-sheen-btn::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: linear-gradient(120deg, transparent 0%, #fff8 50%, transparent 100%);
+  background-size: 200% 100%;
+  background-repeat: no-repeat;
+  animation: sheen 2.5s cubic-bezier(0.4,0,0.2,1) infinite;
+  pointer-events: none;
+  z-index: 1;
+}
 #root {
   max-width: 1280px;
   margin: 0 auto;
@@ -39,4 +55,79 @@
 
 .read-the-docs {
   color: #888;
+}
+
+@keyframes gradient-move {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animate-gradient-move {
+  background-size: 200% 200%;
+  animation: gradient-move 4s ease-in-out infinite;
+}
+
+@keyframes fade-in-up {
+  0% {
+    opacity: 0;
+    transform: translateY(24px) scale(0.98);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes soft-glow {
+  0%, 100% {
+    box-shadow: 0 0 0px 0px #fff0, 0 0 8px 2px #ffd58033;
+    filter: brightness(1);
+  }
+  50% {
+    box-shadow: 0 0 12px 4px #ffd58099, 0 0 24px 8px #ffd58033;
+    filter: brightness(1.08);
+  }
+}
+
+.animate-soft-glow {
+  animation: soft-glow 2.5s ease-in-out infinite;
+}
+
+@keyframes sheen {
+  0% {
+    background-position: -120% 0;
+  }
+  60% {
+    background-position: 120% 0;
+  }
+  100% {
+    background-position: 120% 0;
+  }
+}
+
+.animate-sheen {
+  position: relative;
+  overflow: hidden;
+}
+.animate-sheen::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: linear-gradient(120deg, transparent 0%, #fff8 50%, transparent 100%);
+  background-size: 200% 100%;
+  background-repeat: no-repeat;
+  animation: sheen 2.5s cubic-bezier(0.4,0,0.2,1) infinite;
+  pointer-events: none;
+  z-index: 2;
 }
