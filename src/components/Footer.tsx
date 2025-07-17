@@ -1,7 +1,7 @@
 
-import { Instagram, Phone, MapPin, Mail, Clock, Heart, MessageCircle } from 'lucide-react';
-import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { Clock, Heart, Instagram, Mail, MapPin, MessageCircle, Phone } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -128,7 +128,7 @@ const Footer = () => {
               {/* Button content */}
               <div className="relative bg-gradient-to-r from-nature-600 via-nature-700 to-amber-700 hover:from-nature-500 hover:via-nature-600 hover:to-amber-600 text-white px-4 py-2.5 md:px-6 md:py-3 rounded-lg transition-all duration-300 flex items-center gap-2 md:gap-3 shadow-lg">
                 <MessageCircle size={18} className="md:w-5 md:h-5 animate-pulse" />
-                <span className="font-medium text-sm md:text-base">Fale com o Desenvolvedor</span>
+                <span className="font-medium text-sm md:text-base">Quero fazer um site</span>
               </div>
             </motion.a>
           </motion.div>
