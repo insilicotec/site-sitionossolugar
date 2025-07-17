@@ -1,8 +1,28 @@
 
+
 import { Bird, Leaf } from 'lucide-react';
+import { useEffect, useRef } from 'react';
 
 const StorySection = ({ useIntersectionObserver }: { useIntersectionObserver: (options?: any) => [(element: HTMLElement | null) => void, IntersectionObserverEntry[]] }) => {
-  const [ref, entries] = useIntersectionObserver({ threshold: 0.1 });  return (
+  const [ref, entries] = useIntersectionObserver({ threshold: 0.1 });
+  const [videoContainerRef, videoEntries] = useIntersectionObserver({ threshold: 0.1 });
+  const videoRef = useRef<HTMLVideoElement | null>(null);
+
+  useEffect(() => {
+    if (!videoRef.current || videoEntries.length === 0) return;
+    
+    const isVisible = videoEntries[0].isIntersecting;
+    
+    if (isVisible) {
+      videoRef.current.play().catch((error) => {
+        console.log('Erro ao reproduzir vídeo:', error);
+      });
+    } else {
+      videoRef.current.pause();
+    }
+  }, [videoEntries]);
+
+  return (
     <section className="py-16 md:py-20 lg:py-28 bg-white relative">
       <div className="container px-4 md:px-6 mx-auto">
         {/* Header */}
@@ -16,16 +36,26 @@ const StorySection = ({ useIntersectionObserver }: { useIntersectionObserver: (o
           </p>
         </div>          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-16 lg:gap-20 items-center">
           {/* Image section */}
-          <div className="relative order-2 lg:order-1" ref={ref}>
+          <div className="relative order-2 lg:order-1" ref={videoContainerRef}>
             <div className="relative group">
               <div className="absolute -inset-4 bg-gradient-to-r from-amber-600/20 to-green-600/20 rounded-3xl opacity-75 blur-xl"></div>
               <div className="relative overflow-hidden rounded-2xl">
-                <img 
-                  src="/lovable-uploads/494226ba-0fa4-44db-b762-3a3011b9997f.png" 
-                  alt="Piscina do Sítio Nosso Lugar com vista para a área de lazer" 
-                  className="w-full h-[300px] sm:h-[400px] md:h-[500px] object-cover transition-transform duration-500" 
-                  loading="lazy"
-                />
+                <video
+                  ref={videoRef}
+                  src="/video-optimized.mp4"
+                  className="w-full h-[300px] sm:h-[400px] md:h-[500px] object-cover transition-transform duration-500"
+                  playsInline
+                  muted
+                  loop
+                  preload="auto"
+                  onLoadStart={() => console.log('Vídeo começou a carregar')}
+                  onCanPlay={() => console.log('Vídeo pode ser reproduzido')}
+                  onError={(e) => console.error('Erro no vídeo:', e)}
+                  onLoadedData={() => console.log('Dados do vídeo carregados')}
+                  autoPlay
+                >
+                  Seu navegador não suporta o vídeo.
+                </video>
               </div>
             </div>
           </div>
