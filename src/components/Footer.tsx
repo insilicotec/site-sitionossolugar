@@ -126,9 +126,9 @@ const Footer = () => {
               <div className="absolute -inset-0.5 bg-gradient-to-r from-nature-400/30 via-amber-400/30 to-nature-500/30 rounded-lg animate-pulse"></div>
               
               {/* Button content */}
-              <div className="relative bg-gradient-to-r from-nature-600 via-nature-700 to-amber-700 hover:from-nature-500 hover:via-nature-600 hover:to-amber-600 text-white px-4 py-2.5 md:px-6 md:py-3 rounded-lg transition-all duration-300 flex items-center gap-2 md:gap-3 shadow-lg">
-                <MessageCircle size={18} className="md:w-5 md:h-5 animate-pulse" />
-                <span className="font-medium text-sm md:text-base">Quero fazer um site</span>
+              <div className="relative bg-gradient-to-r from-amber-400 via-amber-500 to-amber-600 hover:from-amber-300 hover:via-amber-400 hover:to-amber-500 text-white px-3 py-2 md:px-5 md:py-2.5 rounded-lg transition-all duration-300 flex items-center gap-2 md:gap-2.5 shadow-md animate-sheen">
+                <MessageCircle size={18} className="md:w-5 md:h-5 drop-shadow animate-pulse" />
+                <span className="font-semibold text-sm md:text-base drop-shadow tracking-wide">Quero fazer um site</span>
               </div>
             </motion.a>
           </motion.div>

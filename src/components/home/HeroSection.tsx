@@ -1,7 +1,7 @@
 
-import { Leaf, Instagram, Calendar, Hotel, Utensils } from 'lucide-react';
-import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
+import { Calendar, Hotel, Instagram, Utensils } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const HeroSection = () => {
   return (    <section className="relative pt-20 md:pt-28 min-h-[85vh] md:min-h-[90vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-white via-amber-50/30 to-amber-100/50">
@@ -53,7 +53,7 @@ const HeroSection = () => {
           </div>          {/* Action buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <Link to="/agendamento">
-              <Button className="w-full sm:w-auto bg-amber-800 hover:bg-amber-900 text-white px-8 py-3 text-lg font-medium rounded-lg transition-all duration-300 hover:shadow-lg hover:shadow-amber-800/25 transform hover:-translate-y-0.5">
+              <Button className="w-full sm:w-auto bg-amber-800 hover:bg-amber-900 text-white px-8 py-3 text-lg font-medium rounded-lg transition-all duration-300 hover:shadow-lg hover:shadow-amber-800/25 transform hover:-translate-y-0.5 hover:scale-105 hover:brightness-110 focus-visible:ring-2 focus-visible:ring-amber-500/70 animate-sheen-btn animate-float relative z-10">
                 <Calendar className="mr-2 h-5 w-5" />
                 Entre em contato conosco
               </Button>

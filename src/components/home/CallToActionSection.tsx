@@ -1,6 +1,6 @@
 
-import { ChevronUp } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { Calendar } from 'lucide-react';
 
 const CallToActionSection = ({ useIntersectionObserver }: {
   useIntersectionObserver: (options?: any) => [(element: HTMLElement | null) => void, IntersectionObserverEntry[]];
@@ -20,12 +20,14 @@ const CallToActionSection = ({ useIntersectionObserver }: {
         <div ref={ref} className="max-w-5xl mx-auto">
           {/* Action Button - Voltar ao topo */}
           <div className="flex justify-center px-4">
-            <Button 
-              onClick={scrollToTop}
-              className="w-full sm:w-auto bg-amber-700 text-white hover:bg-amber-800 px-8 sm:px-12 py-3 sm:py-4 text-lg sm:text-xl font-medium rounded-xl transition-colors shadow-lg"
+            <Button
+              asChild
+              className="w-full sm:w-auto bg-amber-800 hover:bg-amber-900 text-white px-8 py-3 text-lg font-medium rounded-lg transition-all duration-300 hover:shadow-lg hover:shadow-amber-800/25 transform hover:-translate-y-0.5 hover:scale-105 hover:brightness-110 focus-visible:ring-2 focus-visible:ring-amber-500/70 animate-sheen-btn animate-float relative z-10"
             >
-              <ChevronUp className="mr-2 sm:mr-3" size={20} />
-              Voltar ao Topo
+              <a href="/agendamento">
+                <Calendar className="mr-2 h-5 w-5" />
+                Entre em contato conosco
+              </a>
             </Button>
           </div>
         </div>
