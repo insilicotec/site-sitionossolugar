@@ -1,7 +1,12 @@
-
 import { useState, useCallback, useEffect } from 'react';
 import { Dialog, DialogContent, DialogTitle } from '@/components/ui/dialog';
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from '@/components/ui/carousel';
 import { Skeleton } from '@/components/ui/skeleton';
 import { VisuallyHidden } from '@radix-ui/react-visually-hidden';
 
@@ -23,18 +28,21 @@ const VideoGallery = ({ videos }: VideoGalleryProps) => {
 
   useEffect(() => {
     // Initialize all thumbnails as not loaded
-    const initialLoadState = videos.reduce((acc, video) => {
-      acc[video.id] = false;
-      return acc;
-    }, {} as Record<number, boolean>);
-    
+    const initialLoadState = videos.reduce(
+      (acc, video) => {
+        acc[video.id] = false;
+        return acc;
+      },
+      {} as Record<number, boolean>
+    );
+
     setLoadedThumbnails(initialLoadState);
   }, [videos]);
 
   const handleThumbnailLoad = (id: number) => {
     setLoadedThumbnails(prev => ({
       ...prev,
-      [id]: true
+      [id]: true,
     }));
   };
 
@@ -66,9 +74,9 @@ const VideoGallery = ({ videos }: VideoGalleryProps) => {
     <div>
       <Carousel className="w-full">
         <CarouselContent className="py-4">
-          {videos.map((video) => (
+          {videos.map(video => (
             <CarouselItem key={video.id} className="sm:basis-1/2 md:basis-1/3 lg:basis-1/4">
-              <div 
+              <div
                 className="overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow cursor-pointer h-full mx-2"
                 onClick={() => setSelectedVideo(video)}
               >
@@ -87,11 +95,7 @@ const VideoGallery = ({ videos }: VideoGalleryProps) => {
                   />
                   <div className="absolute inset-0 flex items-center justify-center">
                     <div className="bg-black bg-opacity-50 rounded-full p-3">
-                      <svg 
-                        className="w-8 h-8 text-white" 
-                        fill="currentColor" 
-                        viewBox="0 0 24 24"
-                      >
+                      <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
                         <path d="M8 5v14l11-7z" />
                       </svg>
                     </div>
@@ -128,10 +132,10 @@ const VideoGallery = ({ videos }: VideoGalleryProps) => {
                     className="w-full aspect-video"
                   />
                 ) : selectedVideo.src ? (
-                  <video 
-                    src={selectedVideo.src} 
-                    controls 
-                    autoPlay 
+                  <video
+                    src={selectedVideo.src}
+                    controls
+                    autoPlay
                     className="w-full h-auto max-h-[80vh]"
                   >
                     Seu navegador não suporta o elemento de vídeo.

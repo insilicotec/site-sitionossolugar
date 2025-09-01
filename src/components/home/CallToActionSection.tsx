@@ -1,16 +1,19 @@
-
 import { Button } from '@/components/ui/button';
 import { Calendar } from 'lucide-react';
 
-const CallToActionSection = ({ useIntersectionObserver }: {
-  useIntersectionObserver: (options?: any) => [(element: HTMLElement | null) => void, IntersectionObserverEntry[]];
+const CallToActionSection = ({
+  useIntersectionObserver,
+}: {
+  useIntersectionObserver: (
+    options?: any
+  ) => [(element: HTMLElement | null) => void, IntersectionObserverEntry[]];
 }) => {
   const [ref, entries] = useIntersectionObserver({ threshold: 0.1 });
-  
+
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
-      behavior: 'smooth'
+      behavior: 'smooth',
     });
   };
 

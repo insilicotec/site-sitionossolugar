@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
 import { Form } from '@/components/ui/form';
 import { Button } from '@/components/ui/button';
 import { ChevronLeft, ChevronRight, Check } from 'lucide-react';
@@ -25,7 +25,7 @@ const STEPS = [
 const StepperForm = ({ onSubmit, onStepChange }: StepperFormProps) => {
   const [currentStep, setCurrentStep] = useState(1);
   const formRef = useRef<HTMLDivElement>(null);
-  
+
   const form = useForm<ReservationData>({
     resolver: zodResolver(formSchema),
     mode: 'onChange',
@@ -36,10 +36,13 @@ const StepperForm = ({ onSubmit, onStepChange }: StepperFormProps) => {
       tipoEvento: '',
       quantidadePessoas: undefined,
       observacoes: '',
-    }
+    },
   });
 
-  const { trigger, formState: { errors } } = form;
+  const {
+    trigger,
+    formState: { errors },
+  } = form;
 
   // Validation for each step
   const validateStep = async (step: number): Promise<boolean> => {
@@ -55,13 +58,14 @@ const StepperForm = ({ onSubmit, onStepChange }: StepperFormProps) => {
       default:
         return true;
     }
-  };  const nextStep = async () => {
+  };
+  const nextStep = async () => {
     const isValid = await validateStep(currentStep);
     if (isValid && currentStep < STEPS.length) {
       const newStep = currentStep + 1;
       setCurrentStep(newStep);
       onStepChange?.(newStep);
-      
+
       // Gentle scroll to keep form in view when hero section disappears
       if (currentStep === 1) {
         setTimeout(() => {
@@ -69,38 +73,39 @@ const StepperForm = ({ onSubmit, onStepChange }: StepperFormProps) => {
             const navbarHeight = 80;
             const currentScrollY = window.scrollY;
             const formTop = formRef.current.offsetTop - navbarHeight;
-            
+
             // Only scroll if the form would be out of view or too close to top
             if (currentScrollY > formTop - 50 || currentScrollY < formTop - 200) {
               window.scrollTo({
                 top: Math.max(0, formTop - 50), // Add small buffer from navbar
-                behavior: 'smooth'
+                behavior: 'smooth',
               });
             }
           }
         }, 200); // Slightly longer delay to allow hero section to hide first
       }
     }
-  };  const handleFormSubmit = async () => {
-    console.log("=== FORM SUBMISSION STARTED ===");
-    
+  };
+  const handleFormSubmit = async () => {
+    console.log('=== FORM SUBMISSION STARTED ===');
+
     // Get current form values
     const formValues = form.getValues();
-    console.log("Current form values:", formValues);
-    
+    console.log('Current form values:', formValues);
+
     // Validate all form fields before submitting
     const isFormValid = await form.trigger();
-    console.log("Form validation result:", isFormValid);
-    console.log("Form errors:", form.formState.errors);
-    
+    console.log('Form validation result:', isFormValid);
+    console.log('Form errors:', form.formState.errors);
+
     if (isFormValid) {
       const data = form.getValues();
-      console.log("✅ Form data being submitted:", data);
-      console.log("=== CALLING PARENT SUBMIT ===");
+      console.log('✅ Form data being submitted:', data);
+      console.log('=== CALLING PARENT SUBMIT ===');
       handleSubmit(data);
     } else {
-      console.log("❌ Form validation failed");
-      console.log("Detailed errors:", form.formState.errors);
+      console.log('❌ Form validation failed');
+      console.log('Detailed errors:', form.formState.errors);
     }
   };
 
@@ -114,7 +119,8 @@ const StepperForm = ({ onSubmit, onStepChange }: StepperFormProps) => {
 
   const handleSubmit = (data: ReservationData) => {
     onSubmit(data);
-  };  const renderStep = () => {
+  };
+  const renderStep = () => {
     switch (currentStep) {
       case 1:
         return <StepPersonalInfo form={form} />;
@@ -137,12 +143,13 @@ const StepperForm = ({ onSubmit, onStepChange }: StepperFormProps) => {
       case 2:
         return !!(formValues.dataEvento && formValues.tipoEvento);
       case 3:
-        return !!(formValues.quantidadePessoas);
+        return !!formValues.quantidadePessoas;
       case 4:
         return true; // observacoes is optional
       default:
         return false;
-    }  };
+    }
+  };
   return (
     <div ref={formRef} className="w-full max-w-4xl mx-auto">
       {/* Form Content */}
@@ -163,7 +170,8 @@ const StepperForm = ({ onSubmit, onStepChange }: StepperFormProps) => {
             >
               <ChevronLeft size={16} />
               Voltar
-            </Button>            <div className="flex gap-3">
+            </Button>{' '}
+            <div className="flex gap-3">
               {currentStep < STEPS.length ? (
                 <Button
                   type="button"

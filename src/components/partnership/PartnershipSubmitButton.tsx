@@ -1,4 +1,3 @@
-
 import SubmitButton from '@/components/reservation/SubmitButton';
 
 interface PartnershipSubmitButtonProps {
@@ -6,9 +5,7 @@ interface PartnershipSubmitButtonProps {
 }
 
 const PartnershipSubmitButton = ({ className }: PartnershipSubmitButtonProps) => {
-  return (
-    <SubmitButton />
-  );
+  return <SubmitButton />;
 };
 
 export default PartnershipSubmitButton;

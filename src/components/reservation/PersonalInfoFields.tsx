@@ -1,8 +1,7 @@
-
-import { FormField, FormItem, FormLabel, FormControl, FormMessage } from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { UseFormReturn } from "react-hook-form";
-import { ReservationData } from "./types";
+import { FormField, FormItem, FormLabel, FormControl, FormMessage } from '@/components/ui/form';
+import { Input } from '@/components/ui/input';
+import { UseFormReturn } from 'react-hook-form';
+import { ReservationData } from './types';
 
 interface PersonalInfoFieldsProps {
   form: UseFormReturn<ReservationData>;
@@ -20,9 +19,9 @@ const PersonalInfoFields = ({ form }: PersonalInfoFieldsProps) => {
             <FormItem>
               <FormLabel>Nome Completo</FormLabel>
               <FormControl>
-                <Input 
+                <Input
                   placeholder="Seu nome completo"
-                  {...field} 
+                  {...field}
                   className="border-sitio-green-dark/30 focus:border-sitio-green-dark"
                 />
               </FormControl>
@@ -40,9 +39,9 @@ const PersonalInfoFields = ({ form }: PersonalInfoFieldsProps) => {
           <FormItem>
             <FormLabel>Cidade onde reside</FormLabel>
             <FormControl>
-              <Input 
+              <Input
                 placeholder="Sua cidade"
-                {...field} 
+                {...field}
                 className="border-sitio-green-dark/30 focus:border-sitio-green-dark"
               />
             </FormControl>

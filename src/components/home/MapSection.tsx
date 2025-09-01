@@ -1,12 +1,16 @@
-
 import { Navigation } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 
-const MapSection = ({ useIntersectionObserver }: {
-  useIntersectionObserver: (options?: any) => [(element: HTMLElement | null) => void, IntersectionObserverEntry[]];
+const MapSection = ({
+  useIntersectionObserver,
+}: {
+  useIntersectionObserver: (
+    options?: any
+  ) => [(element: HTMLElement | null) => void, IntersectionObserverEntry[]];
 }) => {
-  const [ref, entries] = useIntersectionObserver({ threshold: 0.1 });  return (
+  const [ref, entries] = useIntersectionObserver({ threshold: 0.1 });
+  return (
     <section className="py-16 md:py-20 lg:py-28 bg-gradient-to-br from-amber-50 via-white to-gray-50/30 relative">
       <div className="container px-4 md:px-6 mx-auto">
         {/* Header */}
@@ -16,7 +20,8 @@ const MapSection = ({ useIntersectionObserver }: {
           </h2>
           <div className="w-20 md:w-24 h-1 bg-amber-600 mx-auto mb-6 md:mb-8 rounded-full"></div>
           <p className="text-lg sm:text-xl md:text-2xl text-gray-700 max-w-4xl mx-auto leading-relaxed font-light px-2">
-            Encontre-nos facilmente em Vila Fátima, Pará, em um local privilegiado cercado pela exuberante natureza amazônica.
+            Encontre-nos facilmente em Vila Fátima, Pará, em um local privilegiado cercado pela
+            exuberante natureza amazônica.
           </p>
         </div>
 

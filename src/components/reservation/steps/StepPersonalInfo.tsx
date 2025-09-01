@@ -25,10 +25,9 @@ const StepPersonalInfo = ({ form }: StepPersonalInfoProps) => {
         <FormField
           control={form.control}
           name="nome"
-          render={({ field }) => (            <FormItem>
-              <FormLabel className="text-sm font-medium text-gray-700">
-                Nome *
-              </FormLabel>
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel className="text-sm font-medium text-gray-700">Nome *</FormLabel>
               <FormControl>
                 <div className="relative">
                   <User className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
@@ -49,9 +48,7 @@ const StepPersonalInfo = ({ form }: StepPersonalInfoProps) => {
           name="cidade"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className="text-sm font-medium text-gray-700">
-                Cidade *
-              </FormLabel>
+              <FormLabel className="text-sm font-medium text-gray-700">Cidade *</FormLabel>
               <FormControl>
                 <div className="relative">
                   <MapPin className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
@@ -72,12 +69,10 @@ const StepPersonalInfo = ({ form }: StepPersonalInfoProps) => {
         <div className="flex items-start gap-3">
           <div className="w-2 h-2 bg-amber-500 rounded-full mt-2 flex-shrink-0"></div>
           <div>
-            <p className="text-sm text-amber-800 font-medium mb-1">
-              Informações importantes
-            </p>
+            <p className="text-sm text-amber-800 font-medium mb-1">Informações importantes</p>
             <p className="text-sm text-amber-700">
-              Suas informações pessoais são utilizadas apenas para processar sua reserva e entrar em contato caso necessário.
-              Não compartilhamos seus dados com terceiros.
+              Suas informações pessoais são utilizadas apenas para processar sua reserva e entrar em
+              contato caso necessário. Não compartilhamos seus dados com terceiros.
             </p>
           </div>
         </div>

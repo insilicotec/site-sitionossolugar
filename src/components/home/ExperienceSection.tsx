@@ -1,4 +1,16 @@
-import { Heart, Utensils, Users, Palmtree, Waves, Mountain, Coffee, Hotel, Trophy, Gamepad, Gift } from 'lucide-react';
+import {
+  Heart,
+  Utensils,
+  Users,
+  Palmtree,
+  Waves,
+  Mountain,
+  Coffee,
+  Hotel,
+  Trophy,
+  Gamepad,
+  Gift,
+} from 'lucide-react';
 import { useState, useEffect } from 'react';
 
 type TabType = 'eventos' | 'hospedagem' | 'lazer';
@@ -12,7 +24,13 @@ interface ExperienceCardProps {
   isMobile?: boolean;
 }
 
-const ExperienceSection = ({ useIntersectionObserver }: { useIntersectionObserver: (options?: any) => [(element: HTMLElement | null) => void, IntersectionObserverEntry[]] }) => {
+const ExperienceSection = ({
+  useIntersectionObserver,
+}: {
+  useIntersectionObserver: (
+    options?: any
+  ) => [(element: HTMLElement | null) => void, IntersectionObserverEntry[]];
+}) => {
   const [ref, entries] = useIntersectionObserver({ threshold: 0.1 });
   const [activeTab, setActiveTab] = useState<TabType>('eventos');
   const [isPaused, setIsPaused] = useState(false);
@@ -20,13 +38,13 @@ const ExperienceSection = ({ useIntersectionObserver }: { useIntersectionObserve
   const tabs = [
     { id: 'eventos' as TabType, label: 'Eventos Especiais', emoji: '🎉' },
     { id: 'hospedagem' as TabType, label: 'Hospedagem & Alimentação', emoji: '🏨' },
-    { id: 'lazer' as TabType, label: 'Lazer & Natureza', emoji: '🌿' }
+    { id: 'lazer' as TabType, label: 'Lazer & Natureza', emoji: '🌿' },
   ];
 
   // Auto-rotation effect
   useEffect(() => {
     if (isPaused) return;
-    
+
     const interval = setInterval(() => {
       setActiveTab(current => {
         const currentIndex = tabs.findIndex(tab => tab.id === current);
@@ -47,101 +65,102 @@ const ExperienceSection = ({ useIntersectionObserver }: { useIntersectionObserve
 
   const experienceData = {
     eventos: {
-      title: "Eventos Especiais",
-      subtitle: "Momentos únicos merecem cenários únicos",
-      emoji: "🎉",
+      title: 'Eventos Especiais',
+      subtitle: 'Momentos únicos merecem cenários únicos',
+      emoji: '🎉',
       cards: [
         {
           icon: <Heart size={32} />,
-          title: "Casamentos",
-          description: "O cenário perfeito para celebrar o amor em meio à natureza.",
-          color: "rose"
-        },        {
+          title: 'Casamentos',
+          description: 'O cenário perfeito para celebrar o amor em meio à natureza.',
+          color: 'rose',
+        },
+        {
           icon: <Gift size={32} />,
-          title: "Aniversários",
-          description: "Celebre seu dia especial em um ambiente natural e acolhedor.",
-          color: "purple"
+          title: 'Aniversários',
+          description: 'Celebre seu dia especial em um ambiente natural e acolhedor.',
+          color: 'purple',
         },
         {
           icon: <Users size={32} />,
-          title: "Espaço para Eventos",
-          description: "Amplo salão de festas com capacidade para diversos convidados.",
-          color: "blue"
+          title: 'Espaço para Eventos',
+          description: 'Amplo salão de festas com capacidade para diversos convidados.',
+          color: 'blue',
         },
         {
           icon: <Utensils size={32} />,
-          title: "Buffet Completo",
-          description: "Deliciosa culinária local preparada com ingredientes frescos.",
-          color: "amber"
-        }
-      ]
+          title: 'Buffet Completo',
+          description: 'Deliciosa culinária local preparada com ingredientes frescos.',
+          color: 'amber',
+        },
+      ],
     },
     hospedagem: {
-      title: "Hospedagem & Alimentação",
-      subtitle: "Conforto e sabor em perfeita harmonia",
-      emoji: "🏨",
+      title: 'Hospedagem & Alimentação',
+      subtitle: 'Conforto e sabor em perfeita harmonia',
+      emoji: '🏨',
       cards: [
         {
           icon: <Hotel size={32} />,
-          title: "17 Suítes",
-          description: "Acomodações confortáveis para hospedagem completa.",
-          color: "indigo"
+          title: '17 Suítes',
+          description: 'Acomodações confortáveis para hospedagem completa.',
+          color: 'indigo',
         },
         {
           icon: <Coffee size={32} />,
-          title: "Café da Manhã",
-          description: "Delicioso café da manhã com opções variadas.",
-          color: "orange"
+          title: 'Café da Manhã',
+          description: 'Delicioso café da manhã com opções variadas.',
+          color: 'orange',
         },
         {
           icon: <Coffee size={32} />,
-          title: "Café da Tarde",
-          description: "Momento especial com lanches e bebidas da tarde.",
-          color: "yellow"
-        }
-      ]
+          title: 'Café da Tarde',
+          description: 'Momento especial com lanches e bebidas da tarde.',
+          color: 'yellow',
+        },
+      ],
     },
     lazer: {
-      title: "Lazer & Natureza",
-      subtitle: "Diversão e relaxamento em meio à natureza",
-      emoji: "🌿",
+      title: 'Lazer & Natureza',
+      subtitle: 'Diversão e relaxamento em meio à natureza',
+      emoji: '🌿',
       cards: [
         {
           icon: <Waves size={32} />,
-          title: "Piscina",
-          description: "Área de piscina para refrescantes momentos de lazer.",
-          color: "cyan"
+          title: 'Piscina',
+          description: 'Área de piscina para refrescantes momentos de lazer.',
+          color: 'cyan',
         },
         {
           icon: <Palmtree size={32} />,
-          title: "Área de Lazer",
-          description: "Espaços recreativos para diversão de todas as idades.",
-          color: "green"
+          title: 'Área de Lazer',
+          description: 'Espaços recreativos para diversão de todas as idades.',
+          color: 'green',
         },
         {
           icon: <Trophy size={32} />,
-          title: "Área de Esportes",
-          description: "Espaços para prática de esportes e atividades físicas.",
-          color: "emerald"
+          title: 'Área de Esportes',
+          description: 'Espaços para prática de esportes e atividades físicas.',
+          color: 'emerald',
         },
         {
           icon: <Gamepad size={32} />,
-          title: "Área de Jogos",
-          description: "Diversão garantida com jogos de mesa e entretenimento.",
-          color: "violet"
+          title: 'Área de Jogos',
+          description: 'Diversão garantida com jogos de mesa e entretenimento.',
+          color: 'violet',
         },
         {
           icon: <Mountain size={32} />,
-          title: "Trilha Natural",
-          description: "Explore a natureza em nossas trilhas seguras e bem sinalizadas.",
-          color: "teal"
-        }
-      ]
-    }
+          title: 'Trilha Natural',
+          description: 'Explore a natureza em nossas trilhas seguras e bem sinalizadas.',
+          color: 'teal',
+        },
+      ],
+    },
   };
 
   const currentExperience = experienceData[activeTab];
-    return (
+  return (
     <section className="py-16 md:py-20 lg:py-28 bg-gradient-to-br from-gray-50 to-gray-100/50 relative">
       <style>{`
         @keyframes progressBar {
@@ -149,22 +168,23 @@ const ExperienceSection = ({ useIntersectionObserver }: { useIntersectionObserve
           100% { width: 100%; }
         }
       `}</style>
-      
+
       <div className="container px-4 md:px-6 mx-auto">
         {/* Header */}
-        <div className="text-center mb-12 md:mb-16" ref={ref}>          
+        <div className="text-center mb-12 md:mb-16" ref={ref}>
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-amber-900 mb-4 md:mb-6 leading-tight px-2">
             Experiências Únicas
           </h2>
           <div className="w-20 md:w-24 h-1 bg-amber-600 mx-auto mb-6 md:mb-8 rounded-full"></div>
           <p className="text-lg sm:text-xl md:text-2xl text-gray-700 max-w-4xl mx-auto leading-relaxed font-light px-2">
-            Criamos experiências memoráveis para todos os momentos especiais da sua vida, com atendimento personalizado e serviços de qualidade.
+            Criamos experiências memoráveis para todos os momentos especiais da sua vida, com
+            atendimento personalizado e serviços de qualidade.
           </p>
         </div>
-        
+
         {/* Tabs Navigation */}
         <div className="flex flex-wrap justify-center gap-2 sm:gap-4 mb-8 md:mb-12 px-2">
-          {tabs.map((tab) => (
+          {tabs.map(tab => (
             <div key={tab.id} className="relative">
               <button
                 onClick={() => handleTabClick(tab.id)}
@@ -179,10 +199,10 @@ const ExperienceSection = ({ useIntersectionObserver }: { useIntersectionObserve
                 <span className="text-lg sm:text-xl">{tab.emoji}</span>
                 <span className="hidden sm:inline">{tab.label}</span>
                 <span className="sm:hidden text-xs">{tab.label.split(' ')[0]}</span>
-                
+
                 {/* Progress indicator */}
                 {activeTab === tab.id && !isPaused && (
-                  <div 
+                  <div
                     className="absolute bottom-0 left-0 h-1 bg-amber-300 rounded-full"
                     style={{
                       animation: 'progressBar 5s linear infinite',
@@ -193,24 +213,32 @@ const ExperienceSection = ({ useIntersectionObserver }: { useIntersectionObserve
             </div>
           ))}
         </div>
-          {/* Content Section */}
+        {/* Content Section */}
         <div className="mb-16 md:mb-20">
           <div className="text-center mb-8 md:mb-12">
-            <span className="text-2xl sm:text-3xl mb-3 md:mb-4 block">{currentExperience.emoji}</span>
-            <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-amber-800 mb-3 md:mb-4 px-2">{currentExperience.title}</h3>
-            <p className="text-gray-600 max-w-2xl mx-auto px-2 text-sm sm:text-base">{currentExperience.subtitle}</p>
+            <span className="text-2xl sm:text-3xl mb-3 md:mb-4 block">
+              {currentExperience.emoji}
+            </span>
+            <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-amber-800 mb-3 md:mb-4 px-2">
+              {currentExperience.title}
+            </h3>
+            <p className="text-gray-600 max-w-2xl mx-auto px-2 text-sm sm:text-base">
+              {currentExperience.subtitle}
+            </p>
           </div>
-          
+
           {/* Desktop layout: grid */}
-          <div className={`hidden md:grid gap-8 ${
-            activeTab === 'eventos' 
-              ? 'md:grid-cols-2 lg:grid-cols-4' 
-              : activeTab === 'hospedagem'
-              ? 'md:grid-cols-3 max-w-4xl mx-auto'
-              : 'md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5'
-          }`}>
+          <div
+            className={`hidden md:grid gap-8 ${
+              activeTab === 'eventos'
+                ? 'md:grid-cols-2 lg:grid-cols-4'
+                : activeTab === 'hospedagem'
+                  ? 'md:grid-cols-3 max-w-4xl mx-auto'
+                  : 'md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5'
+            }`}
+          >
             {currentExperience.cards.map((card, index) => (
-              <ExperienceCard 
+              <ExperienceCard
                 key={`${activeTab}-${index}`}
                 icon={card.icon}
                 title={card.title}
@@ -227,7 +255,7 @@ const ExperienceSection = ({ useIntersectionObserver }: { useIntersectionObserve
             <div className="overflow-x-auto pb-4">
               <div className="flex gap-4 w-max px-2">
                 {currentExperience.cards.map((card, index) => (
-                  <ExperienceCard 
+                  <ExperienceCard
                     key={`${activeTab}-mobile-${index}`}
                     icon={card.icon}
                     title={card.title}
@@ -238,71 +266,71 @@ const ExperienceSection = ({ useIntersectionObserver }: { useIntersectionObserve
                   />
                 ))}
               </div>
-            </div>          </div>
+            </div>{' '}
+          </div>
         </div>
       </div>
     </section>
   );
 };
 
-const ExperienceCard = ({ icon, title, description, color, refProp, isMobile = false }: ExperienceCardProps) => {
+const ExperienceCard = ({
+  icon,
+  title,
+  description,
+  color,
+  refProp,
+  isMobile = false,
+}: ExperienceCardProps) => {
   // Color mapping for different themes
   const colorClasses = {
-    rose: "bg-rose-50 border-rose-200/50 text-rose-600",
-    purple: "bg-purple-50 border-purple-200/50 text-purple-600",
-    blue: "bg-blue-50 border-blue-200/50 text-blue-600",
-    amber: "bg-amber-50 border-amber-200/50 text-amber-600",
-    indigo: "bg-indigo-50 border-indigo-200/50 text-indigo-600",
-    orange: "bg-orange-50 border-orange-200/50 text-orange-600",
-    yellow: "bg-yellow-50 border-yellow-200/50 text-yellow-600",
-    cyan: "bg-cyan-50 border-cyan-200/50 text-cyan-600",
-    green: "bg-green-50 border-green-200/50 text-green-600",
-    emerald: "bg-emerald-50 border-emerald-200/50 text-emerald-600",
-    violet: "bg-violet-50 border-violet-200/50 text-violet-600",
-    teal: "bg-teal-50 border-teal-200/50 text-teal-600",
+    rose: 'bg-rose-50 border-rose-200/50 text-rose-600',
+    purple: 'bg-purple-50 border-purple-200/50 text-purple-600',
+    blue: 'bg-blue-50 border-blue-200/50 text-blue-600',
+    amber: 'bg-amber-50 border-amber-200/50 text-amber-600',
+    indigo: 'bg-indigo-50 border-indigo-200/50 text-indigo-600',
+    orange: 'bg-orange-50 border-orange-200/50 text-orange-600',
+    yellow: 'bg-yellow-50 border-yellow-200/50 text-yellow-600',
+    cyan: 'bg-cyan-50 border-cyan-200/50 text-cyan-600',
+    green: 'bg-green-50 border-green-200/50 text-green-600',
+    emerald: 'bg-emerald-50 border-emerald-200/50 text-emerald-600',
+    violet: 'bg-violet-50 border-violet-200/50 text-violet-600',
+    teal: 'bg-teal-50 border-teal-200/50 text-teal-600',
   };
 
   const iconBgClasses = {
-    rose: "bg-rose-100",
-    purple: "bg-purple-100",
-    blue: "bg-blue-100",
-    amber: "bg-amber-100",
-    indigo: "bg-indigo-100",
-    orange: "bg-orange-100",
-    yellow: "bg-yellow-100",
-    cyan: "bg-cyan-100",
-    green: "bg-green-100",
-    emerald: "bg-emerald-100",
-    violet: "bg-violet-100",
-    teal: "bg-teal-100",
+    rose: 'bg-rose-100',
+    purple: 'bg-purple-100',
+    blue: 'bg-blue-100',
+    amber: 'bg-amber-100',
+    indigo: 'bg-indigo-100',
+    orange: 'bg-orange-100',
+    yellow: 'bg-yellow-100',
+    cyan: 'bg-cyan-100',
+    green: 'bg-green-100',
+    emerald: 'bg-emerald-100',
+    violet: 'bg-violet-100',
+    teal: 'bg-teal-100',
   };
 
   return (
-    <div 
+    <div
       className={`bg-white rounded-2xl border text-center transition-all duration-300 ${
-        isMobile 
-          ? 'p-6 w-72 flex-shrink-0' 
-          : 'p-8'
-      } ${colorClasses[color as keyof typeof colorClasses] || colorClasses.amber}`} 
+        isMobile ? 'p-6 w-72 flex-shrink-0' : 'p-8'
+      } ${colorClasses[color as keyof typeof colorClasses] || colorClasses.amber}`}
       ref={refProp}
     >
-      <div className={`mx-auto flex items-center justify-center rounded-full mb-4 ${
-        isMobile 
-          ? 'w-12 h-12' 
-          : 'w-16 h-16 mb-6'
-      } ${iconBgClasses[color as keyof typeof iconBgClasses] || iconBgClasses.amber}`}>
-        <div className={isMobile ? 'scale-75' : ''}>
-          {icon}
-        </div>
+      <div
+        className={`mx-auto flex items-center justify-center rounded-full mb-4 ${
+          isMobile ? 'w-12 h-12' : 'w-16 h-16 mb-6'
+        } ${iconBgClasses[color as keyof typeof iconBgClasses] || iconBgClasses.amber}`}
+      >
+        <div className={isMobile ? 'scale-75' : ''}>{icon}</div>
       </div>
-      <h3 className={`font-semibold text-gray-900 ${
-        isMobile 
-          ? 'text-lg mb-2' 
-          : 'text-xl mb-3'
-      }`}>{title}</h3>
-      <p className={`text-gray-600 leading-relaxed ${
-        isMobile ? 'text-sm' : ''
-      }`}>{description}</p>
+      <h3 className={`font-semibold text-gray-900 ${isMobile ? 'text-lg mb-2' : 'text-xl mb-3'}`}>
+        {title}
+      </h3>
+      <p className={`text-gray-600 leading-relaxed ${isMobile ? 'text-sm' : ''}`}>{description}</p>
     </div>
   );
 };

@@ -1,8 +1,7 @@
-
-import { FormField, FormItem, FormLabel, FormControl } from "@/components/ui/form";
-import { UseFormReturn } from "react-hook-form";
-import { ReservationData } from "./types";
-import { Check } from "lucide-react";
+import { FormField, FormItem, FormLabel, FormControl } from '@/components/ui/form';
+import { UseFormReturn } from 'react-hook-form';
+import { ReservationData } from './types';
+import { Check } from 'lucide-react';
 
 interface ServiceOptionsFieldsProps {
   form: UseFormReturn<ReservationData>;
@@ -11,11 +10,11 @@ interface ServiceOptionsFieldsProps {
 const ServiceOptionsFields = ({ form }: ServiceOptionsFieldsProps) => {
   const tipoEvento = form.watch('tipoEvento');
   const isDayUse = tipoEvento === 'dayuse';
-  
+
   return (
     <div className="space-y-4">
       <h3 className="text-lg font-semibold text-sitio-green-dark">Opções de Serviço</h3>
-      
+
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 bg-sitio-blue-light/30 p-4 rounded-lg">
         {/* Apenas o local */}
         <FormField
@@ -24,20 +23,22 @@ const ServiceOptionsFields = ({ form }: ServiceOptionsFieldsProps) => {
           render={({ field }) => (
             <FormItem>
               <FormControl>
-                <div 
+                <div
                   className={`
                     relative flex items-center justify-center rounded-lg border p-4 
                     cursor-pointer transition-all duration-300 ease-in-out group
-                    ${field.value 
-                      ? "bg-nature-100/70 border-nature-400 ring-2 ring-nature-300" 
-                      : "bg-white hover:bg-nature-50/50 border-gray-200 hover:border-nature-300"}
+                    ${
+                      field.value
+                        ? 'bg-nature-100/70 border-nature-400 ring-2 ring-nature-300'
+                        : 'bg-white hover:bg-nature-50/50 border-gray-200 hover:border-nature-300'
+                    }
                   `}
                   onClick={() => field.onChange(!field.value)}
                   role="checkbox"
                   aria-checked={field.value}
                   aria-label="Apenas o local"
                   tabIndex={0}
-                  onKeyDown={(e) => {
+                  onKeyDown={e => {
                     if (e.key === 'Enter' || e.key === ' ') {
                       e.preventDefault();
                       field.onChange(!field.value);
@@ -48,11 +49,11 @@ const ServiceOptionsFields = ({ form }: ServiceOptionsFieldsProps) => {
                     Apenas o local
                   </FormLabel>
                   {field.value && (
-                    <Check 
+                    <Check
                       className="absolute top-2 right-2 text-nature-500 
                       transition-transform duration-300 ease-in-out 
                       scale-100 group-hover:scale-110"
-                      size={20} 
+                      size={20}
                     />
                   )}
                 </div>
@@ -68,13 +69,15 @@ const ServiceOptionsFields = ({ form }: ServiceOptionsFieldsProps) => {
           render={({ field }) => (
             <FormItem>
               <FormControl>
-                <div 
+                <div
                   className={`
                     relative flex items-center justify-center rounded-lg border p-4 
                     cursor-pointer transition-all duration-300 ease-in-out group
-                    ${field.value 
-                      ? "bg-nature-100/70 border-nature-400 ring-2 ring-nature-300" 
-                      : "bg-white hover:bg-nature-50/50 border-gray-200 hover:border-nature-300"}
+                    ${
+                      field.value
+                        ? 'bg-nature-100/70 border-nature-400 ring-2 ring-nature-300'
+                        : 'bg-white hover:bg-nature-50/50 border-gray-200 hover:border-nature-300'
+                    }
                   `}
                   onClick={() => field.onChange(!field.value)}
                 >
@@ -82,11 +85,11 @@ const ServiceOptionsFields = ({ form }: ServiceOptionsFieldsProps) => {
                     Inclui comida
                   </FormLabel>
                   {field.value && (
-                    <Check 
+                    <Check
                       className="absolute top-2 right-2 text-nature-500 
                       transition-transform duration-300 ease-in-out 
                       scale-100 group-hover:scale-110"
-                      size={20} 
+                      size={20}
                     />
                   )}
                 </div>
@@ -94,7 +97,7 @@ const ServiceOptionsFields = ({ form }: ServiceOptionsFieldsProps) => {
             </FormItem>
           )}
         />
-        
+
         {/* Buffet completo */}
         {!isDayUse && (
           <FormField
@@ -103,13 +106,15 @@ const ServiceOptionsFields = ({ form }: ServiceOptionsFieldsProps) => {
             render={({ field }) => (
               <FormItem>
                 <FormControl>
-                  <div 
+                  <div
                     className={`
                       relative flex items-center justify-center rounded-lg border p-4 
                       cursor-pointer transition-all duration-300 ease-in-out group
-                      ${field.value 
-                        ? "bg-nature-100/70 border-nature-400 ring-2 ring-nature-300" 
-                        : "bg-white hover:bg-nature-50/50 border-gray-200 hover:border-nature-300"}
+                      ${
+                        field.value
+                          ? 'bg-nature-100/70 border-nature-400 ring-2 ring-nature-300'
+                          : 'bg-white hover:bg-nature-50/50 border-gray-200 hover:border-nature-300'
+                      }
                     `}
                     onClick={() => field.onChange(!field.value)}
                   >
@@ -117,11 +122,11 @@ const ServiceOptionsFields = ({ form }: ServiceOptionsFieldsProps) => {
                       Buffet completo
                     </FormLabel>
                     {field.value && (
-                      <Check 
+                      <Check
                         className="absolute top-2 right-2 text-nature-500 
                         transition-transform duration-300 ease-in-out 
                         scale-100 group-hover:scale-110"
-                        size={20} 
+                        size={20}
                       />
                     )}
                   </div>
@@ -130,7 +135,7 @@ const ServiceOptionsFields = ({ form }: ServiceOptionsFieldsProps) => {
             )}
           />
         )}
-        
+
         {/* DJ option */}
         <FormField
           control={form.control}
@@ -138,13 +143,15 @@ const ServiceOptionsFields = ({ form }: ServiceOptionsFieldsProps) => {
           render={({ field }) => (
             <FormItem>
               <FormControl>
-                <div 
+                <div
                   className={`
                     relative flex items-center justify-center rounded-lg border p-4 
                     cursor-pointer transition-all duration-300 ease-in-out group
-                    ${field.value 
-                      ? "bg-nature-100/70 border-nature-400 ring-2 ring-nature-300" 
-                      : "bg-white hover:bg-nature-50/50 border-gray-200 hover:border-nature-300"}
+                    ${
+                      field.value
+                        ? 'bg-nature-100/70 border-nature-400 ring-2 ring-nature-300'
+                        : 'bg-white hover:bg-nature-50/50 border-gray-200 hover:border-nature-300'
+                    }
                   `}
                   onClick={() => field.onChange(!field.value)}
                 >
@@ -152,11 +159,11 @@ const ServiceOptionsFields = ({ form }: ServiceOptionsFieldsProps) => {
                     DJ
                   </FormLabel>
                   {field.value && (
-                    <Check 
+                    <Check
                       className="absolute top-2 right-2 text-nature-500 
                       transition-transform duration-300 ease-in-out 
                       scale-100 group-hover:scale-110"
-                      size={20} 
+                      size={20}
                     />
                   )}
                 </div>
@@ -164,7 +171,7 @@ const ServiceOptionsFields = ({ form }: ServiceOptionsFieldsProps) => {
             </FormItem>
           )}
         />
-        
+
         {/* Decoração option */}
         <FormField
           control={form.control}
@@ -172,13 +179,15 @@ const ServiceOptionsFields = ({ form }: ServiceOptionsFieldsProps) => {
           render={({ field }) => (
             <FormItem>
               <FormControl>
-                <div 
+                <div
                   className={`
                     relative flex items-center justify-center rounded-lg border p-4 
                     cursor-pointer transition-all duration-300 ease-in-out group
-                    ${field.value 
-                      ? "bg-nature-100/70 border-nature-400 ring-2 ring-nature-300" 
-                      : "bg-white hover:bg-nature-50/50 border-gray-200 hover:border-nature-300"}
+                    ${
+                      field.value
+                        ? 'bg-nature-100/70 border-nature-400 ring-2 ring-nature-300'
+                        : 'bg-white hover:bg-nature-50/50 border-gray-200 hover:border-nature-300'
+                    }
                   `}
                   onClick={() => field.onChange(!field.value)}
                 >
@@ -186,11 +195,11 @@ const ServiceOptionsFields = ({ form }: ServiceOptionsFieldsProps) => {
                     Decoração
                   </FormLabel>
                   {field.value && (
-                    <Check 
+                    <Check
                       className="absolute top-2 right-2 text-nature-500 
                       transition-transform duration-300 ease-in-out 
                       scale-100 group-hover:scale-110"
-                      size={20} 
+                      size={20}
                     />
                   )}
                 </div>

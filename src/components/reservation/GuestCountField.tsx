@@ -1,8 +1,8 @@
-import { FormField, FormItem, FormLabel, FormControl, FormMessage } from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { UseFormReturn } from "react-hook-form";
-import { ReservationData } from "./types";
-import { Users } from "lucide-react";
+import { FormField, FormItem, FormLabel, FormControl, FormMessage } from '@/components/ui/form';
+import { Input } from '@/components/ui/input';
+import { UseFormReturn } from 'react-hook-form';
+import { ReservationData } from './types';
+import { Users } from 'lucide-react';
 
 interface GuestCountFieldProps {
   form: UseFormReturn<ReservationData>;
@@ -20,11 +20,11 @@ const GuestCountField = ({ form }: GuestCountFieldProps) => {
             Quantidade de Pessoas
           </FormLabel>
           <FormControl>
-            <Input 
+            <Input
               type="text"
               placeholder="Digite o número de pessoas"
               {...field}
-              onChange={(e) => {
+              onChange={e => {
                 const value = e.target.value;
                 // Only allow numbers
                 if (value === '' || /^\d+$/.test(value)) {

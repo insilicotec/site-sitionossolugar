@@ -1,8 +1,7 @@
-
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { MessageSquare, Instagram } from "lucide-react";
-import { toast } from "@/hooks/use-toast";
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { MessageSquare, Instagram } from 'lucide-react';
+import { toast } from '@/hooks/use-toast';
 
 import {
   Form,
@@ -11,30 +10,30 @@ import {
   FormLabel,
   FormControl,
   FormDescription,
-  FormMessage
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { Button } from "@/components/ui/button";
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { Card, CardContent } from "@/components/ui/card";
+  FormMessage,
+} from '@/components/ui/form';
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
+import { Button } from '@/components/ui/button';
+import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
+import { Card, CardContent } from '@/components/ui/card';
 
-import { influencerFormSchema, InfluencerFormValues } from "./schemas";
+import { influencerFormSchema, InfluencerFormValues } from './schemas';
 
 export function InfluencerForm() {
   const form = useForm<InfluencerFormValues>({
     resolver: zodResolver(influencerFormSchema),
     defaultValues: {
-      name: "",
-      socialHandle: "",
-      city: "",
-      platform: "instagram",
+      name: '',
+      socialHandle: '',
+      city: '',
+      platform: 'instagram',
     },
-    mode: "onBlur"
+    mode: 'onBlur',
   });
   const handleSubmit = (values: InfluencerFormValues) => {
     try {
-      const platformText = values.platform === "instagram" ? "Instagram" : "TikTok";
+      const platformText = values.platform === 'instagram' ? 'Instagram' : 'TikTok';
       const message = `*PROPOSTA DE PARCERIA - INFLUENCIADOR*
 
 *DADOS PESSOAIS*
@@ -49,18 +48,18 @@ Gostaria de conversar sobre uma parceria com o Sítio Nosso Lugar como criador d
 
 Acredito que posso mostrar experiências autênticas em meio à natureza para meu público.`;
       const whatsappUrl = `https://wa.me/559184731385?text=${encodeURIComponent(message)}`;
-      window.open(whatsappUrl, "_blank");
+      window.open(whatsappUrl, '_blank');
       toast({
-        title: "Proposta enviada!",
-        description: "Você será redirecionado para o WhatsApp para concluir o envio.",
+        title: 'Proposta enviada!',
+        description: 'Você será redirecionado para o WhatsApp para concluir o envio.',
       });
       form.reset();
     } catch (error) {
-      console.error("Erro ao enviar proposta:", error);
+      console.error('Erro ao enviar proposta:', error);
       toast({
-        title: "Erro ao enviar proposta",
-        description: "Por favor, tente novamente.",
-        variant: "destructive",
+        title: 'Erro ao enviar proposta',
+        description: 'Por favor, tente novamente.',
+        variant: 'destructive',
       });
     }
   };
@@ -71,12 +70,13 @@ Acredito que posso mostrar experiências autênticas em meio à natureza para me
           <Card className="border-amber-200 bg-amber-50/50">
             <CardContent className="pt-4 sm:pt-6">
               <p className="text-amber-800 text-sm sm:text-base">
-                Somos uma opção exclusiva para criadores de conteúdo que desejam mostrar experiências autênticas. Compartilhe o Sítio Nosso Lugar com seu público!
+                Somos uma opção exclusiva para criadores de conteúdo que desejam mostrar
+                experiências autênticas. Compartilhe o Sítio Nosso Lugar com seu público!
               </p>
             </CardContent>
           </Card>
         </div>
-        
+
         <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4">
           <FormField
             control={form.control}
@@ -91,7 +91,7 @@ Acredito que posso mostrar experiências autênticas em meio à natureza para me
               </FormItem>
             )}
           />
-          
+
           <FormField
             control={form.control}
             name="socialHandle"
@@ -109,7 +109,7 @@ Acredito que posso mostrar experiências autênticas em meio à natureza para me
             )}
           />
         </div>
-          <FormField
+        <FormField
           control={form.control}
           name="city"
           render={({ field }) => (
@@ -122,7 +122,7 @@ Acredito que posso mostrar experiências autênticas em meio à natureza para me
             </FormItem>
           )}
         />
-        
+
         <FormField
           control={form.control}
           name="platform"
@@ -157,16 +157,21 @@ Acredito que posso mostrar experiências autênticas em meio à natureza para me
               </FormControl>
               <FormMessage />
             </FormItem>
-          )}        />
-        
-        <Button 
-          type="submit" 
-          className="w-full sm:w-full md:w-auto bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 hover:from-pink-600 hover:via-purple-600 hover:to-indigo-600 text-white disabled:opacity-50 disabled:cursor-not-allowed py-3 px-4 text-sm sm:text-base" 
+          )}
+        />
+
+        <Button
+          type="submit"
+          className="w-full sm:w-full md:w-auto bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 hover:from-pink-600 hover:via-purple-600 hover:to-indigo-600 text-white disabled:opacity-50 disabled:cursor-not-allowed py-3 px-4 text-sm sm:text-base"
           disabled={form.formState.isSubmitting}
         >
           <MessageSquare className="mr-1 sm:mr-2 h-3 w-3 sm:h-4 sm:w-4" />
-          <span className="hidden sm:inline">{form.formState.isSubmitting ? "Enviando..." : "Enviar Proposta via WhatsApp"}</span>
-          <span className="sm:hidden">{form.formState.isSubmitting ? "Enviando..." : "Enviar via WhatsApp"}</span>
+          <span className="hidden sm:inline">
+            {form.formState.isSubmitting ? 'Enviando...' : 'Enviar Proposta via WhatsApp'}
+          </span>
+          <span className="sm:hidden">
+            {form.formState.isSubmitting ? 'Enviando...' : 'Enviar via WhatsApp'}
+          </span>
         </Button>
       </form>
     </Form>
