@@ -1,4 +1,3 @@
-
 import { motion } from 'framer-motion';
 import { Home, Calendar, MapPin, Handshake, Instagram } from 'lucide-react';
 import MobileNavLink from './MobileNavLink';
@@ -21,10 +20,10 @@ const MobileMenu = ({ isOpen, currentPath, onNavigate }: MobileMenuProps) => {
       className="md:hidden bg-white rounded-lg mt-4 shadow-lg overflow-hidden"
     >
       <div className="flex flex-col p-4 gap-2">
-        <MobileNavLink 
-          to="/" 
+        <MobileNavLink
+          to="/"
           active={currentPath === '/'}
-          onClick={(e) => {
+          onClick={e => {
             e.preventDefault();
             onNavigate('/');
           }}
@@ -32,11 +31,11 @@ const MobileMenu = ({ isOpen, currentPath, onNavigate }: MobileMenuProps) => {
           <Home size={18} className="mr-2" />
           <span>Início</span>
         </MobileNavLink>
-        
-        <MobileNavLink 
-          to="/agendamento" 
+
+        <MobileNavLink
+          to="/agendamento"
           active={currentPath === '/agendamento'}
-          onClick={(e) => {
+          onClick={e => {
             e.preventDefault();
             onNavigate('/agendamento');
           }}
@@ -44,11 +43,11 @@ const MobileMenu = ({ isOpen, currentPath, onNavigate }: MobileMenuProps) => {
           <Calendar size={18} className="mr-2" />
           <span>Agendamento</span>
         </MobileNavLink>
-        
-        <MobileNavLink 
-          to="/como-chegar" 
+
+        <MobileNavLink
+          to="/como-chegar"
           active={currentPath === '/como-chegar'}
-          onClick={(e) => {
+          onClick={e => {
             e.preventDefault();
             onNavigate('/como-chegar');
           }}
@@ -56,11 +55,11 @@ const MobileMenu = ({ isOpen, currentPath, onNavigate }: MobileMenuProps) => {
           <MapPin size={18} className="mr-2" />
           <span>Como Chegar</span>
         </MobileNavLink>
-        
-        <MobileNavLink 
-          to="/parcerias" 
+
+        <MobileNavLink
+          to="/parcerias"
           active={currentPath === '/parcerias'}
-          onClick={(e) => {
+          onClick={e => {
             e.preventDefault();
             onNavigate('/parcerias');
           }}
@@ -68,12 +67,12 @@ const MobileMenu = ({ isOpen, currentPath, onNavigate }: MobileMenuProps) => {
           <Handshake size={18} className="mr-2" />
           <span>Parcerias</span>
         </MobileNavLink>
-        
+
         <div className="w-full h-px bg-gray-100 my-1"></div>
-        
-        <a 
-          href="https://www.instagram.com/sitionossolugar/" 
-          target="_blank" 
+
+        <a
+          href="https://www.instagram.com/sitionossolugar/"
+          target="_blank"
           rel="noopener noreferrer"
           className="flex items-center py-3 px-4 rounded-lg text-white bg-gradient-to-r from-amber-600 via-red-600 to-purple-600"
         >

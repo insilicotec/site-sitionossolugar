@@ -17,7 +17,7 @@ const quickSuggestions = [
   'Cerimônia religiosa',
   'Festa infantil',
   'Evento corporativo',
-  'Espaço para dança'
+  'Espaço para dança',
 ];
 
 const StepAdditionalNotes = ({ form }: StepAdditionalNotesProps) => {
@@ -48,7 +48,8 @@ const StepAdditionalNotes = ({ form }: StepAdditionalNotesProps) => {
         <FormField
           control={form.control}
           name="observacoes"
-          render={({ field }) => (            <FormItem>
+          render={({ field }) => (
+            <FormItem>
               <FormLabel className="text-sm font-medium text-gray-700">
                 Detalhes do seu evento (opcional)
               </FormLabel>
@@ -60,12 +61,11 @@ const StepAdditionalNotes = ({ form }: StepAdditionalNotesProps) => {
                 />
               </FormControl>
               <FormMessage />
-              <p className="text-xs text-gray-500 mt-1">
-                {currentNotes.length}/500 caracteres
-              </p>
+              <p className="text-xs text-gray-500 mt-1">{currentNotes.length}/500 caracteres</p>
             </FormItem>
           )}
-        />        {/* Quick Suggestions */}
+        />{' '}
+        {/* Quick Suggestions */}
         <div className="space-y-4">
           <h4 className="text-sm font-medium text-gray-700">Sugestões rápidas:</h4>
           <div className="flex flex-wrap gap-2">

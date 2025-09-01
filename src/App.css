@@ -4,13 +4,16 @@
   overflow: hidden;
 }
 .animate-sheen-btn::after {
-  content: '';
+  content: "";
   position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   background: linear-gradient(120deg, transparent 0%, #fff8 50%, transparent 100%);
   background-size: 200% 100%;
   background-repeat: no-repeat;
-  animation: sheen 2.5s cubic-bezier(0.4,0,0.2,1) infinite;
+  animation: sheen 2.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
   pointer-events: none;
   z-index: 1;
 }
@@ -90,12 +93,17 @@
 }
 
 @keyframes soft-glow {
-  0%, 100% {
-    box-shadow: 0 0 0px 0px #fff0, 0 0 8px 2px #ffd58033;
+  0%,
+  100% {
+    box-shadow:
+      0 0 0px 0px #fff0,
+      0 0 8px 2px #ffd58033;
     filter: brightness(1);
   }
   50% {
-    box-shadow: 0 0 12px 4px #ffd58099, 0 0 24px 8px #ffd58033;
+    box-shadow:
+      0 0 12px 4px #ffd58099,
+      0 0 24px 8px #ffd58033;
     filter: brightness(1.08);
   }
 }
@@ -121,13 +129,16 @@
   overflow: hidden;
 }
 .animate-sheen::after {
-  content: '';
+  content: "";
   position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   background: linear-gradient(120deg, transparent 0%, #fff8 50%, transparent 100%);
   background-size: 200% 100%;
   background-repeat: no-repeat;
-  animation: sheen 2.5s cubic-bezier(0.4,0,0.2,1) infinite;
+  animation: sheen 2.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
   pointer-events: none;
   z-index: 2;
 }

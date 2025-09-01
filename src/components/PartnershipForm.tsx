@@ -1,12 +1,11 @@
+import { useState } from 'react';
+import { Plane, Instagram, ArrowLeft } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent } from '@/components/ui/card';
+import { CompanyForm } from './partnership/CompanyForm';
+import { InfluencerForm } from './partnership/InfluencerForm';
 
-import { useState } from "react";
-import { Plane, Instagram, ArrowLeft } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
-import { CompanyForm } from "./partnership/CompanyForm";
-import { InfluencerForm } from "./partnership/InfluencerForm";
-
-type PartnershipType = "company" | "influencer" | null;
+type PartnershipType = 'company' | 'influencer' | null;
 
 export function PartnershipForm() {
   const [selectedType, setSelectedType] = useState<PartnershipType>(null);
@@ -30,30 +29,26 @@ export function PartnershipForm() {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
           {/* Opção Agências */}
-          <Card 
+          <Card
             className="cursor-pointer hover:shadow-lg transition-all duration-300 hover:-translate-y-1 border-2 hover:border-amber-300"
-            onClick={() => setSelectedType("company")}
+            onClick={() => setSelectedType('company')}
           >
             <CardContent className="p-6 text-center">
               <div className="bg-amber-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Plane className="w-8 h-8 text-amber-600" />
               </div>
-              <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-2">
-                Agências
-              </h3>
+              <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-2">Agências</h3>
               <p className="text-sm text-gray-600 mb-4">
                 Para agências de viagem e turismo que desejam oferecer experiências únicas
               </p>
-              <div className="text-xs text-amber-600 font-medium">
-                Clique para continuar →
-              </div>
+              <div className="text-xs text-amber-600 font-medium">Clique para continuar →</div>
             </CardContent>
           </Card>
 
           {/* Opção Influenciadores */}
-          <Card 
+          <Card
             className="cursor-pointer hover:shadow-lg transition-all duration-300 hover:-translate-y-1 border-2 hover:border-purple-300"
-            onClick={() => setSelectedType("influencer")}
+            onClick={() => setSelectedType('influencer')}
           >
             <CardContent className="p-6 text-center">
               <div className="bg-purple-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -65,9 +60,7 @@ export function PartnershipForm() {
               <p className="text-sm text-gray-600 mb-4">
                 Para criadores de conteúdo e influenciadores digitais
               </p>
-              <div className="text-xs text-purple-600 font-medium">
-                Clique para continuar →
-              </div>
+              <div className="text-xs text-purple-600 font-medium">Clique para continuar →</div>
             </CardContent>
           </Card>
         </div>
@@ -93,7 +86,7 @@ export function PartnershipForm() {
       {/* Título do formulário */}
       <div className="text-center mb-6">
         <div className="flex items-center justify-center mb-2">
-          {selectedType === "company" ? (
+          {selectedType === 'company' ? (
             <div className="bg-amber-100 w-12 h-12 rounded-full flex items-center justify-center mr-3">
               <Plane className="w-6 h-6 text-amber-600" />
             </div>
@@ -103,7 +96,9 @@ export function PartnershipForm() {
             </div>
           )}
           <h2 className="text-xl sm:text-2xl font-semibold text-gray-900">
-            {selectedType === "company" ? "Parceria para Agências" : "Parceria para Influenciadores"}
+            {selectedType === 'company'
+              ? 'Parceria para Agências'
+              : 'Parceria para Influenciadores'}
           </h2>
         </div>
         <p className="text-gray-600 text-sm">
@@ -113,7 +108,7 @@ export function PartnershipForm() {
 
       {/* Formulário */}
       <div className="bg-white rounded-xl">
-        {selectedType === "company" ? <CompanyForm /> : <InfluencerForm />}
+        {selectedType === 'company' ? <CompanyForm /> : <InfluencerForm />}
       </div>
     </div>
   );

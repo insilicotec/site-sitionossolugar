@@ -1,4 +1,3 @@
-
 import { ReactNode } from 'react';
 import { motion } from 'framer-motion';
 
@@ -10,7 +9,7 @@ interface ServiceCardProps {
 
 const ServiceCard = ({ title, description, icon }: ServiceCardProps) => {
   return (
-    <motion.div 
+    <motion.div
       className="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md border border-gray-100 transition-all duration-300"
       whileHover={{ y: -8, boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.1)' }}
       initial={{ opacity: 0, y: 20 }}

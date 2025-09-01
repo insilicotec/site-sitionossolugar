@@ -1,4 +1,3 @@
-
 import { Home, Calendar, MapPin, Handshake, Instagram } from 'lucide-react';
 import NavLink from './NavLink';
 
@@ -11,11 +10,11 @@ interface DesktopNavProps {
 const DesktopNav = ({ currentPath, scrolled, onNavigate }: DesktopNavProps) => {
   return (
     <nav className="hidden md:flex items-center space-x-1">
-      <NavLink 
-        to="/" 
-        active={currentPath === '/'} 
+      <NavLink
+        to="/"
+        active={currentPath === '/'}
         scrolled={scrolled}
-        onClick={(e) => {
+        onClick={e => {
           e.preventDefault();
           onNavigate('/');
         }}
@@ -23,12 +22,12 @@ const DesktopNav = ({ currentPath, scrolled, onNavigate }: DesktopNavProps) => {
         <Home size={16} className="mr-1" />
         <span>Início</span>
       </NavLink>
-      
-      <NavLink 
-        to="/agendamento" 
-        active={currentPath === '/agendamento'} 
+
+      <NavLink
+        to="/agendamento"
+        active={currentPath === '/agendamento'}
         scrolled={scrolled}
-        onClick={(e) => {
+        onClick={e => {
           e.preventDefault();
           onNavigate('/agendamento');
         }}
@@ -36,12 +35,12 @@ const DesktopNav = ({ currentPath, scrolled, onNavigate }: DesktopNavProps) => {
         <Calendar size={16} className="mr-1" />
         <span>Agendamento</span>
       </NavLink>
-      
-      <NavLink 
-        to="/como-chegar" 
-        active={currentPath === '/como-chegar'} 
+
+      <NavLink
+        to="/como-chegar"
+        active={currentPath === '/como-chegar'}
         scrolled={scrolled}
-        onClick={(e) => {
+        onClick={e => {
           e.preventDefault();
           onNavigate('/como-chegar');
         }}
@@ -49,12 +48,12 @@ const DesktopNav = ({ currentPath, scrolled, onNavigate }: DesktopNavProps) => {
         <MapPin size={16} className="mr-1" />
         <span>Como Chegar</span>
       </NavLink>
-      
-      <NavLink 
-        to="/parcerias" 
-        active={currentPath === '/parcerias'} 
+
+      <NavLink
+        to="/parcerias"
+        active={currentPath === '/parcerias'}
         scrolled={scrolled}
-        onClick={(e) => {
+        onClick={e => {
           e.preventDefault();
           onNavigate('/parcerias');
         }}
@@ -62,10 +61,10 @@ const DesktopNav = ({ currentPath, scrolled, onNavigate }: DesktopNavProps) => {
         <Handshake size={16} className="mr-1" />
         <span>Parcerias</span>
       </NavLink>
-      
-      <a 
-        href="https://www.instagram.com/sitionossolugar/" 
-        target="_blank" 
+
+      <a
+        href="https://www.instagram.com/sitionossolugar/"
+        target="_blank"
         rel="noopener noreferrer"
         className="flex items-center gap-1 rounded-full px-3 py-2 transition-all text-white bg-gradient-to-r from-amber-600 via-red-600 to-purple-600 hover:opacity-90"
       >

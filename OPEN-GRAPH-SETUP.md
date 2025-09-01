@@ -9,18 +9,21 @@
 ## 🧪 Como Testar
 
 ### 1. **Teste Local**
+
 ```bash
 # Acesse diretamente a imagem:
 http://localhost:8081/og-image.jpg
 ```
 
 ### 2. **Teste em Produção**
+
 ```bash
 # Substitua pela URL do seu site:
 https://seu-site.com/og-image.jpg
 ```
 
 ### 3. **Validadores Online**
+
 - [Facebook Sharing Debugger](https://developers.facebook.com/tools/debug/)
 - [Twitter Card Validator](https://cards-dev.twitter.com/validator)
 - [LinkedIn Post Inspector](https://www.linkedin.com/post-inspector/)
@@ -28,6 +31,7 @@ https://seu-site.com/og-image.jpg
 ## 🔧 Soluções se Ainda não Funcionar
 
 ### Problema 1: Imagem não carrega
+
 ```bash
 # Verifique se existe:
 ls public/og-image.jpg
@@ -37,6 +41,7 @@ cp public/lovable-uploads/[alguma-imagem].jpg public/og-image.jpg
 ```
 
 ### Problema 2: Cache das redes sociais
+
 ```bash
 # Limpe o cache usando os validadores acima
 # Ou adicione parâmetro de versão na URL:
@@ -44,6 +49,7 @@ cp public/lovable-uploads/[alguma-imagem].jpg public/og-image.jpg
 ```
 
 ### Problema 3: URL absoluta necessária
+
 ```html
 <!-- Substitua nas meta tags por URL completa: -->
 <meta property="og:image" content="https://seu-dominio.com/og-image.jpg" />
@@ -60,10 +66,12 @@ cp public/lovable-uploads/[alguma-imagem].jpg public/og-image.jpg
 ## 🎨 Melhorias Futuras
 
 Para um preview ainda melhor, crie uma imagem com:
+
 - **Dimensões**: 1200x630px
 - **Conteúdo**: Logo + "Sítio Nosso Lugar" + frase de impacto
 - **Formato**: JPG ou PNG
 - **Tamanho**: Máximo 8MB
 
 ---
-*Atualizado em: 8 de junho de 2025*
+
+_Atualizado em: 8 de junho de 2025_

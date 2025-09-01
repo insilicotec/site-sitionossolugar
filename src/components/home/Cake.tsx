@@ -1,4 +1,3 @@
-
 import React from 'react';
 
 const Cake = ({ size = 24 }: { size?: number }) => {

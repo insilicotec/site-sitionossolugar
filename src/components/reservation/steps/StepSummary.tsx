@@ -1,5 +1,14 @@
 import { UseFormReturn } from 'react-hook-form';
-import { CheckCircle, User, Calendar, Users, MessageSquare, Edit, MapPin, Heart } from 'lucide-react';
+import {
+  CheckCircle,
+  User,
+  Calendar,
+  Users,
+  MessageSquare,
+  Edit,
+  MapPin,
+  Heart,
+} from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { ReservationData } from '../types';
 
@@ -9,22 +18,22 @@ interface StepSummaryProps {
 }
 
 const eventTypeLabels: { [key: string]: string } = {
-  'casamento': 'Casamento',
-  'aniversario': 'Aniversário',
-  'confraternizacao': 'Confraternização',
+  casamento: 'Casamento',
+  aniversario: 'Aniversário',
+  confraternizacao: 'Confraternização',
   'evento-corporativo': 'Evento Corporativo',
   'ensaio-fotografico': 'Ensaio Fotográfico',
-  'outros': 'Outros'
+  outros: 'Outros',
 };
 
 const StepSummary = ({ form, goToStep }: StepSummaryProps) => {
   const formData = form.getValues();
-    const formatDate = (date: Date | undefined) => {
+  const formatDate = (date: Date | undefined) => {
     if (!date) return 'Não informada';
     return new Intl.DateTimeFormat('pt-BR', {
       day: '2-digit',
       month: 'long',
-      year: 'numeric'
+      year: 'numeric',
     }).format(new Date(date));
   };
 
@@ -34,32 +43,44 @@ const StepSummary = ({ form, goToStep }: StepSummaryProps) => {
       title: 'Dados Pessoais',
       content: (
         <div className="space-y-1">
-          <p><span className="font-medium">Nome:</span> {formData.nome || 'Não informado'}</p>
-          <p><span className="font-medium">Cidade:</span> {formData.cidade || 'Não informada'}</p>
+          <p>
+            <span className="font-medium">Nome:</span> {formData.nome || 'Não informado'}
+          </p>
+          <p>
+            <span className="font-medium">Cidade:</span> {formData.cidade || 'Não informada'}
+          </p>
         </div>
       ),
-      stepNumber: 1
+      stepNumber: 1,
     },
     {
       icon: Calendar,
       title: 'Detalhes do Evento',
       content: (
         <div className="space-y-1">
-          <p><span className="font-medium">Data:</span> {formatDate(formData.dataEvento)}</p>
-          <p><span className="font-medium">Tipo:</span> {eventTypeLabels[formData.tipoEvento] || 'Não informado'}</p>
+          <p>
+            <span className="font-medium">Data:</span> {formatDate(formData.dataEvento)}
+          </p>
+          <p>
+            <span className="font-medium">Tipo:</span>{' '}
+            {eventTypeLabels[formData.tipoEvento] || 'Não informado'}
+          </p>
         </div>
       ),
-      stepNumber: 2
+      stepNumber: 2,
     },
     {
       icon: Users,
       title: 'Quantidade de Pessoas',
       content: (
         <div className="space-y-1">
-          <p><span className="font-medium">Convidados:</span> {formData.quantidadePessoas || 0} pessoas</p>
+          <p>
+            <span className="font-medium">Convidados:</span> {formData.quantidadePessoas || 0}{' '}
+            pessoas
+          </p>
         </div>
       ),
-      stepNumber: 3
+      stepNumber: 3,
     },
     {
       icon: MessageSquare,
@@ -73,8 +94,8 @@ const StepSummary = ({ form, goToStep }: StepSummaryProps) => {
           )}
         </div>
       ),
-      stepNumber: 4
-    }
+      stepNumber: 4,
+    },
   ];
 
   return (
@@ -84,9 +105,7 @@ const StepSummary = ({ form, goToStep }: StepSummaryProps) => {
           <CheckCircle className="w-8 h-8 text-green-600" />
         </div>
         <h3 className="text-2xl font-bold text-gray-900 mb-2">Revisar Informações</h3>
-        <p className="text-gray-600">
-          Confira todos os detalhes antes de enviar sua reserva
-        </p>
+        <p className="text-gray-600">Confira todos os detalhes antes de enviar sua reserva</p>
       </div>
 
       <div className="space-y-4">
@@ -127,22 +146,12 @@ const StepSummary = ({ form, goToStep }: StepSummaryProps) => {
             <Heart className="w-6 h-6 text-white" />
           </div>
           <div>
-            <h4 className="text-lg font-semibold text-amber-900 mb-2">
-              Próximos Passos
-            </h4>
+            <h4 className="text-lg font-semibold text-amber-900 mb-2">Próximos Passos</h4>
             <div className="text-sm text-amber-800 space-y-2">
-              <p>
-                • Nossa equipe entrará em contato em até 24 horas para confirmar sua reserva
-              </p>
-              <p>
-                • Discutiremos todos os detalhes e personalizações do seu evento
-              </p>
-              <p>
-                • Enviaremos um contrato com todas as informações e valores
-              </p>
-              <p>
-                • Você pode entrar em contato conosco pelo WhatsApp para dúvidas urgentes
-              </p>
+              <p>• Nossa equipe entrará em contato em até 24 horas para confirmar sua reserva</p>
+              <p>• Discutiremos todos os detalhes e personalizações do seu evento</p>
+              <p>• Enviaremos um contrato com todas as informações e valores</p>
+              <p>• Você pode entrar em contato conosco pelo WhatsApp para dúvidas urgentes</p>
             </div>
           </div>
         </div>
@@ -155,9 +164,7 @@ const StepSummary = ({ form, goToStep }: StepSummaryProps) => {
             <MapPin className="w-6 h-6 text-white" />
           </div>
           <div>
-            <h4 className="text-lg font-semibold text-blue-900 mb-2">
-              Sítio Nosso Lugar
-            </h4>
+            <h4 className="text-lg font-semibold text-blue-900 mb-2">Sítio Nosso Lugar</h4>
             <div className="text-sm text-blue-800 space-y-1">
               <p>📍 Localização privilegiada na natureza</p>
               <p>🏞️ Ambiente completo para eventos especiais</p>
@@ -173,10 +180,12 @@ const StepSummary = ({ form, goToStep }: StepSummaryProps) => {
           <CheckCircle className="w-5 h-5 text-green-600 flex-shrink-0" />
           <div>
             <p className="text-sm text-gray-700 font-medium">
-              Ao enviar esta reserva, você concorda com nossos termos de uso e política de privacidade.
+              Ao enviar esta reserva, você concorda com nossos termos de uso e política de
+              privacidade.
             </p>
             <p className="text-xs text-gray-500 mt-1">
-              Seus dados serão utilizados apenas para processar sua reserva e entrar em contato quando necessário.
+              Seus dados serão utilizados apenas para processar sua reserva e entrar em contato
+              quando necessário.
             </p>
           </div>
         </div>

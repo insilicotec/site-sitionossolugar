@@ -11,7 +11,7 @@ interface StepGuestCountProps {
 
 const StepGuestCount = ({ form }: StepGuestCountProps) => {
   const currentCount = form.watch('quantidadePessoas') || 0;
-    const incrementCount = () => {
+  const incrementCount = () => {
     const current = form.getValues('quantidadePessoas') || 1;
     if (current < 200) {
       form.setValue('quantidadePessoas', current + 1, { shouldValidate: true });
@@ -32,9 +32,7 @@ const StepGuestCount = ({ form }: StepGuestCountProps) => {
           <Users className="w-8 h-8 text-amber-600" />
         </div>
         <h3 className="text-2xl font-bold text-gray-900 mb-2">Quantidade de Pessoas</h3>
-        <p className="text-gray-600">
-          Quantos convidados participarão do seu evento?
-        </p>
+        <p className="text-gray-600">Quantos convidados participarão do seu evento?</p>
       </div>
 
       <div className="space-y-6">
@@ -47,7 +45,9 @@ const StepGuestCount = ({ form }: StepGuestCountProps) => {
                 Número de Convidados *
               </FormLabel>
               <FormControl>
-                <div className="flex items-center justify-center space-x-4">                  <Button
+                <div className="flex items-center justify-center space-x-4">
+                  {' '}
+                  <Button
                     type="button"
                     variant="outline"
                     size="icon"
@@ -57,7 +57,7 @@ const StepGuestCount = ({ form }: StepGuestCountProps) => {
                   >
                     <Minus className="h-4 w-4" />
                   </Button>
-                    <div className="flex items-center space-x-2">
+                  <div className="flex items-center space-x-2">
                     <Input
                       type="number"
                       min="1"
@@ -66,25 +66,25 @@ const StepGuestCount = ({ form }: StepGuestCountProps) => {
                       className="w-28 h-12 text-center text-lg font-bold border-2 border-gray-200 focus:border-amber-500 focus:ring-amber-500"
                       {...field}
                       value={field.value || ''}
-                      onChange={(e) => {
+                      onChange={e => {
                         const value = e.target.value;
-                        
+
                         // Allow empty string for clearing
                         if (value === '') {
                           field.onChange(undefined);
                           return;
                         }
-                        
+
                         const numValue = parseInt(value);
-                        
+
                         // Allow any number input, validate on blur or form submission
                         if (!isNaN(numValue) && numValue >= 0) {
                           field.onChange(numValue);
                         }
                       }}
-                      onBlur={(e) => {
+                      onBlur={e => {
                         const value = parseInt(e.target.value);
-                        
+
                         // Set to minimum if empty or invalid on blur
                         if (isNaN(value) || value < 1) {
                           field.onChange(1);
@@ -95,7 +95,6 @@ const StepGuestCount = ({ form }: StepGuestCountProps) => {
                     />
                     <span className="text-gray-500 text-sm">pessoas</span>
                   </div>
-                  
                   <Button
                     type="button"
                     variant="outline"
@@ -118,9 +117,7 @@ const StepGuestCount = ({ form }: StepGuestCountProps) => {
         <div className="flex items-start gap-3">
           <Info className="w-5 h-5 text-indigo-600 flex-shrink-0 mt-0.5" />
           <div>
-            <p className="text-sm text-indigo-800 font-medium mb-1">
-              Informações sobre capacidade
-            </p>
+            <p className="text-sm text-indigo-800 font-medium mb-1">Informações sobre capacidade</p>
             <ul className="text-sm text-indigo-700 space-y-1">
               <li>• Infraestrutura completa para eventos de todos os tamanhos</li>
               <li>• Área coberta e ao ar livre disponível</li>

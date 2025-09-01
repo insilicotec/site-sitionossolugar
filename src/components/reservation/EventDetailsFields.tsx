@@ -1,15 +1,14 @@
-
-import { FormField, FormItem, FormLabel, FormControl, FormMessage } from "@/components/ui/form";
-import { UseFormReturn } from "react-hook-form";
-import { ReservationData } from "./types";
-import { Calendar, Heart, Users, Palmtree } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Popover, PopoverTrigger, PopoverContent } from "@/components/ui/popover";
-import { format } from "date-fns";
-import { ptBR } from "date-fns/locale";
-import { cn } from "@/lib/utils";
-import { Calendar as CalendarComponent } from "@/components/ui/calendar";
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { FormField, FormItem, FormLabel, FormControl, FormMessage } from '@/components/ui/form';
+import { UseFormReturn } from 'react-hook-form';
+import { ReservationData } from './types';
+import { Calendar, Heart, Users, Palmtree } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Popover, PopoverTrigger, PopoverContent } from '@/components/ui/popover';
+import { format } from 'date-fns';
+import { ptBR } from 'date-fns/locale';
+import { cn } from '@/lib/utils';
+import { Calendar as CalendarComponent } from '@/components/ui/calendar';
+import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 
 interface EventDetailsFieldsProps {
   form: UseFormReturn<ReservationData>;
@@ -19,7 +18,7 @@ const EventDetailsFields = ({ form }: EventDetailsFieldsProps) => {
   return (
     <div className="space-y-4">
       <h3 className="text-lg font-semibold text-sitio-green-dark">Detalhes do Evento</h3>
-      
+
       {/* Data do Evento */}
       <FormField
         control={form.control}
@@ -31,14 +30,14 @@ const EventDetailsFields = ({ form }: EventDetailsFieldsProps) => {
               <PopoverTrigger asChild>
                 <FormControl>
                   <Button
-                    variant={"outline"}
+                    variant={'outline'}
                     className={cn(
-                      "pl-3 text-left font-normal",
-                      !field.value && "text-muted-foreground"
+                      'pl-3 text-left font-normal',
+                      !field.value && 'text-muted-foreground'
                     )}
                   >
                     {field.value ? (
-                      format(field.value, "PPP", { locale: ptBR })
+                      format(field.value, 'PPP', { locale: ptBR })
                     ) : (
                       <span>Selecione uma data</span>
                     )}
@@ -51,7 +50,7 @@ const EventDetailsFields = ({ form }: EventDetailsFieldsProps) => {
                   mode="single"
                   selected={field.value}
                   onSelect={field.onChange}
-                  disabled={(date) => {
+                  disabled={date => {
                     const today = new Date();
                     const maxDate = new Date();
                     maxDate.setFullYear(today.getFullYear() + 2);
@@ -66,7 +65,7 @@ const EventDetailsFields = ({ form }: EventDetailsFieldsProps) => {
           </FormItem>
         )}
       />
-      
+
       {/* Tipo de Evento */}
       <FormField
         control={form.control}
@@ -92,7 +91,7 @@ const EventDetailsFields = ({ form }: EventDetailsFieldsProps) => {
                     <span className="text-sm font-medium">Casamento</span>
                   </FormLabel>
                 </FormItem>
-                
+
                 <FormItem>
                   <FormControl>
                     <RadioGroupItem value="aniversario" id="aniversario" className="peer sr-only" />
@@ -105,7 +104,7 @@ const EventDetailsFields = ({ form }: EventDetailsFieldsProps) => {
                     <span className="text-sm font-medium">Aniversário</span>
                   </FormLabel>
                 </FormItem>
-                
+
                 <FormItem>
                   <FormControl>
                     <RadioGroupItem value="corporativo" id="corporativo" className="peer sr-only" />
@@ -118,7 +117,7 @@ const EventDetailsFields = ({ form }: EventDetailsFieldsProps) => {
                     <span className="text-sm font-medium">Evento Corporativo</span>
                   </FormLabel>
                 </FormItem>
-                
+
                 <FormItem>
                   <FormControl>
                     <RadioGroupItem value="dayuse" id="dayuse" className="peer sr-only" />
@@ -131,10 +130,14 @@ const EventDetailsFields = ({ form }: EventDetailsFieldsProps) => {
                     <span className="text-sm font-medium">Day Use</span>
                   </FormLabel>
                 </FormItem>
-                
+
                 <FormItem>
                   <FormControl>
-                    <RadioGroupItem value="pacoteFechado" id="pacoteFechado" className="peer sr-only" />
+                    <RadioGroupItem
+                      value="pacoteFechado"
+                      id="pacoteFechado"
+                      className="peer sr-only"
+                    />
                   </FormControl>
                   <FormLabel
                     htmlFor="pacoteFechado"
@@ -144,7 +147,7 @@ const EventDetailsFields = ({ form }: EventDetailsFieldsProps) => {
                     <span className="text-sm font-medium">Pacote fechado (apenas o espaço)</span>
                   </FormLabel>
                 </FormItem>
-                
+
                 <FormItem>
                   <FormControl>
                     <RadioGroupItem value="outro" id="outro" className="peer sr-only" />

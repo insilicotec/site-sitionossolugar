@@ -1,7 +1,13 @@
 import { UseFormReturn } from 'react-hook-form';
 import { FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
 import { Calendar, Heart, Users, Briefcase, Gift, Camera } from 'lucide-react';
 import { ReservationData } from '../types';
 
@@ -13,8 +19,18 @@ const eventTypes = [
   { value: 'casamento', label: 'Casamento', icon: Heart, color: 'text-pink-500' },
   { value: 'aniversario', label: 'Aniversário', icon: Gift, color: 'text-purple-500' },
   { value: 'confraternizacao', label: 'Confraternização', icon: Users, color: 'text-blue-500' },
-  { value: 'evento-corporativo', label: 'Evento Corporativo', icon: Briefcase, color: 'text-gray-500' },
-  { value: 'ensaio-fotografico', label: 'Ensaio Fotográfico', icon: Camera, color: 'text-green-500' },
+  {
+    value: 'evento-corporativo',
+    label: 'Evento Corporativo',
+    icon: Briefcase,
+    color: 'text-gray-500',
+  },
+  {
+    value: 'ensaio-fotografico',
+    label: 'Ensaio Fotográfico',
+    icon: Camera,
+    color: 'text-green-500',
+  },
   { value: 'outros', label: 'Outros', icon: Calendar, color: 'text-amber-500' },
 ];
 
@@ -39,9 +55,7 @@ const StepEventDetails = ({ form }: StepEventDetailsProps) => {
           name="dataEvento"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className="text-sm font-medium text-gray-700">
-                Data do Evento *
-              </FormLabel>
+              <FormLabel className="text-sm font-medium text-gray-700">Data do Evento *</FormLabel>
               <FormControl>
                 <div className="relative">
                   <Calendar className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
@@ -50,7 +64,9 @@ const StepEventDetails = ({ form }: StepEventDetailsProps) => {
                     className="pl-10 h-12 border-gray-200 focus:border-amber-500 focus:ring-amber-500"
                     {...field}
                     value={field.value ? new Date(field.value).toISOString().split('T')[0] : ''}
-                    onChange={(e) => field.onChange(e.target.value ? new Date(e.target.value) : undefined)}
+                    onChange={e =>
+                      field.onChange(e.target.value ? new Date(e.target.value) : undefined)
+                    }
                     min={new Date().toISOString().split('T')[0]}
                   />
                 </div>
@@ -65,9 +81,7 @@ const StepEventDetails = ({ form }: StepEventDetailsProps) => {
           name="tipoEvento"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className="text-sm font-medium text-gray-700">
-                Tipo do Evento *
-              </FormLabel>
+              <FormLabel className="text-sm font-medium text-gray-700">Tipo do Evento *</FormLabel>
               <Select onValueChange={field.onChange} defaultValue={field.value}>
                 <FormControl>
                   <SelectTrigger className="h-12 border-gray-200 focus:border-amber-500 focus:ring-amber-500">
@@ -75,7 +89,7 @@ const StepEventDetails = ({ form }: StepEventDetailsProps) => {
                   </SelectTrigger>
                 </FormControl>
                 <SelectContent>
-                  {eventTypes.map((type) => {
+                  {eventTypes.map(type => {
                     const IconComponent = type.icon;
                     return (
                       <SelectItem key={type.value} value={type.value}>
@@ -101,7 +115,9 @@ const StepEventDetails = ({ form }: StepEventDetailsProps) => {
               const eventType = eventTypes.find(type => type.value === selectedEventType);
               if (eventType) {
                 const IconComponent = eventType.icon;
-                return <IconComponent className={`w-8 h-8 ${eventType.color} flex-shrink-0 mt-1`} />;
+                return (
+                  <IconComponent className={`w-8 h-8 ${eventType.color} flex-shrink-0 mt-1`} />
+                );
               }
               return null;
             })()}
@@ -110,23 +126,23 @@ const StepEventDetails = ({ form }: StepEventDetailsProps) => {
                 {eventTypes.find(type => type.value === selectedEventType)?.label}
               </h4>
               <p className="text-gray-700 text-sm leading-relaxed">
-                {selectedEventType === 'casamento' && 
-                  "Tornamos seu dia especial ainda mais mágico com nossa infraestrutura completa e paisagem deslumbrante."}
-                {selectedEventType === 'aniversario' && 
-                  "Celebre mais um ano de vida em um ambiente acolhedor e cheio de natureza."}
-                {selectedEventType === 'confraternizacao' && 
-                  "Reúna amigos e familiares em um espaço perfeito para momentos de união e alegria."}
-                {selectedEventType === 'evento-corporativo' && 
-                  "Realize seu evento empresarial em um ambiente único que inspira criatividade e networking."}
-                {selectedEventType === 'ensaio-fotografico' && 
-                  "Capture momentos únicos em cenários naturais deslumbrantes."}
-                {selectedEventType === 'outros' && 
-                  "Qualquer que seja sua ocasião especial, oferecemos o espaço perfeito para realizá-la."}
+                {selectedEventType === 'casamento' &&
+                  'Tornamos seu dia especial ainda mais mágico com nossa infraestrutura completa e paisagem deslumbrante.'}
+                {selectedEventType === 'aniversario' &&
+                  'Celebre mais um ano de vida em um ambiente acolhedor e cheio de natureza.'}
+                {selectedEventType === 'confraternizacao' &&
+                  'Reúna amigos e familiares em um espaço perfeito para momentos de união e alegria.'}
+                {selectedEventType === 'evento-corporativo' &&
+                  'Realize seu evento empresarial em um ambiente único que inspira criatividade e networking.'}
+                {selectedEventType === 'ensaio-fotografico' &&
+                  'Capture momentos únicos em cenários naturais deslumbrantes.'}
+                {selectedEventType === 'outros' &&
+                  'Qualquer que seja sua ocasião especial, oferecemos o espaço perfeito para realizá-la.'}
               </p>
             </div>
-          </div>        </div>
+          </div>{' '}
+        </div>
       )}
-
     </div>
   );
 };

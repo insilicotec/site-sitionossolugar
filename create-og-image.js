@@ -20,8 +20,8 @@ console.log('');
 // Verificar se a logo atual existe
 const logoPath = path.join(__dirname, 'public', 'sitio-logo.png');
 if (fs.existsSync(logoPath)) {
-    const stats = fs.statSync(logoPath);
-    console.log(`✅ Logo atual encontrada: ${(stats.size / 1024).toFixed(2)}KB`);
+  const stats = fs.statSync(logoPath);
+  console.log(`✅ Logo atual encontrada: ${(stats.size / 1024).toFixed(2)}KB`);
 } else {
-    console.log('❌ Logo não encontrada em public/sitio-logo.png');
+  console.log('❌ Logo não encontrada em public/sitio-logo.png');
 }

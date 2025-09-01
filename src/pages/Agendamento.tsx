@@ -1,91 +1,66 @@
-import { useState } from 'react';
-import { format } from 'date-fns';
-import { ptBR } from 'date-fns/locale';
-import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import Navbar from '@/components/Navbar';
 import StepperForm from '@/components/reservation/StepperForm';
-import { ReservationData } from '@/components/reservation/types';
+import { SUCCESS_MESSAGES } from '@/lib/constants';
+import { AnalyticsService } from '@/services/analytics';
+import { WhatsAppService } from '@/services/whatsapp';
+import type { ReservationData } from '@/types/forms';
+import { useState } from 'react';
 import { toast } from 'sonner';
 
 const Agendamento = () => {
-  const [whatsappMessage, setWhatsappMessage] = useState('🌿 *SÍTIO NOSSO LUGAR* 🌟\n\nOlá! Gostaria de fazer uma reserva para um evento especial.\n\n💚 Aguardo contato!');
   const [currentStep, setCurrentStep] = useState(1);
   const handleSubmit = (data: ReservationData) => {
     try {
-      console.log("Reservation data received:", data);
-      
+      console.log('Reservation data received:', data);
+
       // Validate required fields
-      if (!data.nome || !data.cidade || !data.dataEvento || !data.tipoEvento || !data.quantidadePessoas) {
-        toast.error("Por favor, preencha todos os campos obrigatórios");
+      if (
+        !data.nome ||
+        !data.cidade ||
+        !data.dataEvento ||
+        !data.tipoEvento ||
+        !data.quantidadePessoas
+      ) {
+        toast.error('Por favor, preencha todos os campos obrigatórios');
         return;
       }
-    
-      // Format the date
-      const formattedDate = format(data.dataEvento, "dd/MM/yyyy", { locale: ptBR });
-        // Create WhatsApp message
-      const message = `*NOVA RESERVA - SITIO NOSSO LUGAR*
 
-*DADOS PESSOAIS*
-• Nome: ${data.nome}
-• Cidade: ${data.cidade}
+      // Track form submission
+      AnalyticsService.trackFormSubmission('reservation', true);
 
-*DETALHES DO EVENTO*
-• Data: ${formattedDate}
-• Tipo: ${getEventTypeText(data.tipoEvento)}
-• Quantidade de Pessoas: ${data.quantidadePessoas}
+      // Send WhatsApp message
+      WhatsAppService.sendReservationInquiry(data);
 
-${data.observacoes ? `*OBSERVACOES*\n${data.observacoes}\n\n` : ""}Agradecemos seu interesse em realizar seu evento no Sítio Nosso Lugar!
-
-Em breve entraremos em contato para confirmar os detalhes.`;
-
-      setWhatsappMessage(message);
-      
-      toast.success("Formulário enviado com sucesso! Redirecionando para WhatsApp...");
-      
-      // Redirect to WhatsApp
-      setTimeout(() => {
-        const whatsappUrl = `https://wa.me/559184731385?text=${encodeURIComponent(message)}`;
-        console.log("Opening WhatsApp URL:", whatsappUrl);
-        window.open(whatsappUrl, '_blank');
-      }, 1500);
+      toast.success(SUCCESS_MESSAGES.reservationSent);
     } catch (error) {
-      console.error("Error processing form:", error);
-      toast.error("Erro ao processar o formulário. Tente novamente.");
+      console.error('Error processing form:', error);
+      AnalyticsService.trackFormSubmission('reservation', false);
+      toast.error('Erro ao processar o formulário. Tente novamente.');
     }
-  };
-
-  const getEventTypeText = (eventType: string): string => {
-    const eventTypes: Record<string, string> = {
-      'casamento': 'Casamento',
-      'aniversario': 'Aniversário',
-      'confraternizacao': 'Confraternização',
-      'evento-corporativo': 'Evento Corporativo',
-      'ensaio-fotografico': 'Ensaio Fotográfico',
-      'outros': 'Outros'
-    };
-    
-    return eventTypes[eventType] || eventType;
   };
 
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar />
-        <main className="flex-grow pt-24">
+      <main className="flex-grow pt-24">
         {/* Hero Section - Only show on first step */}
         {currentStep === 1 && (
           <section className="bg-sitio-green-dark text-white py-12">
             <div className="container px-4 text-center">
               <h1 className="text-3xl md:text-4xl font-bold mb-4">Agende Seu Evento</h1>
               <p className="text-lg max-w-3xl mx-auto text-black">
-                Preencha o formulário abaixo com os detalhes do seu evento.
-                Entraremos em contato para confirmar a disponibilidade e finalizar sua reserva.
+                Preencha o formulário abaixo com os detalhes do seu evento. Entraremos em contato
+                para confirmar a disponibilidade e finalizar sua reserva.
               </p>
             </div>
           </section>
         )}
-        
+
         {/* Reservation Form Section */}
-        <section className={`pb-12 bg-gradient-to-br from-gray-50 to-gray-100 ${currentStep === 1 ? 'pt-2' : 'pt-8'}`}>
+        <section
+          className={`pb-12 bg-gradient-to-br from-gray-50 to-gray-100 ${currentStep === 1 ? 'pt-2' : 'pt-8'}`}
+        >
           <div className="container px-4">
             <div className="max-w-5xl mx-auto">
               {currentStep === 1 && (
@@ -100,15 +75,41 @@ Em breve entraremos em contato para confirmar os detalhes.`;
           </div>
         </section>
       </main>
-      
+
       <Footer />
-      
+
       {/* Discreet Developer Credits */}
       <div className="py-2 bg-gray-100 text-center text-xs text-gray-500">
-        <div className="container px-4">          <p>
-            Desenvolvido por <a href="https://www.instagram.com/insilicotec/" target="_blank" rel="noopener noreferrer" className="text-amber-600 hover:text-amber-700 hover:underline">Insilico tecnologia</a> • 
-            <a href="https://wa.me/5591988939655" target="_blank" rel="noopener noreferrer" className="ml-1 text-amber-600 hover:text-amber-700 hover:underline">(91) 98893-9655</a> • 
-            <a href="https://www.instagram.com/insilicotec/" target="_blank" rel="noopener noreferrer" className="ml-1 text-amber-600 hover:text-amber-700 hover:underline">@insilicotec</a>
+        <div className="container px-4">
+          {' '}
+          <p>
+            Desenvolvido por{' '}
+            <a
+              href="https://www.instagram.com/insilicotec/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-amber-600 hover:text-amber-700 hover:underline"
+            >
+              Insilico tecnologia
+            </a>{' '}
+            •
+            <a
+              href="https://wa.me/5591988939655"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="ml-1 text-amber-600 hover:text-amber-700 hover:underline"
+            >
+              (91) 98893-9655
+            </a>{' '}
+            •
+            <a
+              href="https://www.instagram.com/insilicotec/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="ml-1 text-amber-600 hover:text-amber-700 hover:underline"
+            >
+              @insilicotec
+            </a>
           </p>
         </div>
       </div>
